@@ -1,0 +1,118 @@
+* {
+    box-sizing: border-box;
+  
+  }
+
+@media (min-width: 600px) {
+    .wrapper {
+      overflow: hidden;
+    }
+    .wrapper > * {
+      float: left;
+      padding: 5em 5em;
+    }
+  }
+
+  @media (min-width: 600px) {
+    .contacts {
+      width: 20%;
+      min-height: 752px; /*tamaño de la barra azul*/
+    }
+  }
+  
+  @media (min-width: 600px) {
+    .form {
+      width: 70%;
+    }
+  }
+  
+  form p {
+    float: left;
+    width: 49%;
+  }
+  form p:not(:nth-child(2n)) {
+    margin-right: 2%;
+  }
+
+  form p:last-child {
+    clear: both;
+    width: 100%;
+  }
+
+  form p:nth-last-child(2) {
+  clear: both;
+  width: 100%;
+}
+
+/**************************************/
+body {
+  padding: 0px;
+}
+
+.wrapper {
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+  }
+  .wrapper > * {
+    padding: 2em;
+  }
+  
+  .contacts {
+    background: url("empresa.jpg") no-repeat;/* color de la barra*/
+    color:red;
+  }
+  
+  .form,#form1 {
+    background:  white;
+  
+  }
+  
+  form label {
+    display: block;
+  }
+  
+  button,
+  input,
+  textarea {
+    padding: 4em;
+  }
+  button {
+    background: #00acee;
+    width: 50%;
+    border: 1px;
+    border-radius: 15px;
+  }
+  
+  
+  .contain {
+    max-width:950px;/*tamaño del recuadro total*/
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1em;
+  }
+  @media (min-width: 500px) {
+    .contain {
+      padding: 0;
+    }
+  }
+  
+  h3
+  {
+    margin: 0;
+  }
+  
+  h3 {
+    margin-bottom: 3rem;
+  }
+  
+  input:focus,
+  textarea:focus {
+    outline: 3px solid gold;
+  }
+  
+  input,
+  textarea,
+  button ,select{
+    width: 100%;
+    border: 1px solid #000;
+  }
+    

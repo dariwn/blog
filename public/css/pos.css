@@ -1,0 +1,26 @@
+fieldset{
+    border: 0;
+  }
+  .formulario{
+    padding: 20px;
+  }
+  .btns{
+    float: right;
+  }
+  
+  .formulario .formulario__usuario{
+    width: 90%;
+    padding: 23px;
+    margin: auto;
+    background: white;
+    box-shadow: 0px 0px 3px grey;
+    textarea{
+      max-width: 100%;
+      max-height: 100px;
+    }
+  }
+  
+  #file{
+    position: fixed;
+    left: -1000px;
+  }

@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600i&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body{
+    background: white;
+}
+.navegacion a{
+    color: white;
+}
+.navegacion{
+    width: 1300px;
+    margin: 0px auto;
+    background: rgb(112, 110, 110);
+}
+
+.navegacion ul{
+    list-style: none;
+}
+
+.menu > li{
+    position: relative;
+    display: inline-block;
+    border-radius: 40%;
+}
+
+.menu > li > a{
+    display: block;
+    padding: 20px 90px;
+    color: white;
+    font-family: 'Open sans';
+    text-decoration: none;
+    border-radius: 40%;
+}
+
+.menu li a:hover{
+    color: #CE7D35;
+    transition: all .3s;
+}
+
+.submenu{
+    position: absolute;
+    background: rgb(112, 110, 110);
+    width: 90%;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 1.5s;
+}
+
+.submenu li a{
+    display: block;
+    width: 90;
+    padding: 15px;
+    color: #fff;
+    font-family: 'Open sans';
+    text-decoration: none;
+}
+
+.menu li:hover .submenu{
+    visibility: visible;
+    opacity: 1;
+}
