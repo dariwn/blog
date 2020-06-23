@@ -9,10 +9,10 @@
 @stop
 
 @section('seccion')
-<br><br><br><br><br><br>
+<br><br><br><br><br><br><br>
 
 <html>
-  <br><br>
+  <br><br><br><br>
   <head>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">

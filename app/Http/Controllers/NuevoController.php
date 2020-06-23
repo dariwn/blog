@@ -198,60 +198,68 @@ class NuevoController extends Controller
             $mi = $perfil->idsolicitud;
             //dd($mi);
             $saberp = Solicitudperfil::select('idperfiles')->where('idsolicitud',$mi)->get();
-            $mi2 = $saberp[0]->idperfiles;
-            //dd($mi2);
-            if($mi2 == 1){
-                //sistemas
-                $a = $a + 1;
+            //dd($saberp);
+            foreach($saberp as $sp){
+                $mi2 = $sp->idperfiles;
+
+                //dd($mi2);
+                //dd($mi2);
+                if($mi2 == 1){
+                    //sistemas
+                    $a = $a + 1;
+                }else
+                if($mi2 == 2){
+                    //gestion
+                    $b = $b + 1;
+                }else
+                if($mi2 == 3){
+                    //electrica
+                    $c = $c + 1;
+                }else
+                if($mi2 == 4){
+                    //electroncia
+                    $d = $d + 1;
+                }else
+                if($mi2 == 5){
+                    //quimica
+                    $e = $e + 1;
+                }else
+                if($mi2 == 6){
+                    //bioquimica
+                    $f = $f + 1;
+                }else
+                if($mi2 == 7){
+                    //industrial
+                    $g = $g + 1;
+                }else
+                if($mi2 == 8){
+                    //mecanica
+                    $h = $h + 1;
+                }else
+                if($mi2 == 9){
+                    //mecanica
+                    $i = $i + 1;
+                }else
+                if($mi2 == 71){
+                    //maestria mecatronica
+                    $j = $j + 1;
+                }else
+                if($mi2 == 72){
+                    //maestria bioquimica
+                    $k = $k + 1;
+                }else
+                if($mi2 == 91){
+                    //doctorado alimentos y biotecno
+                    $m = $m + 1;
+                }else
+                if($mi2 == 92){
+                    //doctorado en ciencias 
+                    $n = $n + 1;
+                }
             }
-            if($mi2 == 2){
-                //gestion
-                $b = $b + 1;
-            }
-            if($mi2 == 3){
-                //electrica
-                $c = $c + 1;
-            }
-            if($mi2 == 4){
-                //electroncia
-                $d = $d + 1;
-            }
-            if($mi2 == 5){
-                //quimica
-                $e = $e + 1;
-            }
-            if($mi2 == 6){
-                //bioquimica
-                $f = $f + 1;
-            }
-            if($mi2 == 7){
-                //industrial
-                $g = $g + 1;
-            }
-            if($mi2 == 8){
-                //mecanica
-                $h = $h + 1;
-            }
-            if($mi2 == 9){
-                //mecanica
-                $i = $i + 1;
-            }
-            if($mi2 == 71){
-                //maestria mecatronica
-                $j = $j + 1;
-            }
-            if($mi2 == 72){
-                //maestria bioquimica
-                $k = $k + 1;
-            }
-            if($mi2 == 91){
-                //doctorado alimentos y biotecno
-                $m = $m + 1;
-            }
-            if($mi2 == 92){
-                //doctorado en ciencias 
-                $n = $n + 1;
-            }
+
+           
+            
         }
         //dd($a);
         // $empresa = Empresa::where('created_at', '>=', $periodo);
@@ -276,7 +284,7 @@ class NuevoController extends Controller
         }
        
         
-
+        //dd($c);
         $pdf = \PDF::loadView('administradora.impresion',compact('dirigido', 'cargo', 'numero', 'periodo', 'hasta', 'extiende', 'contem', 'conteg', 'a','b','c','d','e','f','g','h','i','j','k','m','n','Si', 'No'));
         return $pdf->download('reporte.pdf');
     }

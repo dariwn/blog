@@ -84,7 +84,7 @@
 				
 			<td>Ing. Sistemas computacionales: {{ $a }},
 				Ing. Gestion Empresarial: {{ $b }},
-				Ing. Electrica: {{ $d }},
+				Ing. Electrica: {{ $c }},
 				Ing. Electronica: {{ $d }},
 				Ing. Quimica: {{ $e }},
 				Ing. Bioquimica: {{ $f }},

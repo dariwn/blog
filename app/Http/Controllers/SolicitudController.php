@@ -30,8 +30,12 @@ class SolicitudController extends Controller
         $usuario = Auth::user()->id;
         $empresa = Empresa::select('idempresa')->where('users_id', $usuario)->get()->pluck('idempresa');
         $empresas = array_first($empresa);
+
         $solicitudes = Solicitud::where('id_empresa', $empresa)->paginate(20);
-        $egresolicitados = Egresadosolicitud::all();
+
+        //dd($solicitudes);
+        $egresolicitados = Egresadosolicitud::where('estatus','Postulado')->get();
+        //dd($egresolicitados);
         $egresolicitados->each(function($egresolicitados){
             $egresolicitados->egresado;
         });
@@ -202,6 +206,9 @@ class SolicitudController extends Controller
         $usuario = Auth::user()->id;
         $empresa = Empresa::select('idempresa')->where('users_id', $usuario)->get()->pluck('idempresa');
         $empresas = array_flatten($empresa);
+
+        $egresolicitados = Egresadosolicitud::select('idegresado')->where('idsolicitud', $id)->get();
+        //dd($egresolicitados);
 
         $postulados = Egresadosolicitud::where('idsolicitud', $id)->get();
         $postulados->each(function($postulados){

@@ -76,10 +76,10 @@
       </label>
 
         <div class="form-group btns col-md-12">
-          <label for="file">
+          {{-- <label for="file">
             <span class="btn btn-warning">Adjuntar Archivo</span>
             <input type="file" id="file" class="" name="curriculum" />
-          </label>
+          </label> --}}
         <input type="submit" class="btn btn-primary" value="Enviar Postulación" /> 
         </div>
          

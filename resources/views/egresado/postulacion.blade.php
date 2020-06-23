@@ -33,9 +33,15 @@
 					</form>
 				</td>				
 				<td>
-					<a href="{{url('/curriculopdf') }}" class="btn-descargar" target="_blank">
-			            ver
-			          </a>
+					@if($postulado->estatus == 'Postulado')
+						<a href="{{url('/curriculopdf/'.$postulado->idegresado) }}" class="btn-descargar" target="_blank">
+							ver
+						  </a>
+					
+					@elseif($postulado->estatus == 'No Postulado')
+						<a>No disponible</a>
+					
+					@endif
 				</td>
 				
 			</tr>
