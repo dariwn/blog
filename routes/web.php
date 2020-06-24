@@ -26,6 +26,9 @@ Route::get('cantidad-alumnos-contratadosb', 'NuevoController@graficaAlumnosb')->
 Route::get('grafica-barra', 'NuevoController@graficaBarra')->name('graficabarra');       
 Route::get('/reporte', 'NuevoController@ver_reporte')->name('ver_reporte');
 Route::post('/imprimiendo-reporte', 'NuevoController@descargar_reporte')->name('descargar_reporte');
+Route::resource('usuarios-empresa','UserEmpreController');
+Route::resource('usuarios-egresados','UserEgreController');
+Route::resource('usuarios-sistema', 'UserAdminController');
 
 Route::match(['get','post'], '/BTEmpresa', 'logueoController@login');//Empresa
 Route::match(['get','post'],'/default', 'logueoController@logout');

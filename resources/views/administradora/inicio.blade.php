@@ -20,15 +20,19 @@
 	<header>
 		<nav class="navegacion">
 			<ul class="menu">
+				<li><a href="{{url('usuarios-sistema')}}">Administrar Usuarios</a>					
+				</li>
 				<li><a href="#">Empresas</a>
 					<ul class="submenu">
 					   <li><a href="{{route('nuevo.create')}}">Crear usuario</a></li>
+					   <li><a href="{{url('usuarios-empresa')}}">Administrar Usuarios</a></li>
 					   <li><a href="{{route('nuevo.index')}}">Mostrar los datos</a></li>
 					   <li><a href="{{route('administradora.ver')}}">Mostrar los datos del contacto</a></li>	
 					</ul>
 				</li>
 				<li><a href="#">Egresados</a>
 					<ul class="submenu">
+					<li><a href="{{url('usuarios-egresados')}}">Administrar Usuarios</a></li>
 						<li><a href="{{route('usuario.create')}}">Crear un usuario</a></li>
 						<li><a href="{{route('usuario.index')}}">Mostrar los datos</a></li>
 					</ul>

@@ -128,6 +128,7 @@ class EgresadoController extends Controller
         //$hola1 = DB::table('curriculo')->whereIn('idcurriculo', $egresado)->get();
         //$hola = $hola1[0]->idcurriculo;
         $hola = $egresado->idegresado;
+        //dd($hola);
         $egresado = Egresado::find($id);
         $egresados = Egresado::select('idegresado')->where('users_id', $usuario)->first();
         
@@ -143,12 +144,13 @@ class EgresadoController extends Controller
     public function edit($id)
     {
         $usuario = Auth::user()->id;
-        $egresado = Egresado::select('idegresado')->where('users_id', $usuario)->get()->pluck('idegresado');
+        $egresado = Egresado::select('idegresado')->where('users_id', $usuario)->first();
         $egresados = array_flatten($egresado);
-
+        //dd($egresado);
         
-        $hola1 = DB::table('curriculo')->whereIn('idcurriculo', $egresado)->get();
-        $hola = $hola1[0]->idcurriculo;
+        // $hola1 = DB::table('curriculo')->whereIn('idcurriculo', $egresado)->get();
+        // $hola = $hola1[0]->idcurriculo;
+        $hola = $egresado->idegresado;
 
         $estados = Estado::all();
         $generos = Genero::all();
