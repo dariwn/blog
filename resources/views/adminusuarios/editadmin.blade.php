@@ -17,7 +17,7 @@
                 <div class="card-header">Edicion de Usuario</div>
 
                 <div class="card-body">
-                    <form action="{{ route('usuarios-egresados.update', $usuario->id) }}" method="post">
+                    <form action="{{ route('usuarios-sistema.update', $usuario->id) }}" method="post">
                         @csrf
                         @method('PUT')
 
