@@ -40,8 +40,8 @@
 				<li><a href="#">Estadistica</a>
 				 	<ul class="submenu">
 					 <li><a href="{{route('graficabarra')}}">Grafica de Barra - Carrera mas Solicitada</a></li>
-					 <li><a href="{{route('graficapastel')}}">Grafica de Pastel - Carrera mas Solicitada</a></li>
-					 <li><a href="{{route('graficaalumnosp')}}">Grafica de Pastel - Alumnos Contratados</a></li>
+					 {{-- <li><a href="{{route('graficapastel')}}">Grafica de Pastel - Carrera mas Solicitada</a></li> --}}
+					 {{-- <li><a href="{{route('graficaalumnosp')}}">Grafica de Pastel - Alumnos Contratados</a></li> --}}
 					 <li><a href="{{route('graficaalumnosb')}}">Grafica de Barra - Alumnos Contratados</a></li>
 					 <li><a href="{{route('ver_reporte') }}">Reporte</a></li>
                     </ul>	 

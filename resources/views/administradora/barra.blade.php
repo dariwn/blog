@@ -11,50 +11,91 @@
 @section('seccion')
 <br><br><br><br><br><br>
 
+<!DOCTYPE HTML>
 <html>
-  <br><br><br><br><br>
-  <head>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['bar']});
-      google.charts.setOnLoadCallback(drawStuff);
+<head>
+  <script type="text/javascript">
+  var sistemas = {{ $a }}
+  var gestion = {{ $b }}
+  var electrica = {{ $c }}
+  var electronica = {{ $d }}
+  var quimica = {{ $e }}
+  var bioquimica = {{ $f }}
+  var industrial = {{ $g }}
+  var mecanica = {{ $h }}
+  var logistica = {{ $i }}
+  var maestriameca = {{ $j }}
+  var maestriabioq = {{ $k }}
+  var doctoradoalime = {{ $m }}
+  var doctoradociencias = {{ $n }}
 
-      function drawStuff() {
-        var data = new google.visualization.arrayToDataTable([
-          ['Carrera', 'Porcentaje'],
-          ['Ing. Sistemas Computacionales', {{ $a }}],
-          ['Ing. Gestion Empresarial', {{ $b }}],
-          ['Ing. Eléctrica', {{ $c }}],
-          ['Ing. Electronica', {{ $d }}],
-          ['Ing. Química', {{ $e }}],
-          ['Ing. Bioquímica', {{ $f }}],
-          ['Ing. Industrial', {{ $g }}],
-          ['Ing. Mecánica', {{ $h }}],
-          ['Ing. Logística', {{ $i }}],
-          ['Maestría en Ciencias en Ing. Mecánica', {{ $j }}],
-          ['Maestría en Ciencias en Ing. Bioquímica', {{ $k }}],
-          ['Doctorado en Ciencias de los Alimentos y Biotecnol', {{ $m }}],
-          ['Doctorado en Ciencias de la Ingeniería', {{ $n }}], 
-        ]);
+  window.onload = function () {
+    var chart1 = new CanvasJS.Chart("chartContainer1",
+    {
+      title:{
+        text: "Carrera Mas Solicitada"
+      },
+      data: [
+      {
+       type: "doughnut",
+       dataPoints: [
+                { indexLabel: "Ing. Sistemas computacionales",  y: sistemas },
+                { indexLabel: "Ing. Gestion Empresarial", y: gestion  },	
+                { indexLabel: "Ing. Electrica", y: electrica  },	
+                { indexLabel: "Ing. Electronica", y: electronica },	
+                { indexLabel: "Ing. Quimica", y: quimica  },	
+                { indexLabel: "Ing. Bioquimica", y: bioquimica  },	
+                { indexLabel: "Ing. Industrial", y: industrial  },	
+                { indexLabel: "Ing. Mecanica", y: mecanica  },	
+                { indexLabel: "Ing. Logistica", y: logistica  },	
+                { indexLabel: "Maestria en Ciencias en ing. Mecatronica", y: maestriameca  },	
+                { indexLabel: "Maestria en Ciencias en Ing. Bioquimica", y: maestriabioq  },	
+                { indexLabel: "Doctorado en Ciencias de los Alimentos y Biotecnologia", y: doctoradoalime  },	
+                { indexLabel: "Doctorado en Ciencias de la Ingenieria", y: doctoradociencias  },			
+			]
+     }
+     ]
+   });
 
-        var options = {
-          width: 900,
-          legend: { position: 'none' },
-          chart: {
-            title: 'Carrera mas solicitada',
-          },
-        };
+    chart1.render();
 
-        var chart = new google.charts.Bar(document.getElementById('top_x_div'));
-        // Convert the Classic options to Material options.
-        chart.draw(data, google.charts.Bar.convertOptions(options));
-      };
-    </script>
-  </head>
+    var chart2 = new CanvasJS.Chart("chartContainer2", {
+		theme: "light2",
+		title:{
+			              
+		},
+		data: [              
+		{
+			type: "column",
+			dataPoints: [
+				{ label: "Ing. Sistemas computacionales",  y: sistemas },
+				{ label: "Ing. Gestion Empresarial", y: gestion  },	
+                { label: "Ing. Electrica", y: electrica  },	
+                { label: "Ing. Electronica", y: electronica },	
+                { label: "Ing. Quimica", y: quimica  },	
+                { label: "Ing. Bioquimica", y: bioquimica  },	
+                { label: "Ing. Industrial", y: industrial  },	
+                { label: "Ing. Mecanica", y: mecanica  },	
+                { label: "Ing. Logistica", y: logistica  },	
+                { label: "Maestria en Ciencias en ing. Mecatronica", y: maestriameca  },	
+                { label: "Maestria en Ciencias en Ing. Bioquimica", y: maestriabioq  },	
+                { label: "Doctorado en Ciencias de los Alimentos y Biotecnologia", y: doctoradoalime  },	
+                { label: "Doctorado en Ciencias de la Ingenieria", y: doctoradociencias  },			
+			]
+		}
+		]
+  	});
+
+    chart2.render();
+
+  }
+  </script>
+  <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script></head>
   <body>
-  <center>
-    <div id="top_x_div" style="width: 1000px; height: 600px;"></div>
-    </center>
+    <div id="chartContainer1" style="height: 300px; width: 100%;">
+    </div><br>
+    <div id="chartContainer2" style="height: 300px; width: 100%;">
+    </div>
   </body>
-</html>
+ </html>
 @endsection

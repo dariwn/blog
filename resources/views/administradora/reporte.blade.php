@@ -45,13 +45,10 @@
 	<br>
     <center>
 	<div class="col-xs-12 col-md-6">
-		<button class="btn-primary btn-lg">
-			Imprimir
-		</button>
-	</div>
+		<input type="submit" name="enviar" value="Imprimir" class="btn-primary btn-lg">
+		<input type="submit" name="enviar" value="Ver Grafica" class="btn-primary btn-lg">
+	</div>	
     </center>
-	<!-- <div class="col-xs-12 col-md-6">
-		<a class="btn btn-primary btn-lg" type="submit">Imprmir</a>
-	</div> -->
 </form>
+
 @endsection
