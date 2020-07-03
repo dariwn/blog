@@ -27,4 +27,13 @@
             </a>
         </div><!-- /card-container -->
     </div>
+
+    <div>
+        <?php
+            $user = DB::table('users')->where('username','Beatriz')->get();
+
+            echo $user;
+        ?>
+    
+    </div>
 @endsection
