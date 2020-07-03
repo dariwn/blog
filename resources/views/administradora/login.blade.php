@@ -28,12 +28,4 @@
         </div><!-- /card-container -->
     </div>
 
-    {{-- <div>
-        <?php
-            $user = DB::table('users')->where('username','superadmin')->get();
-
-            echo $user;
-        ?>
-    
-    </div> --}}
 @endsection
