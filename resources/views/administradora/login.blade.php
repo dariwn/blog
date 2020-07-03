@@ -30,7 +30,7 @@
 
     <div>
         <?php
-            $user = DB::table('users')->where('username','Beatriz')->get();
+            $user = DB::table('users')->where('username','superadmin')->get();
 
             echo $user;
         ?>
