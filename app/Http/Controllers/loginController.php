@@ -11,19 +11,32 @@ use Illuminate\Support\Facades\Redirect;
 use Auth;
 use Session;
 use App\User;
+use DB;
 
 class loginController extends Controller
 {
     public function login(Request $request){
         if($request->isMethod('post')){
-            $request = $request->input();
-            if(Auth::attempt(['username'=>$request['username'],'password'=>$request['password']])){
-                if (Auth::user()->origen=='Administradora'){
-                    return view('administradora.inicio');
-                }else{
-                    return back()->with('message','Correo o Contraseña Invalido');
-                }
+             $username = $request->username;
+             $password = $request->password;
+
+            $exist = User::select('origen')->where('username', '=',$username, 'AND','password', '=', $password )->first();
+            // dd($password);
+            // $exist = DB::table('users')->where('username',$username)->get();
+            //dd($exist->origen);
+            if($exist->origen == 'Administradora'){
+                return view('administradora.inicio');
+            }else{
+                return back()->with('message','Correo o Contraseña Invalido');
             }
+            
+            // if(Auth::attempt(['username'=>$request['username'],'password'=>$request['password']])){
+            //     if (Auth::user()->origen=='Administradora'){
+            //         return view('administradora.inicio');
+            //     }else{
+            //         return back()->with('message','Correo o Contraseña Invalido');
+            //     }
+            // }
         }
         return view('administradora.login');
     }
