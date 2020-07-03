@@ -15,7 +15,8 @@ class UsersSeeder extends Seeder
         //
         $user = User::create([
             'origen' => 'Administradora',
-            'password' => '$2y$10$2EWxmeBmU7syCmJ29GpaKO9LsT.YGj5GZjIsk4az8W2sBWLF4Sqnq',
+            // 'password' => '$2y$10$2EWxmeBmU7syCmJ29GpaKO9LsT.YGj5GZjIsk4az8W2sBWLF4Sqnq',
+            'password' => bcrypt('12345678'),
             'username' => 'Beatriz',       	            
             'tipo'=> '0',
             'curriculo' => '0',
