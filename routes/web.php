@@ -39,7 +39,7 @@ Route::get('/hola', 'EmpresaController@nuevo')->name('empresa.nuevo');
 Route::resource('/solicitud', 'SolicitudController');
 Route::get('/postulado/{id}', 'SolicitudController@ver')->name('ver');
 Route::post('/cambio-estatus/{id}', 'SolicitudController@boton')->name('boton');
-Route::resource('/bienvenido', 'SolicitudPerfilController');
+Route::resource('/bienvenido', 'SolicitudperfilController');
 Route::get('/curriculopdf/{id}', 'SolicitudController@curriculopdfver');
 Route::get('/encuesta/{id}', 'SolicitudController@encuesta');
 
