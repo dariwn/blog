@@ -12,7 +12,7 @@
                 <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                 <div class="form-group">
                 <label for="nombre">Correo</label>
-                <input type="text" name="correo"  class="form-control" placeholder="Correo...">
+                <input type="text" name="correo" required value="{{old('correo')}}" class="form-control" placeholder="Correo...">
                 </div>
                 </div>
                 <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
