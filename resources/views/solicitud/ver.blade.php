@@ -45,7 +45,9 @@
 				<td>
 					<form action="{{ url('cambio-estatus',$solicitud) }}" method="POST">
 						@csrf
-						
+						<?php 
+							echo $solicitud->estatus;
+						?>
 						@if(strcmp($solicitud->estatus,"Vigente") == 0)
 							<button type="submit" class="btn-wide btn btn-success">{{ $solicitud->estatus }}</button>
 						@elseif(strcmp($solicitud->estatus,"Vigente") !== 0)
