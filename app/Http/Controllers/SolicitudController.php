@@ -289,12 +289,12 @@ class SolicitudController extends Controller
         $dato = $solicitudes->idsolicitud;
         //dd($dato);
         if($solicitudes->estatus == 'Vigente'){
-            $solicitudes->update(['estatus'=>'No Vigente']);            
+            $solicitudes->update(['estatus'=>'No Vigente',]);            
             return view('solicitud.encuesta',compact('dato'));
             //return back();
         }
         elseif($solicitudes->estatus == 'No Vigente'){
-            $solicitudes->update(['estatus'=>'Vigente']);
+            $solicitudes->update(['estatus'=>'Vigente',]);
             return back();
         }
     }
