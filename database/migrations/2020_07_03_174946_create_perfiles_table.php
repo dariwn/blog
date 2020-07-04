@@ -15,7 +15,7 @@ class CreatePerfilesTable extends Migration {
 		Schema::create('perfiles', function(Blueprint $table)
 		{
 			$table->integer('idperfiles', true);
-			$table->char('carrera', 50);
+			$table->string('carrera', 100);
 			$table->integer('nivel')->index('fk_perfiles_nivel1_idx');
 		});
 	}

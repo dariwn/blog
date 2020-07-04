@@ -15,8 +15,8 @@ class UsersSeeder extends Seeder
         //
         $user = User::create([
             'origen' => 'Administradora',
-            'password' => '$2y$10$2EWxmeBmU7syCmJ29GpaKO9LsT.YGj5GZjIsk4az8W2sBWLF4Sqnq',
-            'username' => 'Beatriz',       	            
+            'password' => '12345678',
+            'username' => 'SuperAdmin',       	            
             'tipo'=> '0',
             'curriculo' => '0',
         ]);
