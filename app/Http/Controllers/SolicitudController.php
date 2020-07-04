@@ -99,28 +99,28 @@ class SolicitudController extends Controller
             $linea->idperfiles=$bienvenido;            
             $linea->idsolicitud = $nuevo->idsolicitud;
 
-//---- envio de correo para egresados con el perfil solicitado
-            //dd($linea->idperfiles);
-             $obcorreo = Egresado::select('correo')->where('perfiles_id',$linea->idperfiles)->get();
-             foreach($obcorreo as $correo){
-               // dd($correo->correo);
-               $email = $correo->correo;
-            //cuerpo y envio del correo
-            $data= array(
-                'mensaje' => 'Ingresa',
-                'direccion' => 'http://127.0.0.1:8000/BTEgresado'
+// //---- envio de correo para egresados con el perfil solicitado
+//             //dd($linea->idperfiles);
+//              $obcorreo = Egresado::select('correo')->where('perfiles_id',$linea->idperfiles)->get();
+//              foreach($obcorreo as $correo){
+//                // dd($correo->correo);
+//                $email = $correo->correo;
+//             //cuerpo y envio del correo
+//             $data= array(
+//                 'mensaje' => 'Ingresa',
+//                 'direccion' => 'http://127.0.0.1:8000/BTEgresado'
                 
-            );
+//             );
 
-                Mail::send('emails.web',$data,function($msg) use ($email){
+//                 Mail::send('emails.web',$data,function($msg) use ($email){
 
-                    $msg->from('from@example.com', 'Bolsa de Trabajo ITTG');
+//                     $msg->from('from@example.com', 'Bolsa de Trabajo ITTG');
 
-                    $msg->to($email)->subject('Notificacion');
-                });
+//                     $msg->to($email)->subject('Notificacion');
+//                 });
 
-             }
-            // dd($obcorreo);
+//              }
+//             // dd($obcorreo);
 
             $linea->save();
         }
