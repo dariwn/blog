@@ -36,12 +36,12 @@
 				@endif
 
 				<td>
-					@if($postulado->estatus == 'Postulado')
+					@if($postulado->estatus = 'Postulado')
 						<a href="{{url('/curriculopdf/'.$postulado->egresado->idegresado) }}" class="btn-descargar" target="_blank">
 							ver
 						  </a>
 					
-					@elseif($postulado->estatus == 'No Postulado')
+					@elseif($postulado->estatus = 'No Postulado')
 						<a>No disponible</a>
 					
 					@endif
