@@ -14,7 +14,7 @@
     
     <link rel="stylesheet" href="{{asset('css/font-awesome.css')}}">
     <!-- Theme style -->
-    <link rel="stylesheet" href="{{asset('css/AdminLTE.min.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.18/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="{{asset('css/_all-skins.min.css')}}">
