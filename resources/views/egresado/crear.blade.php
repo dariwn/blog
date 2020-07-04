@@ -6,7 +6,7 @@
     </div>
 </div>
 
-    <form action="{{route('egresado.store')}}" method="POST" enctype="multipart/form-data">
+    <form action="{{route('egresado.store')}}" method="POST" >
     @csrf
             <div class="row">
                 <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
