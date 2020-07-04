@@ -283,14 +283,14 @@ class SolicitudController extends Controller
         }
     } 
 
-    public function boton($id, Request $request){        
+    public function boton($id){        
         $solicitudes = Solicitud::findOrFail($id);
         
         $dato = $solicitudes->idsolicitud;
         //dd($dato);
         if($solicitudes->estatus == 'Vigente'){
             $solicitudes->update(['estatus'=>'No Vigente',]);            
-            return view('solicitud.encuesta',compact('dato'));
+            return view('solicitud.encuesta');
             //return back();
         }
         elseif($solicitudes->estatus == 'No Vigente'){
