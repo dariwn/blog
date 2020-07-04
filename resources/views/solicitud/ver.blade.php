@@ -46,9 +46,9 @@
 					<form action="{{ url('cambio-estatus',$solicitud) }}" method="POST">
 						@csrf
 						
-						@if($solicitud->estatus === "Vigente")
+						@if(strcmp($solicitud->estatus,"Vigente")== 0)
 							<button type="submit" class="btn-wide btn btn-success">{{ $solicitud->estatus }}</button>
-						@elseif($solicitud->estatus === "No Vigente")
+						@elseif(strcmp($solicitud->estatus,"No Vigente") == 0)
 							<button type="submit" class="btn-wide btn btn-danger">{{ $solicitud->estatus }}</button>
 						@endif
 					</form>
