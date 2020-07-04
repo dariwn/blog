@@ -48,7 +48,7 @@
 						
 						@if(strcmp($solicitud->estatus,'Vigente') == 0)
 							<button type="submit" class="btn-wide btn btn-success">{{ $solicitud->estatus }}</button>
-						@elseif(strcmp($solicitud->estatus,'Vigente') != 0)
+						@elseif(strcmp($solicitud->estatus,'Vigente') !== 0)
 							<button type="submit" class="btn-wide btn btn-danger">{{ $solicitud->estatus }}</button>
 						@endif
 					</form>
