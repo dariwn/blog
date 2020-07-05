@@ -370,10 +370,10 @@ class EgresadoController extends Controller
         $id = $id;
         //dd($id);
         $postulaciones = Egresadosolicitud::find($id);
-        //dd($postulaciones);
+        dd($postulaciones->estatus);
         if($postulaciones['estatus']=='Postulado'){
             $postulaciones->update(['estatus'=>'No Postulado']);
-            return Redirect::to('postulaciones');
+            return back();
         }
         else if($postulaciones['estatus']=='No Postulado'){
             $postulaciones->update(['estatus'=>'Postulado']);
