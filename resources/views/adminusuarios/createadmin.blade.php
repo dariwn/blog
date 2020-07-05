@@ -30,7 +30,7 @@
                         <div class="form-group row">
                             <label for="name" class="col-sm-4 col-form-label text-md-right">Contraseña</label>
                             <div class="col-md-6">
-                               <input type="text" name="contraseña" required class="form-control"> 
+                               <input type="password" name="contraseña" required class="form-control"> 
                             </div>                            
                         </div>                    
 
