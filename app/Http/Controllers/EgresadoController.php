@@ -373,7 +373,7 @@ class EgresadoController extends Controller
         //dd($postulaciones);
         if($postulaciones['estatus']=='Postulado'){
             $postulaciones->update(['estatus'=>'No Postulado']);
-            return back();
+            return Redirect::to('postulaciones');
         }
         else if($postulaciones['estatus']=='No Postulado'){
             $postulaciones->update(['estatus'=>'Postulado']);
