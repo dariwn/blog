@@ -26,9 +26,9 @@
 					{{-- <form action="{{ url('cambio-estatus-egresado',$postulado->id) }}" method="POST"> --}}
 						@csrf
 						@if($postulado->estatus === 'Postulado')
-							<a type="submit" class="btn-wide btn btn-success" href="{{ url('cambio-estatus-egresado',$postulado->id) }}">{{ $postulado->estatus }}</a>
+							<a class="btn-wide btn btn-success" href="{{ url('cambio-estatus-egresado',$postulado->id) }}">{{ $postulado->estatus }}</a>
 						@elseif($postulado->estatus == 'No Postulado')
-							<a type="submit" class="btn-wide btn btn-danger"  href="{{ url('cambio-estatus-egresado',$postulado->id) }}">{{ $postulado->estatus }}</a>
+							<a class="btn-wide btn btn-danger"  href="{{ url('cambio-estatus-egresado',$postulado->id) }}">{{ $postulado->estatus }}</a>
 						@endif
 					{{-- </form> --}}
 				</td>				
