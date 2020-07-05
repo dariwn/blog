@@ -52,7 +52,7 @@ Route::get('/solicitud-egresado', 'EgresadoController@versolicitud')->name('vers
 Route::get('/postulacion/{id}', 'EgresadoController@postularse')->name('postularse');
 Route::post('/postulacion-registrada', 'EgresadoController@guardar_postulados')->name('guardar_postulados');
 Route::get('/postulaciones', 'EgresadoController@postulaciones')->name('postulaciones');
-Route::get('/cambio-estatus-egresado/{id}', 'EgresadoController@botonEgresado')->name('botonEgresado');
+Route::post('/cambio-estatus-egresado/{id}', 'EgresadoController@botonEgresado')->name('botonEgresado');
 Route::resource('/curriculo', 'CurriculoController');
 Route::get('/curriculopdf', 'CurriculoController@curriculopdf');
 Route::get('/onda', 'CurriculoController@curriculo')->name('curriculo.crear');

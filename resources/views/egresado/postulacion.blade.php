@@ -23,14 +23,14 @@
 				<td>{{ $empresa[0]->nombre }}</td>
 				<td>{{ $solicitud[0]->nombredelpuesto}}</td>				
 				<td>
-					{{-- <form action="{{ url('cambio-estatus-egresado',$postulado->id) }}" method="POST"> --}}
+					<form action="{{ url('cambio-estatus-egresado',$postulado->id) }}" method="POST">
 						@csrf
 						@if($postulado->estatus === 'Postulado')
-							<a class="btn-wide btn btn-success" href="{{ url('cambio-estatus-egresado',$postulado->id) }}">{{ $postulado->estatus }}</a>
+							<button type="submit" class="btn-wide btn btn-success">{{ $postulado->estatus }}</button>
 						@elseif($postulado->estatus == 'No Postulado')
-							<a class="btn-wide btn btn-danger"  href="{{ url('cambio-estatus-egresado',$postulado->id) }}">{{ $postulado->estatus }}</a>
+							<button type="submit" class="btn-wide btn btn-danger">{{ $postulado->estatus }}</button>
 						@endif
-					{{-- </form> --}}
+					</form>
 				</td>				
 				<td>
 					@if($postulado->estatus === 'Postulado')
