@@ -9,14 +9,24 @@
 
             <div class="panel-body">
               <div class="row">
-<form action="{{ route('egresado.update',$egresado->idegresado) }}" method="POST">
+<form action="{{ route('egresado.update',$egresado->idegresado) }}" method="POST" enctype="multipart/form-data">
   @csrf
   @method('PUT')
           
                 <div class="col-md-3 col-lg-3 " align="center"> 
         <div id="load_img">
-          <img class="img-responsive" src="{{asset('Imagenes/egresados/'.$egresado->imagen)}}" height="150px" width="150px">
+          <img class="img-responsive" src="{{asset('imagenes/egresados/'.$egresado->imagen)}}" height="150px" width="150px">
         </div>
+
+        <div class="form-row">
+          <div class="col">
+              <div class="input-group-prepend">
+                  <label class="input-group-text">Subir Archivo: </label>
+                  <input type="file" id="file" name="file">
+              </div> 
+          </div>                               
+        </div>
+
         <br>        
           <div class="row">
               <div class="col-md-12">
