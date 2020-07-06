@@ -399,7 +399,7 @@ class NuevoController extends Controller
             
             //dd($c);
             $pdf = \PDF::loadView('administradora.impresion',compact('dirigido', 'cargo', 'numero', 'periodo', 'hasta', 'extiende', 'contem', 'conteg', 'a','b','c','d','e','f','g','h','i','j','k','m','n','Si', 'No'));
-            return $pdf->download('reporte.pdf');
+            return $pdf->stream('reporte.pdf');
 
         }
        
