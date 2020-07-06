@@ -45,7 +45,7 @@
             <h1 class="fn">{{$hola->curriculo->nombres}}</h1>
             
             <p>
-                <img HSPACE="10" VSPACE="10" src="{{asset('imagenes/egresados/'.$image)}}" width="250" height="100" align="left">
+                <img HSPACE="10" VSPACE="10" src="{{asset('imagenes/egresados/'.$hola->curriculo->imagen)}}" width="250" height="100" align="left">
                 Cell: <span class="tel">{{$hola->curriculo->numero_cel}}</span><br />
                 Email: <span class="email" href="#">{{$hola->curriculo->correo}}</a><br />
                 Estado: <span class="estado">{{$hola->estado->nombre_estado}}</span><br />

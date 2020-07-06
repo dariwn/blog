@@ -239,7 +239,7 @@ class SolicitudController extends Controller
         
         $hola = Curriculo::find($holas); 
            
-        dd($hola);
+        
         $pdf = PDF::loadview('curriculo.curriculopdf',compact('holas', 'hola','egresados','image')); 
         
         return $pdf->stream('cv-'.$nombre[0]->nombres.'_'.$apellidop[0]->apellido_paterno.'_'.$apellidom[0]->apellido_materno.'pdf');
