@@ -234,9 +234,9 @@ class SolicitudController extends Controller
  
         $hola = Curriculo::select('idcurriculo')->where('idegresado',$egresados)->get()->pluck('idcurriculo');
         $holas = array_first($hola);
-        
+
         $image = Egresado::select('imagen')->where('idegresado',$egresados)->get();
-        //dd($image[0]->imagen);
+        dd($image[0]->imagen);
         $hola = Curriculo::find($holas); 
            
         
