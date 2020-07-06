@@ -236,10 +236,10 @@ class SolicitudController extends Controller
         $holas = array_first($hola);
 
         $image = Egresado::select('imagen')->where('idegresado',$egresados)->get();
-        dd($image[0]->imagen);
+        
         $hola = Curriculo::find($holas); 
            
-        
+        dd($hola);
         $pdf = PDF::loadview('curriculo.curriculopdf',compact('holas', 'hola','egresados','image')); 
         
         return $pdf->stream('cv-'.$nombre[0]->nombres.'_'.$apellidop[0]->apellido_paterno.'_'.$apellidom[0]->apellido_materno.'pdf');
