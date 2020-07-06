@@ -191,12 +191,14 @@ class CurriculoController extends Controller
  
         $hola = Curriculo::select('idcurriculo')->where('idegresado',$egresados)->get()->pluck('idcurriculo');
         $holas = array_first($hola);
+
+        $image = Egresado::select('imagen')->where('idegresado',$egresados)->get();
         
         $hola = Curriculo::find($holas); 
            
-    
-        $pdf = PDF::loadview('curriculo.curriculopdf',compact('holas', 'hola','egresados')); 
-        //return $pdf->download('Denuncia.pdf');
+        
+        $pdf = PDF::loadview('curriculo.curriculopdf',compact('holas', 'hola','egresados','image')); 
+        
         return $pdf->stream('cv.pdf');
      }
 

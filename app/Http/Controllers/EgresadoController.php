@@ -170,15 +170,7 @@ class EgresadoController extends Controller
     public function update(Request $request, $id)
     {
          //dd($request->file('file'));
-        if($request->hasFile('file')){
-            $archivo = $request->file('file');
-            $nombre = time().$archivo->getClientOriginalName();
-            $archivo->move(public_path().'/imagenes/egresados',$nombre);
-            //return $nombre;
-        }else{
-            $nombre = "sin archivo";
-        }
-
+       
         $egresado = Egresado::findOrFail($id);
         $egresado->nombres = $request->nombres;
         $egresado->correo = $request->correo;
@@ -193,7 +185,17 @@ class EgresadoController extends Controller
         $egresado->estado_id = $request->estado_id;
         $egresado->municipio_id = $request->municipio_id;
 
-        $egresado->imagen = $nombre;
+        if($request->hasFile('file')){
+            $archivo = $request->file('file');
+            $nombre = time().$archivo->getClientOriginalName();
+            $archivo->move(public_path().'/imagenes/egresados',$nombre);
+            //return $nombre;
+            $egresado->imagen = $nombre;
+        }else{
+            
+        }
+
+       
 
         $egresado->save();
         return redirect()->route('egresado.index');

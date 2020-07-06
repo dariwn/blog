@@ -37,19 +37,21 @@
 
     <div id="page-wrap">
     <br>
-    
+        
         <div id="contact-info" class="vcard">
         
             <!-- Microformats! -->
         
             <h1 class="fn">{{$hola->curriculo->nombres}}</h1>
-        
+            
             <p>
+                <img HSPACE="10" VSPACE="10" src="{{asset('imagenes/egresados/'.$image)}}" width="250" height="100" align="left">
                 Cell: <span class="tel">{{$hola->curriculo->numero_cel}}</span><br />
                 Email: <span class="email" href="#">{{$hola->curriculo->correo}}</a><br />
                 Estado: <span class="estado">{{$hola->estado->nombre_estado}}</span><br />
                 Municipio: <span class="municipio">{{$hola->municipio->nombre_localidad}}</span><br />
             </p>
+            
         </div>                        
         
          <div class="clear"></div>
