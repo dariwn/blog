@@ -2,8 +2,8 @@
 <html>
 <head>
 	<title></title>
-	<img HSPACE="10" VSPACE="10" src="img/educacion.png" width="350" height="100" align="left">
-	<img HSPACE="10" VSPACE="10" src="img/tecnm.png" width="250" height="100">
+	{{-- <img HSPACE="10" VSPACE="10" src="img/educacion.png" width="350" height="100" align="left"> --}}
+	{{-- <img HSPACE="10" VSPACE="10" src="img/tecnm.png" width="250" height="100"> --}}
 </head>
 <body>
 
@@ -159,9 +159,9 @@
 
 	<footer class="footer">
 		<hr>
-		<img src="img/logo.png" width="40" align="left">
-		<img src="img/gestion.jpeg"  width="40" align="right">
-		<img src="img/compact.jpg" width="40" align="right">
+		{{-- <img src="img/logo.png" width="40" align="left"> --}}
+		{{-- <img src="img/gestion.jpeg"  width="40" align="right"> --}}
+		{{-- <img src="img/compact.jpg" width="40" align="right"> --}}
 		<span><p align="center">Carretera Panamericana Km. 1080, C. P. 29050, Apartado Postal 599<br>Tuxtla Gutiérrez, Chiapas: Tels. (961) 61 50380, 61 50461; Ext. 101<br>www.ittg.edu.mx</p></span>
 	</footer>
 	
