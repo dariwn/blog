@@ -42,7 +42,7 @@
         
             <!-- Microformats! -->
         
-            <h1 class="fn">{{$hola->curriculo->nombres}}</h1>
+            <h1 class="fn">{{$hola->curriculo->nombres}} {{$hola->curriculo->apellido_paterno}} {{$hola->curriculo->apellido_materno}}</h1>
             
             <p>
                 <img HSPACE="10" VSPACE="10" src="{{asset('imagenes/egresados/'.$hola->curriculo->imagen)}}" width="250" height="100" align="left">

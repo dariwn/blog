@@ -41,7 +41,7 @@
         
             <!-- Microformats! -->
         
-            <h1 class="fn">{{$hola->curriculo->nombres}}</h1>
+            <h1 class="fn">{{$hola->curriculo->nombres}} {{$hola->curriculo->apellido_paterno}} {{$hola->curriculo->apellido_materno}}</h1>
         
             <p>
                 Cell: <span class="tel">{{$hola->curriculo->numero_cel}}</span><br />
