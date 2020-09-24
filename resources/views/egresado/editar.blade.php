@@ -1,5 +1,27 @@
 @extends('egresado.inicio')
 @section('contenido')
+<script type="text/javascript">
+
+  Filevalidation = () => { 
+		const fi = document.getElementById('file'); 
+		// Check if any file is selected. 
+		if (fi.files.length > 0) { 
+			for (const i = 0; i <= fi.files.length - 1; i++) { 
+
+				const fsize = fi.files.item(i).size; 
+				const file = Math.round((fsize / 1024)); 
+				// The size of the file. 
+				if (file >= 2000) { 
+					alert( 
+					"El archivo que intenta subir es demasiado grande, seleccione un archivo menor a 2 Mb (2048 Kilobytes)"); 
+				} else { 
+					document.getElementById('size').innerHTML = '<b>'
+					+ file + '</b> KB'; 
+				} 
+			} 
+		} 
+	} 
+</script>
 <div class="container">
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 toppad" >
@@ -21,8 +43,8 @@
         <div class="form-row">
           <div class="col">
               <div class="input-group-prepend">
-                  <label class="input-group-text">Subir Archivo: </label>
-                  <input type="file" id="file" name="file">
+                  <label class="input-group-text">Subir Imagen: </label>
+                  <input accept="image/*" type="file" id="file" name="file" onchange="Filevalidation();">
               </div> 
           </div>                               
         </div>

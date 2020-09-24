@@ -20,6 +20,7 @@ use App\Curriculo;
 use DB;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\File;
 
 
 class EgresadoController extends Controller
@@ -82,7 +83,9 @@ class EgresadoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {               
+        //dd($request->file('file'));
+
         $usuario = Auth::user()->id;
         $admin = DB::table('users')->where('id', $usuario)->update(['tipo' => 0]);
         $egresado = new Egresado;
@@ -101,12 +104,16 @@ class EgresadoController extends Controller
         $egresado->genero_id=$request->get('genero_id');
         $egresado->users_id = $usuario;
         
-        if(Input::hasFile('imagen')){
-            $file=Input::file('imagen');
-            $file->move(public_path().'/imagenes/egresados/',$file->getClientOriginalName());
-            $egresado->imagen=$file->getClientOriginalName();
+        if($request->hasFile('file')){
+            $archivo = $request->file('file');
+            $nombre = time().$archivo->getClientOriginalName();
+            $archivo->move(public_path().'/imagenes/egresados',$nombre);
+            //dd($nombre);
+            $egresado->imagen = $nombre;
+        }else{
+            
         }
-        
+               
         $egresado->save();
         return Redirect::to('egresado');
     }
@@ -171,7 +178,11 @@ class EgresadoController extends Controller
     {
          //dd($request->file('file'));
        
-        $egresado = Egresado::findOrFail($id);
+        $egresado = Egresado::findOrFail($id);        
+
+        $path = public_path().'/imagenes/egresados/'.$egresado->imagen;
+        File::delete($path);
+
         $egresado->nombres = $request->nombres;
         $egresado->correo = $request->correo;
         $egresado->colonia = $request->colonia;
@@ -191,6 +202,7 @@ class EgresadoController extends Controller
             $archivo->move(public_path().'/imagenes/egresados',$nombre);
             //return $nombre;
             $egresado->imagen = $nombre;
+            
         }else{
             
         }

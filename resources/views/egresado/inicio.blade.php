@@ -27,6 +27,7 @@
 
         <!-- Logo -->
         <a href="#" class="logo">
+          
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>Tecnm</b></span>
           <!-- logo for regular state and mobile devices -->
@@ -53,7 +54,7 @@
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
-                    
+                    <img src="/img/tecnm1.png">
                     <p>
                       Tecnológico Nacional de México campus Tuxtla Gutiérrez
                       <small>www.tuxtla.tecnm.mx</small>

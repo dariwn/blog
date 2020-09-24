@@ -1,5 +1,58 @@
 @extends('egresado.inicio')
 @section('contenido')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+    Filevalidation = () => { 
+		const fi = document.getElementById('file'); 
+		// Check if any file is selected. 
+		if (fi.files.length > 0) { 
+			for (const i = 0; i <= fi.files.length - 1; i++) { 
+
+				const fsize = fi.files.item(i).size; 
+				const file = Math.round((fsize / 1024)); 
+				// The size of the file. 
+				if (file >= 2000) { 
+					alert( 
+					"El archivo que intenta subir es demasiado grande, seleccione un archivo menor a 2 Mb (2048 Kilobytes)"); 
+				} else { 
+					document.getElementById('size').innerHTML = '<b>'
+					+ file + '</b> KB'; 
+				} 
+			} 
+		} 
+	} 
+
+    $(document).ready(function () {
+    $('input#numero_cel')
+        .keypress(function (event) {
+        if (event.which < 48 || event.which > 57 || this.value.length === 10) {
+            return false;
+        }
+        });
+    });
+
+    $(document).ready(function () {
+    $('input#domicilio')
+        .keypress(function (event) {
+        if (this.value.length === 50) {
+            return false;
+        }
+        });
+    });
+
+    $(document).ready(function () {
+    $('input#colonia')
+        .keypress(function (event) {
+        if (this.value.length === 40) {
+            return false;
+        }
+        });
+    });
+
+</script>
+
 <div class="row">
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <h2>Registro</h2>
@@ -36,10 +89,11 @@
                 </div>  
                 </div>
 
+                
                 <div class="col-lg-6">
                 <div class="form-group">
-                <label for="codigo">Domicilio</label>
-                <input type="text" name="domicilio" required value="{{old('domicilio')}}" class="form-control" placeholder="Domilicio...">
+                <label for="codigo">Número de celular</label>
+                <input type="number" name="numero_cel" id="numero_cel" min="1" max="999999999999" required value="{{old('numero_cel')}}" class="form-control" placeholder="Numero de cel...">
                 </div>  
                 </div>
 
@@ -49,24 +103,23 @@
                 <input type="date" class="form-control" name="fecha_de_nac" required value="{{old('fecha_de_nac')}}">
                 </div>  
                 </div>
-
-                
+    
                 <div class="col-lg-6">
                 <div class="form-group">
-                <label for="codigo">Numero de celular</label>
-                <input type="text" name="numero_cel" required value="{{old('numero_cel')}}" class="form-control" placeholder="Numero de cel...">
-                </div>  
+                <label for="codigo">Domicilio</label>
+                <input type="text" name="domicilio" id="domicilio" required value="{{old('domicilio')}}" class="form-control" placeholder="Domilicio...">
                 </div>
+                </div>                  
 
                 <div class="col-lg-6">
                 <div class="form-group">
                 <label for="codigo">Colonia</label>
-                <input type="text" name="colonia" required value="{{old('colonia')}}" class="form-control" placeholder="Colonia...">
+                <input type="text" name="colonia" id="colonia" required value="{{old('colonia')}}" class="form-control" placeholder="Colonia...">
                 </div>  
                 </div>
 
                 <div class="col-md-6 mb-3">
-                <label>Pais</label>
+                <label>País</label>
                 <select name="pais_id" class="form-control">
                 @foreach($paises as $pais)
                               <option value="{{$pais->idpais}}">{{$pais->nombre}}</option>
@@ -108,12 +161,14 @@
               </div>
 
              <div class="col-lg-6">
-                <div class="form-group">
-                <label for="imagen">Imagen</label>
-                <input type="file" name="imagen" class="form-control">
-                </div>
+                
+                <div class="input-group-prepend">
+                    <label class="input-group-text">Subir Imagen: </label>
+                    <input accept="image/*" type="file" id="file" name="file" onchange="Filevalidation();">
+                </div> 
+                
             </div>
-
+            
            <div class="col-lg-6">
             <div class="form-group">
                <button class="btn btn-primary" type="submit">Registro</button>
