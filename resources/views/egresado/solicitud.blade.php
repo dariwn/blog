@@ -8,11 +8,11 @@
 			$solicitud1 = DB::table('solicitud')->where('idsolicitud',$solicitud->idsolicitud)->get();					
 		 ?>
 
-		@if ($solicitud1[0]->estatus == 'No Vigente')
-		{{-- @if ($solicitud1[0]->estatus == 'No Vigente               ') --}}
+		{{-- @if ($solicitud1[0]->estatus == 'No Vigente') --}}
+		@if ($solicitud1[0]->estatus == 'No Vigente               ')
 			
-		@elseif($solicitud1[0]->estatus == 'Vigente')
-		{{-- @elseif($solicitud1[0]->estatus == 'Vigente                  ') --}}
+		{{-- @elseif($solicitud1[0]->estatus == 'Vigente') --}}
+		@elseif($solicitud1[0]->estatus == 'Vigente                  ')
 	    <h4 class="card-title">Puesto: {{ $solicitud1[0]->nombredelpuesto }}</h4>
 	    <h6 class="card-subtitle mb-2 text-muted">Estado: {{ $solicitud1[0]->estatus }}</h6>
 	    <p class="card-text">Descripci&oacute;n: {{ $solicitud1[0]->descripcion_del_puesto }}.</p>

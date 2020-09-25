@@ -29,7 +29,7 @@
 				<h4>INSTITUTO TECNOLOGICO DE TUXTLA GUTIERREZ</h4>
 			</div>
 			<div class="col-sm-3">
-				<img src="/img/logo.png" alt="" width="110" height="110" >				
+				<img src="/img/teclogoittg.png" alt="" width="112" height="112" >				
 			</div>
 			
 		</div>

@@ -25,11 +25,11 @@
 				<td>
 					<form action="{{ url('cambio-estatus-egresado',$postulado->id) }}" method="POST">
 						@csrf
-						{{-- @if($postulado->estatus == 'Postulado                     ') --}}
-						@if($postulado->estatus == 'Postulado')
+						@if($postulado->estatus == 'Postulado                     ')
+						{{-- @if($postulado->estatus == 'Postulado') --}}
 							<button type="submit" class="btn-wide btn btn-success">{{ $postulado->estatus }}</button>
-						@elseif($postulado->estatus == 'No Postulado')
-						{{-- @elseif($postulado->estatus == 'No Postulado                  ') --}}
+						{{-- @elseif($postulado->estatus == 'No Postulado') --}}
+						@elseif($postulado->estatus == 'No Postulado                  ')
 							<button type="submit" class="btn-wide btn btn-danger">{{ $postulado->estatus }}</button>
 						@endif
 					</form>
