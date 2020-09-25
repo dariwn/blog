@@ -34,10 +34,27 @@
                                             <div class="maxl">
                                                       <h6>Perfiles Seleccionado</h6>
                                                 <label class="radio inline"> 
-                                                @foreach($perfiles as $key=>$val)
-                                                    <input type="checkbox" name="idperfiles" <?php echo (!empty($val['checked']))?'checked':'';?> value="{{$val->idperfiles}}">
-                                                    <span> {{$val->carrera}} </span> <br>
-                                                @endforeach
+                                                <?php
+                                                $idsoli= DB::table('solicitudperfil')->where('idsolicitud',$hola->id)->get();
+                                                $separador = ",";
+                                                $separada = explode($separador,$idsoli[0]->idperfiles);
+                                                //dd($separada);
+                                                foreach($separada as $valor){
+                                                      $perfil= DB::table('perfiles')->where('idperfiles',$valor)->get();
+                                                        
+                                                        foreach ($perfil as $key => $value) {
+                                                            echo $value->carrera."<br>";
+                                                        }
+                                                    }                                                                                                         
+                                                ?>   
+                                                <br>
+                                                <h6>Seleccionar Perfiles</h6>
+                                                <label class="radio inline"> 
+                                                    @foreach($perfiles as $perfil)
+                                                    <input type="checkbox" name="perfil[]" value="{{$perfil->idperfiles}}">
+                                                    <span> {{$perfil->carrera}} </span> <br>
+                                                    @endforeach
+                                                </label>     
                                                 </label>               
                                             </div>
                                         </div>

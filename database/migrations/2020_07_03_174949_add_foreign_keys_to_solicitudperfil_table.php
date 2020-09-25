@@ -14,7 +14,7 @@ class AddForeignKeysToSolicitudperfilTable extends Migration {
 	{
 		Schema::table('solicitudperfil', function(Blueprint $table)
 		{
-			$table->foreign('idperfiles', 'fk_solicitudperfil_perfiles1')->references('idperfiles')->on('perfiles')->onUpdate('NO ACTION')->onDelete('NO ACTION');
+			
 			$table->foreign('idsolicitud', 'fk_solicitudperfil_solicitud1')->references('idsolicitud')->on('solicitud')->onUpdate('NO ACTION')->onDelete('NO ACTION');
 		});
 	}

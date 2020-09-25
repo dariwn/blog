@@ -16,7 +16,7 @@ class CreateSolicitudperfilTable extends Migration {
 		{
 			$table->integer('id', true);
 			$table->integer('idsolicitud')->index('fk_solicitudperfil_solicitud1_idx');
-			$table->integer('idperfiles')->index('fk_solicitudperfil_perfiles1_idx');
+			$table->char('idperfiles');
 			// $table->primary(['id','idsolicitud','idperfiles']);
 		});
 	}

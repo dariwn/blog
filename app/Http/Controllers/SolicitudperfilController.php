@@ -78,13 +78,14 @@ class SolicitudperfilController extends Controller
         $Lista = array();
         foreach($perfiles as $key=>$val){
             $Lista[$key] = $val;
-            $array = Solicitudperfil::where('idsolicitud',$id)->where('idperfiles',$val['idperfiles'])->first();
+            $array = Solicitudperfil::where('idsolicitud',$id)->where('idperfiles',$val['idperfiles'])->first();            
             if(!empty($array)){
                 $Lista[$key]->checked = 'checked';
             }else{
                 $Lista[$key]->checked = '';
             }
         }
+        
         return view('bienvenido.editar',compact('perfiles','empresas','sola','hola','salu','bienvenido'));
     }
 
@@ -97,11 +98,23 @@ class SolicitudperfilController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if(!empty($request->idperfiles)){
+                         
+           //dd($request);
+        
+            $selected1 = '';
+            // Ciclo para mostrar las casillas checked checkbox.
+                foreach($_POST['perfil'] as $selected){
+                    $selected1 .= $selected.',';
+                }
+            //dd($selected1);
             $hola = Solicitudperfil::find($id);
+
             $hola->idsolicitud = $request->idsolicitud;
-            $hola->idperfiles = $request->idperfiles;
-        }
+            $hola->idperfiles = $selected1;
+
+            //dd($hola->idperfiles);
+            $hola->save();
+        
         return redirect()->route('solicitud.index');
     }
 

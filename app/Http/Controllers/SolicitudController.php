@@ -67,7 +67,7 @@ class SolicitudController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    { 
         $usuario = Auth::user()->id;
         $empresas = Empresa::select('idempresa')->where('users_id', $usuario)->get();
         //dd($empresas[0]->idempresa);
@@ -91,12 +91,19 @@ class SolicitudController extends Controller
         $nuevo->estatus = $request->estatus;
         $nuevo->created_at = date('Y-m-d H:m:s');
         $nuevo->updated_at = date('Y-m-d H:m:s');
-        $nuevo->save();
+        $nuevo->save(); 
         
         $perfiles = $request->perfil;
-        foreach($perfiles as $bienvenido){
+        if(!empty($_POST['perfil'])){
+            $selected1 = '';
+            // Ciclo para mostrar las casillas checked checkbox.
+                foreach($_POST['perfil'] as $selected){
+                    $selected1 .= $selected.',';
+                }
+            }        
+            //dd($selected1);
             $linea = new Solicitudperfil;
-            $linea->idperfiles=$bienvenido;            
+            $linea->idperfiles=$selected1;            
             $linea->idsolicitud = $nuevo->idsolicitud;
 
 // //---- envio de correo para egresados con el perfil solicitado
@@ -123,16 +130,16 @@ class SolicitudController extends Controller
 //             // dd($obcorreo);
 
             $linea->save();
-        }
+
         DB::commit();
         return back();
        }
-
        catch(Exception $e){
         DB::rollBack();
         return redirect("/solicitud")->with('ok','ERROR');
-       }
+       } 
     }
+
 
     /**
      * Display the specified resource.
