@@ -38,9 +38,9 @@
                                                 $idsoli= DB::table('solicitudperfil')->where('idsolicitud',$hola->id)->get();
                                                 $separador = ",";
                                                 $separada = explode($separador,$idsoli[0]->idperfiles);
-                                                //dd($separada);
+                                                dd($separada);
                                                 foreach($separada as $valor){
-                                                    dd($valor);
+                                                    
                                                       $perfil= DB::table('perfiles')->where('idperfiles',$valor)->get();
                                                         
                                                         foreach ($perfil as $key => $value) {
