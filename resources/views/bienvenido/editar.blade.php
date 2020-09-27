@@ -39,8 +39,19 @@
                                                 $separador = ",";
                                                 $separada = explode($separador,$idsoli[0]->idperfiles);
                                                 //dd($separada);
-                                                echo $idsoli;
-                                                                                                                                                    
+                                                echo $separada;
+                                                foreach($separada as $valor){
+                                                        if ($valor == ' ') {
+                                                                                                                  
+                                                        }else {
+                                                            $perfil= DB::table('perfiles')->where('idperfiles',$valor)->get();
+                                                        
+                                                            foreach ($perfil as $key => $value) {
+                                                                echo $value->carrera."<br>";
+                                                            }
+                                                        }
+                                                      
+                                                    }                                                                                                         
                                                 ?>   
                                                 <br>
                                                 <h6>Seleccionar Perfiles</h6>
