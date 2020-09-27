@@ -40,8 +40,8 @@
                                                 $separada = explode($separador,$idsoli[0]->idperfiles);
                                                 //dd($separada);
                                                 foreach($separada as $valor){
-                                                        if ($valor == ' ') {
-                                                            
+                                                        if ($valor == '') {
+                                                                                                                  
                                                         }else {
                                                             $perfil= DB::table('perfiles')->where('idperfiles',$valor)->get();
                                                         
