@@ -12,7 +12,7 @@
 </head>
 <body>
 	<div id="cabecera">
-		<img style="float: left;" src="/img/tecnm2.png" alt="" width="210" height="100">				
+		<img style="float: left;" src="/img/tecnm2.png" alt="" width="190" height="80">				
 		<a>SISTEMA DE BOLSA DE TRABAJO</a>		
 		<img style="float: right;" src="/img/teclogoittg.png" alt="" width="112" height="112" >
 		<br>		
