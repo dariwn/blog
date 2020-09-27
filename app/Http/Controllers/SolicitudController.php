@@ -132,7 +132,7 @@ class SolicitudController extends Controller
             $linea->save();
 
         DB::commit();
-        return back();
+        return redirect('/solicitud')->with('guardado','Solicitud registrada correctamente!!');
        }
        catch(Exception $e){
         DB::rollBack();

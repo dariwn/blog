@@ -35,7 +35,7 @@
     <div class="container">
         <div class="card card-container">
             
-            <p id="titulo" class="profile-name-card">¿El contratado es del Instituto Tecnológico de Tuxtla Gutiérrez?</p>
+            <p id="titulo" class="profile-name-card">¿El Puesto Fue Ocupado Por Algun Egresado Del Instituto Tecnológico De Tuxtla Gutiérrez?</p>
 
             <div>
                 

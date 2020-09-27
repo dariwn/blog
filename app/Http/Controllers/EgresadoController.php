@@ -115,7 +115,7 @@ class EgresadoController extends Controller
         }
                
         $egresado->save();
-        return Redirect::to('egresado');
+        return Redirect::to('onda');
     }
 
     /**

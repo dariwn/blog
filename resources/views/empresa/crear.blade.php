@@ -1,5 +1,29 @@
 @extends('empresa.inicio')
 @section('colores')
+
+<script  type="text/javascript">
+   Filevalidation = () => { 
+		const fi = document.getElementById('file'); 
+		// Check if any file is selected. 
+		if (fi.files.length > 0) { 
+			for (const i = 0; i <= fi.files.length - 1; i++) { 
+
+				const fsize = fi.files.item(i).size; 
+				const file = Math.round((fsize / 1024)); 
+				// The size of the file. 
+				if (file >= 2000) { 
+					alert( 
+					"El archivo que intenta subir es demasiado grande, seleccione un archivo menor a 2 Mb (2048 Kilobytes)"); 
+				} else { 
+					document.getElementById('size').innerHTML = '<b>'
+					+ file + '</b> KB'; 
+				} 
+			} 
+		} 
+	} 
+
+
+</script>
 <link rel="stylesheet" type="text/css" href="{{URL::asset('css/hola.css')}}">
      <link rel="stylesheet" type="text/css" href="{{URL::asset('css/estilo1.css')}}">
      <link rel="stylesheet" type="text/css" href="{{URL::asset('css/bootstrap1.css')}}">
@@ -30,7 +54,7 @@
           <label for="mail">RFC</label>
           <input type="text"  name="rfc" required value="{{old('rfc')}}">
 
-			<label for="password">Pais</label>
+			<label for="password">País</label>
           <div class="caja">
  		 	<select name="pais_id">
  		 		@foreach($paises as $local)
@@ -63,20 +87,20 @@
           <input type="text"name="calle" required value="{{old('calle')}}">
 
           <label for="password">Numero Exterior</label>
-          <input type="text" name="numeroexterior" required value="{{old('numeroexterior')}}">
+          <input type="number" name="numeroexterior" required value="{{old('numeroexterior')}}">
 
-          <label for="password">Codigo Postal</label>
-          <input type="text" name="codigo_postal" required value="{{old('codigo_postal')}}">
+          <label for="password">Código Postal</label>
+          <input type="number" name="codigo_postal" required value="{{old('codigo_postal')}}">
 
-          <label for="password">Telefono</label>
-          <input type="text" name="telefono" required value="{{old('telefono')}}">
+          <label for="password">Teléfono</label>
+          <input type="number" name="telefono" required value="{{old('telefono')}}">
 
-          <label for="password">Descripcion de la Empresa</label>
+          <label for="password">Descripción de la Empresa</label>
           <input type="text" name="descripcion" required value="{{old('descripcion')}}">
 
           <div class="form-group">
                 <label for="imagen">Imagen</label>
-                <input type="file" name="imagen" class="form-control">
+                <input type="file" name="imagen" class="form-control" id="file" onchange="Filevalidation();">
                 </div>
 
          <br>         
@@ -97,8 +121,8 @@
           <input type="text" name="email" required value="{{old('email')}}">
 
           
-          <label for="password">Telefono</label>
-          <input type="text" name="numero_cel" required value="{{old('numero_cel')}}">
+          <label for="password">Teléfono</label>
+          <input type="number" name="numero_cel" required value="{{old('numero_cel')}}">
         
         <center><br> <br><button type="submit">Finalizar Registro</button></br></br></center>
 
