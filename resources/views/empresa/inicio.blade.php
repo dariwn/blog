@@ -17,6 +17,7 @@
 		<img style="float: right;" src="/img/teclogoittg.png" alt="" width="112" height="112" >
 		<br>		
 		<b>INSTITUTO TECNOLOGICO DE TUXTLA GUTIERREZ</b>
+		<br>
 	</div>
 	<header>
 		<nav class="navegacion">
