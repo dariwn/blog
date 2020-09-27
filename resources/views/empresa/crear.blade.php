@@ -1,29 +1,6 @@
 @extends('empresa.inicio')
 @section('colores')
 
-<script  type="text/javascript">
-   Filevalidation = () => { 
-		const fi = document.getElementById('file'); 
-		// Check if any file is selected. 
-		if (fi.files.length > 0) { 
-			for (const i = 0; i <= fi.files.length - 1; i++) { 
-
-				const fsize = fi.files.item(i).size; 
-				const file = Math.round((fsize / 1024)); 
-				// The size of the file. 
-				if (file >= 2000) { 
-					alert( 
-					"El archivo que intenta subir es demasiado grande, seleccione un archivo menor a 2 Mb (2048 Kilobytes)"); 
-				} else { 
-					document.getElementById('size').innerHTML = '<b>'
-					+ file + '</b> KB'; 
-				} 
-			} 
-		} 
-	} 
-
-
-</script>
 <link rel="stylesheet" type="text/css" href="{{URL::asset('css/hola.css')}}">
      <link rel="stylesheet" type="text/css" href="{{URL::asset('css/estilo1.css')}}">
      <link rel="stylesheet" type="text/css" href="{{URL::asset('css/bootstrap1.css')}}">
@@ -32,6 +9,31 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 @stop
 @section('seccion')
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<script  type="text/javascript">
+  Filevalidation = () => { 
+   const fi = document.getElementById('file'); 
+   // Check if any file is selected. 
+   if (fi.files.length > 0) { 
+     for (const i = 0; i <= fi.files.length - 1; i++) { 
+
+       const fsize = fi.files.item(i).size; 
+       const file = Math.round((fsize / 1024)); 
+       // The size of the file. 
+       if (file >= 2000) { 
+         alert( 
+         "El archivo que intenta subir es demasiado grande, seleccione un archivo menor a 2 Mb (2048 Kilobytes)"); 
+       } else { 
+         document.getElementById('size').innerHTML = '<b>'
+         + file + '</b> KB'; 
+       } 
+     } 
+   } 
+ } 
+
+</script>
 <head>
         
         <title>registro de la empresa</title>
@@ -76,7 +78,7 @@
 
           <label for="password">Municipio</label>
         <div class="opciones">
- 		 	<select name="municipio_id" id="municipio" placeholder="Seleccionar">
+ 		 	<select name="municipio_id" id="municipio" placeholder="Seleccionar">       
   			</select>
 			</div>
 

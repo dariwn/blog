@@ -173,8 +173,9 @@ class EmpresaController extends Controller
         $empresas = array_flatten($empresa);
 
         $estados = Estado::all();
-        $localidades = Municipio::all();
+        $localidades = DB::table('municipio')->get();
         $paises = Pais::all();
+        //dd($localidades);
         return view('empresa.crear',compact('localidades','estados','paises', 'empresas'));
     }
 
