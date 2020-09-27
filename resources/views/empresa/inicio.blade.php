@@ -12,9 +12,9 @@
 </head>
 <body>
 	<div id="cabecera">
-		<img style="float: left;" src="/img/tecnm2.png" alt="" width="190" height="80">				
+		<img style="float: left;" src="/img/tecnm2.png" alt="" width="180" height="70">				
 		<a>SISTEMA DE BOLSA DE TRABAJO</a>		
-		<img style="float: right;" src="/img/teclogoittg.png" alt="" width="112" height="112" >
+		<img style="float: right;" src="/img/teclogoittg.png" alt="" width="70" height="70" >
 		<br>		
 		<b>INSTITUTO TECNOLOGICO DE TUXTLA GUTIERREZ</b>
 		<br>
