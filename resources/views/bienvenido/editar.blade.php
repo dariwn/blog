@@ -39,7 +39,7 @@
                                                 $separador = ",";
                                                 $separada = explode($separador,$idsoli[0]->idperfiles);
                                                 //dd($separada);
-                                                echo $separada;
+                                                //echo $separada;
                                                 foreach($separada as $valor){
                                                         if ($valor == ' ') {
                                                                                                                   
