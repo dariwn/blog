@@ -76,7 +76,15 @@ class SolicitudperfilController extends Controller
         $perfiles = Perfil::all();
         $salu = Solicitud::all();
         $Lista = array();
-        
+        foreach($perfiles as $key=>$val){
+            $Lista[$key] = $val;
+            $array = Solicitudperfil::where('idsolicitud',$id)->where('idperfiles',$val['idperfiles'])->first();            
+            if(!empty($array)){
+                $Lista[$key]->checked = 'checked';
+            }else{
+                $Lista[$key]->checked = '';
+            }
+        }
         
         return view('bienvenido.editar',compact('perfiles','empresas','sola','hola','salu','bienvenido'));
     }
