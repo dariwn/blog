@@ -86,6 +86,7 @@ class SolicitudperfilController extends Controller
             }
         }
         
+        
         return view('bienvenido.editar',compact('perfiles','empresas','sola','hola','salu','bienvenido'));
     }
 
@@ -100,20 +101,31 @@ class SolicitudperfilController extends Controller
     {
                          
            //dd($request);
-        
-            $selected1 = '';
+            $perfilactual = DB::table('solicitudperfil')->where('idsolicitud','=',$request->idsolicitud)->get();
+            //dd($perfilactual);
+            foreach($perfilactual as $perfileliminar){
+                $ideliminar = $perfileliminar->id;
+                
+                $elimar = Solicitudperfil::find($ideliminar);
+                $elimar->delete();
+            }
+            //dd($perfilactual);
+            
             // Ciclo para mostrar las casillas checked checkbox.
-                foreach($_POST['perfil'] as $selected){
-                    $selected1 .= $selected.',';
+                foreach($request->perfil as $selected){
+                    $nuevoperfil = new Solicitudperfil;
+                    $nuevoperfil->idsolicitud = $request->idsolicitud;
+                    $nuevoperfil->idperfiles = $selected;
+                    $nuevoperfil->save();
                 }
             //dd($selected1);
-            $hola = Solicitudperfil::find($id);
+           /* $hola = Solicitudperfil::find($id);
 
             $hola->idsolicitud = $request->idsolicitud;
             $hola->idperfiles = $selected1;
 
             //dd($hola->idperfiles);
-            $hola->save();
+            $hola->save();*/
         
         return redirect()->route('solicitud.index');
     }

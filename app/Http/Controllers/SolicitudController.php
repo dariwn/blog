@@ -93,18 +93,13 @@ class SolicitudController extends Controller
         $nuevo->updated_at = date('Y-m-d H:m:s');
         $nuevo->save(); 
         
-        $perfiles = $request->perfil;
-        if(!empty($_POST['perfil'])){
-            $selected1 = '';
-            // Ciclo para mostrar las casillas checked checkbox.
-                foreach($_POST['perfil'] as $selected){
-                    $selected1 .= $selected.',';
-                }
-            }        
-            //dd($selected1);
-            $linea = new Solicitudperfil;
-            $linea->idperfiles=$selected1;            
-            $linea->idsolicitud = $nuevo->idsolicitud;
+        foreach($request->perfil as $selected){
+            $nuevoperfil = new Solicitudperfil;
+            $nuevoperfil->idsolicitud = $nuevo->idsolicitud;
+            $nuevoperfil->idperfiles = $selected;
+            $nuevoperfil->save();
+        }
+        
 
 // //---- envio de correo para egresados con el perfil solicitado
 //             //dd($linea->idperfiles);
@@ -129,7 +124,7 @@ class SolicitudController extends Controller
 //              }
 //             // dd($obcorreo);
 
-            $linea->save();
+            //$linea->save();
 
         DB::commit();
         return redirect('/solicitud')->with('guardado','Solicitud registrada correctamente!!');

@@ -35,23 +35,13 @@
                                                       <h6>Perfiles Seleccionado</h6>
                                                 <label class="radio inline"> 
                                                 <?php
-                                                $idsoli= DB::table('solicitudperfil')->where('idsolicitud',$hola->id)->get();
-                                                $separador = ",";
-                                                $separada = explode($separador,$idsoli[0]->idperfiles);
-                                                //dd($separada);
-                                                //echo $separada;
-                                                foreach($separada as $valor){
-                                                        if ($valor == ' ') {
-                                                                                                                  
-                                                        }else {
-                                                            $perfil= DB::table('perfiles')->where('idperfiles',$valor)->get();
-                                                        
-                                                            foreach ($perfil as $key => $value) {
-                                                                echo $value->carrera."<br>";
-                                                            }
-                                                        }
-                                                      
-                                                    }                                                                                                         
+                                                $idsoli= DB::table('solicitudperfil')->where('idsolicitud','=',$hola->idsolicitud)->get();
+                                                //dd($idsoli);
+                                                 foreach ($idsoli as $key => $value) {
+                                                    $perfilactual= DB::table('perfiles')->where('idperfiles','=',$value->idperfiles)->get();
+                                                    //dd($perfilactual);
+                                                    echo $perfilactual[0]->carrera."<br>";
+                                                 }                                                                                                      
                                                 ?>   
                                                 <br>
                                                 <h6>Seleccionar Perfiles</h6>
