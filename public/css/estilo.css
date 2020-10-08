@@ -15,7 +15,7 @@ body{
     color: white;
 }
 .navegacion{
-    width: 1200px;
+    width: 1350px;
     margin:  auto;
     background: rgb(112, 110, 110);
 }
@@ -65,4 +65,18 @@ body{
 .menu li:hover .submenu{
     visibility: visible;
     opacity: 1;
+}
+
+.profile-img-cards {
+    width: 160px;
+    height: 150px;
+    margin: 40px  600px;
+    margin-top: 180px;
+    -moz-border-radius: 40%;
+    -webkit-border-radius: 40%;
+    border-radius: 60%;
+}
+
+.cardy-body th{
+    margin-left: -20px;
 }

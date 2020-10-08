@@ -21,7 +21,7 @@ class NuevoController extends Controller
      */
     public function index()
     {
-        $empresa = Empresa::all();
+        $empresa = Empresa::paginate(7);
         return view('administradora.listado', compact('empresa'));
     }
 
@@ -99,7 +99,7 @@ class NuevoController extends Controller
     }
 
     public function ver(){
-        $administrador = Empresa::all();
+        $administrador = Empresa::paginate(7);
         return view('administradora.ver', compact('administrador'));
     }
 
@@ -298,27 +298,27 @@ class NuevoController extends Controller
                         //sistemas
                         $a = $a + 1;
                     }else
-                    if($mi2 == 2){
+                    if($mi2 == 4){
                         //gestion
                         $b = $b + 1;
                     }else
-                    if($mi2 == 3){
+                    if($mi2 == 2){
                         //electrica
                         $c = $c + 1;
                     }else
-                    if($mi2 == 4){
+                    if($mi2 == 3){
                         //electroncia
                         $d = $d + 1;
                     }else
-                    if($mi2 == 5){
+                    if($mi2 == 9){
                         //quimica
                         $e = $e + 1;
                     }else
-                    if($mi2 == 6){
+                    if($mi2 == 5){
                         //bioquimica
                         $f = $f + 1;
                     }else
-                    if($mi2 == 7){
+                    if($mi2 == 6){
                         //industrial
                         $g = $g + 1;
                     }else
@@ -326,7 +326,7 @@ class NuevoController extends Controller
                         //mecanica
                         $h = $h + 1;
                     }else
-                    if($mi2 == 9){
+                    if($mi2 == 7){
                         //logistica
                         $i = $i + 1;
                     }else
@@ -418,27 +418,27 @@ class NuevoController extends Controller
                         //sistemas
                         $a = $a + 1;
                     }else
-                    if($mi2 == 2){
+                    if($mi2 == 4){
                         //gestion
                         $b = $b + 1;
                     }else
-                    if($mi2 == 3){
+                    if($mi2 == 2){
                         //electrica
                         $c = $c + 1;
                     }else
-                    if($mi2 == 4){
+                    if($mi2 == 3){
                         //electroncia
                         $d = $d + 1;
                     }else
-                    if($mi2 == 5){
+                    if($mi2 == 9){
                         //quimica
                         $e = $e + 1;
                     }else
-                    if($mi2 == 6){
+                    if($mi2 == 5){
                         //bioquimica
                         $f = $f + 1;
                     }else
-                    if($mi2 == 7){
+                    if($mi2 == 6){
                         //industrial
                         $g = $g + 1;
                     }else
@@ -446,8 +446,8 @@ class NuevoController extends Controller
                         //mecanica
                         $h = $h + 1;
                     }else
-                    if($mi2 == 9){
-                        //mecanica
+                    if($mi2 == 7){
+                        //logistica
                         $i = $i + 1;
                     }else
                     if($mi2 == 71){

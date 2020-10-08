@@ -1,4 +1,4 @@
-@extends('administradora.inicio')
+@extends('administradora.inicio2')
 @section('colores')
 <link rel="stylesheet" type="text/css" href="{{URL::asset('css/hola.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{URL::asset('fonts/style.css')}}">
@@ -18,7 +18,8 @@
 	    	<table class="table table-striped table-bordered table-condensed table-hover">
 	    		<thead>
 	    			<th>Correo</th>
-	    			<th>Nombres</th>
+	    			<th>Usuario</th>
+					<th>Nombres</th>
 	    			<th>Apellido Paterno</th>
 	    			<th>Apellido Materno</th>
 					<th>Domicilio</th>
@@ -34,6 +35,7 @@
              
 	    		<tr>
 	    			<td>{{ $hola->correo}}</td>
+					<td>{{ $hola->user->username}}</td>
 	    			<td>{{ $hola->nombres}}</td>
                     <td>{{ $hola->apellido_paterno}}</td>
 					<td>{{ $hola->apellido_materno}}</td>

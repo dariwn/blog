@@ -14,7 +14,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Lista de Usuarios de Empresas</div>
+                <div class="card-header">Lista de Usuarios de Egresados</div>
 
                 <form class="form-inline my-2" method="get" action="{{ route ('usuarios-egresados.index') }}">	
                     <input class="form-control mr-sm-2" type="search" name="username" placeholder="User Name" aria-label="Search" >

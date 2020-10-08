@@ -1,4 +1,4 @@
-@extends('administradora.inicio')
+@extends('administradora.inicio2')
 @section('colores')
 <link rel="stylesheet" type="text/css" href="{{URL::asset('css/hola.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{URL::asset('fonts/style.css')}}">
@@ -18,6 +18,7 @@
 	    	<table class="table table-striped table-bordered table-condensed table-hover">
 	    		<thead>
 	    			<th>Nombre</th>
+					<th>Usuario</th>
 	    			<th>RFC</th>
 	    			<th>Descripcion</th>
 	    			<th>Colonia</th>
@@ -32,6 +33,7 @@
              
 	    		<tr>
 	    			<td>{{ $bienvenido->nombre}}</td>
+					<td>{{$bienvenido->user->username}}</td>
 	    			<td>{{ $bienvenido->rfc}}</td>
                     <td>{{ $bienvenido->descripcion}}</td>
 					<td>{{ $bienvenido->colonia}}</td>
@@ -43,6 +45,7 @@
 					<td>{{ $bienvenido->municipio->nombre_localidad}}</td>
 	    		</tr>
 	    		@endforeach
+				{{$empresa->render()}}
 	    	</table>
 	    </div>
 	</div>

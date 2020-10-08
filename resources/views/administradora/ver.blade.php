@@ -1,4 +1,4 @@
-@extends('administradora.inicio')
+@extends('administradora.inicio2')
 @section('colores')
 <link rel="stylesheet" type="text/css" href="{{URL::asset('css/hola.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{URL::asset('fonts/style.css')}}">
@@ -18,6 +18,7 @@
 	    	<table class="table table-striped table-bordered table-condensed table-hover">
 	    		<thead>
                     <th>Nombre de la Empresa</th>
+                    <th>Usuario</th>
 	    			<th>Nombre</th>
                     <th>Apellido Paterno</th>
                     <th>Apellido Materno</th>
@@ -29,6 +30,7 @@
              
 	    		<tr>
                     <td>{{$perico->nombre}}</td>
+                    <td>{{ $perico->user->username}}</td>
 	    			<td>{{ $perico->names}}</td>
                     <td>{{ $perico->apellido_paterno}}</td>
                     <td>{{ $perico->apellido_materno}}</td>
@@ -37,6 +39,7 @@
                     <td>{{ $perico->email}}</td>
 	    		</tr>
 	    		@endforeach
+                {{$administrador->render()}}
 	    	</table>
 	    </div>
 	</div>

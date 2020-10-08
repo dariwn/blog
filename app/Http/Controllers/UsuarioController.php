@@ -18,7 +18,7 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        $egresado = Egresado::all();
+        $egresado = Egresado::paginate(7);
         return view('administradora.datos', compact('egresado'));  
     }
 
