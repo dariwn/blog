@@ -108,7 +108,7 @@
 	style='font-size:10.0pt;line-height:107%;font-family:"montserratmedium",serif;
 	mso-bidi-font-family:"Arial";mso-bidi-theme-font:minor-bidi;
 	color:#4C4B4A;'>
-	Alumnos contratados: {{ $Si }} , Alumnos no contratados: {{$No}} .
+	Puestos Ocupados Por Alumnos: {{ $Si }} , Puestos No Ocupados Por Alumnos: {{$No}} .
 
 	</strong> 
 

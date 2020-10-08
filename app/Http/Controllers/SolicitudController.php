@@ -97,6 +97,8 @@ class SolicitudController extends Controller
             $nuevoperfil = new Solicitudperfil;
             $nuevoperfil->idsolicitud = $nuevo->idsolicitud;
             $nuevoperfil->idperfiles = $selected;
+            $nuevoperfil->created_at = date('Y-m-d H:m:s');
+            $nuevoperfil->updated_at = date('Y-m-d H:m:s');
             $nuevoperfil->save();
         }
         

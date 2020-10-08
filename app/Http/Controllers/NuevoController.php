@@ -121,20 +121,106 @@ class NuevoController extends Controller
     }
 
     public function graficaBarra(){
-        $a = Solicitudperfil::where('idperfiles', 1)->count();
-        $b = Solicitudperfil::where('idperfiles', 2)->count();
-        $c = Solicitudperfil::where('idperfiles', 3)->count();
-        $d = Solicitudperfil::where('idperfiles', 4)->count();
-        $e = Solicitudperfil::where('idperfiles', 5)->count();
-        $f = Solicitudperfil::where('idperfiles', 6)->count();
-        $g = Solicitudperfil::where('idperfiles', 7)->count();
-        $h = Solicitudperfil::where('idperfiles', 8)->count();
-        $i = Solicitudperfil::where('idperfiles', 9)->count();
-        $j = Solicitudperfil::where('idperfiles', 10)->count();
-        $k = Solicitudperfil::where('idperfiles', 11)->count();
-        $m = Solicitudperfil::where('idperfiles', 12)->count();
-        $n = Solicitudperfil::where('idperfiles', 13)->count();
-        return view('administradora.barra', compact('a','b','c','d','e','f','g','h','i','j','k','m','n'));
+        // $a = Solicitudperfil::where('idperfiles', 1)->count();
+        // $b = Solicitudperfil::where('idperfiles', 2)->count();
+        // $c = Solicitudperfil::where('idperfiles', 3)->count();
+        // $d = Solicitudperfil::where('idperfiles', 4)->count();
+        // $e = Solicitudperfil::where('idperfiles', 5)->count();
+        // $f = Solicitudperfil::where('idperfiles', 6)->count();
+        // $g = Solicitudperfil::where('idperfiles', 7)->count();
+        // $h = Solicitudperfil::where('idperfiles', 8)->count();
+        // $i = Solicitudperfil::where('idperfiles', 9)->count();
+        // $j = Solicitudperfil::where('idperfiles', 71)->count();
+        // $k = Solicitudperfil::where('idperfiles', 72)->count();
+        // $m = Solicitudperfil::where('idperfiles', 91)->count();
+        // $n = Solicitudperfil::where('idperfiles', 92)->count();
+        // return view('administradora.barra', compact('a','b','c','d','e','f','g','h','i','j','k','m','n'));
+
+        return view('administradora.periodografica');
+    }
+
+    public function grafica(Request $request){
+        //dd($request);
+        $a= 0;
+        $b= 0;
+        $c= 0;
+        $d= 0;
+        $e= 0;
+        $f= 0;
+        $g= 0;
+        $h= 0;
+        $i= 0;
+        $j= 0;
+        $k= 0;
+        $m= 0;
+        $n= 0;
+       
+        if($request->tipo == 1){
+
+            $periodoinicio = $request->periodo;
+            $periodofin = $request->hasta;
+            $solicitudper = Solicitudperfil::select('idperfiles')->where('created_at', '>',$periodoinicio, 'AND','created_at', '<=', $periodofin )->get();
+            //dd($solicitudper);
+            foreach($solicitudper as $perfil){
+                if($perfil->idperfiles == 1){
+                    $a = $a+1;
+                }
+                if($perfil->idperfiles == 2){
+                    $b = $b+1;
+                }
+                if($perfil->idperfiles == 3){
+                    $c = $c+1;
+                }
+                if($perfil->idperfiles == 4){
+                    $d = $d+1;
+                }
+                if($perfil->idperfiles == 5){
+                    $e = $e+1;
+                }
+                if($perfil->idperfiles == 6){
+                    $f = $f+1;
+                }
+                if($perfil->idperfiles == 7){
+                    $g = $g+1;
+                }
+                if($perfil->idperfiles == 8){
+                    $h = $h+1;
+                }
+                if($perfil->idperfiles == 9){
+                    $i = $i+1;
+                }
+                if($perfil->idperfiles == 71){
+                    $j = $j+1;
+                }
+                if($perfil->idperfiles == 72){
+                    $k = $k+1;
+                }
+                if($perfil->idperfiles == 91){
+                    $m = $m+1;
+                }
+                if($perfil->idperfiles == 92){
+                    $n = $n+1;
+                }
+            }                                    
+            return view('administradora.barra', compact('a','b','c','d','e','f','g','h','i','j','k','m','n','periodoinicio','periodofin'));
+        }        
+        if($request->tipo == 2){
+            
+            $periodoinicio = $request->periodo;
+            $periodofin = $request->hasta;
+            $puestosocu= Solicitud::select('respuesta')->where('created_at', '>',$periodoinicio, 'AND','created_at', '<=', $periodofin )->get();
+            //dd($puestosocu);
+            foreach($puestosocu as $res){
+                if($res->respuesta == 'SI'){
+                    $a = $a + 1;
+                }
+                if($res->respuesta == 'NO'){
+                    $b = $b + 1;
+                }
+            }           
+        
+            return view('administradora.grafialumnosb',compact('a','b','periodoinicio','periodofin'));
+        }
     }
 
     public function graficaAlumnosp(){

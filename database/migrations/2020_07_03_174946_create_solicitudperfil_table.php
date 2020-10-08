@@ -17,6 +17,7 @@ class CreateSolicitudperfilTable extends Migration {
 			$table->integer('id', true);
 			$table->integer('idsolicitud')->index('fk_solicitudperfil_solicitud1_idx');
 			$table->char('idperfiles');
+			$table->timestamps();
 			// $table->primary(['id','idsolicitud','idperfiles']);
 		});
 	}

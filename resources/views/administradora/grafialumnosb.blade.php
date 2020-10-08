@@ -19,35 +19,18 @@
   var no = {{ $b }}
 
   window.onload = function () {
-    var chart1 = new CanvasJS.Chart("chartContainer1",
-    {
-      title:{
-        text: "Alumnos Contratados Por Las Empresas"
-      },
-      data: [
-      {
-       type: "doughnut",
-       dataPoints: [
-        { indexLabel: "SI",  y: si  },
-				{ indexLabel: "NO", y: no  },
-			]
-     }
-     ]
-   });
-
-    chart1.render();
 
     var chart2 = new CanvasJS.Chart("chartContainer2", {
 		theme: "light2",
 		title:{
-			              
+      text: "Puestos Ocupados Por Alumnos En Las Empresas"       
 		},
 		data: [              
 		{
 			type: "column",
 			dataPoints: [
-				{ label: "SI",  y: si  },
-				{ label: "NO", y: no  },	
+				{ label: "Puestos Ocupados",  y: si  },
+				{ label: "Puestos No Ocupados", y: no  },	
 			]
 		}
 		]
@@ -59,9 +42,10 @@
   </script>
   <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script></head>
   <body>
-    <div id="chartContainer1" style="height: 300px; width: 100%;">
+    
     </div><br>
     <center>
+    <label>Periodo graficado del: {{$periodoinicio}}  al: {{ $periodofin }} </label>
     <div id="chartContainer2" style="height: 300px; width: 60%;">
     </div>
   </center>
