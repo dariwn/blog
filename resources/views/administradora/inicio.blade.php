@@ -14,8 +14,12 @@
 </head>
 <body>
 	<div id="cabecera">
-		<a>SISTEMA DE BOLSA DE TRABAJO</a><br>
+		<img style="float: left;" src="/img/tecnm2.png" alt="" width="180" height="70">				
+		<a>SISTEMA DE BOLSA DE TRABAJO</a>		
+		<img style="float: right;" src="/img/teclogoittg.png" alt="" width="70" height="70" >
+		<br>		
 		<b>INSTITUTO TECNOLOGICO DE TUXTLA GUTIERREZ</b>
+		<br>
 	</div>
 	<header>
 		<nav class="navegacion">
@@ -50,6 +54,7 @@
 			</ul>
 		</nav>
     </header>
+	<img id="profile-img" class="profile-img-cards" src="img/logo.png"/>
 	@yield('seccion')
 	
 </body>

@@ -42,4 +42,8 @@ class Empresa extends Model
     public function pais(){
       return $this->belongsTo("App\Pais", "pais_id", "idpais");
   }
+
+  public function user(){
+    return $this->belongsTo("App\User","users_id","id");
+  }
 }

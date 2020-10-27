@@ -50,5 +50,9 @@ class Egresado extends Model
     public function perfil(){
         return $this->belongsToMany('Solicitud\Solicitudperfil');
     }
+
+    public function user(){
+        return $this->belongsTo("App\User","users_id","id");
+    }
 }
 

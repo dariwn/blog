@@ -1,4 +1,4 @@
-@extends('administradora.inicio')
+@extends('administradora.inicio2')
 @section('colores')
 <link rel="stylesheet" type="text/css" href="{{URL::asset('css/hola.css')}}">
   <link rel="stylesheet" type="text/css" href="{{URL::asset('fonts/style.css')}}">

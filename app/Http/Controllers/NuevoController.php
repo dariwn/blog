@@ -156,10 +156,11 @@ class NuevoController extends Controller
         $n= 0;
        
         if($request->tipo == 1){
-
+            //dd($request->periodo);
             $periodoinicio = $request->periodo;
             $periodofin = $request->hasta;
-            $solicitudper = Solicitudperfil::select('idperfiles')->where('created_at', '>',$periodoinicio, 'AND','created_at', '<=', $periodofin )->get();
+            //dd($periodofin); SELECT `idperfiles` FROM `solicitudperfil` WHERE `created_at` BETWEEN '2020-09-01' AND '2020-09-20'
+            $solicitudper = Solicitudperfil::select('idperfiles')->whereBetween('created_at',array($periodoinicio,$periodofin))->get();
             //dd($solicitudper);
             foreach($solicitudper as $perfil){
                 if($perfil->idperfiles == 1){
@@ -208,7 +209,8 @@ class NuevoController extends Controller
             
             $periodoinicio = $request->periodo;
             $periodofin = $request->hasta;
-            $puestosocu= Solicitud::select('respuesta')->where('created_at', '>',$periodoinicio, 'AND','created_at', '<=', $periodofin )->get();
+            $puestosocu= Solicitud::select('respuesta')->whereBetween('created_at',array($periodoinicio,$periodofin ))->get();
+            
             //dd($puestosocu);
             foreach($puestosocu as $res){
                 if($res->respuesta == 'SI'){
@@ -282,8 +284,8 @@ class NuevoController extends Controller
             $k = 0;
             $m = 0;
             $n = 0;
-
-            $solicitud = Solicitud::select('idsolicitud')->where('created_at', '>',$periodo, 'AND','created_at', '<=', $hasta )->get();
+            
+            $solicitud = Solicitud::select('idsolicitud')->whereBetween('created_at',array($periodo,$hasta ))->get();
             foreach($solicitud as $perfil){
                 $mi = $perfil->idsolicitud;
                 //dd($mi);
@@ -353,8 +355,8 @@ class NuevoController extends Controller
         
             $Si = 0;
             $No = 0;
-
-            $aceptado = Solicitud::select('respuesta')->where('created_at', '>',$periodo, 'AND','created_at', '<=', $hasta )->get();
+            
+            $aceptado = Solicitud::select('respuesta')->whereBetween('created_at',array($periodo,$hasta ))->get();
             foreach($aceptado as $datos){
                 if($datos->respuesta == 'SI'){
                     $Si = $Si + 1;
@@ -393,7 +395,8 @@ class NuevoController extends Controller
             $extiende = $request->get('extiende');
 
         // dd($hasta);
-            $empresa = User::select('origen')->where('created_at', '>',$periodo, 'AND','created_at', '<=', $hasta )->get();
+        
+            $empresa = User::select('origen')->whereBetween('created_at',array($periodo,$hasta ))->get();
             foreach($empresa as $datos){
                 if($datos->origen == 'Empresa'){
                     $contem = $contem + 1;
@@ -402,8 +405,8 @@ class NuevoController extends Controller
                     $conteg = $conteg + 1;
                 }
             }
-
-            $solicitud = Solicitud::select('idsolicitud')->where('created_at', '>',$periodo, 'AND','created_at', '<=', $hasta )->get();
+            
+            $solicitud = Solicitud::select('idsolicitud')->whereBetween('created_at',array($periodo,$hasta ))->get();
             foreach($solicitud as $perfil){
                 $mi = $perfil->idsolicitud;
                 //dd($mi);
@@ -472,7 +475,8 @@ class NuevoController extends Controller
 
             $Si = 0;
             $No = 0;
-            $aceptado = Solicitud::select('respuesta')->where('created_at', '>',$periodo, 'AND','created_at', '<=', $hasta )->get();
+            
+            $aceptado = Solicitud::select('respuesta')->whereBetween('created_at',array($periodo,$hasta ))->get();
             foreach($aceptado as $datos){
                 if($datos->respuesta == 'SI'){
                     $Si = $Si + 1;
