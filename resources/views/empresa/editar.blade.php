@@ -1,102 +1,151 @@
-@extends('empresa.inicio')
-@section('colores')
-    <link rel="stylesheet" type="text/css" href="{{URL::asset('css/hola.css')}}">
-     <link rel="stylesheet" type="text/css" href="{{URL::asset('css/estilo.css')}}">
-         <link rel="stylesheet" type="text/css" href="{{URL::asset('css/font-awesome.min.css')}}">
-         <link rel="stylesheet" type="text/css" href="{{URL::asset('css/main.css')}}">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="js/jquery-3.2.1.min.js"></script>
-	<script src="js/main.js"></script>
-    <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+@extends('empresa.inicio1')
+@section('contenido')
 
-<link rel="stylesheet" type="text/css" href="{{URL::asset('css/perfil.css')}}">
+<div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 toppad" >
 
+          <div class="panel panel-success"><br>
+              <h2 class="panel-title"><center><font size="5"></i>PERFIL</font></center></h2>
 
-@stop
-@section('seccion')
-<section class="form_wrap">
-		<section class="contact_info">
-			<section class="info_title">
-            <form action="{{route('empresa.update',$empresa->idempresa)}}" method="POST">
-                @csrf
-                  @method('PUT')
-				<img src="{{asset('Imagenes/empresas/'.$empresa->imagen)}}" height="180px" width="180px" class="img-thumbnail"/>
-				</span>
-				</section>
-				<section class="info_items">
-			
-<label for="names">Nombre de la Empresa</label>
-<br><br><input type="text" name="nombre" value="{{$empresa->nombre}}"></br></br>
-				
-			</section>
-		</section>
+            <div class="panel-body">
+              <div class="row">
+<form action="{{route('empresa.update',$empresa->idempresa)}}" method="POST" enctype="multipart/form-data">
+  @csrf
+  @method('PUT')
+          
+                <div class="col-md-3 col-lg-3 " align="center"> 
+        <div id="load_img">
+          <img class="img-responsive" src="{{asset('Imagenes/empresas/'.$empresa->imagen)}}" height="150px" width="150px">
+        </div>
 
 
+        <br>        
+          <div class="row">
+              <div class="col-md-12">
+              
+            </div>
+            
+          </div>
+        </div>
+                <div class=" col-md-9 col-lg-9 "> 
+                  <table class="table table-condensed">
+                    <tbody>
+						<tr>
+							<td class='col-md-3'>Nombre de la Empresa:</td>
+							<td><input type="text" class="form-control input-sm" name="nombre" value="{{$empresa->nombre}}"></td>
+						  </tr>
+						  <tr>
+							  <tr>
+							<td class='col-md-3'>RFC:</td>
+							<td><input type="text" class="form-control input-sm" name="rfc" value="{{$empresa->rfc}}"></td>
+						  </tr>
+						  <tr>
+							  <tr>
+							<td class='col-md-3'>Descripción:</td>
+							<td><input type="text" class="form-control input-sm" name="descripcion" value="{{$empresa->descripcion}}"></td>
+						  </tr>
+						  
+						  <tr>
+							  <tr>
+							<td class='col-md-3'>Dirección</td>
+							<td><input type="text" class="form-control input-sm" name="calle" value="{{$empresa->calle}}"></td>
+						  </tr>
+						  
+						  <tr>
+							<td>Colonia:</td>
+							<td><input type="text" class="form-control input-sm" name="colonia" value="{{$empresa->colonia}}"></td>
+						  </tr>
+						  <tr>
+							<td>Numero Exterior:</td>
+							<td><input type="text" class="form-control input-sm" name="numeroexterior" value="{{$empresa->numeroexterior}}"></td>
+						  </tr>
+						  <tr>
+							<td>Codigo Postal:</td>
+							<td><input type="" class="form-control input-sm" name="codigo_postal" value="{{$empresa->codigo_postal}}"></td>
+						  </tr>
+	
+						  <tr>
+							<td>Telefono:</td>
+							<td> <input type="" class="form-control input-sm" name="telefono" value="{{$empresa->telefono}}"></td>
+						  </tr>
+
+						  <tr>
+							<td>Pais:</td>
+							<td><input type="text" class="form-control input-sm" name="estado" value="{{$empresa->pais->nombre}}" readonly></td>
+						  </tr>
+
+						  <tr>
+							  <td>Estado: </td>
+							  <td>
+								<select type="text" id="estado" name="estado_id" class="form-control input-sm">
+									@foreach($estados as $local)
+									@if($local->idestado==$empresa->estado_id)
+									<option value="{{$local->idestado}}" selected>{{$local->nombre_estado}}</option>
+									@else
+									<option value="{{$local->idestado}}">{{$local->nombre_estado}}</option>
+									@endif
+									@endforeach
+									</select>
+							  </td>
+						  </tr>
+						  
+						  <tr>
+							  <td>Municipio</td>
+							  <td>
+								<select type="text" name="municipio_id" class="form-control input-sm">
+									@foreach($localidades as $local)
+									@if($local->idmunicipio==$empresa->municipio_id)
+									<option value="{{$local->idmunicipio}}" selected>{{$local->nombre_localidad}}</option>
+									@else
+									<option value="{{$local->idmunicipio}}">{{$local->nombre_localidad}}</option>
+									@endif
+									@endforeach
+									</select>
+							  </td>
+						  </tr>
+						
+						  <tr>
+							<td>Datos Del Contacto:</td>                    
+						  </tr>
+	
+						  <tr>
+							<td>Nombre (s):</td>
+							<td><input type="text" class="form-control input-sm" name="names" value="{{$empresa->names}}"></td>
+						  </tr>
+						  
+						  <tr>
+							<td>Apellido Paterno:</td>
+							<td><input type="text" class="form-control input-sm" name="apellido_paterno" value="{{$empresa->apellido_paterno}}"></td>
+						  </tr>
+						  
+						  <tr>
+							<td>Apellido Materno:</td>
+							<td><input type="text" class="form-control input-sm" name="apellido_materno" value="{{$empresa->apellido_materno}}"></td>
+						  </tr>
+						  
+						  <tr>
+							<td>Cargo:</td>
+							<td><input type="text" class="form-control input-sm" name="cargo" value="{{$empresa->cargo}}"></td>
+						  </tr>
+						  
+						  <tr>
+							<td>Telefono:</td>
+							<td> <input type="text" class="form-control input-sm" name="numero_cel" value="{{$empresa->numero_cel}}"></td>
+						  </tr>
+						  
+						  <tr>
+							<td>Correo Electronico:</td>
+							<td><input type="text" class="form-control input-sm" name="email" value="{{$empresa->email}}"></td>
+						  </tr>
+						
+						  <td>
+							<button class="btn btn-primary">Guardar</button></a>
+						 </td>
 
 
-
-		<section  class="form_contact">
-			<h1>Datos de la Empresa</h1>
-			<br><div class="user_info">
-				<label for="names">RFC</label>
-				<input type="text" id="rfc" name="rfc" value="{{$empresa->rfc}}">
-                <label for="names">Descripcion</label>
-				<input type="text" id="rfc" name="descripcion" value="{{$empresa->descripcion}}">
-                <label for="email">Direccion</label>
-				<input type="text" id="direccion" name="calle" value="{{$empresa->calle}}">
-                <label for="email">Colonia</label>
-				<input type="text" id="direccion" name="colonia" value="{{$empresa->colonia}}">
-                <label for="email">Numero Exterior</label>
-				<input type="text" id="direccion" name="numeroexterior" value="{{$empresa->numeroexterior}}">
-				<label for="names">Codigo Postal</label>
-                <input type="text" id="codigo" name="codigo_postal" value="{{$empresa->codigo_postal}}">
-                <label for="names">Telefono</label>
-                <input type="text" id="codigo" name="telefono" value="{{$empresa->telefono}}">                
-                <label for="phone">Pais</label>
-				<input type="text" value="{{$empresa->pais->nombre}}" readonly>
-                <label for="phone">Estado</label>
-                <select type="text" id="estado" name="estado_id">
-				 @foreach($estados as $local)
-				   @if($local->idestado==$empresa->estado_id)
-    		       <option value="{{$local->idestado}}" selected>{{$local->nombre_estado}}</option>
-				   @else
-				   <option value="{{$local->idestado}}">{{$local->nombre_estado}}</option>
-				   @endif
-    	  	     @endforeach
-				</select>
-				<br>
-                <label for="phone">Municipio</label>
-				<select type="text" name="municipio_id">
-				@foreach($localidades as $local)
-				  @if($local->idmunicipio==$empresa->municipio_id)
-    		      <option value="{{$local->idmunicipio}}" selected>{{$local->nombre_localidad}}</option>
-				  @else
-				  <option value="{{$local->idmunicipio}}">{{$local->nombre_localidad}}</option>
-				  @endif
-    		    @endforeach
-				</select>
-
-</br>
-				<br><h1>Datos del Contacto</h1></br>
-
-				<label for="phone">Nombres</label>
-				<input type="text" id="nombre1" name="names" value="{{$empresa->names}}">
-				<label for="email">Apellido Paterno</label>
-				<input type="text" id="apellidos" name="apellido_paterno" value="{{$empresa->apellido_paterno}}">
-                <label for="email">Apellido Materno</label>
-				<input type="text" id="apellidos" name="apellido_materno" value="{{$empresa->apellido_materno}}">
-                <label for="mensaje">Cargo</label>
-				<input type="text" id="cargo" name="cargo" value="{{$empresa->cargo}}">
-				<label for="mensaje">Telefono</label>
-                <input type="text" id="telefono" name="numero_cel" value="{{$empresa->numero_cel}}">
-				<label for="mensaje">Correo Electronico</label>
-                <input type="text" id="email" name="email" value="{{$empresa->email}}">
-                
-                <button class="btn btn-primary" cosa="button" type="submit">Guardar</button>
-                
-			</div>
-       </section>
-   </form>
-	</section>
+	
+                    </tbody>
+                  </table>
+</form>
 @endsection

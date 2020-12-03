@@ -1,4 +1,4 @@
-@extends('empresa.inicio')
+@extends('empresa.inicio1')
 @section('colores')
     <link rel="stylesheet" type="text/css" href="{{URL::asset('css/hola.css')}}">
      <link rel="stylesheet" type="text/css" href="{{URL::asset('css/estilo.css')}}">
@@ -14,69 +14,121 @@
 
 
 @stop
-@section('seccion')
-<section class="form_wrap">
-		<section class="contact_info">
-			<section class="info_title">
-				<img src="{{asset('imagenes/empresas/'.$empresa->imagen)}}" height="180px" width="180px" class="img-thumbnail"/>
-				</span>
-				</section>
-				<section class="info_items">
-			
-<label for="names">Nombre de la Empresa</label>
-<br><br><input type="text" value="{{$empresa->nombre}}" readonly><br>
-				
-			</section>
-		</section>
 
+@section('contenido')
 
+<div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 toppad" >
 
+          <div class="panel panel-success"><br>
+              <h2 class="panel-title"><center><font size="5"></i>PERFIL</font></center></h2>
 
+            <div class="panel-body">
+              <div class="row">
+			  
+                <div class="col-md-3 col-lg-3 " align="center"> 
+				<div id="load_img">
+					<img src="{{asset('imagenes/empresas/'.$empresa->imagen)}}" height="180px" width="180px" class="img-thumbnail"/>
+				</div>
+				<br>				
+					
+				</div>
+                <div class=" col-md-9 col-lg-9 "> 
+                  <table class="table table-condensed">
+                    <tbody>
+                      <tr>
+                        <td class='col-md-3'>Nombre de la Empresa:</td>
+                        <td><input type="text" class="form-control input-sm" value="{{$empresa->nombre}}" readonly></td>
+                      </tr>
+                      <tr>
+                      	<tr>
+                        <td class='col-md-3'>RFC:</td>
+                        <td><input type="text" class="form-control input-sm" id="rfc" value="{{$empresa->rfc}}"readonly></td>
+                      </tr>
+                      <tr>
+                      	<tr>
+                        <td class='col-md-3'>Descripción:</td>
+                        <td><input type="text" class="form-control input-sm" id="rfc" value="{{$empresa->descripcion}}"readonly></td>
+                      </tr>
+                      
+                      <tr>
+                      	<tr>
+                        <td class='col-md-3'>Dirección</td>
+                        <td><input type="text" class="form-control input-sm" id="direccion" value="{{$empresa->calle}}" readonly></td>
+                      </tr>
+                      
+                      <tr>
+                        <td>Colonia:</td>
+                        <td><input type="text" class="form-control input-sm" id="direccion" value="{{$empresa->colonia}}" readonly></td>
+                      </tr>
+                      <tr>
+                        <td>Numero Exterior:</td>
+                        <td><input type="text" class="form-control input-sm" id="direccion" value="{{$empresa->numeroexterior}}" readonly></td>
+                      </tr>
+					  <tr>
+                        <td>Codigo Postal:</td>
+                        <td><input type="" class="form-control input-sm" id="codigo" value="{{$empresa->codigo_postal}}"readonly></td>
+                      </tr>
 
-		<section action="" class="form_contact">
-			<h1>Datos de la Empresa</h1>
-			<br><div class="user_info">
-				<label for="names">RFC</label>
-				<input type="text" id="rfc" value="{{$empresa->rfc}}"readonly>
-                <label for="names">Descripcion</label>
-				<input type="text" id="rfc" value="{{$empresa->descripcion}}"readonly>
-                <label for="email">Direccion</label>
-				<input type="text" id="direccion" value="{{$empresa->calle}}" readonly>
-                <label for="email">Colonia</label>
-				<input type="text" id="direccion" value="{{$empresa->colonia}}" readonly>
-                <label for="email">Numero Exterior</label>
-				<input type="text" id="direccion" value="{{$empresa->numeroexterior}}" readonly>
-				<label for="names">Codigo Postal</label>
-                <input type="" id="codigo" value="{{$empresa->codigo_postal}}"readonly>
-                <label for="names">Telefono</label>
-                <input type="" id="codigo" value="{{$empresa->telefono}}"readonly>                
-                <label for="phone">Pais</label>
-				<input type="text" id="estado" value="{{$empresa->pais->nombre}}" readonly>
-                <label for="phone">Estado</label>
-                <input type="text" id="estado" value="{{$empresa->estado->nombre_estado}}" readonly>
-                <label for="phone">Municipio</label>
-				<input type="text" id="estado" value="{{$empresa->municipio->nombre_localidad}}" readonly>
+                      <tr>
+                        <td>Telefono:</td>
+                        <td> <input type="" class="form-control input-sm" id="codigo" value="{{$empresa->telefono}}"readonly>   </td>
+                      </tr>
 
+					  
+					  <tr>
+                        <td>Pais:</td>
+                        <td><input type="text" class="form-control input-sm" id="estado" value="{{$empresa->pais->nombre}}" readonly></td>
+                      </tr>
+					  <tr>
+                        <td>Estado:</td>
+                        <td><input type="text" class="form-control input-sm" id="estado" value="{{$empresa->estado->nombre_estado}}" readonly></td>
+                      </tr>
+                      <tr>
+                        <td>Municipio</td>
+                        <td><input type="text" class="form-control input-sm" id="estado" value="{{$empresa->municipio->nombre_localidad}}" readonly></td>
+                      </tr>
+					  
+					 
+					  <tr>
+                        <td>Datos Del Contacto:</td>                    
+					  </tr>
 
-<br>
-				<br><h1>Datos del Contacto</h1><br>
-
-				<label for="phone">Nombres</label>
-				<input type="text" id="nombre1" value="{{$empresa->names}}" readonly>
-				<label for="email">Apellido Paterno</label>
-				<input type="text" id="apellidos" value="{{$empresa->apellido_paterno}}" readonly>
-                <label for="email">Apellido Materno</label>
-				<input type="text" id="apellidos" value="{{$empresa->apellido_materno}}" readonly>
-                <label for="mensaje">Cargo</label>
-				<input type="text" id="cargo" value="{{$empresa->cargo}}" readonly>
-				<label for="mensaje">Telefono</label>
-                <input type="text" id="telefono" value="{{$empresa->numero_cel}}" readonly>
-				<label for="mensaje">Correo Electronico</label>
-				<input type="text" id="email" value="{{$empresa->email}}"readonly>
-
-				<a href="{{route('empresa.edit',$empresa)}}"><button type="button" value="EDITAR" id="boton">Editar</button></a>
-			</div>
-</section>
-
-	</section>
+                      <tr>
+                        <td>Nombre (s):</td>
+                        <td><input type="text" class="form-control input-sm" id="nombre1" value="{{$empresa->names}}" readonly></td>
+					  </tr>
+					  
+					  <tr>
+                        <td>Apellido Paterno:</td>
+                        <td><input type="text" class="form-control input-sm" id="apellidos" value="{{$empresa->apellido_paterno}}" readonly></td>
+					  </tr>
+					  
+					  <tr>
+                        <td>Apellido Materno:</td>
+                        <td><input type="text" class="form-control input-sm" id="apellidos" value="{{$empresa->apellido_materno}}" readonly></td>
+					  </tr>
+					  
+					  <tr>
+                        <td>Cargo:</td>
+                        <td><input type="text" class="form-control input-sm" id="cargo" value="{{$empresa->cargo}}" readonly></td>
+					  </tr>
+					  
+					  <tr>
+                        <td>Telefono:</td>
+                        <td> <input type="text" class="form-control input-sm" id="telefono" value="{{$empresa->numero_cel}}" readonly></td>
+					  </tr>
+					  
+					  <tr>
+                        <td>Correo Electronico:</td>
+                        <td><input type="text" class="form-control input-sm" id="email" value="{{$empresa->email}}"readonly></td>
+                      </tr>
+                      
+                      <td>
+						<a href="{{route('empresa.edit',$empresa)}}"><button class="btn btn-primary">Editar</button></a>
+                     </td>
+                     
+                    </tbody>
+                  </table>
 @endsection

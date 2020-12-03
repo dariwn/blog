@@ -1,14 +1,7 @@
-@extends('empresa.inicio')
-@section('colores')
 
-<link rel="stylesheet" type="text/css" href="{{URL::asset('css/hola.css')}}">
-     <link rel="stylesheet" type="text/css" href="{{URL::asset('css/estilo1.css')}}">
-     <link rel="stylesheet" type="text/css" href="{{URL::asset('css/bootstrap1.css')}}">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-@stop
-@section('seccion')
+@extends('empresa.inicio1')
+@section('contenido')
+
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
@@ -34,105 +27,135 @@
  } 
 
 </script>
-<head>
-        
-        <title>registro de la empresa</title>
 
-        
+<div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 toppad" >
 
-    </head>
-    <body>
+          <div class="panel panel-success"><br>
+              <h2 class="panel-title"><center><font size="5"></i>Datos De La Empresa</font></center></h2>
 
-      <form action="{{route('empresa.store')}}" method="post" enctype="multipart/form-data">
-      @csrf
-        <h1>Datos de la Empresa</h1>
-        <h6>Indicar datos de la empresa, obligatorio llenar todos los campos. </h6>
-        
-        <fieldset>
-          
-          <label for="name">Nombre de la Empresa</label>
-          <input type="text" name="nombre" required value="{{old('nombre')}}">
+            <div class="panel-body">
+              <div class="row">
+        <form action="{{route('empresa.store')}}" method="post" enctype="multipart/form-data">
+                  @csrf
+  
+                <div class=" col-md-9 col-lg-9 "> 
+                  <table class="table table-condensed">
+                    <tbody>
+						<tr>
+							<td class='col-md-3'>Nombre de la Empresa:</td>
+							<td><input type="text" class="form-control input-sm" name="nombre" ></td>
+						  </tr>
+						  <tr>
+							  <tr>
+							<td class='col-md-3'>RFC:</td>
+							<td><input type="text" class="form-control input-sm" name="rfc" ></td>
+						  </tr>
+						  <tr>
+							  <tr>
+							<td class='col-md-3'>Descripción de la Empresa:</td>
+							<td><input type="text" class="form-control input-sm" name="descripcion" ></td>
+						  </tr>
+						  
+						  <tr>
+							  <tr>
+							<td class='col-md-3'>Dirección</td>
+							<td><input type="text" class="form-control input-sm" name="calle" ></td>
+						  </tr>
+						  
+						  <tr>
+							<td>Colonia:</td>
+							<td><input type="text" class="form-control input-sm" name="colonia" ></td>
+						  </tr>
+						  <tr>
+							<td>Numero Exterior:</td>
+							<td><input type="text" class="form-control input-sm" name="numeroexterior" ></td>
+						  </tr>
+						  <tr>
+							<td>Codigo Postal:</td>
+							<td><input type="number" class="form-control input-sm" name="codigo_postal"></td>
+						  </tr>
+	
+						  <tr>
+							<td>Telefono:</td>
+							<td> <input type="number" class="form-control input-sm" name="telefono" ></td>
+						  </tr>
 
-          <label for="mail">RFC</label>
-          <input type="text"  name="rfc" required value="{{old('rfc')}}">
+						  <tr>
+							<td >Pais:</td>
+							<td class="form-control input-sm"><select name="pais_id">
+                @foreach($paises as $local)
+              <option value="{{$local->idpais}}">{{$local->nombre}}</option>
+              @endforeach
+              </select></td>
+						  </tr>
 
-			<label for="password">País</label>
-          <div class="caja">
- 		 	<select name="pais_id">
- 		 		@foreach($paises as $local)
-    		<option value="{{$local->idpais}}">{{$local->nombre}}</option>
-    		@endforeach
-  			</select>
-			</div>
+						  <tr>
+							  <td>Estado: </td>
+							  <td class="form-control input-sm">
+                  <select name="estado_id" id="estado">
+                    @foreach($estados as $local)
+                  <option value="{{$local->idestado}}">{{$local->nombre_estado}}</option>
+                  @endforeach
+                  </select>
+							  </td>
+						  </tr>
+						  
+						  <tr>
+							  <td>Municipio</td>
+							  <td class="form-control input-sm">
+                  <select name="municipio_id" id="municipio" placeholder="Seleccionar">       
+                  </select>
+							  </td>
+              </tr>
+              
+              <tr>
+                <td>Imagen:</td>
+                <td><input type="file" name="imagen" class="form-control" id="file" onchange="Filevalidation();"></td>
+              </tr>
+						
+						  <tr>
+							<td>Datos Del Contacto:</td>                    
+						  </tr>
+	
+						  <tr>
+							<td>Nombre (s):</td>
+							<td><input type="text" class="form-control input-sm" name="names" ></td>
+						  </tr>
+						  
+						  <tr>
+							<td>Apellido Paterno:</td>
+							<td><input type="text" class="form-control input-sm" name="apellido_paterno" ></td>
+						  </tr>
+						  
+						  <tr>
+							<td>Apellido Materno:</td>
+							<td><input type="text" class="form-control input-sm" name="apellido_materno" ></td>
+						  </tr>
+						  
+						  <tr>
+							<td>Cargo:</td>
+							<td><input type="text" class="form-control input-sm" name="cargo" ></td>
+						  </tr>
+						  
+						  <tr>
+							<td>Telefono:</td>
+							<td> <input type="text" class="form-control input-sm" name="numero_cel" ></td>
+						  </tr>
+						  
+						  <tr>
+							<td>Correo Electronico:</td>
+							<td><input type="text" class="form-control input-sm" name="email" ></td>
+						  </tr>
+						
+						  <td>
+                <button type="submit" class="btn btn-primary">Finalizar Registro</button>
+						 </td>
 
 
-         
-          <label for="password">Estado</label>
-          <div class="caja">
- 		 	<select name="estado_id" id="estado">
- 		 		@foreach($estados as $local)
-    		<option value="{{$local->idestado}}">{{$local->nombre_estado}}</option>
-    		@endforeach
-  			</select>
-			</div>
-
-          <label for="password">Municipio</label>
-        <div class="opciones">
- 		 	<select name="municipio_id" id="municipio" placeholder="Seleccionar">       
-  			</select>
-			</div>
-
-          <label for="password">Colonia</label>
-          <input type="text" name="colonia" required value="{{old('colonia')}}">
-
-          <label for="password">Dirección</label>
-          <input type="text"name="calle" required value="{{old('calle')}}">
-
-          <label for="password">Numero Exterior</label>
-          <input type="number" name="numeroexterior" required value="{{old('numeroexterior')}}">
-
-          <label for="password">Código Postal</label>
-          <input type="number" name="codigo_postal" required value="{{old('codigo_postal')}}">
-
-          <label for="password">Teléfono</label>
-          <input type="number" name="telefono" required value="{{old('telefono')}}">
-
-          <label for="password">Descripción de la Empresa</label>
-          <input type="text" name="descripcion" required value="{{old('descripcion')}}">
-
-          <div class="form-group">
-                <label for="imagen">Imagen</label>
-                <input type="file" name="imagen" class="form-control" id="file" onchange="Filevalidation();">
-                </div>
-
-         <br>         
-         <h1>Datos del contacto</h1>
-         <label for="password">Nombre del contacto</label>
-          <input type="text" name="names" required value="{{old('names')}}">
-
-          <label for="password">Apellido Paterno </label>
-          <input type="text" name="apellido_paterno" required value="{{old('apellido_paterno')}}">
-
-          <label for="password">Apellido Materno</label>
-          <input type="text" name="apellido_materno" required value="{{old('apellido_materno')}}">
-          
-          <label for="password">Cargo</label>
-          <input type="text" name="cargo" required value="{{old('cargo')}}">
-
-          <label for="password">Correo</label>
-          <input type="text" name="email" required value="{{old('email')}}">
-
-          
-          <label for="password">Teléfono</label>
-          <input type="number" name="numero_cel" required value="{{old('numero_cel')}}">
-        
-        <center><br> <br><button type="submit">Finalizar Registro</button></br></br></center>
-
-       
-
-      </form>
-      
-    </body>
-</html>
-
+	
+                    </tbody>
+                  </table>
+</form>
 @endsection

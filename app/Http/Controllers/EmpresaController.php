@@ -25,7 +25,7 @@ class EmpresaController extends Controller
     {
         $empresa = Empresa::all();
         if($empresa == null){
-            return view('empresa.inicio', compact('empresa'));
+            return view('empresa.inicio1', compact('empresa'));
         }
 
         else{
@@ -33,7 +33,7 @@ class EmpresaController extends Controller
         //dd($usuario);
         $empresa = Empresa::select('idempresa')->where('users_id', $usuario)->get()->pluck('idempresa');
         $empresas = array_flatten($empresa);
-        return view('empresa.inicio', compact('empresas'));
+        return view('empresa.inicio1', compact('empresas'));
       }
   }
   

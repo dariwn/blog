@@ -1,73 +1,62 @@
-@extends('empresa.inicio')
-@section('colores')
-<link rel="stylesheet" type="text/css" href="{{URL::asset('css/hola.css')}}">
-<link rel="stylesheet" type="text/css" href="{{URL::asset('css/estilo.css')}}">
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-@stop
-@section('seccion')
-<form action="{{route('bienvenido.update',$hola->id)}}" method="POST">
-@csrf
-@method('PUT')
-<div class="container register">
-                <div class="row">
-                    <br><br><br><div class="col-md-3 register-left">
-                    <br><br>
-                    <h1>Datos de los perfiles</h1>
-                    <h6>Los perfiles seleccionado</h6>
-                   
+@extends('empresa.inicio1')
+@section('contenido')
+
+<div class="container">
+      <div class="row">
+        <div class=" col-sm-10" >
+
+          <div class="panel panel-success"><br>
+              <h2 class="panel-title"><center><font size="5">Datos De Los Perfiles</font></center></h2>
+
+            <div class="panel-body">
+              <div class="row">
+<form action="{{route('bienvenido.update',$hola->id)}}"  method="POST">
+  @csrf 
+  @method('PUT')
+   
+         
+        </div>
+                <div class=" col-md-12 col-lg-12 "> 
+                  <table class="table table-condensed">
+                    <tbody>
+						  <tr>
+							<td class='col-md-3'><h4>Perfiles Seleccionados</h4></td>							
+                          </tr>
+                          <tr>
+                              <td>
+                                <label class="radio inline"> 
+                                    <?php
+                                    $idsoli= DB::table('solicitudperfil')->where('idsolicitud','=',$hola->idsolicitud)->get();
+                                    //dd($idsoli);
+                                     foreach ($idsoli as $key => $value) {
+                                        $perfilactual= DB::table('perfiles')->where('idperfiles','=',$value->idperfiles)->get();
+                                        //dd($perfilactual);
+                                        echo $perfilactual[0]->carrera."<br>";
+                                     }                                                                                                      
+                                    ?>   
+                              </td>
+                          </tr>
+                          						                                      
+                    </tbody>
+                  </table>
+
+                  <br>
+                    <h4>Seleccionar Perfiles</h4>
+                    <label class="radio inline"> 
+                        @foreach($perfiles as $perfil)
+                        <input type="checkbox" name="perfil[]" value="{{$perfil->idperfiles}}">
+                        <span> {{$perfil->carrera}} </span> <br>
+                        @endforeach
+                    </label>  
+
+                    <div class="form-group">
+                        <input type="hidden" name="idsolicitud" value="{{$sola}}">
                     </div>
-                     </br> </br> </br>
-                    <div class="col-md-9 register-right">
-                        
-                        <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                <br>
-                                <div class="row register-form">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <div class="maxl">
-                                                      <h6>Perfiles Seleccionado</h6>
-                                                <label class="radio inline"> 
-                                                <?php
-                                                $idsoli= DB::table('solicitudperfil')->where('idsolicitud','=',$hola->idsolicitud)->get();
-                                                //dd($idsoli);
-                                                 foreach ($idsoli as $key => $value) {
-                                                    $perfilactual= DB::table('perfiles')->where('idperfiles','=',$value->idperfiles)->get();
-                                                    //dd($perfilactual);
-                                                    echo $perfilactual[0]->carrera."<br>";
-                                                 }                                                                                                      
-                                                ?>   
-                                                <br>
-                                                <h6>Seleccionar Perfiles</h6>
-                                                <label class="radio inline"> 
-                                                    @foreach($perfiles as $perfil)
-                                                    <input type="checkbox" name="perfil[]" value="{{$perfil->idperfiles}}">
-                                                    <span> {{$perfil->carrera}} </span> <br>
-                                                    @endforeach
-                                                </label>     
-                                                </label>               
-                                            </div>
-                                        </div>
-                                    </div>
-                                    </div>
-                                        <div class="form-group">
-                                            <input type="hidden" name="idsolicitud" value="{{$sola}}">
-                                        </div>
-                                        <input type="submit" class="btn btn-success"  value="Guardar"/>
-                                    </div>
-                            </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
+                    </div>                                           
+                         <input type="submit" class="btn btn-success"  value="Guardar"/>
                     </div>
-                </div>
-            </div>
+
 </form>
 @endsection
