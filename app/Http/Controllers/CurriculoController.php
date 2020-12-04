@@ -44,6 +44,74 @@ class CurriculoController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request);
+        //expericencias
+        $puestos = $request->puesto;
+        //dd($puestos);
+        if($puestos == null){
+            $numero_puesto = 0;
+               //echo "vacio";            
+        }else{
+            $numero_puesto = sizeof($puestos);
+
+            $exp = array();
+            for($contador = 0; $contador<$numero_puesto; $contador++){
+                $keysPuestos["Puesto"] = $request->puesto[$contador];
+                $keysPuestos["Empresa"] = $request->empresa[$contador];
+                $keysPuestos["Actividades"] = $request->actividades_logros[$contador];
+                $keysPuestos["Fecha_e"] = $request->fecha_entrada[$contador];
+                $keysPuestos["Fecha_s"] = $request->fecha_salida[$contador]; 
+                
+                array_push($exp,$keysPuestos);
+           
+                }
+               
+            $result = json_encode($exp); //se guardara en json
+            //leyendo json
+            // $res = json_decode($result,true);
+            // foreach ($res as $value) {
+            //     $cadena = $value['Empresa'].'<br>';
+            //     print ($cadena);
+            //  }
+        }
+        //curso
+        $cursos = $request->curso;
+        //dd($request);
+        if($cursos == null){
+            $numero_curso = 0;
+        }else{
+            $numero_curso = sizeof($cursos);
+
+            $cur = array();
+            for($contacurso=0; $contacurso<$numero_curso; $contacurso++){
+                $keysCursos['Curso'] = $request->curso[$contacurso];
+                $keysCursos['Enlace'] = $request->enlace[$contacurso];
+                $keysCursos['Descripcion'] = $request->descripcion[$contacurso];
+
+                array_push($cur,$keysCursos);
+
+            }
+
+            $result1 = json_encode($cur);
+            //leyendo json
+            //  $res = json_decode($result1,true);
+            //  foreach ($res as $value) {
+            //      $cadena = $value['Curso'].'<br>';
+            //      print ($cadena);
+            //   }
+        }
+        $objetivo= $request->objetivo_puesto.':'.$request->objetivo_salario.':'.$request->objetivo_objetivo;
+        $sepa = ":";
+        $objetivosepa = explode($sepa,$objetivo);
+        $jsonob = json_encode($objetivosepa);
+        // print_r($jsonob);
+        // $res = json_decode($jsonob,true);
+        //      foreach ($res as $value) {
+        //          $cadena = $value.'<br>';
+        //          print ($cadena);
+        //        }
+        // dd($request);
+
         $usuario = Auth::user()->id;
         $admin = DB::table('users')->where('id', $usuario)->update(['curriculo' => 0]);
         $hola = new Curriculo;
@@ -52,13 +120,20 @@ class CurriculoController extends Controller
         $hola->habilidades = $request->habilidades;
         $hola->especialidad = $request->especialidad;
         $hola->escuela = $request->escuela;
+        $hola->fecha_inicio = $request->fecha_inicio;
+        $hola->fecha_termino = $request->fecha_termino;
         $hola->area = $request->area;
-        if($request->experiencia == ""){
-            $hola->experiencia = "Sin experiencia.";
+        if($numero_puesto == 0){
+            $hola->experiencia = " ";
         }else{
-            $hola->experiencia = $request->experiencia;
+            $hola->experiencia = $result;
         }
-        
+        if($numero_curso == 0){
+            $hola->curso = " ";
+        }else{
+            $hola->curso = $result1;
+        }
+        $hola->objetivo = $jsonob;
         $hola->duracion = $request->duracion;
         $hola->idjerarquia = $request->idjerarquia;
         $hola->idestado = $request->idestado;
@@ -126,18 +201,94 @@ class CurriculoController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //dd($request);
+        $puestos = $request->puesto;
+        //dd($puestos);
+        if($puestos == null){
+            $numero_puesto = 0;
+               //echo "vacio";            
+        }else{
+            $numero_puesto = sizeof($puestos);
+
+            $exp = array();
+            for($contador = 0; $contador<$numero_puesto; $contador++){
+                $keysPuestos["Puesto"] = $request->puesto[$contador];
+                $keysPuestos["Empresa"] = $request->empresa[$contador];
+                $keysPuestos["Actividades"] = $request->actividades_logros[$contador];
+                $keysPuestos["Fecha_e"] = $request->fecha_entrada[$contador];
+                $keysPuestos["Fecha_s"] = $request->fecha_salida[$contador]; 
+                
+                array_push($exp,$keysPuestos);
+           
+                }
+               
+            $result = json_encode($exp); //se guardara en json
+            //leyendo json
+            // $res = json_decode($result,true);
+            // foreach ($res as $value) {
+            //     $cadena = $value['Empresa'].'<br>';
+            //     print ($cadena);
+            //  }
+        }
+
+        //curso
+        $cursos = $request->curso;
+        //dd($request);
+        if($cursos == null){
+            $numero_curso = 0;
+        }else{
+            $numero_curso = sizeof($cursos);
+
+            $cur = array();
+            for($contacurso=0; $contacurso<$numero_curso; $contacurso++){
+                $keysCursos['Curso'] = $request->curso[$contacurso];
+                $keysCursos['Enlace'] = $request->enlace[$contacurso];
+                $keysCursos['Descripcion'] = $request->descripcion[$contacurso];
+
+                array_push($cur,$keysCursos);
+
+            }
+
+            $result1 = json_encode($cur);
+            //leyendo json
+            //  $res = json_decode($result1,true);
+            //  foreach ($res as $value) {
+            //      $cadena = $value['Curso'].'<br>';
+            //      print ($cadena);
+            //   }
+        }
+        $objetivo= $request->objetivo_puesto.':'.$request->objetivo_salario.':'.$request->objetivo_objetivo;
+        $sepa = ":";
+        $objetivosepa = explode($sepa,$objetivo);
+        $jsonob = json_encode($objetivosepa);
+        // print_r($jsonob);
+        // $res = json_decode($jsonob,true);
+        //      foreach ($res as $value) {
+        //          $cadena = $value.'<br>';
+        //          print ($cadena);
+        //        }
+        // dd($request);
+
         $hola = Curriculo::findOrFail($id);
         $hola->idegresado = $request->idegresado;
         $hola->ididioma = $request->ididioma;
         $hola->habilidades = $request->habilidades;
         $hola->especialidad = $request->especialidad;
         $hola->escuela = $request->escuela;
+        $hola->fecha_inicio = $request->fecha_inicio;
+        $hola->fecha_termino = $request->fecha_termino;
         $hola->area = $request->area;
-        if($request->experiencia == ""){
-            $hola->experiencia = "Sin experiencia.";
+        if($numero_puesto == 0){
+            $hola->experiencia = " ";
         }else{
-            $hola->experiencia = $request->experiencia;
+            $hola->experiencia = $result;
         }
+        if($numero_curso == 0){
+            $hola->curso = " ";
+        }else{
+            $hola->curso = $result1;
+        }
+        $hola->objetivo = $jsonob;
         $hola->duracion = $request->duracion;
         $hola->idjerarquia = $request->idjerarquia;
         $hola->idestado = $request->idestado;

@@ -153,7 +153,7 @@
             <li class="treeview">
               <a href="{{url('/onda')}}">
                 <i class="fa fa-file"></i>
-                <span>Curriculo</span>
+                <span>Curriculum</span>
                  <i class="fa fa-angle-left pull-right"></i>
               </a> 
             </li>
@@ -161,7 +161,7 @@
             <li class="treeview">
               <a href="{{route('curriculo.show',$hola)}}">
                 <i class="fa fa-file"></i>
-                <span>Mostrar el curriculo</span>
+                <span>Mostrar el curriculum</span>
                  <i class="fa fa-angle-left pull-right"></i>
               </a> 
             </li>
@@ -233,7 +233,8 @@
     <script src="{{asset('js/app.min.js')}}"></script>
 
 
-	  <script src="{{asset('js/dropdown.js')}}"></script>
+    <script src="{{asset('js/dropdown.js')}}"></script>
+
     
   </body>
 </html>

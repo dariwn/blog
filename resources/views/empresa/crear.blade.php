@@ -45,60 +45,60 @@
                     <tbody>
 						<tr>
 							<td class='col-md-3'>Nombre de la Empresa:</td>
-							<td><input type="text" class="form-control input-sm" name="nombre" ></td>
+							<td><input type="text" class="form-control input-sm" name="nombre" required></td>
 						  </tr>
 						  <tr>
 							  <tr>
 							<td class='col-md-3'>RFC:</td>
-							<td><input type="text" class="form-control input-sm" name="rfc" ></td>
+							<td><input type="text" class="form-control input-sm" name="rfc" required></td>
 						  </tr>
 						  <tr>
 							  <tr>
 							<td class='col-md-3'>Descripción de la Empresa:</td>
-							<td><input type="text" class="form-control input-sm" name="descripcion" ></td>
+							<td><input type="text" class="form-control input-sm" name="descripcion" required></td>
 						  </tr>
 						  
 						  <tr>
 							  <tr>
 							<td class='col-md-3'>Dirección</td>
-							<td><input type="text" class="form-control input-sm" name="calle" ></td>
+							<td><input type="text" class="form-control input-sm" name="calle" required></td>
 						  </tr>
 						  
 						  <tr>
 							<td>Colonia:</td>
-							<td><input type="text" class="form-control input-sm" name="colonia" ></td>
+							<td><input type="text" class="form-control input-sm" name="colonia" required></td>
 						  </tr>
 						  <tr>
 							<td>Numero Exterior:</td>
-							<td><input type="text" class="form-control input-sm" name="numeroexterior" ></td>
+							<td><input type="text" class="form-control input-sm" name="numeroexterior" required></td>
 						  </tr>
 						  <tr>
 							<td>Codigo Postal:</td>
-							<td><input type="number" class="form-control input-sm" name="codigo_postal"></td>
+							<td><input type="number" class="form-control input-sm" name="codigo_postal" required></td>
 						  </tr>
 	
 						  <tr>
 							<td>Telefono:</td>
-							<td> <input type="number" class="form-control input-sm" name="telefono" ></td>
+							<td> <input type="number" class="form-control input-sm" name="telefono" required></td>
 						  </tr>
 
 						  <tr>
 							<td >Pais:</td>
 							<td class="form-control input-sm"><select name="pais_id">
-                @foreach($paises as $local)
-              <option value="{{$local->idpais}}">{{$local->nombre}}</option>
-              @endforeach
-              </select></td>
+								@foreach($paises as $local)
+							<option value="{{$local->idpais}}">{{$local->nombre}}</option>
+							@endforeach
+							</select></td>
 						  </tr>
 
 						  <tr>
 							  <td>Estado: </td>
 							  <td class="form-control input-sm">
-                  <select name="estado_id" id="estado">
-                    @foreach($estados as $local)
-                  <option value="{{$local->idestado}}">{{$local->nombre_estado}}</option>
-                  @endforeach
-                  </select>
+								<select name="estado_id" id="estado">
+									@foreach($estados as $local)
+								<option value="{{$local->idestado}}">{{$local->nombre_estado}}</option>
+								@endforeach
+								</select>
 							  </td>
 						  </tr>
 						  
@@ -112,7 +112,7 @@
               
               <tr>
                 <td>Imagen:</td>
-                <td><input type="file" name="imagen" class="form-control" id="file" onchange="Filevalidation();"></td>
+                <td><input type="file" name="imagen" class="form-control" id="file" onchange="Filevalidation();" required></td>
               </tr>
 						
 						  <tr>
@@ -121,32 +121,32 @@
 	
 						  <tr>
 							<td>Nombre (s):</td>
-							<td><input type="text" class="form-control input-sm" name="names" ></td>
+							<td><input type="text" class="form-control input-sm" name="names" required></td>
 						  </tr>
 						  
 						  <tr>
 							<td>Apellido Paterno:</td>
-							<td><input type="text" class="form-control input-sm" name="apellido_paterno" ></td>
+							<td><input type="text" class="form-control input-sm" name="apellido_paterno" required></td>
 						  </tr>
 						  
 						  <tr>
 							<td>Apellido Materno:</td>
-							<td><input type="text" class="form-control input-sm" name="apellido_materno" ></td>
+							<td><input type="text" class="form-control input-sm" name="apellido_materno" required></td>
 						  </tr>
 						  
 						  <tr>
 							<td>Cargo:</td>
-							<td><input type="text" class="form-control input-sm" name="cargo" ></td>
+							<td><input type="text" class="form-control input-sm" name="cargo" required></td>
 						  </tr>
 						  
 						  <tr>
 							<td>Telefono:</td>
-							<td> <input type="text" class="form-control input-sm" name="numero_cel" ></td>
+							<td> <input type="text" class="form-control input-sm" name="numero_cel" required></td>
 						  </tr>
 						  
 						  <tr>
 							<td>Correo Electronico:</td>
-							<td><input type="text" class="form-control input-sm" name="email" ></td>
+							<td><input type="text" class="form-control input-sm" name="email" required></td>
 						  </tr>
 						
 						  <td>

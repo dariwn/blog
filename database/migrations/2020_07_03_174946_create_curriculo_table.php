@@ -20,8 +20,12 @@ class CreateCurriculoTable extends Migration {
 			$table->char('habilidades', 100);
 			$table->char('especialidad', 60);
 			$table->char('escuela', 70);
+			$table->text('fecha_inicio', 20);
+			$table->text('fecha_termino', 20);
 			$table->char('area', 80);
 			$table->text('experiencia', 65535);
+			$table->text('curso', 65535);
+			$table->text('objetivo', 65535);			
 			$table->char('duracion', 100);
 			$table->integer('idjerarquia')->index('fk_curriculo_jerarquia1_idx');
 			$table->integer('idmunicipio')->index('fk_curriculo_municipio1_idx');

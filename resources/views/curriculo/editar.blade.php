@@ -1,8 +1,195 @@
 @extends('egresado.inicio')
 @section('contenido')
+
+
+<script type="text/javascript">
+var element2 = 5.11;
+ function crearDin(){
+       
+       var element = document.getElementById("agregame").value;
+       
+       var padre = document.getElementById("padre");
+       var br = document.createElement("br");
+       var label1 = document.createElement("label");
+       var input1 = document.createElement("INPUT");
+
+       var label2 = document.createElement("label");        
+       var input2 = document.createElement("INPUT");
+
+       var label3 = document.createElement("label");        
+       var input3 = document.createElement("INPUT");
+
+       var label4 = document.createElement("label");        
+       var input4 = document.createElement("INPUT");
+
+       var label5 = document.createElement("label");        
+       var input5 = document.createElement("INPUT");
+
+       var input6 = document.createElement("INPUT");
+       var span = document.createElement("span");
+       var br = document.createElement("br");
+
+       input6.type = "button";
+       input6.value = element;
+       input6.setAttribute("onclick","eliminarDin("+element+")");
+       span.innerHTML = "eliminar";
+
+       label1.innerHTML = "Puesto";
+       label1.id = element;
+       input1.type = 'text';
+       input1.id = element;
+       input1.className='form-control';
+       input1.name="puesto[]";
+
+       label2.innerHTML= "Empresa"
+       label2.id = element;
+       input2.type = 'text';
+       input2.id = element;
+       input2.className='form-control';
+       input2.name="empresa[]";
+
+       label3.innerHTML= "Actividades y Logros"
+       label3.id = element;
+       input3.type = 'text';
+       input3.id = element;
+       input3.className='form-control';
+       input3.name="actividades_logros[]";
+
+       label4.innerHTML= "Fecha Entrada"
+       label4.id = element;
+       input4.type = 'date';
+       input4.id = element;
+       input4.className='form-control';
+       input4.name="fecha_entrada[]";
+
+       label5.innerHTML= "Fecha Salida"
+       label5.id = element;
+       input5.type = 'date';
+       input5.id = element;
+       input5.className='form-control';
+       input5.name="fecha_salida[]";
+       
+       padre.appendChild(input6)
+       padre.appendChild(span)
+       padre.appendChild(br)
+
+       padre.appendChild(label1)
+       padre.appendChild(input1)
+
+       padre.appendChild(label2)
+       padre.appendChild(input2)
+
+       padre.appendChild(label3)
+       padre.appendChild(input3)
+
+       padre.appendChild(label4)
+       padre.appendChild(input4)
+
+       padre.appendChild(label5)
+       padre.appendChild(input5)
+
+       padre.appendChild(br)
+       
+       element +=1;
+    } 
+
+    function crearCurso(){
+       
+            
+       var padre1 = document.getElementById("padre1");
+ 
+       var br = document.createElement("br");
+       var label7 = document.createElement("label");
+       var input7 = document.createElement("INPUT");
+ 
+       var label8 = document.createElement("label");        
+       var input8 = document.createElement("INPUT");
+ 
+       var label9 = document.createElement("label");        
+       var input9 = document.createElement("INPUT");
+ 
+       var input10 = document.createElement("INPUT");
+       var span1 = document.createElement("span");
+       var br = document.createElement("br");
+ 
+       input10.type = "button";
+       input10.value = element2.toFixed(2);
+       input10.setAttribute("onclick","eliminarCur("+element2.toFixed(2)+")");
+       span1.innerHTML = "eliminar";
+ 
+       label7.innerHTML = "Curso/Certificacion:";
+       label7.id = element2.toFixed(2);
+       input7.type = 'text';
+       input7.id = element2.toFixed(2);
+       input7.className='form-control';
+       input7.name="curso[]";
+ 
+       label8.innerHTML= "Enlace Del Certificado"
+       label8.id = element2.toFixed(2);
+       input8.type = 'text';
+       input8.id = element2.toFixed(2);
+       input8.className='form-control';
+       input8.name="enlace[]";
+ 
+       label9.innerHTML= "Descripcion"
+       label9.id = element2.toFixed(2);
+       input9.type = 'text';
+       input9.id = element2.toFixed(2);
+       input9.className='form-control';
+       input9.name="descripcion[]";    
+       
+       padre1.appendChild(input10)
+       padre1.appendChild(span1)
+       padre1.appendChild(br)
+ 
+       padre1.appendChild(label7)
+       padre1.appendChild(input7)
+ 
+       padre1.appendChild(label8)
+       padre1.appendChild(input8)
+ 
+       padre1.appendChild(label9)
+       padre1.appendChild(input9)
+      
+       padre1.appendChild(br)
+       
+       element2 += .1;
+       console.log(element2);
+    } 
+
+    window.onload = function(){
+       
+       var btnAdd = document.getElementById("btn_agregar");   
+       btnAdd.onclick = crearDin;
+
+       var btnAdd1 = document.getElementById("btn_agregar_curso");   
+       btnAdd1.onclick = crearCurso;
+    } 
+
+    function eliminarDin(num){  
+       console.log(num);
+         
+            
+       var eliminar = document.getElementById(num);
+
+        eliminar.parentNode.removeChild(eliminar);
+    }
+
+    function eliminarCur(num){  
+       console.log(num);
+         
+            
+       var eliminar = document.getElementById(num);
+
+        eliminar.parentNode.removeChild(eliminar);
+    }
+     
+
+</script>
+
 <div class="row">
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-        <h2>Curriculo</h2>
+        <h2>Curriculum</h2>
     </div>
 </div>
     
@@ -32,17 +219,119 @@
                 
                 <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                 <div class="form-group">
-                <label for="codigo">Area</label>
+                <label for="codigo">Carrera</label>
                 <input type="text" name="area" required value="{{$hola->area}}" class="form-control" placeholder="Area">
                 </div>  
                 </div>
 
                 <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-                <div class="form-group">
-                <label for="codigo">Experiencias</label>
-                <input type="text" name="experiencia"  value="{{$hola->experiencia}}" class="form-control" placeholder="Experiencias">
-                </div>  
+                  <div class="form-group">
+                  <label for="codigo">Fecha de Inicio:</label>
+                  <input type="date" name="fecha_inicio" value="{{$hola->fecha_inicio}}" required  class="form-control" placeholder="Fecha de Inicio">
+                  </div>  
+              </div>
+
+              <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                  <div class="form-group">
+                  <label for="codigo">Fecha de Termino:</label>
+                  <input type="date" name="fecha_termino" value="{{$hola->fecha_termino}}" required  class="form-control" placeholder="Fecha de Termino">
+                  </div>  
+              </div>
+
+                {{--experiencias  --}}
+                <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12" id="padre">
+                  <div class="form-group">
+                  <label for="codigo">Experiencias</label> <input type="button" id="btn_agregar" value="+" onclick="crearDin();">
+                  {{-- <input type="text" name="experiencia"  value="{{$hola->experiencia}}" class="form-control" placeholder="Experiencias"> --}}
+                  <?php
+                    if($hola->experiencia == " "){
+                      $c=1;
+                    }else {
+                      $res = json_decode($hola->experiencia,true);
+                      $c = 1;
+                      foreach ($res as $value) {
+                      $cadena1 = $value['Puesto'];                   
+                      print '<br><input type='."button".' onclick='."eliminarDin($c);".' id='.'eliminar'.' value='.$c.'> <span>eliminar</span>';
+                      echo '<br><label>Puesto:</label>';                     
+                      print '<br><input type='."text".' id='.$c.' name='.'puesto[]'.' value="'.($cadena1).'" class='."form-control".'>';                     
+                      $cadena2 = $value['Empresa'];
+                      echo '<br><label>Empresa:</label>';
+                      print '<br><input type='."text".' id='.$c.' name='.'empresa[]'.' value="'.($cadena2).'" class='."form-control".'>';
+                      $cadena3 = $value['Actividades'];
+                      echo '<br><label>Actividades y Logros:</label>';
+                      print '<br><input type='."text".' id='.$c.' name='.'actividades_logros[]'.' value="'.($cadena3).'" class='."form-control".'>';
+                      $cadena4 = $value['Fecha_e'];
+                      echo '<br><label>Fecha entrada:</label>';
+                      print '<br><input type='."date".' id='.$c.' name='.'fecha_entrada[]'.' value="'.($cadena4).'" class='."form-control".'>';
+                      $cadena5 = $value['Fecha_s'];
+                      echo '<br><label>Fecha Salida:</label>';
+                      print '<br><input type='."date".' id='.$c.' name='.'fecha_salida[]'.' value="'.($cadena5).'" class='."form-control".'>';                    
+                      $c += 1;
+                
+                      }
+                      
+                    }
+                    echo '<input type='.'"hidden"'.'id='.'"agregame"'.' value='.$c.'>';
+                    
+                ?>
+                  
+                  </div>  
+                  </div>
+                {{--  --}}
+                {{-- campos cursos --}}               
+                <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12" id="padre1">
+                  <div class="form-group">
+                  <label for="codigo">Cursos:</label> <input type="button" id="btn_agregar_curso" value="+" onclick="crearCurso();">
+                  {{-- <input type="text" name="experiencia"  value="{{$hola->experiencia}}" class="form-control" placeholder="Experiencias"> --}}
+                  <?php
+                    if($hola->experiencia == " "){
+                      $c=1.11;
+                    }else {
+                      $res = json_decode($hola->curso,true);
+                      $c = 1.11;
+                      foreach ($res as $value) {
+                      $cadena1 = $value['Curso'];                   
+                      print '<br><input type='."button".' onclick='."eliminarDin($c);".' id='.'eliminar'.' value='.$c.'> <span>eliminar</span>';
+                      echo '<br><label>Curso:</label>';                     
+                      print '<br><input type='."text".' id='.$c.' name='.'curso[]'.' value="'.($cadena1).'" class='."form-control".'>';                     
+                      $cadena2 = $value['Enlace'];
+                      echo '<br><label>Enlace:</label>';
+                      print '<br><input type='."text".' id='.$c.' name='.'enlace[]'.' value="'.($cadena2).'" class='."form-control".'>';
+                      $cadena3 = $value['Descripcion'];
+                      echo '<br><label>Descripcion:</label>';
+                      print '<br><input type='."text".' id='.$c.' name='.'descripcion[]'.' value="'.($cadena3).'" class='."form-control".'>';                     
+                      $c += .1;
+                
+                      }
+                      
+                    }
+                    echo '<input type='.'"hidden"'.'id='.'"agregamecurso"'.' value='.$c.'>';
+                    
+                ?>
+                  
+                  </div>  
+                  </div>
+             
+                {{--  --}}
+                
+                  {{-- objetivos profesionales --}}
+                  <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12" >
+                    <div class="form-group">
+                    <label for="codigo">Objetivo Profesional:</label>
+                    <?php 
+                      $res = json_decode($hola->objetivo,true);
+                      //dd($res);                 
+                      echo '<br><Label>Puesto:</Label>';
+                      print '<br><input type='."text".' name='.'objetivo_puesto'.' value="'.($res[0]).'" class='."form-control".'>';                     
+                      echo '<br><Label>Salario:</Label>';
+                      print '<br><input type='."text".' name='.'objetivo_salario'.' value="'.($res[1]).'" class='."form-control".'>';                     
+                      echo '<br><Label>Objetivo:</Label>';
+                      print '<br><input type='."text".' name='.'objetivo_objetivo'.' value="'.($res[2]).'" class='."form-control".'>';                     
+                                
+                    ?>
+                    </div> 
                 </div>
+                  {{--  --}}
 
                 <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                 <div class="form-group">
@@ -137,3 +426,4 @@
     </div>
 </form>
 @endsection
+

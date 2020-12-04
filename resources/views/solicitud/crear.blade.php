@@ -96,32 +96,32 @@
                     <tbody>
 						  <tr>
 							<td class='col-md-3'>Nombre del Puesto:</td>
-							<td><input type="text" id="puesto" class="form-control" placeholder="Nombre del Puesto" name="nombredelpuesto" /></td>
+							<td><input type="text" id="puesto" class="form-control" placeholder="Nombre del Puesto" name="nombredelpuesto" required/></td>
                           </tr>
                           
 						  <tr>							
 							<td class='col-md-3'>Tiempo de Contratación:</td>
-							<td><input type="text" id="tiempocontratacion" class="form-control" placeholder="Tiempo de Contratacion" name="tiempo_de_contratacion" /></td>
+							<td><input type="text" id="tiempocontratacion" class="form-control" placeholder="Tiempo de Contratacion" name="tiempo_de_contratacion" required/></td>
 						  </tr>
 						  <tr>
 							  <tr>
 							<td class='col-md-3'>Salario:</td>
-							<td><input type="number" class="form-control" placeholder="Salario" name="salario" /></td>
+							<td><input type="number" class="form-control" placeholder="Salario" name="salario" required/></td>
 						  </tr>
 						  
 						  <tr>
 							  <tr>
 							<td class='col-md-3'>Edad Minima- Edad Maxima</td>
-							<td><input type="text" id="edad" class="form-control" placeholder="Edad minima-Edad Maxima" name="edades" /></td>
+							<td><input type="text" id="edad" class="form-control" placeholder="Edad minima-Edad Maxima" name="edades" required/></td>
 						  </tr>
 						  
 						  <tr>
 							<td>Horario:</td>
-							<td><input type="text" id="horario" class="form-control" placeholder="Horario" name="horario" /></td>
+							<td><input type="text" id="horario" class="form-control" placeholder="Horario" name="horario" required/></td>
 						  </tr>
 						  <tr>
 							<td>Estado Civil:</td>
-							<td><input type="text" id="estadocivil"  class="form-control" placeholder="Estado Civil" name="estado_civil" /></td>
+							<td><input type="text" id="estadocivil"  class="form-control" placeholder="Estado Civil" name="estado_civil" required/></td>
                           </tr>
                           
 						  <tr>
@@ -135,18 +135,18 @@
 	
 						  <tr>
 							<td>Requisitos:</td>
-							<td><input type="text" id="requisitos" class="form-control" placeholder="Requisitos" name="requisito"/></td>
+							<td><input type="text" id="requisitos" class="form-control" placeholder="Requisitos" name="requisito" required/></td>
 						  </tr>
 
 						  <tr>
 							<td>Descripcion del Puesto:</td>
-							<td><input type="text" id="descripcionpuesto" class="form-control"  placeholder="Descripcion del Puesto" name="descripcion_del_puesto" /></td>
+							<td><input type="text" id="descripcionpuesto" class="form-control"  placeholder="Descripcion del Puesto" name="descripcion_del_puesto"  required/></td>
 						  </tr>
 
 						  
 						  <tr>
 							<td>Cambio de Residencia:</td>
-							<td><input type="text" id="cambioresidencia" class="form-control" placeholder="Cambio de Resisdencia" name="cambio_de_residencia" />
+							<td><input type="text" id="cambioresidencia" class="form-control" placeholder="Cambio de Resisdencia" name="cambio_de_residencia" required/>
                                 <input type="hidden" name="id_empresa" value="{{$empresas}}">
                                 <input type="hidden" name="estatus" value="Vigente"></td>
                           </tr>

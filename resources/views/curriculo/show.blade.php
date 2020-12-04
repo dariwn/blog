@@ -48,6 +48,8 @@
                 Email: <span class="email" href="#">{{$hola->curriculo->correo}}</a><br />
                 Estado: <span class="estado">{{$hola->estado->nombre_estado}}</span><br />
                 Municipio: <span class="municipio">{{$hola->municipio->nombre_localidad}}</span><br />
+                Domicilio: <span> {{$hola->curriculo->domicilio}}</span>. Colonia: <span>{{$hola->curriculo->colonia}}</span>
+                
             </p>
         </div>
                 
@@ -67,31 +69,81 @@
             <dt>Educación</dt>
             <dd>
                 <h2>{{$hola->escuela}}</h2>
-                <p><strong>Perfil:</strong> {{$hola->perfil->carrera}}<br />
-                   <strong>Periodo:</strong> {{$hola->duracion}}</p>
+                <p><strong>Carrera:</strong> {{$hola->perfil->carrera}}<br />
+                   <strong>Especialidad:</strong> {{$hola->especialidad}} <br>
+                   <strong>Duración:</strong> {{$hola->duracion}} <br>
+                   <strong>Periodo:</strong> Inicio: {{$hola->fecha_inicio}} - Termino: {{$hola->fecha_termino}}</p>
             </dd>
             
             <dd class="clear"></dd>
 
             <dt>Experiencia</dt>
             <dd>                
-                <p>{{$hola->experiencia}}</p>
+                <?php
+                    if ($hola->experiencia == " ") {
+                        echo '<p>Sin experiencia</p>';
+                    }else {
+                        $res = json_decode($hola->experiencia,true);
+                        foreach ($res as $value) {
+                        $cadena = $value['Puesto'];
+                        echo '<p>Puesto: '.($cadena).'<br>';
+                        $cadena = $value['Empresa'];
+                        echo 'Empresa: '.($cadena).'<br>';
+                        $cadena = $value['Actividades'];
+                        echo 'Actividades y Logros: '.($cadena).'<br>';
+                        $cadena = $value['Fecha_e'];
+                        echo 'Fecha de entrada: '.($cadena).'<br>';
+                        $cadena = $value['Fecha_s'];
+                        echo 'Fecha de salida: '.($cadena).'</p>';                     
+                        }
+                    }
+                    
+                ?>
             </dd>
 
             <dd class="clear"></dd>
             
-            <dt>Habilidad</dt>
+            <dt>Cursos / <br>Certificaciones</dt>
             <dd>
-                <h2>{{$hola->especialidad}}</h2>        
+                <?php
+                if ($hola->curso == " ") {
+                    echo '<p>Sin cursos</p>';
+                }else {
+                    $res = json_decode($hola->curso,true);
+                    foreach ($res as $value) {
+                    $cadena = $value['Curso'];
+                    echo '<p>Curso: '.($cadena).'<br>';
+                    $cadena = $value['Enlace'];
+                    echo 'Enlace: '.($cadena).'<br>';
+                    $cadena = $value['Descripcion'];
+                    echo 'Descripcion: '.($cadena).'<br>';
+                                       
+                    }
+                }
+                
+            ?>
+            </dd>
+
+            <dd class="clear"></dd>
+
+            <dt>Habilidad</dt>
+            <dd>                    
                 <p>{{$hola->habilidades}}</p>
             </dd>
-            
+
             <dd class="clear"></dd>
-            
-            <dt>Area</dt>
-            <dd>
-               <h2>{{$hola->area}}</h2>
+
+            <dt>Objetivo Profesional:</dt>
+            <dd>                    
+                <?php 
+                    $res = json_decode($hola->objetivo,true);
+                    //dd($res);                 
+                    echo '<p>Puesto: '.($res[0]).'<br>';
+                    echo 'Salario: $'.($res[1]).' pesos mensuales <br>';                                                                                
+                    echo 'Objetivo Profesional: '.($res[2]).'</p>'; 
+                ?>
             </dd>
+            
             
             <dd class="clear"></dd>
             
@@ -101,11 +153,7 @@
                <p><strong>Nivel:</strong> {{$hola->nivel->nivel}}</p>
             </dd>
             
-            <dd class="clear"></dd>
-            
-            <dt>Domicilio</dt>
-            <dd>{{$hola->curriculo->domicilio}}</dd>
-            <dd>{{$hola->curriculo->colonia}}</dd>
+           
             
             <dd class="clear"></dd>
         </dl>

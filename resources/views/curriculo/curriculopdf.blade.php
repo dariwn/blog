@@ -6,7 +6,7 @@
 <head>
      <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-     <title>Curriculo</title>
+     <title>Curriculum</title>
 
      <style type="text/css">
         * { margin: 0; padding: 0; }
@@ -70,7 +70,21 @@
 
             <dt>Experiencia</dt>
             <dd>                
-                <p>{{$hola->experiencia}}</p>
+                <?php
+                    $res = json_decode($hola->experiencia,true);
+                    foreach ($res as $value) {
+                     $cadena = $value['Puesto'];
+                     echo '<p>Puesto: '.($cadena).'<br>';
+                     $cadena = $value['Empresa'];
+                     echo 'Empresa: '.($cadena).'<br>';
+                     $cadena = $value['Actividades'];
+                     echo 'Actividades y Logros: '.($cadena).'<br>';
+                     $cadena = $value['Fecha_e'];
+                     echo 'Fecha de entrada: '.($cadena).'<br>';
+                     $cadena = $value['Fecha_s'];
+                     echo 'Fecha de salida: '.($cadena).'</p>';                     
+                    }
+                ?>
             </dd>
 
             <dd class="clear"></dd>
