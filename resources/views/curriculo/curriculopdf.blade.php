@@ -66,12 +66,27 @@
             
             <dt>Educación</dt>
             <dd>                
-                <p>
-                   Escuela: {{ $hola->escuela }}
-                   Carrera: {{$hola->perfil->carrera}}<br />
-                   Especialidad: {{$hola->especialidad}} <br>
-                   Duración: {{$hola->duracion}} <br>
-                   Periodo: Inicio: {{$hola->fecha_inicio}} - Termino: {{$hola->fecha_termino}}</p>
+                <p><strong>Universidad: </strong> {{$hola->escuela}} <br>
+                    <strong>Carrera: </strong> {{$hola->perfil->carrera}}<br />
+                    <strong>Especialidad: </strong> {{$hola->especialidad}} <br>
+                 
+                    <strong>Periodo: </strong> Inicio: {{$hola->fecha_inicio}} - Termino: {{$hola->fecha_termino}}<br>
+                     <strong>Nivel de Estudio: </strong> {{$hola->nivel_estudio}} <br><br>
+                     <?php 
+                         if ($hola->maestria_doctorado == " ") {
+                             
+                         }else{
+                             $maes = json_decode($hola->maestria_doctorado, true);
+                             foreach ($maes as $value) {
+                                 $cadena = $value['Maestria']; 
+                                 echo '<strong>Maestria: </strong>'.($cadena).'<br>';
+                                 $cadena = $value['Escuela']; 
+                                 echo '<strong>Escuela: </strong>'.($cadena).'<br>'; 
+                             }
+                         }
+                         
+                     ?>                                   
+                 </p>
             </dd>
             
             <dd class="clear"></dd>
@@ -106,6 +121,7 @@
             <dd>
                 <?php
                 if ($hola->curso == " ") {
+                    
                     echo '<p>Sin cursos</p>';
                 }else {
                     $res = json_decode($hola->curso,true);

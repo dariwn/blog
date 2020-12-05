@@ -112,6 +112,34 @@ class CurriculoController extends Controller
         //        }
         // dd($request);
 
+        //maestrias/doctorados
+        $maestrias = $request->escuela_maes;
+        //dd($request);
+        if($maestrias == null){
+            $numero_maestrias = 0;
+        }else{
+            $numero_maestrias = sizeof($maestrias);
+
+            $maestrias = array();
+            for($contamaes=0; $contamaes<$numero_maestrias; $contamaes++){
+                $keysMaestrias['Escuela'] = $request->escuela_maes[$contamaes];
+                $keysMaestrias['Maestria'] = $request->nombre_maes[$contamaes];
+                
+                array_push($maestrias,$keysMaestrias);
+
+            }
+
+            $resultmaes = json_encode($maestrias);
+            print_r($resultmaes);
+            //leyendo json
+            //   $res = json_decode($resultmaes,true);
+            //   foreach ($res as $value) {
+            //       $cadena = $value['Escuela'].'<br>';
+            //       print ($cadena);
+            //    }
+        }
+        //dd($request);
+
         $usuario = Auth::user()->id;
         $admin = DB::table('users')->where('id', $usuario)->update(['curriculo' => 0]);
         $hola = new Curriculo;
@@ -123,11 +151,20 @@ class CurriculoController extends Controller
         $hola->fecha_inicio = $request->fecha_inicio;
         $hola->fecha_termino = $request->fecha_termino;
         $hola->area = $request->area;
+
+        $hola->nivel_estudio = $request->nivel_estudios;
+        if($numero_maestrias == 0){
+            $hola->maestria_doctorado = " ";
+        }else{
+            $hola->maestria_doctorado = $resultmaes;
+        }
+
         if($numero_puesto == 0){
             $hola->experiencia = " ";
         }else{
             $hola->experiencia = $result;
         }
+
         if($numero_curso == 0){
             $hola->curso = " ";
         }else{
@@ -269,6 +306,34 @@ class CurriculoController extends Controller
         //        }
         // dd($request);
 
+        //maestrias/doctorados
+        $maestrias = $request->escuela_maes;
+        //dd($request);
+        if($maestrias == null){
+            $numero_maestrias = 0;
+        }else{
+            $numero_maestrias = sizeof($maestrias);
+
+            $maestrias = array();
+            for($contamaes=0; $contamaes<$numero_maestrias; $contamaes++){
+                $keysMaestrias['Escuela'] = $request->escuela_maes[$contamaes];
+                $keysMaestrias['Maestria'] = $request->nombre_maes[$contamaes];
+                
+                array_push($maestrias,$keysMaestrias);
+
+            }
+
+            $resultmaes = json_encode($maestrias);
+            print_r($resultmaes);
+            //leyendo json
+            //   $res = json_decode($resultmaes,true);
+            //   foreach ($res as $value) {
+            //       $cadena = $value['Escuela'].'<br>';
+            //       print ($cadena);
+            //    }
+        }
+        //dd($request);
+
         $hola = Curriculo::findOrFail($id);
         $hola->idegresado = $request->idegresado;
         $hola->ididioma = $request->ididioma;
@@ -278,11 +343,20 @@ class CurriculoController extends Controller
         $hola->fecha_inicio = $request->fecha_inicio;
         $hola->fecha_termino = $request->fecha_termino;
         $hola->area = $request->area;
+
+        $hola->nivel_estudio = $request->nivel_estudios;
+        if($numero_maestrias == 0){
+            $hola->maestria_doctorado = " ";
+        }else{
+            $hola->maestria_doctorado = $resultmaes;
+        }
+
         if($numero_puesto == 0){
             $hola->experiencia = " ";
         }else{
             $hola->experiencia = $result;
         }
+        
         if($numero_curso == 0){
             $hola->curso = " ";
         }else{

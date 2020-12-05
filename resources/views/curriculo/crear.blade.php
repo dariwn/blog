@@ -5,6 +5,7 @@
 <script type="text/javascript">
 var element = 1;
 var element1 = 1.11;
+var element2 = -1;
     function crearDin(){
 
        var padre = document.getElementById("padre");
@@ -155,6 +156,55 @@ var element1 = 1.11;
       element1 += .1;
    } 
 
+   function crearMaestria(){
+       
+       
+       var maestria = document.getElementById("maestria");
+ 
+       var br = document.createElement("br");
+       var label11 = document.createElement("label");
+       var input11 = document.createElement("INPUT");
+ 
+       var label12 = document.createElement("label");        
+       var input12 = document.createElement("INPUT");
+  
+       var input13 = document.createElement("INPUT");
+       var span2 = document.createElement("span");
+       var br = document.createElement("br");
+ 
+       input13.type = "button";
+       input13.value = element2;
+       input13.setAttribute("onclick","eliminarMaestria("+element2+")");
+       span2.innerHTML = "eliminar";
+ 
+       label11.innerHTML = "Institución:";
+       label11.id = element2;
+       input11.type = 'text';
+       input11.id = element2;
+       input11.className='form-control';
+       input11.name="escuela_maes[]";
+ 
+       label12.innerHTML= "Nombre de la Maestria/Doctorado"
+       label12.id = element2;
+       input12.type = 'text';
+       input12.id = element2;
+       input12.className='form-control';
+       input12.name="nombre_maes[]";
+
+       
+       maestria.appendChild(input13)
+       maestria.appendChild(span2)
+       maestria.appendChild(br)
+ 
+       maestria.appendChild(label11)
+       maestria.appendChild(input11)
+ 
+       maestria.appendChild(label12)
+       maestria.appendChild(input12)
+
+       element2 -= 1;
+    } 
+
     window.onload = function(){
        
        var btnAdd = document.getElementById("btn_agregar");   
@@ -162,6 +212,9 @@ var element1 = 1.11;
 
        var btnAdd1 = document.getElementById("btn_agregar_curso");   
        btnAdd1.onclick = crearCurso;
+
+       var btnAdd2 = document.getElementById("btn_agregar_maestria");   
+       btnAdd2.onclick = crearMaestria;
     } 
 
     function eliminarDin(num){  
@@ -174,6 +227,15 @@ var element1 = 1.11;
     }
     
     function eliminarCur(num){  
+       console.log(num);
+         
+            
+       var eliminar = document.getElementById(num);
+
+        eliminar.parentNode.removeChild(eliminar);
+    }
+
+    function eliminarMaestria(num){  
        console.log(num);
          
             
@@ -196,7 +258,7 @@ var element1 = 1.11;
                 <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                 <div class="form-group">
                 <label for="nombre">Escuela de Procedencia</label>
-                <input type="text" name="escuela" required value="Instituto Tecnologico Nacional de México Campus Tuxtla Gutierrez" class="form-control" placeholder="Escuela">
+                <input type="text" name="escuela" required value="{{old('escuela')}}" class="form-control" placeholder="Escuela">
                 </div>
                 </div>
                 <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
@@ -231,6 +293,26 @@ var element1 = 1.11;
                     <div class="form-group">
                     <label for="codigo">Fecha de Termino:</label>
                     <input type="date" name="fecha_termino" value="{{old('fecha_termino')}}" required  class="form-control" placeholder="Fecha de Termino">
+                    </div>  
+                </div>
+
+                <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                    <div class="form-group">
+                    <label for="codigo">Nivel de Estudios:</label>
+                        <select name="nivel_estudios" class="form-control" required>
+                            <option value="">Selecciona un Nivel</option>
+                            <option value="Universitario - No Titulado">Universitario - No Titulado</option>
+                            <option value="Universitario - Titulado">Universitario - Titulado</option>
+                            <option value="Universitario - Maestria">Universitario - Maestria</option>
+                            <option value="Universitario - Doctorado">Universitario - Doctorado</option>
+                        </select>
+                    </div>  
+                </div>
+
+                <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12" id="maestria">
+                    <div class="form-group">
+                    <label for="codigo">Maestria/Doctorado:</label> <input type="button" id="btn_agregar_maestria" value="+" onclick="crearMaestria();">
+                    
                     </div>  
                 </div>
 
@@ -279,7 +361,7 @@ var element1 = 1.11;
 
               <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                 <div class="form-group">
-                <label>Nivel</label>
+                <label>Nivel del Idioma</label>
                 <select name="idjerarquia" class="form-control">
                 @foreach($jerarquias as $jerarquia)
                               <option value="{{$jerarquia->idjerarquia}}">{{$jerarquia->nivel}}</option>

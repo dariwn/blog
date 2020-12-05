@@ -64,11 +64,28 @@
             
             <dt>Educación</dt>
             <dd>
-                <h2>{{$hola->escuela}}</h2>
-                <p><strong>Carrera:</strong> {{$hola->perfil->carrera}}<br />
-                   <strong>Especialidad:</strong> {{$hola->especialidad}} <br>
-                   <strong>Duración:</strong> {{$hola->duracion}} <br>
-                   <strong>Periodo:</strong> Inicio: {{$hola->fecha_inicio}} - Termino: {{$hola->fecha_termino}}</p>
+                
+                <p><strong>Universidad: </strong> {{$hola->escuela}} <br>
+                   <strong>Carrera: </strong> {{$hola->perfil->carrera}}<br />
+                   <strong>Especialidad: </strong> {{$hola->especialidad}} <br>
+                
+                   <strong>Periodo: </strong> Inicio: {{$hola->fecha_inicio}} - Termino: {{$hola->fecha_termino}}<br>
+                    <strong>Nivel de Estudio: </strong> {{$hola->nivel_estudio}} <br><br>
+                    <?php 
+                        if ($hola->maestria_doctorado == " ") {
+                            
+                        }else{
+                            $maes = json_decode($hola->maestria_doctorado, true);
+                            foreach ($maes as $value) {
+                                $cadena = $value['Maestria']; 
+                                echo '<strong>Maestria: </strong>'.($cadena).'<br>';
+                                $cadena = $value['Escuela']; 
+                                echo '<strong>Escuela: </strong>'.($cadena).'<br>'; 
+                            }
+                        }
+                        
+                    ?>                                   
+                </p>
             </dd>
             
             <dd class="clear"></dd>

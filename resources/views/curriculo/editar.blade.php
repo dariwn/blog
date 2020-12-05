@@ -4,10 +4,11 @@
 
 <script type="text/javascript">
 var element2 = 5.11;
+var element = 1.13;
+var element3 = -1.16;
  function crearDin(){
-       
-       var element = document.getElementById("agregame").value;
-       
+         
+      
        var padre = document.getElementById("padre");
        var br = document.createElement("br");
        var label1 = document.createElement("label");
@@ -90,7 +91,7 @@ var element2 = 5.11;
 
        padre.appendChild(br)
        
-       element +=1;
+       element +=.1;
     } 
 
     function crearCurso(){
@@ -156,6 +157,54 @@ var element2 = 5.11;
        element2 += .1;
        console.log(element2);
     } 
+    function crearMaestria(){
+       
+       
+       var maestria = document.getElementById("maestria");
+ 
+       var br = document.createElement("br");
+       var label11 = document.createElement("label");
+       var input11 = document.createElement("INPUT");
+ 
+       var label12 = document.createElement("label");        
+       var input12 = document.createElement("INPUT");
+  
+       var input13 = document.createElement("INPUT");
+       var span2 = document.createElement("span");
+       var br = document.createElement("br");
+ 
+       input13.type = "button";
+       input13.value = element3;
+       input13.setAttribute("onclick","eliminarMaestria("+element3+")");
+       span2.innerHTML = "eliminar";
+ 
+       label11.innerHTML = "Institución:";
+       label11.id = element3;
+       input11.type = 'text';
+       input11.id = element3;
+       input11.className='form-control';
+       input11.name="escuela_maes[]";
+ 
+       label12.innerHTML= "Nombre de la Maestria/Doctorado"
+       label12.id = element3;
+       input12.type = 'text';
+       input12.id = element3;
+       input12.className='form-control';
+       input12.name="nombre_maes[]";
+
+       
+       maestria.appendChild(input13)
+       maestria.appendChild(span2)
+       maestria.appendChild(br)
+ 
+       maestria.appendChild(label11)
+       maestria.appendChild(input11)
+ 
+       maestria.appendChild(label12)
+       maestria.appendChild(input12)
+
+       element3 -= 1;
+    } 
 
     window.onload = function(){
        
@@ -164,6 +213,9 @@ var element2 = 5.11;
 
        var btnAdd1 = document.getElementById("btn_agregar_curso");   
        btnAdd1.onclick = crearCurso;
+
+       var btnAdd2 = document.getElementById("btn_agregar_maestria");   
+       btnAdd2.onclick = crearMaestria;
     } 
 
     function eliminarDin(num){  
@@ -176,6 +228,15 @@ var element2 = 5.11;
     }
 
     function eliminarCur(num){  
+       console.log(num);
+         
+            
+       var eliminar = document.getElementById(num);
+
+        eliminar.parentNode.removeChild(eliminar);
+    }
+
+    function eliminarMaestria(num){  
        console.log(num);
          
             
@@ -238,6 +299,52 @@ var element2 = 5.11;
                   </div>  
               </div>
 
+              <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                <div class="form-group">
+                <label for="codigo">Nivel de Estudios:</label>
+                    <select name="nivel_estudios" class="form-control" required>
+                    <option value="{{$hola->nivel_estudio}}">{{$hola->nivel_estudio}}</option>
+                        <option value="Universitario - No Titulado">Universitario - No Titulado</option>
+                        <option value="Universitario - Titulado">Universitario - Titulado</option>
+                        <option value="Universitario - Maestria">Universitario - Maestria</option>
+                        <option value="Universitario - Doctorado">Universitario - Doctorado</option>
+                    </select>
+                </div>  
+              </div>
+
+              {{-- maestrias y doctorados --}}
+              <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12" id="maestria">
+                <div class="form-group">
+                <label>Maestrias/Doctorados</label> <input type="button" id="btn_agregar_maestria" value="+" onclick="crearMaestria();">
+                
+                <?php
+                  if($hola->maestria_doctorado == " "){
+                    $c=-1;
+                  }else {
+                    $res1 = json_decode($hola->maestria_doctorado,true);
+                    $c = -1;
+                    foreach ($res1 as $value) {
+                    $cadena1 = $value['Escuela'];                   
+                    print '<br><input type='."button".' onclick='."eliminarMaestria($c);".' id='.'eliminar'.' value='.$c.'> <span>eliminar</span>';
+                    echo '<br><label>Escuela:</label>';                     
+                    print '<br><input type='."text".' id='.$c.' name='.'escuela_maes[]'.' value="'.($cadena1).'" class='."form-control".'>';                     
+                    $cadena2 = $value['Maestria'];
+                    echo '<br><label>Nombre de la Maestria/Doctorado:</label>';
+                    print '<br><input type='."text".' id='.$c.' name='.'nombre_maes[]'.' value="'.($cadena2).'" class='."form-control".'>';                    
+                    $c -= 1;
+              
+                    }
+                    
+                  }
+                  echo '<input type='.'"hidden"'.'id='.'"agregamemaes"'.' value='.$c.'>';
+                  
+              ?>
+                
+                </div>  
+                </div>
+
+              {{--  --}}
+
                 {{--experiencias  --}}
                 <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12" id="padre">
                   <div class="form-group">
@@ -245,10 +352,10 @@ var element2 = 5.11;
                   {{-- <input type="text" name="experiencia"  value="{{$hola->experiencia}}" class="form-control" placeholder="Experiencias"> --}}
                   <?php
                     if($hola->experiencia == " "){
-                      $c=1;
+                      $c=1.12;
                     }else {
                       $res = json_decode($hola->experiencia,true);
-                      $c = 1;
+                      $c = 1.12;
                       foreach ($res as $value) {
                       $cadena1 = $value['Puesto'];                   
                       print '<br><input type='."button".' onclick='."eliminarDin($c);".' id='.'eliminar'.' value='.$c.'> <span>eliminar</span>';
@@ -266,7 +373,7 @@ var element2 = 5.11;
                       $cadena5 = $value['Fecha_s'];
                       echo '<br><label>Fecha Salida:</label>';
                       print '<br><input type='."date".' id='.$c.' name='.'fecha_salida[]'.' value="'.($cadena5).'" class='."form-control".'>';                    
-                      $c += 1;
+                      $c += .1;
                 
                       }
                       
@@ -284,12 +391,13 @@ var element2 = 5.11;
                   <label for="codigo">Cursos:</label> <input type="button" id="btn_agregar_curso" value="+" onclick="crearCurso();">
                   {{-- <input type="text" name="experiencia"  value="{{$hola->experiencia}}" class="form-control" placeholder="Experiencias"> --}}
                   <?php
-                    if($hola->experiencia == " "){
-                      $c=1.11;
+                    
+                    if($hola->curso == " "){
+                      $c=1.14;
                     }else {
-                      $res = json_decode($hola->curso,true);
-                      $c = 1.11;
-                      foreach ($res as $value) {
+                      $res2 = json_decode($hola->curso,true);
+                      $c = 1.14;
+                      foreach ($res2 as $value) {
                       $cadena1 = $value['Curso'];                   
                       print '<br><input type='."button".' onclick='."eliminarDin($c);".' id='.'eliminar'.' value='.$c.'> <span>eliminar</span>';
                       echo '<br><label>Curso:</label>';                     
@@ -319,14 +427,14 @@ var element2 = 5.11;
                     <div class="form-group">
                     <label for="codigo">Objetivo Profesional:</label>
                     <?php 
-                      $res = json_decode($hola->objetivo,true);
+                      $res3 = json_decode($hola->objetivo,true);
                       //dd($res);                 
                       echo '<br><Label>Puesto:</Label>';
-                      print '<br><input type='."text".' name='.'objetivo_puesto'.' value="'.($res[0]).'" class='."form-control".'>';                     
+                      print '<br><input type='."text".' name='.'objetivo_puesto'.' value="'.($res3[0]).'" class='."form-control".'>';                     
                       echo '<br><Label>Salario:</Label>';
-                      print '<br><input type='."text".' name='.'objetivo_salario'.' value="'.($res[1]).'" class='."form-control".'>';                     
+                      print '<br><input type='."text".' name='.'objetivo_salario'.' value="'.($res3[1]).'" class='."form-control".'>';                     
                       echo '<br><Label>Objetivo:</Label>';
-                      print '<br><input type='."text".' name='.'objetivo_objetivo'.' value="'.($res[2]).'" class='."form-control".'>';                     
+                      print '<br><input type='."text".' name='.'objetivo_objetivo'.' value="'.($res3[2]).'" class='."form-control".'>';                     
                                 
                     ?>
                     </div> 
@@ -350,14 +458,14 @@ var element2 = 5.11;
                               @else
                               <option value="{{$idioma->ididioma}}">{{$idioma->idioma}}</option>
                               @endif
-                              @endforeach
+                @endforeach
                        </select>
                        </div>
               </div>
 
               <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                 <div class="form-group">
-                <label>Nivel</label>
+                <label>Nivel del Idioma</label>
                 <select name="idjerarquia" class="form-control">
                 @foreach($jerarquias as $jerarquia)
                  @if($jerarquia->idjerarquia==$hola->idjerarquia)
@@ -365,7 +473,7 @@ var element2 = 5.11;
                               @else
                               <option value="{{$jerarquia->idjerarquia}}">{{$jerarquia->nivel}}</option>
                               @endif
-                              @endforeach
+                  @endforeach
                        </select>
                        </div>
               </div>   
@@ -381,7 +489,7 @@ var element2 = 5.11;
                               @else
                               <option value="{{$estado->idestado}}">{{$estado->nombre_estado}}</option>
                               @endif
-                              @endforeach
+                @endforeach
                        </select>
                        </div>
               </div>
@@ -413,7 +521,7 @@ var element2 = 5.11;
                               @else
                               <option value="{{$perfil->idperfiles}}">{{$perfil->carrera}}</option>
                               @endif
-                              @endforeach
+                @endforeach
                        </select>
                        </div>
               </div>

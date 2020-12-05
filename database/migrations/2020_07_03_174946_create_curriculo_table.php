@@ -23,6 +23,8 @@ class CreateCurriculoTable extends Migration {
 			$table->text('fecha_inicio', 20);
 			$table->text('fecha_termino', 20);
 			$table->char('area', 80);
+			$table->text('nivel_estudio', 65535);
+			$table->text('maestria_doctorado', 65535);
 			$table->text('experiencia', 65535);
 			$table->text('curso', 65535);
 			$table->text('objetivo', 65535);			
