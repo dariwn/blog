@@ -13,8 +13,8 @@
 			  
                 <div class="col-md-3 col-lg-3 " align="center"> 
 				<div id="load_img">
-          <img class="img-responsive" src="{{asset('/imagenes/egresados/',$egresado->imagen)}}" height="150px" width="150px">
-          {{ dd($egresado) }}
+          <img class="img-responsive" src="{{asset('/imagenes/egresados/'.$egresado->imagen)}}" height="150px" width="150px">
+          
 				</div>
 				<br>				
 					<div class="row">
