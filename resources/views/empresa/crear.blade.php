@@ -30,7 +30,7 @@
 
 <div class="container">
       <div class="row">
-        <div class="col-sm-9 " >
+        <div class="col-sm-10 " >
 
           <div class="panel panel-success"><br>
               <h2 class="panel-title"><center><font size="5"></i>Datos De La Empresa</font></center></h2>
@@ -40,7 +40,7 @@
         <form action="{{route('empresa.store')}}" method="post" enctype="multipart/form-data">
                   @csrf
   
-                <div class=" col-md-12 col-lg-12 "> 
+                <div class=" col-md-9 col-lg-10 "> 
                   <table class="table table-condensed">
                     <tbody>
 						<tr>

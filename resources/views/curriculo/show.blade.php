@@ -1,7 +1,14 @@
 @extends('egresado.inicio')
 @section('contenido')
 
-     
+<div class="container">
+    <div class="row">
+      <div class=" col-sm-10" >
+        <div class="panel panel-success">
+          <div class="panel-body">
+              <div class=" table-responsive col-sm-12 "> 
+                <table class="table table-condensed">
+                  <thead>   
 <head>
      <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
@@ -157,5 +164,13 @@
                     </td>
 </body>
 
+                  </thead>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 
 @endsection
