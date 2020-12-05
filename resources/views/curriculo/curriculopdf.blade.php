@@ -14,10 +14,10 @@
         .clear { clear: both; }
         #page-wrap { width: 800px; margin: 40px auto 60px; }
         #pic { float: right; margin: -30px 0 0 0; }
-        h1 { margin: 0 0 16px 0; padding: 0 0 16px 0; font-size: 42px; font-weight: bold; letter-spacing: -2px; border-bottom: 1px solid #999; }
-        h2 { font-size: 20px; margin: 0 0 6px 0; position: relative; }
+        h1 { margin: 0 15; padding: 0 0 16px 0; font-size: 35px; font-weight: bold; letter-spacing: -2px; border-bottom: 1px solid #999; }
+        h2 { font-size: 18px; margin: 0 0 6px 0; position: relative; }
         h2 span { position: absolute; bottom: 0; right: 0; font-style: italic; font-family: Georgia, Serif; font-size: 16px; color: #999; font-weight: normal; }
-        p { margin: 0 0 16px 0; }
+        p { margin: 0 15; font-size:  18px; }
         a { color: #999; text-decoration: none; border-bottom: 1px dotted #999; }
         a:hover { border-bottom-style: solid; color: black; }
         ul { margin: 0 0 32px 17px; }
@@ -33,7 +33,7 @@
 
     <div id="page-wrap">
     <br>
-        <img src="{{asset('imagenes/egresados/'.$hola->curriculo->imagen)}}" alt="Photo of Cthulu" id="pic" height="240px" width="150px"/>
+        <img src="img/{{$hola->curriculo->imagen}}" id="pic" height="150px" width="150px"/>
     
         <div id="contact-info" class="vcard">
         
@@ -42,11 +42,11 @@
             <h1 class="fn">{{$hola->curriculo->nombres}} {{$hola->curriculo->apellido_paterno}} {{$hola->curriculo->apellido_materno}}</h1>
         
             <p>
-                Cell: <span class="tel">{{$hola->curriculo->numero_cel}}</span><br />
-                Email: <span class="email" href="#">{{$hola->curriculo->correo}}</a><br />
-                Estado: <span class="estado">{{$hola->estado->nombre_estado}}</span><br />
-                Municipio: <span class="municipio">{{$hola->municipio->nombre_localidad}}</span><br />
-                Domicilio: <span> {{$hola->curriculo->domicilio}}</span>. Colonia: <span>{{$hola->curriculo->colonia}}</span>
+                Cell: {{$hola->curriculo->numero_cel}}<br>
+                Email: {{$hola->curriculo->correo}}<br>
+                Estado: {{$hola->estado->nombre_estado}}<br>
+                Municipio: {{$hola->municipio->nombre_localidad}}<br>
+                Domicilio: {{$hola->curriculo->domicilio}}. Colonia: {{$hola->curriculo->colonia}}
                 
             </p>
         </div>
@@ -65,12 +65,13 @@
             <dd class="clear"></dd>
             
             <dt>Educación</dt>
-            <dd>
-                <h2>{{$hola->escuela}}</h2>
-                <p><strong>Carrera:</strong> {{$hola->perfil->carrera}}<br />
-                   <strong>Especialidad:</strong> {{$hola->especialidad}} <br>
-                   <strong>Duración:</strong> {{$hola->duracion}} <br>
-                   <strong>Periodo:</strong> Inicio: {{$hola->fecha_inicio}} - Termino: {{$hola->fecha_termino}}</p>
+            <dd>                
+                <p>
+                   Escuela: {{ $hola->escuela }}
+                   Carrera: {{$hola->perfil->carrera}}<br />
+                   Especialidad: {{$hola->especialidad}} <br>
+                   Duración: {{$hola->duracion}} <br>
+                   Periodo: Inicio: {{$hola->fecha_inicio}} - Termino: {{$hola->fecha_termino}}</p>
             </dd>
             
             <dd class="clear"></dd>
@@ -152,11 +153,9 @@
             </dd>
             
            
-            
-            <dd class="clear"></dd>
+                        
         </dl>
-        
-        <div class="clear"></div>
+               
     </div>
                      
 </body>

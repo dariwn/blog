@@ -107,7 +107,7 @@ class EgresadoController extends Controller
         if($request->hasFile('file')){
             $archivo = $request->file('file');
             $nombre = time().$archivo->getClientOriginalName();
-            $archivo->move(public_path().'/imagenes/egresados',$nombre);
+            $archivo->move(public_path().'/img',$nombre);
             //dd($nombre);
             $egresado->imagen = $nombre;
         }else{
@@ -180,7 +180,7 @@ class EgresadoController extends Controller
        
         $egresado = Egresado::findOrFail($id);        
 
-        $path = public_path().'/imagenes/egresados/'.$egresado->imagen;
+        $path = public_path().'/img'.$egresado->imagen;
         File::delete($path);
 
         $egresado->nombres = $request->nombres;
@@ -199,7 +199,7 @@ class EgresadoController extends Controller
         if($request->hasFile('file')){
             $archivo = $request->file('file');
             $nombre = time().$archivo->getClientOriginalName();
-            $archivo->move(public_path().'/imagenes/egresados',$nombre);
+            $archivo->move(public_path().'/img',$nombre);
             //return $nombre;
             $egresado->imagen = $nombre;
             

@@ -39,7 +39,7 @@
 
     <div id="page-wrap">
     <br>
-        <img src="{{asset('imagenes/egresados/'.$hola->curriculo->imagen)}}" alt="Photo of Cthulu" id="pic" height="240px" width="150px"/>
+        <img src="{{asset('img/'.$hola->curriculo->imagen)}}" alt="Photo of Cthulu" id="pic" height="240px" width="150px"/>
     
         <div id="contact-info" class="vcard">
         
