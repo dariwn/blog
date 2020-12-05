@@ -30,7 +30,7 @@
 
 <div class="container">
       <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 toppad" >
+        <div class="col-sm-9 " >
 
           <div class="panel panel-success"><br>
               <h2 class="panel-title"><center><font size="5"></i>Datos De La Empresa</font></center></h2>
@@ -40,7 +40,7 @@
         <form action="{{route('empresa.store')}}" method="post" enctype="multipart/form-data">
                   @csrf
   
-                <div class=" col-md-9 col-lg-9 "> 
+                <div class=" col-md-12 col-lg-12 "> 
                   <table class="table table-condensed">
                     <tbody>
 						<tr>
@@ -70,7 +70,7 @@
 						  </tr>
 						  <tr>
 							<td>Numero Exterior:</td>
-							<td><input type="text" class="form-control input-sm" name="numeroexterior" required></td>
+							<td><input type="number" class="form-control input-sm" name="numeroexterior" required></td>
 						  </tr>
 						  <tr>
 							<td>Codigo Postal:</td>
@@ -141,7 +141,7 @@
 						  
 						  <tr>
 							<td>Telefono:</td>
-							<td> <input type="text" class="form-control input-sm" name="numero_cel" required></td>
+							<td> <input type="number" class="form-control input-sm" name="numero_cel" required></td>
 						  </tr>
 						  
 						  <tr>

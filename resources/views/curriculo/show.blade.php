@@ -1,10 +1,7 @@
 @extends('egresado.inicio')
 @section('contenido')
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-
+     
 <head>
      <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
@@ -53,14 +50,6 @@
             </p>
         </div>
                 
-       <!-- <div id="objective">
-            <p>
-              Soy un joven profesional extrovertido y enérgico (pregunte a cualquiera), que busca una carrera que se ajuste a mis habilidades profesionales, personalidad y tendencias. 
-              Mi cabeza es calmar y solucionador de problemas magistral e inspira miedo en quien la mira. 
-              Puedo aportar dominación mundial a tu organización. 
-            </p>
-        </div> -->
-        
         <div class="clear"></div>
         
         <dl>
@@ -164,7 +153,9 @@
     <td>
                     <a href="{{route('curriculo.edit',$hola)}}"><button class="btn btn-primary">Editar</button></a>
                      </td>
+                     <a href="{{url('curriculopdf',$hola)}}"><button class="btn btn-success">Descargar</button></a>
+                    </td>
 </body>
 
-</html>
+
 @endsection
