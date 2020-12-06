@@ -25,7 +25,7 @@ class loginController extends Controller
             // $exist = DB::table('users')->where('username',$username)->get();
             //dd($exist->origen);
             if($exist->origen == 'Administradora'){
-                return view('administradora.inicio2');
+                return view('administradora.inicio3');
             }else{
                 return back()->with('message','Correo o Contraseña Invalido');
             }

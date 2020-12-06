@@ -79,7 +79,7 @@
                              $maes = json_decode($hola->maestria_doctorado, true);
                              foreach ($maes as $value) {
                                  $cadena = $value['Maestria']; 
-                                 echo '<strong>Maestria: </strong>'.($cadena).'<br>';
+                                 echo '<strong>Maestria/Doctorado: </strong>'.($cadena).'<br>';
                                  $cadena = $value['Escuela']; 
                                  echo '<strong>Escuela: </strong>'.($cadena).'<br>'; 
                              }

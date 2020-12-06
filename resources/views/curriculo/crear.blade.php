@@ -258,7 +258,7 @@ var element2 = -1;
                 <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                 <div class="form-group">
                 <label for="nombre">Escuela de Procedencia</label>
-                <input type="text" name="escuela" required value="{{old('escuela')}}" class="form-control" placeholder="Escuela">
+                <input type="text" name="escuela" required value="Tecnologico Nacional De México Campus Tuxtla Gutierrez" class="form-control" placeholder="Escuela">
                 </div>
                 </div>
                 <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
