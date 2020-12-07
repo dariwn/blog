@@ -142,8 +142,7 @@
 		<p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
 		text-align:center;tab-stops:360.65pt'><strong><span style='font-size:10.0pt;
 		line-height:107%;font-family:"montserratmedium",serif;mso-bidi-font-family:
-		"Arial";mso-bidi-theme-font:minor-bidi;color:#4C4B4A;'>M.C.
-		Beatriz Martínez Salas<o:p></o:p></span></strong></p>
+		"Arial";mso-bidi-theme-font:minor-bidi;color:#4C4B4A;'>{{$nombre}}<o:p></o:p></span></strong></p>
 
 		<p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
 		text-align:center;tab-stops:360.65pt'><strong><span style='font-size:10.0pt;

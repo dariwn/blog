@@ -370,6 +370,7 @@ class NuevoController extends Controller
         }
        
         if($request->enviar == "Imprimir"){
+            $nombre = $request->nombre_extiende;
             $a = 0;
             $b = 0;
             $c = 0;
@@ -488,7 +489,7 @@ class NuevoController extends Controller
         
             
             //dd($c);
-            $pdf = \PDF::loadView('administradora.impresion',compact('dirigido', 'cargo', 'numero', 'periodo', 'hasta', 'extiende', 'contem', 'conteg', 'a','b','c','d','e','f','g','h','i','j','k','m','n','Si', 'No'));
+            $pdf = \PDF::loadView('administradora.impresion',compact('dirigido', 'cargo', 'numero', 'periodo', 'hasta', 'extiende', 'contem', 'conteg','nombre', 'a','b','c','d','e','f','g','h','i','j','k','m','n','Si', 'No'));
             return $pdf->download('reporte.pdf');
 
         }
