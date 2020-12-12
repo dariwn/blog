@@ -16,6 +16,11 @@ class UserEgreController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index(Request $request)
     {
         //
@@ -32,6 +37,7 @@ class UserEgreController extends Controller
     public function create()
     {
         //
+        abort(404, 'Página No Encontrada');
     }
 
     /**
@@ -43,6 +49,7 @@ class UserEgreController extends Controller
     public function store(Request $request)
     {
         //
+        abort(404, 'Página No Encontrada');
     }
 
     /**
@@ -54,6 +61,7 @@ class UserEgreController extends Controller
     public function show($id)
     {
         //
+        abort(404, 'Página No Encontrada');
     }
 
     /**
@@ -99,5 +107,6 @@ class UserEgreController extends Controller
     public function destroy($id)
     {
         //
+        abort(404, 'Página No Encontrada');
     }
 }

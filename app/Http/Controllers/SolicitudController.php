@@ -25,6 +25,11 @@ class SolicitudController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index(Request $request)
     {
         $usuario = Auth::user()->id;
@@ -147,6 +152,7 @@ class SolicitudController extends Controller
     public function show($id)
     {
         //
+        abort(404, 'Página No Encontrada');
     }
 
     /**
@@ -204,6 +210,7 @@ class SolicitudController extends Controller
     public function destroy($id)
     {
         //
+        abort(404, 'Página No Encontrada');
     }
 
     public function ver($id){

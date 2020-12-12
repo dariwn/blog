@@ -15,6 +15,11 @@ class UserAdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index(Request $request)
     {
         //
@@ -65,6 +70,7 @@ class UserAdminController extends Controller
     public function show($id)
     {
         //
+        abort(404, 'Página No Encontrada');
     }
 
     /**

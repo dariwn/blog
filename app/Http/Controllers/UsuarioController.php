@@ -16,6 +16,11 @@ class UsuarioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         $egresado = Egresado::paginate(7);
@@ -59,6 +64,7 @@ class UsuarioController extends Controller
     public function show($id)
     {
         //
+        abort(404, 'Página No Encontrada');
     }
 
     /**
@@ -70,6 +76,7 @@ class UsuarioController extends Controller
     public function edit($id)
     {
         //
+        abort(404, 'Página No Encontrada');
     }
 
     /**
@@ -82,6 +89,7 @@ class UsuarioController extends Controller
     public function update(Request $request, $id)
     {
         //
+        abort(404, 'Página No Encontrada');
     }
 
     /**
@@ -93,5 +101,6 @@ class UsuarioController extends Controller
     public function destroy($id)
     {
         //
+        abort(404, 'Página No Encontrada');
     }
 }

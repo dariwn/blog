@@ -30,6 +30,11 @@ class EgresadoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index(Request $request)
     {
         //$egresado = Egresado::all();
@@ -74,6 +79,7 @@ class EgresadoController extends Controller
     public function create()
     {
         //
+        abort(404, 'Página No Encontrada');
     }
 
     /**
@@ -222,6 +228,7 @@ class EgresadoController extends Controller
     public function destroy($id)
     {
         //
+        abort(404, 'Página No Encontrada');
     }
 
     public function bienvenido(){

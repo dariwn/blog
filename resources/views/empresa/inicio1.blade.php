@@ -66,7 +66,7 @@
                     
                     <div class="pull-right">
                       <a href="#" class="btn btn-default btn-flat">Cerrar</a>
-                      <a href="{{url('/BTEmpresa')}}" class="btn btn-default btn-flat">Salir</a>
+                      <a href="{{url('/exitempresa')}}" class="btn btn-default btn-flat">Salir</a>
                     </div>
                   </li>
                 </ul>
@@ -117,13 +117,7 @@
               </a>
               
             </li>
-            <li class="treeview">
-              <a href="{{url('/BTEmpresa')}}">
-                <i class="fa fa-close"></i> <span>Salir</span>
-                <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              
-            </li>
+           
              @else
              @if(Auth::user()->tipo == 0 )
             		
@@ -150,16 +144,17 @@
               </a>
               
             </li>
-            <li class="treeview">
-              <a href="{{url('/BTEmpresa')}}">
-                <i class="fa fa-close"></i> <span>Salir</span>
-                <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              
-            </li>
+            
     
                 @endif    
-                  @endif    
+                  @endif  
+                  <li class="treeview">
+                    <a href="{{url('/exitempresa')}}">
+                      <i class="fa fa-close"></i> <span>Salir</span>
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    
+                  </li>  
           </ul>
         </section>
         <!-- /.sidebar -->

@@ -19,6 +19,11 @@ class NuevoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         $empresa = Empresa::paginate(7);
@@ -62,6 +67,7 @@ class NuevoController extends Controller
     public function show($id)
     {
         //
+        abort(404, 'Página No Encontrada');
     }
 
     /**
@@ -73,6 +79,7 @@ class NuevoController extends Controller
     public function edit($id)
     {
         //
+        abort(404, 'Página No Encontrada');
     }
 
     /**
@@ -85,6 +92,7 @@ class NuevoController extends Controller
     public function update(Request $request, $id)
     {
         //
+        abort(404, 'Página No Encontrada');
     }
 
     /**
@@ -96,6 +104,7 @@ class NuevoController extends Controller
     public function destroy($id)
     {
         //
+        abort(404, 'Página No Encontrada');
     }
 
     public function ver(){

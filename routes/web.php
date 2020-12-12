@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 Route::match(['get', 'post'],'/BTAdministradora', 'loginController@login');//Administradora
-Route::match(['get','post'],'/salir', 'loginController@logout');
+Route::get('/salir', 'loginController@logout');
 Route::resource('/usuario', 'UsuarioController');
 Route::resource('/nuevo', 'NuevoController');
 Route::get('/ver', 'NuevoController@ver')->name('administradora.ver');
@@ -33,7 +33,7 @@ Route::get('/ver-grafica', 'NuevoController@ver_grafica');
 Route::post('/grafica', 'NuevoController@grafica');
 
 Route::match(['get','post'], '/BTEmpresa', 'logueoController@login');//Empresa
-Route::match(['get','post'],'/default', 'logueoController@logout');
+Route::get('/exitempresa', 'logueoController@logout');
 Route::resource('/empresa', 'EmpresaController');
 Route::get('municipio/{id}','EmpresaController@getMunicipio');
 Route::get('/hola', 'EmpresaController@nuevo')->name('empresa.nuevo');
@@ -45,7 +45,7 @@ Route::get('/curriculopdf/{id}', 'SolicitudController@curriculopdfver');
 Route::get('/encuesta/{id}', 'SolicitudController@encuesta');
 
 Route::match(['get','post'], '/BTEgresado', 'logearController@login');//Egresado
-Route::match(['get','post'],'/exit', 'logearController@logout');
+Route::get('/exit', 'logearController@logout');
 Route::resource('/egresado', 'EgresadoController');
 Route::get('municipio/{id}','EgresadoController@getMunicipio');
 Route::get('administrador/{id}', 'EgresadoController@index');

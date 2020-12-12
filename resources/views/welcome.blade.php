@@ -1,99 +1,60 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<html>
+<head>
+	<title>Bolsa de trabajo</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1">
+	@section('colores')
+	<link rel="stylesheet" type="text/css" href="{{URL::asset('css/hola.css')}}">
+     <link rel="stylesheet" type="text/css" href="{{URL::asset('fonts/style.css')}}">
+     <link rel="stylesheet" type="text/css" href="{{URL::asset('css/hola.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{URL::asset('css/login.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{URL::asset('css/hola2.css')}}"> 
+    <link rel="stylesheet" type="text/css" href="{{URL::asset('icoon/style.css')}}">
+    <link rel="stylesheet" type="text/css" href="https://www.jquery-az.com/javascript/alert/dist/sweetalert.css">
+	<script src="https://www.jquery-az.com/javascript/alert/dist/sweetalert-dev.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	@show
 
-        <title>Laravel</title>
+	<style>
+		header{
+            width: 100%;
+            background:  #1b5583;
+            color: #fff;
+            padding: 1em;
+            text-color: white;
+        }
+	</style>
+</head>
+<body>
+	<header>
+		<div class="row">
+			<div class="col-sm-3">
+				<img style="float: right;" src="/img/tecnm2.png" alt="" width="210" height="100">				
+			</div>
+			<div class="col-sm-6 text-center" >
+				<h3 style="color: gold">SISTEMA DE BOLSA DE TRABAJO</h3><br>
+				<h4>INSTITUTO TECNOLOGICO DE TUXTLA GUTIERREZ</h4>
+			</div>
+			<div class="col-sm-3">
+				<img src="/img/teclogoittg.png" alt="" width="112" height="112" >				
+			</div>
+			
+		</div>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
-        </div>
-    </body>
+	</header>
+	<div class="container">
+        
+        <div class="card card-container" style="align-content: center">
+            <strong >Bienvenido(a) Selecciona Una Opción Para Loguearte.</strong>
+            <br>
+            <a href="/BTEgresado" class="btn btn-primary"> Egresado</a>
+            <br>
+            <a href="/BTEmpresa" class="btn btn-primary"> Empresa</a>
+            <br>
+            <a href="/BTAdministradora" class="btn btn-primary"> Administradora</a>
+        </div><!-- /card-container -->
+    </div>
+</body>
 </html>

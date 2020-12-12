@@ -167,7 +167,7 @@
             </li>
             @endif
             <li class="treeview">
-              <a href="{{url('/BTEgresado')}}">
+              <a href="{{url('/exit')}}">
                 <i class="fa fa-close"></i> <span>Salir</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>

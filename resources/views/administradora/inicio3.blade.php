@@ -66,7 +66,7 @@
                     
                     <div class="pull-right">
                       <a href="#" class="btn btn-default btn-flat">Cerrar</a>
-                      <a href="{{url('/BTAdministradora')}}" class="btn btn-default btn-flat">Salir</a>
+                      <a href="{{url('/salir')}}" class="btn btn-default btn-flat">Salir</a>
                     </div>
                   </li>
                 </ul>
@@ -128,7 +128,7 @@
             </li>
             
             <li class="treeview">
-              <a href="{{url('/BTAdministradora')}}">
+              <a href="{{url('/salir')}}">
                 <i class="fa fa-close"></i> <span>Salir</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>

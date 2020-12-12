@@ -21,6 +21,11 @@ class EmpresaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         $empresa = Empresa::all();
@@ -44,7 +49,8 @@ class EmpresaController extends Controller
      */
     public function create()
     {
-        
+        abort(404, 'Página No Encontrada');
+
     }
 
     /**
@@ -165,6 +171,7 @@ class EmpresaController extends Controller
     public function destroy($id)
     {
         //
+        abort(404, 'Página No Encontrada');
     }
 
     public function nuevo(){
