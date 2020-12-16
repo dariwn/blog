@@ -1,5 +1,27 @@
 @extends('empresa.inicio1')
 @section('contenido')
+<script type="text/javascript">
+
+	Filevalidation = () => { 
+		  const fi = document.getElementById('file'); 
+		  // Check if any file is selected. 
+		  if (fi.files.length > 0) { 
+			  for (const i = 0; i <= fi.files.length - 1; i++) { 
+  
+				  const fsize = fi.files.item(i).size; 
+				  const file = Math.round((fsize / 1024)); 
+				  // The size of the file. 
+				  if (file >= 2000) { 
+					  alert( 
+					  "El archivo que intenta subir es demasiado grande, seleccione un archivo menor a 2 Mb (2048 Kilobytes)"); 
+				  } else { 
+					  document.getElementById('size').innerHTML = '<b>'
+					  + file + '</b> KB'; 
+				  } 
+			  } 
+		  } 
+	  } 
+  </script>
 
 <div class="container">
       <div class="row">
@@ -17,7 +39,16 @@
                 <div class="col-md-3 col-lg-3 " align="center"> 
         <div id="load_img">
           <img class="img-responsive" src="{{asset('Imagenes/empresas/'.$empresa->imagen)}}" height="150px" width="150px">
-        </div>
+		</div>
+		
+		<div class="form-row">
+			<div class="col">
+				<div class="input-group-prepend">
+					<label class="input-group-text">Subir Imagen: </label>
+					<input accept="image/*" type="file" id="file" name="imagen" onchange="Filevalidation();">
+				</div> 
+			</div>                               
+		  </div>
 
 
         <br>        

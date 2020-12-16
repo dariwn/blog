@@ -46,8 +46,8 @@
 	</header>
 	<div class="container">
         
-        <div class="card card-container" style="align-content: center">
-            <strong >Bienvenido(a) Selecciona Una Opción Para Loguearte.</strong>
+        <div class="card card-container " style="align-content: center">
+            <strong >Bienvenido(a) Selecciona Una Opción Para Iniciar Sesión.</strong>
             <br>
             <a href="/BTEgresado" class="btn btn-primary"> Egresado</a>
             <br>

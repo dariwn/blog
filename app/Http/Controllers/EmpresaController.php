@@ -12,6 +12,7 @@ use App\Municipio;
 use App\Pais;
 use App\User;
 use DB;
+use Illuminate\Support\Facades\File;
 
 
 class EmpresaController extends Controller
@@ -88,6 +89,7 @@ class EmpresaController extends Controller
             $file->move(public_path().'/imagenes/empresas/',$file->getClientOriginalName());
             $empresa->imagen=$file->getClientOriginalName();
         }
+        
 
         $empresa->save();
         return redirect()->route('empresa.index');
@@ -141,7 +143,12 @@ class EmpresaController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
         $empresa = Empresa::findOrFail($id);
+
+        $path = public_path().'/imagenes/empresas/'.$empresa->imagen;
+        File::delete($path);
+
         $empresa->nombre = $request->nombre;
         $empresa->rfc = $request->rfc;
         $empresa->descripcion = $request->descripcion;
@@ -158,6 +165,13 @@ class EmpresaController extends Controller
         $empresa->cargo = $request->cargo;
         $empresa->numero_cel = $request->numero_cel;
         $empresa->email = $request->email;
+
+        if(Input::hasFile('imagen')){
+            $file=Input::file('imagen');
+            $file->move(public_path().'/imagenes/empresas/',$file->getClientOriginalName());
+            $empresa->imagen=$file->getClientOriginalName();
+        }
+
         $empresa->save();
         return redirect()->route('empresa.index');
     }

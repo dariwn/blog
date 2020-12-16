@@ -59,6 +59,9 @@ Route::get('/curriculopdf', 'CurriculoController@curriculopdf');
 Route::get('/onda', 'CurriculoController@curriculo')->name('curriculo.crear');
 Route::get('municipio/{id}','CurriculoController@getMunicipio');
 Route::get('/crear', 'EgresadoController@bienvenido')->name('egresado.bienvenido');
+Route::get('/registro', function () {
+    return view('egresado.registro');
+});
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
