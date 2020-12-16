@@ -43,6 +43,7 @@ Route::post('/cambio-estatus/{id}', 'SolicitudController@boton')->name('boton');
 Route::resource('/bienvenido', 'SolicitudperfilController');
 Route::get('/curriculopdf/{id}', 'SolicitudController@curriculopdfver');
 Route::get('/encuesta/{id}', 'SolicitudController@encuesta');
+Route::resource('/RegistroEmpresa', 'RegistroEmController');
 
 Route::match(['get','post'], '/BTEgresado', 'logearController@login');//Egresado
 Route::get('/exit', 'logearController@logout');
@@ -59,9 +60,10 @@ Route::get('/curriculopdf', 'CurriculoController@curriculopdf');
 Route::get('/onda', 'CurriculoController@curriculo')->name('curriculo.crear');
 Route::get('municipio/{id}','CurriculoController@getMunicipio');
 Route::get('/crear', 'EgresadoController@bienvenido')->name('egresado.bienvenido');
-Route::get('/registro', function () {
-    return view('egresado.registro');
-});
+
+Route::resource('/RegistroEgresado', 'RegistroEController');
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -414,5 +414,6 @@ class EgresadoController extends Controller
             return back();
         }
     }
-  
+
+
 }

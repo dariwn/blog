@@ -13,9 +13,9 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Registro De Usuario Egresado</div>
+                <div class="card-header">Registro De Usuario Empresa</div>
                 <div class="card-body">
-                    <form  action="{{ Route('RegistroEgresado.store') }}" method="POST">
+                    <form  action="{{ Route('RegistroEmpresa.store') }}" method="POST">
                                          
                     @csrf   
                     <div class="form-group row">

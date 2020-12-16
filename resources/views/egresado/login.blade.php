@@ -23,7 +23,7 @@
                 <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Contraseña" required>
                 <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Entrar</button>
             </form><!-- /form -->
-            <a href={{url('/registro')}} >¿Aun no te has registrado? Registrate.</a>
+            <a href={{route('RegistroEgresado.create')}} >¿Aun no te has registrado? Registrate.</a>
         </div><!-- /card-container -->
     </div>
 @endsection
