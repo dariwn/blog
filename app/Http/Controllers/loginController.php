@@ -21,7 +21,9 @@ class loginController extends Controller
              $password = $request->password;
 
             $user= User::where('username', '=', $username)->first();
-            //dd($user);
+            if($user == null){
+                return back();
+            }
             //dd($password);
             
             //dd(Hash::check('$password', $user->password));
