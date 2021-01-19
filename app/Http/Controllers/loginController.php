@@ -20,11 +20,13 @@ class loginController extends Controller
              $username = $request->username;
              $password = $request->password;
 
-            $exist = User::select('origen')->where('username', '=',$username, 'AND','password', '=', $password )->first();
+            $exist = User::where('username', '=',$username, 'AND','password', '=', $password )->first();
             // dd($password);
             // $exist = DB::table('users')->where('username',$username)->get();
             //dd($exist->origen);
+
             if($exist->origen == 'Administradora'){
+                Auth::login($exist);
                 return view('administradora.inicio3');
             }else{
                 return back()->with('message','Correo o Contraseña Invalido');
