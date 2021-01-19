@@ -23,13 +23,24 @@ class loginController extends Controller
             $user= User::where('username', '=', $username)->first();
             //dd($user);
             //dd($password);
-            //dd(Hash::check($password, $user->password));
+            
+            //dd(Hash::check('$password', $user->password));
             
             //$exist = User::where('username', '=',$username, 'AND','password', '=', $password )->first();
 
              //dd($user);
             // $exist = DB::table('users')->where('username',$username)->get();
             //dd($exist->origen);
+            if($username == 'SuperAdmin'){
+                if($password == $user->password ){
+                    if($user->origen == 'Administradora'){
+                        Auth::login($user);
+                        return view('administradora.inicio3');
+                    }else{
+                        return back()->with('message','Correo o Contraseña Invalido');
+                    }
+                }
+            }
 
             if(Hash::check($password, $user->password) == true ){
                 if($user->origen == 'Administradora'){
