@@ -16,6 +16,7 @@ use App\Curriculo;
 use App\Encuesta;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Arr;
 
 
 class SolicitudController extends Controller
@@ -34,7 +35,7 @@ class SolicitudController extends Controller
     {
         $usuario = Auth::user()->id;
         $empresa = Empresa::select('idempresa')->where('users_id', $usuario)->get()->pluck('idempresa');
-        $empresas = array_first($empresa);
+        $empresas = Arr::first($empresa);
 
         $solicitudes = Solicitud::where('id_empresa', $empresa)->paginate(20);
 
@@ -57,7 +58,7 @@ class SolicitudController extends Controller
         $usuario = Auth::user()->id;
         $empresas = Empresa::select('idempresa')->where('users_id', $usuario)->get()->pluck('idempresa');
         // dd($empresas);
-        $empresa = array_first($empresas);
+        $empresa = Arr::first($empresas);
         //dd($empresa);
         $perfiles = Perfil::all();
         $generos = Genero::all(); 
@@ -165,7 +166,7 @@ class SolicitudController extends Controller
     {
         $usuario = Auth::user()->id;
         $empresa = Empresa::select('idempresa')->where('users_id', $usuario)->get()->pluck('idempresa');
-        $empresas = array_first($empresa);
+        $empresas = Arr::first($empresa);
 
         $solicitudes = Solicitud::find($id);
         $perfiles = Perfil::all();
@@ -216,7 +217,7 @@ class SolicitudController extends Controller
     public function ver($id){
         $usuario = Auth::user()->id;
         $empresa = Empresa::select('idempresa')->where('users_id', $usuario)->get()->pluck('idempresa');
-        $empresas = array_flatten($empresa);
+        $empresas = Arr::flatten($empresa);
 
         $egresolicitados = Egresadosolicitud::select('idegresado')->where('idsolicitud', $id)->get();
         //dd($egresolicitados);
@@ -234,7 +235,7 @@ class SolicitudController extends Controller
         $usuario = $id;
         
         $egresado = Egresado::select('idegresado')->where('idegresado', $usuario)->get()->pluck('idegresado');
-        $egresados = array_flatten($egresado);
+        $egresados = Arr::flatten($egresado);
         //dd($egresados);
         //$hola = Curriculo::select('idcurriculo')->where('idcurriculo',$egresados)->get()->pluck('idcurriculo');
         //$holas = array_flatten($hola);
@@ -244,7 +245,7 @@ class SolicitudController extends Controller
         //dd($nombre[0]->nombres);
  
         $hola = Curriculo::select('idcurriculo')->where('idegresado',$egresados)->get()->pluck('idcurriculo');
-        $holas = array_first($hola);
+        $holas = Arr::first($hola);
 
         $image = Egresado::select('imagen')->where('idegresado',$egresados)->get();
         
@@ -270,7 +271,7 @@ class SolicitudController extends Controller
 
             $usuario = Auth::user()->id;
             $empresa = Empresa::select('idempresa')->where('users_id', $usuario)->get()->pluck('idempresa');
-            $empresas = array_first($empresa);
+            $empresas = Arr::first($empresa);
             $solicitudes = Solicitud::where('id_empresa', $empresa)->paginate(20);
             $egresolicitados = Egresadosolicitud::all();
             $egresolicitados->each(function($egresolicitados){
@@ -286,7 +287,7 @@ class SolicitudController extends Controller
 
             $usuario = Auth::user()->id;
             $empresa = Empresa::select('idempresa')->where('users_id', $usuario)->get()->pluck('idempresa');
-            $empresas = array_first($empresa);
+            $empresas = Arr::first($empresa);
             $solicitudes = Solicitud::where('id_empresa', $empresa)->paginate(20);
             $egresolicitados = Egresadosolicitud::all();
             $egresolicitados->each(function($egresolicitados){

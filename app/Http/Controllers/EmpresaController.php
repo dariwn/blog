@@ -13,6 +13,7 @@ use App\Pais;
 use App\User;
 use DB;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Arr;
 
 
 class EmpresaController extends Controller
@@ -38,7 +39,7 @@ class EmpresaController extends Controller
         $usuario = Auth::user()->id;
         //dd($usuario);
         $empresa = Empresa::select('idempresa')->where('users_id', $usuario)->get()->pluck('idempresa');
-        $empresas = array_flatten($empresa);
+        $empresas = Arr::flatten($empresa);
         return view('empresa.inicio1', compact('empresas'));
       }
   }
@@ -84,8 +85,8 @@ class EmpresaController extends Controller
         $empresa->email = $request->get('email');
         $empresa->numero_cel = $request->get('numero_cel');
 
-        if(Input::hasFile('imagen')){
-            $file=Input::file('imagen');
+        if($request->hasFile('imagen')){
+            $file=$request->file('imagen');
             $file->move(public_path().'/imagenes/empresas/',$file->getClientOriginalName());
             $empresa->imagen=$file->getClientOriginalName();
         }
@@ -109,7 +110,7 @@ class EmpresaController extends Controller
        // dd($usuario);
         $empresa = Empresa::select('idempresa')->where('users_id', $usuario)->get();
        // dd($empresa);
-        $empresas = array_flatten($empresa);
+        $empresas = Arr::flatten($empresa);
         //-------------------------------
         $empresa = Empresa::find($tipo);
         //dd($empresa);
@@ -126,7 +127,7 @@ class EmpresaController extends Controller
     {
         $usuario = Auth::user()->id;
         $empresa = Empresa::select('idempresa')->where('users_id', $usuario)->get()->pluck('idempresa');
-        $empresas = array_flatten($empresa);
+        $empresas = Arr::flatten($empresa);
 
         $estados = Estado::all();
         $localidades = Municipio::all();
@@ -143,11 +144,11 @@ class EmpresaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+       // dd($request);
         $empresa = Empresa::findOrFail($id);
 
-        $path = public_path().'/imagenes/empresas/'.$empresa->imagen;
-        File::delete($path);
+        // $path = public_path().'/imagenes/empresas/'.$empresa->imagen;
+        // File::delete($path);
 
         $empresa->nombre = $request->nombre;
         $empresa->rfc = $request->rfc;
@@ -166,8 +167,13 @@ class EmpresaController extends Controller
         $empresa->numero_cel = $request->numero_cel;
         $empresa->email = $request->email;
 
-        if(Input::hasFile('imagen')){
-            $file=Input::file('imagen');
+        if($request->hasFile('imagen')){
+
+            $path = public_path().'/imagenes/empresas/'.$empresa->imagen;
+            //dd($path);
+            File::delete($path);
+
+            $file=$request->file('imagen');
             $file->move(public_path().'/imagenes/empresas/',$file->getClientOriginalName());
             $empresa->imagen=$file->getClientOriginalName();
         }
@@ -191,7 +197,7 @@ class EmpresaController extends Controller
     public function nuevo(){
         $usuario = Auth::user()->id;
         $empresa = Empresa::select('idempresa')->where('users_id', $usuario)->get()->pluck('idempresa');
-        $empresas = array_flatten($empresa);
+        $empresas = Arr::flatten($empresa);
 
         $estados = Estado::all();
         $localidades = DB::table('municipio')->get();

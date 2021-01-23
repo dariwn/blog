@@ -13,6 +13,7 @@ use App\Estado;
 use App\Perfil;
 use App\Municipio;
 use Barryvdh\DomPDF\Facade as PDF;
+use Illuminate\Support\Arr;
 
 class CurriculoController extends Controller
 {
@@ -195,13 +196,13 @@ class CurriculoController extends Controller
     {
         $usuario = Auth::user()->id;
         $egresado = Egresado::select('idegresado')->where('users_id', $usuario)->get()->pluck('idegresado');
-        $egresados = array_flatten($egresado);
+        $egresados = Arr::flatten($egresado);
 
         //$hola = Curriculo::select('idcurriculo')->where('idcurriculo',$egresados)->get()->pluck('idcurriculo');
         //$holas = array_flatten($hola);
 
         $hola = Curriculo::select('idcurriculo')->where('idegresado',$egresados)->get()->pluck('idcurriculo');
-        $holas = array_first($hola);
+        $holas = Arr::first($hola);
         
         $hola = Curriculo::find($holas);
         
@@ -218,7 +219,7 @@ class CurriculoController extends Controller
     {
         $usuario = Auth::user()->id;
         $egresado = Egresado::select('idegresado')->where('users_id', $usuario)->get()->pluck('idegresado');
-        $egresados = array_first($egresado);
+        $egresados = Arr::first($egresado);
 /*
         $hola = Curriculo::select('idcurriculo')->where('idcurriculo',$egresados)->get()->pluck('idcurriculo');
         $holas = array_flatten($hola);*/
@@ -392,7 +393,7 @@ class CurriculoController extends Controller
     public function curriculo(){
         $usuario = Auth::user()->id;
         $egresado = Egresado::select('idegresado')->where('users_id', $usuario)->get()->pluck('idegresado');
-        $egresados = array_first($egresado);
+        $egresados = Arr::first($egresado);
 
         $idiomas = Idioma::all();
         $jerarquias = Jerarquia::all();
@@ -415,13 +416,13 @@ class CurriculoController extends Controller
         //creacion del pdf y guardado        
         $usuario = Auth::user()->id;
         $egresado = Egresado::select('idegresado')->where('users_id', $usuario)->get()->pluck('idegresado');
-        $egresados = array_flatten($egresado);
+        $egresados = Arr::flatten($egresado);
  
         //$hola = Curriculo::select('idcurriculo')->where('idcurriculo',$egresados)->get()->pluck('idcurriculo');
         //$holas = array_flatten($hola);
  
         $hola = Curriculo::select('idcurriculo')->where('idegresado',$egresados)->get()->pluck('idcurriculo');
-        $holas = array_first($hola);
+        $holas = Arr::first($hola);
 
         $image = Egresado::select('imagen')->where('idegresado',$egresados)->get();
         

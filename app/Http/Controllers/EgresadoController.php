@@ -21,6 +21,7 @@ use DB;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Arr;
 
 
 class EgresadoController extends Controller
@@ -49,7 +50,7 @@ class EgresadoController extends Controller
         $egresado = Egresado::select('idegresado')->where('users_id', $usuario)->first();
        //dd($egresado->idegresado);
        $dato = $egresado->idegresado;
-        $egresados = array_flatten($egresado);
+        $egresados = Arr::flatten($egresado);
         
         if($usuario = Auth::user()->curriculo == 1){
             $hola = 0;
@@ -136,7 +137,7 @@ class EgresadoController extends Controller
         //dd($usuario);
         $egresado = Egresado::select('idegresado')->where('users_id', $usuario)->first();
        //dd($egresado);
-        $egresados = array_flatten($egresado);
+        $egresados = Arr::flatten($egresado);
         
         //$hola1 = DB::table('curriculo')->whereIn('idcurriculo', $egresado)->get();
         //$hola = $hola1[0]->idcurriculo;
@@ -158,7 +159,7 @@ class EgresadoController extends Controller
     {
         $usuario = Auth::user()->id;
         $egresado = Egresado::select('idegresado')->where('users_id', $usuario)->first();
-        $egresados = array_flatten($egresado);
+        $egresados = Arr::flatten($egresado);
         //dd($egresado);
         
         // $hola1 = DB::table('curriculo')->whereIn('idcurriculo', $egresado)->get();
@@ -186,8 +187,7 @@ class EgresadoController extends Controller
        
         $egresado = Egresado::findOrFail($id);        
 
-        $path = public_path().'/img'.$egresado->imagen;
-        File::delete($path);
+       
 
         $egresado->nombres = $request->nombres;
         $egresado->correo = $request->correo;
@@ -203,6 +203,9 @@ class EgresadoController extends Controller
         $egresado->municipio_id = $request->municipio_id;
 
         if($request->hasFile('file')){
+            $path = public_path().'/img'.$egresado->imagen;
+            File::delete($path);
+            
             $archivo = $request->file('file');
             $nombre = time().$archivo->getClientOriginalName();
             $archivo->move(public_path().'/img',$nombre);
@@ -234,11 +237,11 @@ class EgresadoController extends Controller
     public function bienvenido(){
         $usuario = Auth::user()->id;
         $egresado = Egresado::select('idegresado')->where('users_id', $usuario)->get()->pluck('idegresado');
-        $egresados = array_flatten($egresado);
+        $egresados = Arr::flatten($egresado);
 
         
         $hola = Curriculo::select('idcurriculo')->get();
-        $holas = array_flatten($hola);
+        $holas = Arr::flatten($hola);
         
         $paises = Pais::all();
         $estados = Estado::all();
@@ -255,12 +258,12 @@ class EgresadoController extends Controller
         
        
         $egresados = Egresado::select('perfiles_id')->where('users_id', $usuario)->get()->pluck('perfiles_id');
-        $a = array_first($egresados);
+        $a = Arr::first($egresados);
         //dd($egresado);
 
         $egresado1 = Egresado::select('idegresado')->where('users_id', $usuario)->first();
        //dd($egresado);
-        $egresados1 = array_flatten($egresado1);
+        $egresados1 = Arr::flatten($egresado1);
         //$hola1 = DB::table('curriculo')->whereIn('idcurriculo', $egresado1)->get();
         //$hola = $hola1[0]->idcurriculo;               
         $hola = $egresado1->idegresado;
@@ -286,12 +289,12 @@ class EgresadoController extends Controller
 
         $usuario = Auth::user()->id;
         $egresado = Egresado::select('idegresado')->where('users_id', $usuario)->get();
-        $egresados = array_first($egresado);
+        $egresados = Arr::first($egresado);
         //dd($egresado);
 
         $egresado1 = Egresado::select('idegresado')->where('users_id', $usuario)->get();
         //dd($egresado);
-         $egresados1 = array_flatten($egresado1);
+         $egresados1 = Arr::flatten($egresado1);
          //$hola1 = DB::table('curriculo')->whereIn('idcurriculo', $egresado1)->get();
          //$hola = $hola1[0]->idcurriculo;   
          $hola = $egresado[0]->idegresado; 
@@ -299,20 +302,20 @@ class EgresadoController extends Controller
         
         $solicitudes = Solicitud::find($id);
         $a = Solicitud::select('id_empresa')->where('idsolicitud',$id)->get();
-        $b = array_first($a);
+        $b = Arr::first($a);
         //dd($b);
 
         $e = Empresa::select('nombre')->whereIn('idempresa',$b)->get();
-        $empresa = array_first($e);
+        $empresa = Arr::first($e);
         //dd($e);
 
 
         $j = Egresado::select('perfiles_id')->get()->pluck('perfiles_id');
         //dd($j);
-        $w = array_first($j);
+        $w = Arr::first($j);
 
         $p = Perfil::select('carrera')->where('idperfiles',$w)->get()->pluck('carrera');
-        $perfil = array_first($p);
+        $perfil = Arr::first($p);
 
         return view('egresado.postularse',compact('egresados','solicitudes','empresa','b','perfil','hola'));
     }
@@ -322,7 +325,7 @@ class EgresadoController extends Controller
         $usuario = Auth::user()->id;
         $egresado1 = Egresado::select('idegresado')->where('users_id', $usuario)->get();
         //dd($egresado1);
-         $egresados1 = array_flatten($egresado1);
+         $egresados1 = Arr::flatten($egresado1);
          //$hola1 = DB::table('curriculo')->whereIn('idcurriculo', $egresado1)->get();
          //$hola = $hola1[0]->idcurriculo;  
          $hola = $egresado1[0]->idegresado; 
@@ -384,7 +387,7 @@ class EgresadoController extends Controller
         //dd($hola);
 
         $postulados = DB::table('egresadosolicitud')->whereIn('idegresado',$egresado)->get();
-        $egresados = array_flatten($egresado);
+        $egresados = Arr::flatten($egresado);
         //$postulados = Egresadosolicitud::where('idegresado',$egresados)->get();
         //dd($postulados[0]);
         /*$postulados->each(function($postulados){

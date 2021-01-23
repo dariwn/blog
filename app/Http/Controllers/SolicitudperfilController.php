@@ -9,6 +9,7 @@ use App\Empresa;
 use App\Solicitud;
 use App\Perfil;
 use DB;
+use Illuminate\Support\Arr;
 
 class SolicitudperfilController extends Controller
 {
@@ -75,12 +76,12 @@ class SolicitudperfilController extends Controller
 
         $usuario = Auth::user()->id;
         $empresa = Empresa::select('idempresa')->where('users_id', $usuario)->get()->pluck('idempresa');
-        $empresas = array_first($empresa);
+        $empresas = Arr::first($empresa);
 
         $bienvenido = Solicitud::where('idsolicitud',$id)->first();
 
         $solici = Solicitud::select('idsolicitud')->where('idsolicitud',$id)->get()->pluck('idsolicitud');
-        $sola = array_first($solici);
+        $sola = Arr::first($solici);
 
         $perfiles = Perfil::all();
         $salu = Solicitud::all();
