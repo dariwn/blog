@@ -148,13 +148,27 @@
     
                 @endif    
                   @endif  
+
+                  <?php
+                    $id = Auth::user()->id;
+                  ?>
+                  <li class="treeview">
+                    <a href="#"><i class="fa fa-cog"></i><span>Ajustes de la cuenta</span>
+                      <i class="fa fa-angle-left pull-right"></i>
+                    <ul class="treeview-menu">
+                      <li><a href="{{route('ajustesemp.show',$id)}}"><i class="fa fa-user"></i>Cambiar Usuario/Contraseña</a></li>                                                    
+                    </ul>              
+                  </a>
+                  </li>
+
                   <li class="treeview">
                     <a href="{{url('/exitempresa')}}">
                       <i class="fa fa-close"></i> <span>Salir</span>
                       <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     
-                  </li>  
+                  </li> 
+
           </ul>
         </section>
         <!-- /.sidebar -->

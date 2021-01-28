@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Redirect;
 use App\User;
 use Auth;
 use DB;
+use App\Empresa;
+use Illuminate\Support\Arr;
 
 
 
@@ -65,8 +67,18 @@ class UserEmpreController extends Controller
      */
     public function show($id)
     {
-        //
-        abort(404, 'Página No Encontrada');
+        //   
+        if(Auth::user()->origen == 'Empresa'){ 
+        $usuario = User::findOrFail($id);
+        //dd($usuario);
+        $usuario1 = Auth::user()->id;
+        $empresa = Empresa::select('idempresa')->where('users_id', $usuario1)->get()->pluck('idempresa');
+        $empresas = Arr::flatten($empresa);
+
+        return view('empresa.editusuario', compact('usuario','empresas'));
+        }else{
+            abort(404, 'Pagina No Encontrada');
+        }
     }
 
     /**
@@ -77,7 +89,7 @@ class UserEmpreController extends Controller
      */
     public function edit($id)
     {
-        //
+        //        
         if(Auth::user()->origen == 'Administradora'){
         $usuario = User::findOrFail($id);
         //dd($usuario);
@@ -98,6 +110,15 @@ class UserEmpreController extends Controller
     public function update(Request $request, $id)
     {
         //
+        if(Auth::user()->origen == 'Empresa'){
+            $usuario = User::findOrFail($id);
+
+            $usuario->username = $request->username;
+            $usuario->password =  bcrypt($request->contraseña);
+
+            $usuario->save();
+            return redirect('/empresa');
+        }
         if(Auth::user()->origen == 'Administradora'){
         $usuario = User::findOrFail($id);
 

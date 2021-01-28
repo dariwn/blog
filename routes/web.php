@@ -44,6 +44,7 @@ Route::resource('/bienvenido', 'SolicitudperfilController');
 Route::get('/curriculopdf/{id}', 'SolicitudController@curriculopdfver');
 Route::get('/encuesta/{id}', 'SolicitudController@encuesta');
 Route::resource('/RegistroEmpresa', 'RegistroEmController');
+Route::resource('ajustesemp', 'UserEmpreController');
 
 Route::match(['get','post'], '/BTEgresado', 'logearController@login');//Egresado
 Route::get('/exit', 'logearController@logout');

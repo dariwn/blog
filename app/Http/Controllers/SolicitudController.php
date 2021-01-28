@@ -33,6 +33,7 @@ class SolicitudController extends Controller
     
     public function index(Request $request)
     {
+        if(Auth::user()->origen == 'Empresa'){
         $usuario = Auth::user()->id;
         $empresa = Empresa::select('idempresa')->where('users_id', $usuario)->get()->pluck('idempresa');
         $empresas = Arr::first($empresa);
@@ -46,6 +47,9 @@ class SolicitudController extends Controller
             $egresolicitados->egresado;
         });
         return view('solicitud.ver', compact('solicitudes','empresas','egresolicitados'));
+        }else{
+            abort(404, 'Página No Encontrada');
+        }
     }
 
     /**
@@ -55,6 +59,7 @@ class SolicitudController extends Controller
      */
     public function create()
     {
+        if(Auth::user()->origen == 'Empresa'){
         $usuario = Auth::user()->id;
         $empresas = Empresa::select('idempresa')->where('users_id', $usuario)->get()->pluck('idempresa');
         // dd($empresas);
@@ -64,6 +69,9 @@ class SolicitudController extends Controller
         $generos = Genero::all(); 
         $empresas = Empresa::find($empresa);
         return view('solicitud.crear', compact('empresa','empresas','perfiles','generos'));
+        }else{
+            abort(404, 'Página No Encontrada');
+        }
     }
 
     /**
@@ -74,6 +82,7 @@ class SolicitudController extends Controller
      */
     public function store(Request $request)
     { 
+        if(Auth::user()->origen == 'Empresa'){
         $usuario = Auth::user()->id;
         $empresas = Empresa::select('idempresa')->where('users_id', $usuario)->get();
         //dd($empresas[0]->idempresa);
@@ -141,6 +150,9 @@ class SolicitudController extends Controller
         DB::rollBack();
         return redirect("/solicitud")->with('ok','ERROR');
        } 
+        }else{
+            abort(404, 'Página No Encontrada');
+        }
     }
 
 
@@ -164,6 +176,7 @@ class SolicitudController extends Controller
      */
     public function edit($id)
     {
+        if(Auth::user()->origen == 'Empresa'){
         $usuario = Auth::user()->id;
         $empresa = Empresa::select('idempresa')->where('users_id', $usuario)->get()->pluck('idempresa');
         $empresas = Arr::first($empresa);
@@ -172,6 +185,9 @@ class SolicitudController extends Controller
         $perfiles = Perfil::all();
         $generos = Genero::all();
         return view('solicitud.editar', compact('empresas', 'solicitudes', 'perfiles','generos'));
+        }else{
+            abort(404, 'Página No Encontrada');
+        }
     }
 
     /**
@@ -183,6 +199,7 @@ class SolicitudController extends Controller
      */
     public function update(Request $request, $id)
     { 
+        if(Auth::user()->origen == 'Empresa'){
         $solicitudes = Solicitud::find($id);
         $solicitudes->nombredelpuesto = $request->nombredelpuesto;
         $solicitudes->salario = $request->salario;
@@ -200,6 +217,9 @@ class SolicitudController extends Controller
         $solicitudes->updated_at = date('Y-m-d H:m:s');
         $solicitudes->save();
         return redirect()->route('solicitud.index');
+        }else{
+            abort(404, 'Página No Encontrada');
+        }
     }
 
     /**
@@ -215,6 +235,7 @@ class SolicitudController extends Controller
     }
 
     public function ver($id){
+        if(Auth::user()->origen == 'Empresa'){
         $usuario = Auth::user()->id;
         $empresa = Empresa::select('idempresa')->where('users_id', $usuario)->get()->pluck('idempresa');
         $empresas = Arr::flatten($empresa);
@@ -228,6 +249,7 @@ class SolicitudController extends Controller
         });
         
         return view('solicitud.postulado', compact('postulados', 'empresas'));
+        }
     }
 
     public function curriculopdfver($id){

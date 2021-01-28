@@ -30,19 +30,23 @@ class EmpresaController extends Controller
     
     public function index()
     {
-        $empresa = Empresa::all();
-        if($empresa == null){
-            return view('empresa.inicio1', compact('empresa'));
-        }
+        if(Auth::user()->origen == 'Empresa'){
+            $empresa = Empresa::all();
+            if($empresa == null){
+                return view('empresa.inicio1', compact('empresa'));
+            }
 
-        else{
-        $usuario = Auth::user()->id;
-        //dd($usuario);
-        $empresa = Empresa::select('idempresa')->where('users_id', $usuario)->get()->pluck('idempresa');
-        $empresas = Arr::flatten($empresa);
-        return view('empresa.inicio1', compact('empresas'));
-      }
-  }
+            else{
+            $usuario = Auth::user()->id;
+            //dd($usuario);
+            $empresa = Empresa::select('idempresa')->where('users_id', $usuario)->get()->pluck('idempresa');
+            $empresas = Arr::flatten($empresa);
+            return view('empresa.inicio1', compact('empresas'));
+            }
+        }else{
+            abort(404, 'Página No Encontrada');
+        }
+    }
   
     /**
      * Show the form for creating a new resource.
@@ -63,6 +67,7 @@ class EmpresaController extends Controller
      */
     public function store(Request $request)
     {
+        if(Auth::user()->origen == 'Empresa'){
         $usuario = Auth::user()->id;
         $admin = DB::table('users')->where('id', $usuario)->update(['tipo' => 0]);
         $empresa = new Empresa;
@@ -94,6 +99,9 @@ class EmpresaController extends Controller
 
         $empresa->save();
         return redirect()->route('empresa.index');
+        }else{
+            abort(404, 'Página No Encontrada');
+        }
     }
 
     /**
@@ -104,6 +112,7 @@ class EmpresaController extends Controller
      */
     public function show($id)
     {
+        if(Auth::user()->origen == 'Empresa'){
         $tipo = $id;
         //dd($tipo);
         $usuario = Auth::user()->id;
@@ -115,6 +124,9 @@ class EmpresaController extends Controller
         $empresa = Empresa::find($tipo);
         //dd($empresa);
         return view('empresa.show', compact('empresa','empresas'));
+        }else{
+            abort(404, 'Página No Encontrada');
+        }
     }
     
     /**
@@ -125,6 +137,7 @@ class EmpresaController extends Controller
      */
     public function edit($id)
     {
+        if(Auth::user()->origen == 'Empresa'){
         $usuario = Auth::user()->id;
         $empresa = Empresa::select('idempresa')->where('users_id', $usuario)->get()->pluck('idempresa');
         $empresas = Arr::flatten($empresa);
@@ -133,6 +146,9 @@ class EmpresaController extends Controller
         $localidades = Municipio::all();
         $empresa = Empresa::find($id);
         return view('empresa.editar', compact('empresa', 'estados','localidades','empresas'));
+        }else{
+            abort(404, 'Página No Encontrada');
+        }
     }
 
     /**
@@ -145,6 +161,7 @@ class EmpresaController extends Controller
     public function update(Request $request, $id)
     {
        // dd($request);
+       if(Auth::user()->origen == 'Empresa'){
         $empresa = Empresa::findOrFail($id);
 
         // $path = public_path().'/imagenes/empresas/'.$empresa->imagen;
@@ -180,6 +197,9 @@ class EmpresaController extends Controller
 
         $empresa->save();
         return redirect()->route('empresa.index');
+        }else{
+            abort(404, 'Página No Encontrada');
+        }
     }
 
     /**
@@ -195,6 +215,7 @@ class EmpresaController extends Controller
     }
 
     public function nuevo(){
+        if(Auth::user()->origen == 'Empresa'){
         $usuario = Auth::user()->id;
         $empresa = Empresa::select('idempresa')->where('users_id', $usuario)->get()->pluck('idempresa');
         $empresas = Arr::flatten($empresa);
@@ -204,6 +225,9 @@ class EmpresaController extends Controller
         $paises = Pais::all();
         //dd($localidades);
         return view('empresa.crear',compact('localidades','estados','paises', 'empresas'));
+        }else{
+            abort(404, 'Página No Encontrada');
+        }
     }
 
     public function getMunicipio(Request $request, $id){

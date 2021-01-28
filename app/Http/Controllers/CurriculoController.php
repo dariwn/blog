@@ -194,6 +194,7 @@ class CurriculoController extends Controller
      */
     public function show($id)
     {
+        if(Auth::user()->origen == 'Egresado'){
         $usuario = Auth::user()->id;
         $egresado = Egresado::select('idegresado')->where('users_id', $usuario)->get()->pluck('idegresado');
         $egresados = Arr::flatten($egresado);
@@ -207,6 +208,9 @@ class CurriculoController extends Controller
         $hola = Curriculo::find($holas);
         
         return view('curriculo.show',compact('holas', 'hola','egresados'));
+        }else{
+            abort(404, 'Pagina No Encontrada');
+        }
     }
 
     /**
@@ -217,6 +221,7 @@ class CurriculoController extends Controller
      */
     public function edit($id)
     {
+        if(Auth::user()->origen == 'Egresado'){
         $usuario = Auth::user()->id;
         $egresado = Egresado::select('idegresado')->where('users_id', $usuario)->get()->pluck('idegresado');
         $egresados = Arr::first($egresado);
@@ -233,6 +238,9 @@ class CurriculoController extends Controller
         $municipios = Municipio::all();
 
         return view("curriculo.editar",compact('egresados','hola','idiomas','jerarquias','perfiles','estados','municipios','hola'));
+        }else{
+            abort(404, 'Pagina No Encontrada');
+        }
     }
 
     /**
@@ -244,6 +252,8 @@ class CurriculoController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        if(Auth::user()->orgien == 'Egresado'){
         //dd($request);
         $puestos = $request->puesto;
         //dd($puestos);
@@ -376,6 +386,9 @@ class CurriculoController extends Controller
         $hola->idperfiles = $request->idperfiles;
         $hola->save();
         return redirect()->route('egresado.index');
+        }else{
+            abort(404, 'Pagina No Encontrada');
+        }
     }
 
     /**
@@ -391,6 +404,7 @@ class CurriculoController extends Controller
     }
 
     public function curriculo(){
+        if(Auth::user()->orgien == 'Egresado'){
         $usuario = Auth::user()->id;
         $egresado = Egresado::select('idegresado')->where('users_id', $usuario)->get()->pluck('idegresado');
         $egresados = Arr::first($egresado);
@@ -402,6 +416,9 @@ class CurriculoController extends Controller
         $municipios = Municipio::all();
 
         return view('curriculo.crear',compact('egresados','idiomas','jerarquias','estados','municipios','perfiles'));
+        }else{
+            abort(404, 'Pagina No Encontrada');
+        }
     }
 
     

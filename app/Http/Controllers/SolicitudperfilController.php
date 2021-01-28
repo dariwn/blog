@@ -72,6 +72,7 @@ class SolicitudperfilController extends Controller
      */
     public function edit(Request $request, $id)
     {
+        if(Auth::user()->origen == 'Empresa'){
         $hola = Solicitudperfil::all()->where('idsolicitud',$id)->first();
 
         $usuario = Auth::user()->id;
@@ -98,6 +99,9 @@ class SolicitudperfilController extends Controller
         
         
         return view('bienvenido.editar',compact('perfiles','empresas','sola','hola','salu','bienvenido'));
+        }else{
+            abort(404, 'Página No Encontrada');
+        }
     }
 
     /**
@@ -109,7 +113,7 @@ class SolicitudperfilController extends Controller
      */
     public function update(Request $request, $id)
     {
-                         
+            if(Auth::user()->orgien == 'Empresa'){             
            //dd($request);
             $perfilactual = DB::table('solicitudperfil')->where('idsolicitud','=',$request->idsolicitud)->get();
             //dd($perfilactual);
@@ -138,6 +142,9 @@ class SolicitudperfilController extends Controller
             $hola->save();*/
         
         return redirect()->route('solicitud.index');
+        }else{
+            abort(404, 'Página No Encontrada');
+        }
     }
 
     /**

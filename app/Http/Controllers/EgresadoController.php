@@ -133,6 +133,7 @@ class EgresadoController extends Controller
      */
     public function show($id)
     {
+        if(Auth::user()->origen == 'Egresado'){
         $usuario = Auth::user()->id;
         //dd($usuario);
         $egresado = Egresado::select('idegresado')->where('users_id', $usuario)->first();
@@ -147,6 +148,9 @@ class EgresadoController extends Controller
         $egresados = Egresado::select('idegresado')->where('users_id', $usuario)->first();
         
         return view('egresado.show',compact('egresado', 'egresados','hola'));
+        }else{
+            abort(404, 'Pagina No Encontrada');
+        }
     }
 
     /**
@@ -157,7 +161,7 @@ class EgresadoController extends Controller
      */
     public function edit($id)
     {
-        
+        if(Auth::user()->origen == 'Egresado'){
         $usuario = Auth::user()->id;
         $egresado = Egresado::select('idegresado')->where('users_id', $usuario)->first();
         $egresados = Arr::flatten($egresado);
@@ -173,6 +177,9 @@ class EgresadoController extends Controller
         $egresado = Egresado::find($id);
         $perfiles = Perfil::all();
         return view('egresado.editar', compact('estados','localidades','egresado','egresados','perfiles','generos','hola'));
+        }else{
+            abort(404, 'Pagina No Encontrada');
+        }
     }
 
     public function edit2($id){
@@ -209,6 +216,7 @@ class EgresadoController extends Controller
     public function update(Request $request, $id)
     {
          //dd($request->file('file'));
+         if(Auth::user()->orgien == 'Egresado'){
        
         $egresado = Egresado::findOrFail($id);        
 
@@ -245,6 +253,9 @@ class EgresadoController extends Controller
 
         $egresado->save();
         return redirect()->route('egresado.index');
+        }else{
+            abort(404,'Pagina No Encontrada');
+        }
     }
 
     public function update2(Request $request,$id){
@@ -288,7 +299,7 @@ class EgresadoController extends Controller
 
     public function versolicitud()
     {
-        
+        if(Auth::user()->origen == 'Egresado'){
         $usuario = Auth::user()->id;
         
        
@@ -311,6 +322,9 @@ class EgresadoController extends Controller
         $egresados = Egresado::select('idegresado')->where('users_id', $usuario)->first();
         
         return view('egresado.solicitud', compact('egresados','solicitudes','hola'));
+        }else{
+            abort(404, 'Pagina No Encontrada');
+        }
     }
 
     public function getMunicipio(Request $request, $id){
@@ -408,6 +422,7 @@ class EgresadoController extends Controller
     }
 
     public function postulaciones(){
+        if(Auth::user()->origen == 'Egresado'){
         $usuario = Auth::user()->id;
         //dd($usuario);
         $egresado = Egresado::select('idegresado')->where('users_id', $usuario)->first();
@@ -436,6 +451,9 @@ class EgresadoController extends Controller
     $egresados = Egresado::select('idegresado')->where('users_id', $usuario)->first();
 
         return view('egresado.postulacion', compact('egresados','postulados','hola'));
+        }else{
+            abort(404, 'Pagina No Encontrada');
+        }
     }
 
     public function botonEgresado(Request $request, $id){

@@ -120,8 +120,6 @@ class UserEgreController extends Controller
 
             $usuario->save();
             return redirect('/egresado');
-        }else{
-            abort(404, 'Página No Encontrada');
         }
         if(Auth::user() == 'Administradora'){
         $usuario = User::findOrFail($id);
