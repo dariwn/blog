@@ -47,6 +47,10 @@ Route::resource('/RegistroEmpresa', 'RegistroEmController');
 
 Route::match(['get','post'], '/BTEgresado', 'logearController@login');//Egresado
 Route::get('/exit', 'logearController@logout');
+
+Route::get('ajustescorreo/{id}/correo', 'EgresadoController@edit2')->name('ajustescorreo.correo');
+Route::put('ajustescorreo/{id}/actualizado','EgresadoController@update2')->name('ajustescorreo.update');
+
 Route::resource('/egresado', 'EgresadoController');
 Route::get('municipio/{id}','EgresadoController@getMunicipio');
 Route::get('administrador/{id}', 'EgresadoController@index');
@@ -60,6 +64,11 @@ Route::get('/curriculopdf', 'CurriculoController@curriculopdf');
 Route::get('/onda', 'CurriculoController@curriculo')->name('curriculo.crear');
 Route::get('municipio/{id}','CurriculoController@getMunicipio');
 Route::get('/crear', 'EgresadoController@bienvenido')->name('egresado.bienvenido');
+Route::resource('/ajustes', 'UserEgreController');
+
+
+
+
 
 Route::resource('/RegistroEgresado', 'RegistroEController');
 

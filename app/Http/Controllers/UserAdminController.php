@@ -23,9 +23,13 @@ class UserAdminController extends Controller
     public function index(Request $request)
     {
         //
+        if(Auth::user()->origen == 'Administradora'){
         $usuarios = User::name($request->get('username'))->where('origen','Administradora')->get();
         //dd($usuarios);
         return view('adminusuarios.indexadmin', compact('usuarios'));
+        }else{
+            abort(404, 'Página No Encontrada');
+        }
     }
 
     /**
@@ -36,7 +40,11 @@ class UserAdminController extends Controller
     public function create()
     {
         //
+        if(Auth::user()->origen == 'Administradora'){
         return view('adminusuarios.createadmin');
+        }else{
+            abort(404, 'Página No Encontrada');
+        }
     }
 
     /**
@@ -48,6 +56,7 @@ class UserAdminController extends Controller
     public function store(Request $request)
     {
         //
+        if(Auth::user()->origen == 'Administradora'){
         $usuario = new User;
 
         $usuario->origen = "Administradora";
@@ -59,6 +68,9 @@ class UserAdminController extends Controller
         $usuario->save();
 
         return redirect('/usuarios-sistema');
+        }else{
+            abort(404, 'Página No Encontrada');
+        }
     }
 
     /**
@@ -82,9 +94,13 @@ class UserAdminController extends Controller
     public function edit($id)
     {
         //
+        if(Auth::user()->origen == 'Administradora'){
         $usuario = User::findOrFail($id);
         //dd($usuario);
         return view('adminusuarios.editadmin', compact('usuario'));
+        }else{
+            abort(404, 'Página No Encontrada');
+        }
     }
 
     /**
@@ -97,6 +113,7 @@ class UserAdminController extends Controller
     public function update(Request $request, $id)
     {
         //
+        if(Auth::user()->origen == 'Administradora'){
         $usuario = User::findOrFail($id);
 
         $usuario->username = $request->username;        
@@ -104,6 +121,9 @@ class UserAdminController extends Controller
 
         $usuario->save();
         return redirect('/usuarios-sistema');
+        }else{
+            abort(404, 'Página No Encontrada');
+        }
         //dd($usuario);
     }
 
@@ -116,16 +136,20 @@ class UserAdminController extends Controller
     public function destroy($id)
     {
         //
-        $usuario = User::findOrFail($id);
-        //dd($usuario);
-        
-        //eliminar el usuario
-        if($usuario->delete()){
-            return redirect('/usuarios-sistema');
+        if(Auth::user()->origen == 'Administradora'){
+            $usuario = User::findOrFail($id);
+            //dd($usuario);
+            
+            //eliminar el usuario
+            if($usuario->delete()){
+                return redirect('/usuarios-sistema');
+            }else{
+                return response()->json([
+                    'mensaje' => 'Error al eliminar el usuario'
+                ]);
+            }
         }else{
-            return response()->json([
-                'mensaje' => 'Error al eliminar el usuario'
-            ]);
+            abort(404, 'Página No Encontrada');
         }
     }
 }

@@ -25,10 +25,13 @@ class UserEmpreController extends Controller
     public function index(Request $request)
     {
         //
-
+        if(Auth::user()->origen == 'Administradora'){
         $usuarios = User::name($request->get('username'))->where('origen','Empresa')->get();
         //dd($usuarios);
         return view('adminusuarios.indexem', compact('usuarios'));
+        }else{
+            abort(404, 'Página No Encontrada');
+        }
     }
 
     /**
@@ -75,9 +78,13 @@ class UserEmpreController extends Controller
     public function edit($id)
     {
         //
+        if(Auth::user()->origen == 'Administradora'){
         $usuario = User::findOrFail($id);
         //dd($usuario);
         return view('adminusuarios.editem', compact('usuario'));
+        }else{
+            abort(404, 'Página No Encontrada');
+        }
 
     }
 
@@ -91,6 +98,7 @@ class UserEmpreController extends Controller
     public function update(Request $request, $id)
     {
         //
+        if(Auth::user()->origen == 'Administradora'){
         $usuario = User::findOrFail($id);
 
         $usuario->username = $request->username;
@@ -99,6 +107,9 @@ class UserEmpreController extends Controller
         $usuario->save();
         return redirect('/usuarios-empresa');
         //dd($usuario);
+        }else{
+            abort(404, 'Página No Encontrada');
+        }
     }
 
     /**

@@ -116,7 +116,7 @@
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               
-            </li>
+            </li>            
             <li class="treeview">
               <a href="{{url('/BTEgresado')}}">
                 <i class="fa fa-close"></i> <span>Salir</span>
@@ -166,6 +166,18 @@
               </a> 
             </li>
             @endif
+            <?php
+              $id = Auth::user()->id;
+            ?>
+            <li class="treeview">
+              <a href="#"><i class="fa fa-cog"></i><span>Ajustes de la cuenta</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              <ul class="treeview-menu">
+                <li><a href="{{route('ajustes.show',$id)}}"><i class="fa fa-user"></i>Cambiar Usuario/Contraseña</a></li>
+                <li><a href="{{route('ajustescorreo.correo',$id)}}"><i class="fa fa-envelope"></i>Cambiar Correo</a></li>                               
+              </ul>              
+            </a>
+            </li>
             <li class="treeview">
               <a href="{{url('/exit')}}">
                 <i class="fa fa-close"></i> <span>Salir</span>

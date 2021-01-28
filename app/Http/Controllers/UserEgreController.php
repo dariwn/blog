@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Redirect;
 use App\User;
 use Auth;
 use DB;
+use App\Egresado;
+use App\Curriculo;
+use Illuminate\Support\Arr;
 
 
 class UserEgreController extends Controller
@@ -24,9 +27,13 @@ class UserEgreController extends Controller
     public function index(Request $request)
     {
         //
+        if(Auth::user()->origen == 'Administradora'){
         $usuarios = User::name($request->get('username'))->where('origen','Egresado')->get();
         //dd($usuarios);
         return view('adminusuarios.indexeg', compact('usuarios'));
+        }else{
+            abort(404, 'Página No Encontrada');
+        }
     }
 
     /**
@@ -61,8 +68,19 @@ class UserEgreController extends Controller
     public function show($id)
     {
         //
-        abort(404, 'Página No Encontrada');
+        $usuario = User::findOrFail($id);
+
+        $egresado = Egresado::select('idegresado')->where('users_id', $usuario->id)->first();
+       //dd($egresado);
+        $egresados = Arr::flatten($egresado);
+
+        $hola = Curriculo::select('idcurriculo')->where('idegresado',$egresados)->get()->pluck('idcurriculo');
+        $holas = Arr::first($hola);
+
+        return view('egresado.editusuario', compact('usuario', 'egresados', 'hola'));
+        
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -73,10 +91,16 @@ class UserEgreController extends Controller
     public function edit($id)
     {
         //
+        if(Auth::user()->origen == 'Administradora'){
         $usuario = User::findOrFail($id);
         //dd($usuario);
         return view('adminusuarios.editeg', compact('usuario'));
+        }else{
+            abort(404, 'Página No Encontrada');
+        }
+
     }
+    
 
     /**
      * Update the specified resource in storage.
@@ -88,6 +112,18 @@ class UserEgreController extends Controller
     public function update(Request $request, $id)
     {
         //
+        if(Auth::user()->origen == 'Egresado'){
+            $usuario = User::findOrFail($id);
+
+            $usuario->username = $request->username;
+            $usuario->password =  bcrypt($request->contraseña);
+
+            $usuario->save();
+            return redirect('/egresado');
+        }else{
+            abort(404, 'Página No Encontrada');
+        }
+        if(Auth::user() == 'Administradora'){
         $usuario = User::findOrFail($id);
 
         $usuario->username = $request->username;
@@ -96,6 +132,9 @@ class UserEgreController extends Controller
         $usuario->save();
         return redirect('/usuarios-egresados');
         //dd($usuario);
+        }else{
+            abort(404, 'Página No Encontrada');
+        }
     }
 
     /**

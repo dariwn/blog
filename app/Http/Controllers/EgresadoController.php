@@ -157,6 +157,7 @@ class EgresadoController extends Controller
      */
     public function edit($id)
     {
+        
         $usuario = Auth::user()->id;
         $egresado = Egresado::select('idegresado')->where('users_id', $usuario)->first();
         $egresados = Arr::flatten($egresado);
@@ -172,6 +173,30 @@ class EgresadoController extends Controller
         $egresado = Egresado::find($id);
         $perfiles = Perfil::all();
         return view('egresado.editar', compact('estados','localidades','egresado','egresados','perfiles','generos','hola'));
+    }
+
+    public function edit2($id){
+
+        
+        $usuario = Auth::user()->id;
+        
+        $egresado = Egresado::select('idegresado')->where('users_id', $usuario)->first();
+
+        $egresados = Arr::flatten($egresado);
+        $datos = Egresado::where('idegresado',$egresado->idegresado)->first();
+
+        //dd($datos);
+        
+        // $hola1 = DB::table('curriculo')->whereIn('idcurriculo', $egresado)->get();
+        // $hola = $hola1[0]->idcurriculo;
+        $hola = $egresado->idegresado;
+
+        $estados = Estado::all();
+        $generos = Genero::all();
+        $localidades = Municipio::all();
+        $egresado = Egresado::find($id);
+        $perfiles = Perfil::all();
+        return view('egresado.editcorreo', compact('datos','estados','localidades','egresado','egresados','perfiles','generos','hola'));
     }
 
     /**
@@ -217,6 +242,16 @@ class EgresadoController extends Controller
         }
 
        
+
+        $egresado->save();
+        return redirect()->route('egresado.index');
+    }
+
+    public function update2(Request $request,$id){
+        //dd($request);
+        $egresado = Egresado::findOrFail($id);        
+
+        $egresado->correo = $request->email;
 
         $egresado->save();
         return redirect()->route('egresado.index');

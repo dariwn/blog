@@ -26,8 +26,12 @@ class NuevoController extends Controller
     
     public function index()
     {
+        if(Auth::user()->origen == 'Administradora'){
         $empresa = Empresa::paginate(7);
         return view('administradora.listado', compact('empresa'));
+        }else{
+            abort(404, 'Página No Encontrada');
+        }
     }
 
     /**
@@ -37,7 +41,11 @@ class NuevoController extends Controller
      */
     public function create()
     {
+        if(Auth::user()->origen == 'Administradora'){
         return view('nuevo.crear');
+        }else{
+            abort(404, 'Página No Encontrada');
+        }
     }
 
     /**
@@ -48,6 +56,7 @@ class NuevoController extends Controller
      */
     public function store(Request $request)
     {
+        if(Auth::user()->origen == 'Administradora'){
         $nuevo = new User;
         $nuevo->password = bcrypt($request->password);
         $nuevo->username = $request->get('username');
@@ -56,6 +65,9 @@ class NuevoController extends Controller
         $nuevo->origen = "Empresa";
         $nuevo->save();
         return back();
+        }else{
+            abort(404, 'Página No Encontrada');
+        }
     }
 
     /**
@@ -108,8 +120,12 @@ class NuevoController extends Controller
     }
 
     public function ver(){
+        if(Auth::user()->origen == 'Administradora'){
         $administrador = Empresa::paginate(7);
         return view('administradora.ver', compact('administrador'));
+        }else{
+            abort(404, 'Página No Encontrada');
+        }
     }
 
     public function graficaPastel(){
@@ -144,11 +160,15 @@ class NuevoController extends Controller
         // $m = Solicitudperfil::where('idperfiles', 91)->count();
         // $n = Solicitudperfil::where('idperfiles', 92)->count();
         // return view('administradora.barra', compact('a','b','c','d','e','f','g','h','i','j','k','m','n'));
-
+        if(Auth::user()->origen == 'Administradora'){
         return view('administradora.periodografica');
+        }else{
+            abort(404, 'Página No Encontrada');
+        }
     }
 
     public function grafica(Request $request){
+        if(Auth::user()->origen == 'Administradora'){
         //dd($request);
         $a= 0;
         $b= 0;
@@ -232,6 +252,9 @@ class NuevoController extends Controller
         
             return view('administradora.grafialumnosb',compact('a','b','periodoinicio','periodofin'));
         }
+        }else{
+            abort(404, 'Página No Encontrada');
+        }
     }
 
     public function graficaAlumnosp(){
@@ -250,7 +273,11 @@ class NuevoController extends Controller
 
     public function ver_reporte()
     {
+        if(Auth::user()->origen == 'Administradora'){
         return view('administradora.reporte');
+        }else{
+            abort(404, 'Página No Encontrada');
+        }
     }
 
     public function ver_grafica(){
@@ -274,6 +301,7 @@ class NuevoController extends Controller
 
     public function descargar_reporte(Request $request)
     {
+        if(Auth::user()->origen == 'Administradora'){
         //dd($request->enviar);
         if($request->enviar == "Ver Grafica"){
 
@@ -376,6 +404,7 @@ class NuevoController extends Controller
             }
 
             return view('administradora.vergra', compact('Si','No','a','b','c','d','e','f','g','h','i','j','k','m','n'));
+            
         }
        
         if($request->enviar == "Imprimir"){
@@ -404,7 +433,7 @@ class NuevoController extends Controller
             $hasta = $request->get('hasta');
             $extiende = $request->get('extiende');
 
-        // dd($hasta);
+        
         
             $empresa = User::select('origen')->whereBetween('created_at',array($periodo,$hasta ))->get();
             foreach($empresa as $datos){
@@ -502,7 +531,10 @@ class NuevoController extends Controller
             return $pdf->download('reporte.pdf');
 
         }
-       
+        }else{
+            abort(404, 'Página No Encontrada');
+        }
         
     }
+    
 }

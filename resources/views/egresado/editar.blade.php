@@ -22,6 +22,7 @@
 		} 
 	} 
 </script>
+
 <div class="container">
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 toppad" >
@@ -86,7 +87,7 @@
                       </tr>
                       <tr>
                         <td>Correo electrónico:</td>
-                        <td><input type="email" class="form-control input-sm" name="correo" value="{{$egresado->correo}}" ></td>
+                        <td><input type="email" class="form-control input-sm" name="correo" value="{{$egresado->correo}}" readonly ></td>
                       </tr>
             <tr>
                         <td>Telefono:</td>
