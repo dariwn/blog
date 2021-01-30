@@ -404,7 +404,7 @@ class CurriculoController extends Controller
     }
 
     public function curriculo(){
-        if(Auth::user()->orgien == 'Egresado'){
+        if(Auth::user()->origen == 'Egresado'){
         $usuario = Auth::user()->id;
         $egresado = Egresado::select('idegresado')->where('users_id', $usuario)->get()->pluck('idegresado');
         $egresados = Arr::first($egresado);

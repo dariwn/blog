@@ -23,7 +23,7 @@ class UsuarioController extends Controller
     
     public function index()
     {
-        if(Auth::user()->orgien == 'Administradora'){
+        if(Auth::user()->origen == 'Administradora'){
         $egresado = Egresado::paginate(7);
         return view('administradora.datos', compact('egresado')); 
         }else{
@@ -38,7 +38,7 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-        if(Auth::user()->orgien == 'Administradora'){
+        if(Auth::user()->origen == 'Administradora'){
         return view('usuario.crear');
         }else{
             abort(404, 'Página No Encontrada');
@@ -57,6 +57,7 @@ class UsuarioController extends Controller
         $comando = new User;
         $comando->password = bcrypt($request->password);
         $comando->username = $request->get('username');
+        $comando->email ="";
         $comando->tipo = "1";
         $comando->curriculo = "1";
         $comando->origen = "Egresado";

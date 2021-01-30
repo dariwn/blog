@@ -9,6 +9,7 @@ use Auth;
 use DB;
 use App\Empresa;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Mail;
 
 
 
@@ -113,8 +114,27 @@ class UserEmpreController extends Controller
         if(Auth::user()->origen == 'Empresa'){
             $usuario = User::findOrFail($id);
 
+            $contraseña = $request->contraseña;
             $usuario->username = $request->username;
             $usuario->password =  bcrypt($request->contraseña);
+
+             //correo de aviso cambio de usuario
+         
+                $correoeg = $usuario->email;
+
+                $data= array(
+                    'mensaje' => 'Ingresa',
+                    'direccion' => 'http://127.0.0.1:8000/BTEmpresa',
+                    'usuario' => $request->username,
+                    'contraseña' => $contraseña,
+                );
+
+                    Mail::send('emails.webcambioUser',$data,function($msg) use ($correoeg){
+                        $msg->from('from@example.com', 'Bolsa de Trabajo ITTG');
+
+                        $msg->to($correoeg)->subject('Notificacion');
+                    });
+                //dd($correoem);
 
             $usuario->save();
             return redirect('/empresa');
@@ -122,8 +142,28 @@ class UserEmpreController extends Controller
         if(Auth::user()->origen == 'Administradora'){
         $usuario = User::findOrFail($id);
 
+        $contraseña = $request->contraseña;
+
         $usuario->username = $request->username;
         $usuario->password =  bcrypt($request->contraseña);
+
+         //correo de aviso cambio de usuario
+         
+         $correoeg = $usuario->email;
+
+         $data= array(
+             'mensaje' => 'Ingresa',
+             'direccion' => 'http://127.0.0.1:8000/BTEmpresa',
+             'usuario' => $request->username,
+             'contraseña' => $contraseña,
+         );
+
+             Mail::send('emails.webcambioUser',$data,function($msg) use ($correoeg){
+                 $msg->from('from@example.com', 'Bolsa de Trabajo ITTG');
+
+                 $msg->to($correoeg)->subject('Notificacion');
+             });
+        //dd($correoem);
 
         $usuario->save();
         return redirect('/usuarios-empresa');

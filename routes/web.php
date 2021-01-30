@@ -31,6 +31,8 @@ Route::resource('usuarios-egresados','UserEgreController');
 Route::resource('usuarios-sistema', 'UserAdminController');
 Route::get('/ver-grafica', 'NuevoController@ver_grafica');
 Route::post('/grafica', 'NuevoController@grafica');
+Route::put('ajustescorreoadmin/{id}/actualizado','UserAdminController@update2')->name('ajustescorreoadministrador.update');
+Route::resource('ajustescorreoadmin', 'UserAdminController');
 
 Route::match(['get','post'], '/BTEmpresa', 'logueoController@login');//Empresa
 Route::get('/exitempresa', 'logueoController@logout');

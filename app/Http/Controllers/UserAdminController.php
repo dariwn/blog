@@ -82,7 +82,14 @@ class UserAdminController extends Controller
     public function show($id)
     {
         //
-        abort(404, 'Página No Encontrada');
+        if(Auth::user()->origen == 'Administradora'){
+            //dd($id);
+            $usuario = User::findOrFail($id);
+            return view('administradora.editcorreo', compact('usuario'));
+        }else{
+            abort(404, 'Pagina No Encontrada');
+        }
+       
     }
 
     /**
@@ -125,6 +132,22 @@ class UserAdminController extends Controller
             abort(404, 'Página No Encontrada');
         }
         //dd($usuario);
+    }
+
+    public function update2(Request $request,$id)
+    {
+        if(Auth::user()->origen== 'Administradora'){
+            $usuario = User::findOrFail($id);
+            //dd($usuario);
+
+            $usuario->email = $request->email;
+
+            $usuario->save();
+            return redirect('home');
+        }else{
+            abort(404, 'Pagina No Encontrada');
+        }
+        
     }
 
     /**

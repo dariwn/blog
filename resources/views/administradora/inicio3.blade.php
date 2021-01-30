@@ -126,6 +126,17 @@
               </ul>              
             </a>
             </li>
+            <?php
+            $id = Auth::user()->id;
+            ?>
+            <li class="treeview">
+              <a href="#"><i class="fa fa-cog"></i><span>Ajustes de la cuenta</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              <ul class="treeview-menu">                
+                <li><a href="{{route('ajustescorreoadmin.show',$id)}}"><i class="fa fa-envelope"></i>Cambiar Correo</a></li>                               
+              </ul>              
+            </a>
+            </li>
             
             <li class="treeview">
               <a href="{{url('/salir')}}">

@@ -96,7 +96,10 @@ class EmpresaController extends Controller
             $empresa->imagen=$file->getClientOriginalName();
         }
         
+        $Ucorreo = User::find($usuario);
+        $Ucorreo->email = $request->get('email');
 
+        $Ucorreo->save();
         $empresa->save();
         return redirect()->route('empresa.index');
         }else{
@@ -195,6 +198,12 @@ class EmpresaController extends Controller
             $empresa->imagen=$file->getClientOriginalName();
         }
 
+        $usuario = Auth::user()->id;
+        //dd($usuario);
+        $Ucorreo = User::find($usuario);
+        $Ucorreo->email = $request->email;
+
+        $Ucorreo->save();
         $empresa->save();
         return redirect()->route('empresa.index');
         }else{

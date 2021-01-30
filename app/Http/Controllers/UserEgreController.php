@@ -10,6 +10,7 @@ use DB;
 use App\Egresado;
 use App\Curriculo;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Mail;
 
 
 class UserEgreController extends Controller
@@ -114,18 +115,57 @@ class UserEgreController extends Controller
         //
         if(Auth::user()->origen == 'Egresado'){
             $usuario = User::findOrFail($id);
-
+            //dd($usuario);
+            $contraseña = $request->contraseña;
+            //dd($contraseña);
             $usuario->username = $request->username;
             $usuario->password =  bcrypt($request->contraseña);
+
+            //correo de aviso cambio de usuario
+         
+         $correoeg = $usuario->email;
+
+         $data= array(
+             'mensaje' => 'Ingresa',
+             'direccion' => 'http://127.0.0.1:8000/BTEgresado',
+             'usuario' => $request->username,
+             'contraseña' => $contraseña,
+         );
+
+             Mail::send('emails.webcambioUser',$data,function($msg) use ($correoeg){
+                 $msg->from('from@example.com', 'Bolsa de Trabajo ITTG');
+
+                 $msg->to($correoeg)->subject('Notificacion');
+             });
+        //dd($correoem);
 
             $usuario->save();
             return redirect('/egresado');
         }
-        if(Auth::user() == 'Administradora'){
+        if(Auth::user()->origen == 'Administradora'){
         $usuario = User::findOrFail($id);
 
+        $contraseña = $request->contraseña;
         $usuario->username = $request->username;
         $usuario->password =  bcrypt($request->contraseña);
+
+         //correo de aviso cambio de usuario
+         
+         $correoeg = $usuario->email;
+
+         $data= array(
+             'mensaje' => 'Ingresa',
+             'direccion' => 'http://127.0.0.1:8000/BTEgresado',
+             'usuario' => $request->username,
+             'contraseña' => $contraseña,
+         );
+
+             Mail::send('emails.webcambioUser',$data,function($msg) use ($correoeg){
+                 $msg->from('from@example.com', 'Bolsa de Trabajo ITTG');
+
+                 $msg->to($correoeg)->subject('Notificacion');
+             });
+        //dd($correoem);
 
         $usuario->save();
         return redirect('/usuarios-egresados');

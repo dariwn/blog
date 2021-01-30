@@ -60,6 +60,7 @@ class NuevoController extends Controller
         $nuevo = new User;
         $nuevo->password = bcrypt($request->password);
         $nuevo->username = $request->get('username');
+        $nuevo->email ="";
         $nuevo->tipo = "1";
         $nuevo->curriculo = "0";
         $nuevo->origen = "Empresa";

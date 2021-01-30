@@ -22,6 +22,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Arr;
+use App\User;
 
 
 class EgresadoController extends Controller
@@ -110,6 +111,10 @@ class EgresadoController extends Controller
         $egresado->perfiles_id=$request->get('perfiles_id');
         $egresado->genero_id=$request->get('genero_id');
         $egresado->users_id = $usuario;
+
+        $Ucorreo = User::find($usuario);
+        $Ucorreo->email = $request->get('correo');
+
         
         if($request->hasFile('file')){
             $archivo = $request->file('file');
@@ -122,6 +127,7 @@ class EgresadoController extends Controller
         }
                
         $egresado->save();
+        $Ucorreo->save();
         return Redirect::to('onda');
     }
 
@@ -261,10 +267,18 @@ class EgresadoController extends Controller
     public function update2(Request $request,$id){
         //dd($request);
         $egresado = Egresado::findOrFail($id);        
-
+        
         $egresado->correo = $request->email;
-
+        
+        $Ucorreo1 = Egresado::select('users_id')->where('idegresado', $egresado->idegresado)->first();
+        //dd($Ucorreo1);
+        $Ucorreo = User::findOrFail($Ucorreo1->users_id); 
+        //dd($Ucorreo); 
+        $Ucorreo->email =$request->email;
+        // dd($Ucorreo[0]->email);
+        $Ucorreo->save();
         $egresado->save();
+        
         return redirect()->route('egresado.index');
     }
 
