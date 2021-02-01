@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Arr;
 use App\User;
+use Illuminate\Auth\Events\Registered;
 
 
 class EgresadoController extends Controller
@@ -128,6 +129,7 @@ class EgresadoController extends Controller
                
         $egresado->save();
         $Ucorreo->save();
+        event(new Registered($Ucorreo));
         return Redirect::to('onda');
     }
 

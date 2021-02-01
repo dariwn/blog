@@ -14,6 +14,7 @@ use App\User;
 use DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Arr;
+use Illuminate\Auth\Events\Registered;
 
 
 class EmpresaController extends Controller
@@ -101,6 +102,8 @@ class EmpresaController extends Controller
 
         $Ucorreo->save();
         $empresa->save();
+
+        event(new Registered($Ucorreo));
         return redirect()->route('empresa.index');
         }else{
             abort(404, 'Página No Encontrada');

@@ -36,10 +36,10 @@ Route::resource('ajustescorreoadmin', 'UserAdminController');
 
 Route::match(['get','post'], '/BTEmpresa', 'logueoController@login');//Empresa
 Route::get('/exitempresa', 'logueoController@logout');
-Route::resource('/empresa', 'EmpresaController');
+Route::resource('/empresa', 'EmpresaController')->middleware('verified');
 Route::get('municipio/{id}','EmpresaController@getMunicipio');
 Route::get('/hola', 'EmpresaController@nuevo')->name('empresa.nuevo');
-Route::resource('/solicitud', 'SolicitudController');
+Route::resource('/solicitud', 'SolicitudController')->middleware('verified');
 Route::get('/postulado/{id}', 'SolicitudController@ver')->name('ver');
 Route::post('/cambio-estatus/{id}', 'SolicitudController@boton')->name('boton');
 Route::resource('/bienvenido', 'SolicitudperfilController');
@@ -54,17 +54,17 @@ Route::get('/exit', 'logearController@logout');
 Route::get('ajustescorreo/{id}/correo', 'EgresadoController@edit2')->name('ajustescorreo.correo');
 Route::put('ajustescorreo/{id}/actualizado','EgresadoController@update2')->name('ajustescorreo.update');
 
-Route::resource('/egresado', 'EgresadoController');
+Route::resource('/egresado', 'EgresadoController')->middleware('verified');
 Route::get('municipio/{id}','EgresadoController@getMunicipio');
 Route::get('administrador/{id}', 'EgresadoController@index');
-Route::get('/solicitud-egresado', 'EgresadoController@versolicitud')->name('versolicitud');
+Route::get('/solicitud-egresado', 'EgresadoController@versolicitud')->name('versolicitud')->middleware('verified');
 Route::get('/postulacion/{id}', 'EgresadoController@postularse')->name('postularse');
 Route::post('/postulacion-registrada', 'EgresadoController@guardar_postulados')->name('guardar_postulados');
-Route::get('/postulaciones', 'EgresadoController@postulaciones')->name('postulaciones');
+Route::get('/postulaciones', 'EgresadoController@postulaciones')->name('postulaciones')->middleware('verified');
 Route::post('/cambio-estatus-egresado/{id}', 'EgresadoController@botonEgresado')->name('botonEgresado');
 Route::resource('/curriculo', 'CurriculoController');
 Route::get('/curriculopdf', 'CurriculoController@curriculopdf');
-Route::get('/onda', 'CurriculoController@curriculo')->name('curriculo.crear');
+Route::get('/onda', 'CurriculoController@curriculo')->name('curriculo.crear')->middleware('verified');
 Route::get('municipio/{id}','CurriculoController@getMunicipio');
 Route::get('/crear', 'EgresadoController@bienvenido')->name('egresado.bienvenido');
 Route::resource('/ajustes', 'UserEgreController');
@@ -76,6 +76,6 @@ Route::resource('/ajustes', 'UserEgreController');
 Route::resource('/RegistroEgresado', 'RegistroEController');
 
 
-Auth::routes();
+Auth::routes(['verify' => true ]);
 
 Route::get('/home', 'HomeController@index')->name('home');
