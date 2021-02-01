@@ -120,25 +120,25 @@ class SolicitudController extends Controller
 
 // //---- envio de correo para egresados con el perfil solicitado
 //             //dd($linea->idperfiles);
-//              $obcorreo = Egresado::select('correo')->where('perfiles_id',$linea->idperfiles)->get();
-//              foreach($obcorreo as $correo){
-//                // dd($correo->correo);
-//                $email = $correo->correo;
-//             //cuerpo y envio del correo
-//             $data= array(
-//                 'mensaje' => 'Ingresa',
-//                 'direccion' => 'http://127.0.0.1:8000/BTEgresado'
+              $obcorreo = Egresado::select('correo')->where('perfiles_id',$linea->idperfiles)->get();
+              foreach($obcorreo as $correo){
+                // dd($correo->correo);
+                $email = $correo->correo;
+             //cuerpo y envio del correo
+             $data= array(
+                 'mensaje' => 'Ingresa',
+                 'direccion' => 'http://127.0.0.1:8000/BTEgresado'
                 
-//             );
+             );
 
-//                 Mail::send('emails.web',$data,function($msg) use ($email){
+                 Mail::send('emails.web',$data,function($msg) use ($email){
 
-//                     $msg->from('from@example.com', 'Bolsa de Trabajo ITTG');
+                     $msg->from('from@example.com', 'Bolsa de Trabajo ITTG');
 
-//                     $msg->to($email)->subject('Notificacion');
-//                 });
+                     $msg->to($email)->subject('Notificacion');
+                 });
 
-//              }
+              }
 //             // dd($obcorreo);
 
             //$linea->save();
@@ -325,14 +325,14 @@ class SolicitudController extends Controller
         $dato = $solicitudes->idsolicitud;
         //dd($dato);
         //dd($solicitudes->estatus);
-         if($solicitudes->estatus == 'Vigente                  '){
-        // if($solicitudes->estatus == 'Vigente'){
+        //  if($solicitudes->estatus == 'Vigente                  '){
+        if($solicitudes->estatus == 'Vigente'){
             $solicitudes->update(['estatus'=>'No Vigente',]);            
             return view('solicitud.encuesta',compact('dato'));
             return back();
         }
-         elseif($solicitudes->estatus == 'No Vigente               '){
-        // elseif($solicitudes->estatus == 'No Vigente'){
+        //  elseif($solicitudes->estatus == 'No Vigente               '){
+         elseif($solicitudes->estatus == 'No Vigente'){
             $solicitudes->update(['estatus'=>'Vigente',]);
             return back();
         }

@@ -413,21 +413,21 @@ class EgresadoController extends Controller
         $postulado->idempresa = $request->idempresa;
         $postulado->estatus = $request->estatus;
 
-        // $obcorreo = Empresa::select('email')->where('idempresa',$request->idempresa)->get();
-        // $correoem = $obcorreo[0]->email;
+         $obcorreo = Empresa::select('email')->where('idempresa',$request->idempresa)->get();
+         $correoem = $obcorreo[0]->email;
 
-        // $data= array(
-        //     'mensaje' => 'Ingresa',
-        //     'direccion' => 'http://127.0.0.1:8000/BTEmpresa'
-        // );
+         $data= array(
+             'mensaje' => 'Ingresa',
+             'direccion' => 'http://127.0.0.1:8000/BTEmpresa'
+         );
 
-        //     Mail::send('emails.webemp',$data,function($msg) use ($correoem){
+             Mail::send('emails.webemp',$data,function($msg) use ($correoem){
 
-        //         $msg->from('from@example.com', 'Bolsa de Trabajo ITTG');
+                 $msg->from('from@example.com', 'Bolsa de Trabajo ITTG');
 
-        //         $msg->to($correoem)->subject('Notificacion');
-        //     });
-        // //dd($correoem);
+                 $msg->to($correoem)->subject('Notificacion');
+             });
+         //dd($correoem);
         
         $postulado->save();
 
@@ -477,11 +477,11 @@ class EgresadoController extends Controller
         //dd($id);
         $postulaciones = Egresadosolicitud::find($id);
         //dd($postulaciones->estatus);
-        if($postulaciones['estatus']=='Postulado                     '){
+        if($postulaciones['estatus']=='Postulado'){
             $postulaciones->update(['estatus'=>'No Postulado']);
             return back();
         }
-        else if($postulaciones['estatus']=='No Postulado                  '){
+        else if($postulaciones['estatus']=='No Postulado'){
             $postulaciones->update(['estatus'=>'Postulado']);
             return back();
         }

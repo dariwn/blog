@@ -30,23 +30,23 @@
 						<td>{{ $postulado->egresado->apellido_materno }}</td>
 						<td>{{ $postulado->comentario }}</td>
 		
-						{{-- @if($postulado->estatus == 'Postulado') --}}
-						@if($postulado->estatus == 'Postulado                     ')
+						@if($postulado->estatus == 'Postulado')
+						{{-- @if($postulado->estatus == 'Postulado                     ') --}}
 						<td><span style="background: #7aff33;">{{ $postulado->estatus}}</span></td>
-						{{-- @elseif($postulado->estatus == 'No Postulado') --}}
-						@elseif($postulado->estatus == 'No Postulado                  ')
+						@elseif($postulado->estatus == 'No Postulado')
+						{{-- @elseif($postulado->estatus == 'No Postulado                  ') --}}
 						<td><span style="background: #ff4633;">{{ $postulado->estatus}}</span></td>
 						@endif
 		
 						<td>
-							{{-- @if($postulado->estatus == 'Postulado') --}}
-							@if($postulado->estatus == 'Postulado                     ')
+							@if($postulado->estatus == 'Postulado')
+							{{-- @if($postulado->estatus == 'Postulado                     ') --}}
 								<a href="{{url('/curriculopdf/'.$postulado->egresado->idegresado) }}" class="btn-descargar" target="_blank">
 									ver
 								  </a>
 							
-							{{-- @elseif($postulado->estatus == 'No Postulado') --}}
-							@elseif($postulado->estatus == 'No Postulado                  ')
+							@elseif($postulado->estatus == 'No Postulado')
+							{{-- @elseif($postulado->estatus == 'No Postulado                  ') --}}
 								<a>No disponible</a>
 							
 							@endif
