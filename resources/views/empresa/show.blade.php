@@ -62,29 +62,56 @@
                         <td>Colonia:</td>
                         <td><input type="text" class="form-control input-sm" id="direccion" value="{{$empresa->colonia}}" readonly></td>
                       </tr>
+                      @if($empresa->numeroexterior == 0)
+                        <tr>
+                          <td>Numero Exterior:</td>
+                          <td><input type="text" class="form-control input-sm" id="direccion" value="" readonly></td>
+                        </tr>
+                      @endif
+                      @if($empresa->numeroexterior != 0)
                       <tr>
                         <td>Numero Exterior:</td>
                         <td><input type="text" class="form-control input-sm" id="direccion" value="{{$empresa->numeroexterior}}" readonly></td>
                       </tr>
-					  <tr>
+                      @endif
+
+                      @if($empresa->codigo_postal == 0)
+					            <tr>
+                        <td>Codigo Postal:</td>
+                        <td><input type="" class="form-control input-sm" id="codigo" value=""readonly></td>
+                      </tr>
+                      @endif
+                      @if($empresa->codigo_postal != 0)
+					            <tr>
                         <td>Codigo Postal:</td>
                         <td><input type="" class="form-control input-sm" id="codigo" value="{{$empresa->codigo_postal}}"readonly></td>
                       </tr>
+                      @endif
 
+                      @if($empresa->telefono == 0)
+                      <tr>
+                        <td>Telefono:</td>
+                        <td> <input type="" class="form-control input-sm" id="codigo" value=""readonly>   </td>
+                      </tr>
+                      @endif
+                      @if($empresa->telefono != 0)
                       <tr>
                         <td>Telefono:</td>
                         <td> <input type="" class="form-control input-sm" id="codigo" value="{{$empresa->telefono}}"readonly>   </td>
                       </tr>
+                      @endif
 
 					  
-					  <tr>
+					            <tr>
                         <td>Pais:</td>
                         <td><input type="text" class="form-control input-sm" id="estado" value="{{$empresa->pais->nombre}}" readonly></td>
                       </tr>
-					  <tr>
+                      
+					            <tr>
                         <td>Estado:</td>
                         <td><input type="text" class="form-control input-sm" id="estado" value="{{$empresa->estado->nombre_estado}}" readonly></td>
-                      </tr>
+                      </tr>              
+                      
                       <tr>
                         <td>Municipio</td>
                         <td><input type="text" class="form-control input-sm" id="estado" value="{{$empresa->municipio->nombre_localidad}}" readonly></td>

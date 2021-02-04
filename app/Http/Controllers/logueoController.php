@@ -18,8 +18,9 @@ class logueoController extends Controller
         if($request->isMethod('post')){
             $request = $request->input();
             if(Auth::attempt(['username'=>$request['username'],'password'=>$request['password']])){
-                if (Auth::user()->origen=='Empresa'){
+                if (Auth::user()->origen=='Empresa'){                    
                     return Redirect::to('empresa');
+                    
                 }else{
                     return back()->with('message','Correo o Contraseña Invalido');
                 }

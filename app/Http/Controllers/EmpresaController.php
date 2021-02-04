@@ -189,6 +189,7 @@ class EmpresaController extends Controller
         $empresa->cargo = $request->cargo;
         $empresa->numero_cel = $request->numero_cel;
         $empresa->email = $request->email;
+    
 
         if($request->hasFile('imagen')){
 
@@ -205,6 +206,7 @@ class EmpresaController extends Controller
         //dd($usuario);
         $Ucorreo = User::find($usuario);
         $Ucorreo->email = $request->email;
+        $Ucorreo->curriculo = "1";
 
         $Ucorreo->save();
         $empresa->save();
