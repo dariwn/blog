@@ -57,7 +57,7 @@ class UsuarioController extends Controller
         $comando = new User;
         $comando->password = bcrypt($request->password);
         $comando->username = $request->get('username');
-        $comando->email ="";
+        $comando->email =$request->email;
         $comando->tipo = "1";
         $comando->curriculo = "1";
         $comando->origen = "Egresado";

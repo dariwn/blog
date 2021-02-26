@@ -110,7 +110,7 @@ class RegistroEmController extends Controller
              
         event(new Registered($user));
 
-        return Redirect::to('/BTEmpresa')->with('registro','Hemos enviado un correo electronico con tu usuario y contraseña, para que puedas acceder');
+        return view('empresa.aviso');//Redirect::to('/BTEmpresa')->with('registro','Hemos enviado un correo electronico con tu usuario y contraseña, para que puedas acceder');
         
     }
 

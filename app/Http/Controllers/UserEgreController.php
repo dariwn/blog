@@ -148,9 +148,9 @@ class UserEgreController extends Controller
         $contraseña = $request->contraseña;
         $usuario->username = $request->username;
         $usuario->password =  bcrypt($request->contraseña);
-
+        $usuario->email = $request->email;
          //correo de aviso cambio de usuario
-         
+         $usuario->save();
          $correoeg = $usuario->email;
 
          $data= array(
@@ -167,7 +167,7 @@ class UserEgreController extends Controller
              });
         //dd($correoem);
 
-        $usuario->save();
+        
         return redirect('/usuarios-egresados');
         //dd($usuario);
         }else{

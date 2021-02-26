@@ -67,27 +67,27 @@
                 <div class="col-lg-6 ">
                 <div class="form-group">
                 <label for="nombre">Correo</label>            
-                <input type="text" name="correo" required value="{{ $datos->correo }}" class="form-control" placeholder="Correo...">
+                <input type="text" name="correo" required value="{{ $usuario1 }}" class="form-control" placeholder="Correo...">
                 </div>
                 </div>
                 <div class="col-lg-6 ">
                 <div class="form-group">
                 <label for="codigo">Nombres</label>
-                <input type="text" name="nombres" required value="{{ $datos->nombres }}" class="form-control" placeholder="Nombres...">
+                <input type="text" name="nombres" required value="{{old('nombres')}}" class="form-control" placeholder="Nombres...">
                 </div>  
                 </div>
 
                 <div class="col-lg-6">
                 <div class="form-group">
                 <label for="codigo">Apellido Paterno</label>
-                <input type="text" name="apellido_paterno" required value="{{ $datos->apellido_paterno }}" class="form-control" placeholder="Apellido Paterno...">
+                <input type="text" name="apellido_paterno" required value="{{old('apellido_paterno')}}" class="form-control" placeholder="Apellido Paterno...">
                 </div>  
                 </div>
                 
                 <div class="col-lg-6">
                 <div class="form-group">
                 <label for="codigo">Apellido Materno</label>
-                <input type="text" name="apellido_materno" required value="{{ $datos->apellido_materno }}" class="form-control" placeholder="Apellido Materno">
+                <input type="text" name="apellido_materno" required value="{{old('apellido_materno')}}" class="form-control" placeholder="Apellido Materno">
                 </div>  
                 </div>
 

@@ -231,6 +231,7 @@ class EmpresaController extends Controller
     public function nuevo(){
         if(Auth::user()->origen == 'Empresa'){
         $usuario = Auth::user()->id;
+        $usuario1 = Auth::user()->email;
         $empresa = Empresa::select('idempresa')->where('users_id', $usuario)->get()->pluck('idempresa');
         $empresas = Arr::flatten($empresa);
 
@@ -238,7 +239,7 @@ class EmpresaController extends Controller
         $localidades = DB::table('municipio')->get();
         $paises = Pais::all();
         //dd($localidades);
-        return view('empresa.crear',compact('localidades','estados','paises', 'empresas'));
+        return view('empresa.crear',compact('usuario1','localidades','estados','paises', 'empresas'));
         }else{
             abort(404, 'Página No Encontrada');
         }

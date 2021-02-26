@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Arr;
 use App\User;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Collection;
 
 
 class EgresadoController extends Controller
@@ -297,7 +298,16 @@ class EgresadoController extends Controller
     }
 
     public function bienvenido(){
-        $usuario = Auth::user()->id;
+        
+        $correo = Auth::user()->email;
+       // dd($correo);
+
+        if (DB::table('registro_egresado_nuevos')->where('correo', $correo)->exists()) {
+            
+            $datos = DB::table('registro_egresado_nuevos')->where('correo', $correo)->first();
+            
+            //dd($datos);
+            $usuario = Auth::user()->id;
         $egresado = Egresado::select('idegresado')->where('users_id', $usuario)->get()->pluck('idegresado');
         $egresados = Arr::flatten($egresado);
 
@@ -310,7 +320,27 @@ class EgresadoController extends Controller
         $generos = Genero::all();
         $perfiles = Perfil::all();
         $municipios = Municipio::all();
-        return view('egresado.crear', compact('paises','estados','generos','municipios','perfiles','egresados','holas'));
+        return view('egresado.crear', compact('datos','paises','estados','generos','municipios','perfiles','egresados','holas'));
+
+        }else{
+        $usuario = Auth::user()->id;
+        $usuario1 = Auth::user()->email;
+        $egresado = Egresado::select('idegresado')->where('users_id', $usuario)->get()->pluck('idegresado');
+        $egresados = Arr::flatten($egresado);
+
+        
+        $hola = Curriculo::select('idcurriculo')->get();
+        $holas = Arr::flatten($hola);
+        
+        $paises = Pais::all();
+        $estados = Estado::all();
+        $generos = Genero::all();
+        $perfiles = Perfil::all();
+        $municipios = Municipio::all();
+        return view('egresado.crear1', compact('usuario1','paises','estados','generos','municipios','perfiles','egresados','holas'));
+        }
+    
+       
     }
 
     public function versolicitud()

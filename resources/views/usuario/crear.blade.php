@@ -27,7 +27,14 @@
                                         <label>Contraseña:</label>
                                        <input type="password" name="password" required class="form-control" placeholder="Password"> 
                                     </div>                            
-                                </div>                    
+                                </div>  
+                                
+                                <div class="form-group ">                                    
+                                    <div class="col-md-6">
+                                        <label>Correo:</label>
+                                       <input type="email" name="email" required class="form-control" placeholder="email"> 
+                                    </div>                            
+                                </div>  
                                 <br>
                                 <div class="form-group">
                                     <div class="col-md-6">

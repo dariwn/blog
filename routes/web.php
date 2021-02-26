@@ -68,6 +68,7 @@ Route::get('/onda', 'CurriculoController@curriculo')->name('curriculo.crear')->m
 Route::get('municipio/{id}','CurriculoController@getMunicipio');
 Route::get('/crear', 'EgresadoController@bienvenido')->name('egresado.bienvenido');
 Route::resource('/ajustes', 'UserEgreController');
+Route::resource('/nuevoegresado', 'RegistroEController');
 
 
 

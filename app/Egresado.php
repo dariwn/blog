@@ -17,6 +17,7 @@ class Egresado extends Model
         'apellido_materno',
         'correo',
         'domicilio',
+        'colonia',
         'fecha_de_nac',
         'numero_cel',
         'solicitudperfil_id',
@@ -25,6 +26,7 @@ class Egresado extends Model
         'pais_id',
         'imagen',
         'genero_id'
+        
     ];
 
     public function genero(){

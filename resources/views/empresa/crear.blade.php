@@ -146,7 +146,7 @@
 						  
 						  <tr>
 							<td>Correo Electronico:</td>
-							<td><input type="text" class="form-control input-sm" name="email" required></td>
+							<td><input type="text" class="form-control input-sm" name="email" value="{{ $usuario1 }}"></td>
 						  </tr>
 						
 						  <td>
