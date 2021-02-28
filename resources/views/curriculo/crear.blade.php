@@ -278,7 +278,7 @@ var element2 = -1;
                 <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                 <div class="form-group">
                 <label for="codigo">Carrera</label>
-                <input type="text" name="area" required value="{{old('area')}}" class="form-control" placeholder="Carrera">
+                <input type="text" name="area" required value="{{ $nomperfil[0]->carrera}}" class="form-control" placeholder="Carrera">
                 </div>  
                 </div>
 
@@ -309,6 +309,7 @@ var element2 = -1;
                     </div>  
                 </div>
 
+
                 <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12" id="maestria">
                     <div class="form-group">
                     <label for="codigo">Maestria/Doctorado:</label> <input type="button" id="btn_agregar_maestria" value="+" onclick="crearMaestria();">
@@ -322,6 +323,7 @@ var element2 = -1;
                     {{-- <input type="text" name="experiencia"  value="{{$hola->experiencia}}" class="form-control" placeholder="Experiencias"> --}}
                     </div>  
                 </div>
+                
                 
                 <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12" id="padre1">
                     <div class="form-group">
@@ -392,20 +394,11 @@ var element2 = -1;
               </div>
 
               
-              <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-                <div class="form-group">
-                <label>Perfil</label>
-                <select name="idperfiles" class="form-control">
-                @foreach($perfiles as $perfil)
-                              <option value="{{$perfil->idperfiles}}">{{$perfil->carrera}}</option>
-                              @endforeach
-                       </select>
-                       </div>
-              </div>
+             
           <input type="hidden" name="idegresado" value="{{$egresados}}">
            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
             <div class="form-group">
-               <button class="btn btn-primary" type="submit">Registro</button>
+               <button class="btn btn-primary" type="submit">Registrar</button>
            </div> 
     	</div>
     </div>

@@ -197,7 +197,7 @@
                   </div><!-- /.box-tools -->
                 </div><!-- /.box-header -->
                 <div class="box-body">
-                  No olvides actualizar tu perfil!
+                  No olvides completar tu perfil!
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
               </div>

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Redirect;
 use App\User;
 use Auth;
 use DB;
+use Illuminate\Auth\Events\Registered;
 
 class UserAdminController extends Controller
 {
@@ -64,8 +65,10 @@ class UserAdminController extends Controller
         $usuario->password =  bcrypt($request->contraseña);
         $usuario->tipo= "0";
         $usuario->curriculo = "0";
+        $usuario->email = $request->correo;
 
         $usuario->save();
+        event(new Registered($usuario));
 
         return redirect('/usuarios-sistema');
         }else{

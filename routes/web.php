@@ -17,18 +17,18 @@ Route::get('/', function () {
 
 Route::match(['get', 'post'],'/BTAdministradora', 'loginController@login');//Administradora
 Route::get('/salir', 'loginController@logout');
-Route::resource('/usuario', 'UsuarioController');
-Route::resource('/nuevo', 'NuevoController');
-Route::get('/ver', 'NuevoController@ver')->name('administradora.ver');
+Route::resource('/usuario', 'UsuarioController')->middleware('verified');
+Route::resource('/nuevo', 'NuevoController')->middleware('verified');
+Route::get('/ver', 'NuevoController@ver')->name('administradora.ver')->middleware('verified');
 Route::get('grafica-pastel', 'NuevoController@graficaPastel')->name('graficapastel');
 Route::get('cantidad-alumnos-contratadosp', 'NuevoController@graficaAlumnosp')->name('graficaalumnosp');
 Route::get('cantidad-alumnos-contratadosb', 'NuevoController@graficaAlumnosb')->name('graficaalumnosb');
 Route::get('grafica-barra', 'NuevoController@graficaBarra')->name('graficabarra');       
 Route::get('/reporte', 'NuevoController@ver_reporte')->name('ver_reporte');
 Route::post('/imprimiendo-reporte', 'NuevoController@descargar_reporte')->name('descargar_reporte');
-Route::resource('usuarios-empresa','UserEmpreController');
-Route::resource('usuarios-egresados','UserEgreController');
-Route::resource('usuarios-sistema', 'UserAdminController');
+Route::resource('usuarios-empresa','UserEmpreController')->middleware('verified');
+Route::resource('usuarios-egresados','UserEgreController')->middleware('verified');
+Route::resource('usuarios-sistema', 'UserAdminController')->middleware('verified');
 Route::get('/ver-grafica', 'NuevoController@ver_grafica');
 Route::post('/grafica', 'NuevoController@grafica');
 Route::put('ajustescorreoadmin/{id}/actualizado','UserAdminController@update2')->name('ajustescorreoadministrador.update');
@@ -68,7 +68,7 @@ Route::get('/onda', 'CurriculoController@curriculo')->name('curriculo.crear')->m
 Route::get('municipio/{id}','CurriculoController@getMunicipio');
 Route::get('/crear', 'EgresadoController@bienvenido')->name('egresado.bienvenido');
 Route::resource('/ajustes', 'UserEgreController');
-Route::resource('/nuevoegresado', 'RegistroEController');
+Route::resource('/nuevoegresado', 'RegistroEController')->middleware('verified');
 
 
 

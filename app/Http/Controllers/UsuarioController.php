@@ -8,6 +8,7 @@ use Auth;
 use App\User;
 use App\Egresado;
 use DB;
+use Illuminate\Auth\Events\Registered;
 
 class UsuarioController extends Controller
 {
@@ -62,6 +63,7 @@ class UsuarioController extends Controller
         $comando->curriculo = "1";
         $comando->origen = "Egresado";
         $comando->save();
+        event(new Registered($comando));
         return back();
         }else{
             abort(404, 'Página No Encontrada');

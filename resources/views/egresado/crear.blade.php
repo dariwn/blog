@@ -145,7 +145,7 @@
               </div>
 
               <div class="col-md-6 mb-3">
-                <label>Perfil</label>
+                <label>Carrera</label>
                 <select name="perfiles_id" class="form-control">
                 @foreach($perfiles as $perfil)
                               <option value="{{$perfil->idperfiles}}">{{$perfil->carrera}}</option>

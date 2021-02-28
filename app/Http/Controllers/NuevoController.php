@@ -11,6 +11,7 @@ use App\Empresa;
 use App\Egresado;
 use DB;
 use App\Solicitud;
+use Illuminate\Auth\Events\Registered;
 
 class NuevoController extends Controller
 {
@@ -65,6 +66,7 @@ class NuevoController extends Controller
         $nuevo->curriculo = "0";
         $nuevo->origen = "Empresa";
         $nuevo->save();
+        event(new Registered($nuevo));
         return back();
         }else{
             abort(404, 'Página No Encontrada');

@@ -408,14 +408,19 @@ class CurriculoController extends Controller
         $usuario = Auth::user()->id;
         $egresado = Egresado::select('idegresado')->where('users_id', $usuario)->get()->pluck('idegresado');
         $egresados = Arr::first($egresado);
+        
+        $obtperfil=Egresado::select('perfiles_id')->where('idegresado', $egresado)->get();
+        
 
+        $nomperfil=Perfil::select('carrera')->where('idperfiles',$obtperfil[0]->perfiles_id)->get();
+        //dd($nomperfil);
         $idiomas = Idioma::all();
         $jerarquias = Jerarquia::all();
         $perfiles = Perfil::all();
         $estados = Estado::all();
         $municipios = Municipio::all();
 
-        return view('curriculo.crear',compact('egresados','idiomas','jerarquias','estados','municipios','perfiles'));
+        return view('curriculo.crear',compact('nomperfil','egresados','idiomas','jerarquias','estados','municipios','perfiles'));
         }else{
             abort(404, 'Pagina No Encontrada');
         }

@@ -162,7 +162,27 @@
         
         <!-- Main content -->
         <section class="content">
-          
+          <?php 
+              $count = DB::table('registro_egresado_nuevos')->where('Validacion','No')->count();
+          ?>
+          @if ($count != 0)
+          <div class="row">
+            <div class="col-md-8"></div>
+            <div class="col-md-4">
+            <div class="box box-default">
+              <div class="box-header with-border">
+                <h3 class="box-title">Aviso</h3>
+                <div class="box-tools pull-right">
+                  <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                </div><!-- /.box-tools -->
+              </div><!-- /.box-header -->
+              <div class="box-body">
+                <?php echo "Tienes $count registro de egresados sin validar" ?>
+              </div><!-- /.box-body -->
+            </div><!-- /.box -->
+            </div>
+        @endif
+
           <div class="row">
             <div class="col-md-12">
               <div class="box">
