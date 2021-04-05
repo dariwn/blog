@@ -149,6 +149,7 @@ class CurriculoController extends Controller
         $usuario = Auth::user()->id;
         $admin = DB::table('users')->where('id', $usuario)->update(['curriculo' => 0]);
         $hola = new Curriculo;
+
         $hola->idegresado = $request->idegresado;
         $hola->ididioma = $request->ididioma;
         $hola->habilidades = $request->habilidades;
@@ -181,7 +182,9 @@ class CurriculoController extends Controller
         $hola->idjerarquia = $request->idjerarquia;
         $hola->idestado = $request->idestado;
         $hola->idmunicipio = $request->idmunicipio;
-        $hola->idperfiles = $request->idperfiles;
+        $perfil = DB::table('perfiles')->where('carrera', $request->area)->first();
+        //dd($perfil->idperfiles);
+        $hola->idperfiles = $perfil->idperfiles;
         $hola->save();
         return redirect()->route('egresado.index');   
     }
@@ -253,7 +256,8 @@ class CurriculoController extends Controller
     public function update(Request $request, $id)
     {
 
-        if(Auth::user()->orgien == 'Egresado'){
+        
+        if(Auth::user()->origen == 'Egresado'){
         //dd($request);
         $puestos = $request->puesto;
         //dd($puestos);
@@ -434,14 +438,15 @@ class CurriculoController extends Controller
         }
     }
 
-    public function curriculopdf(){
+    public function Curriculopdf(){
         //creacion del pdf y guardado        
-        $usuario = Auth::user()->id;
+       $usuario = Auth::user()->id;
+        
         $egresado = Egresado::select('idegresado')->where('users_id', $usuario)->get()->pluck('idegresado');
         $egresados = Arr::flatten($egresado);
  
-        //$hola = Curriculo::select('idcurriculo')->where('idcurriculo',$egresados)->get()->pluck('idcurriculo');
-        //$holas = array_flatten($hola);
+        ////$hola = Curriculo::select('idcurriculo')->where('idcurriculo',$egresados)->get()->pluck('idcurriculo');
+        ////$holas = array_flatten($hola);
  
         $hola = Curriculo::select('idcurriculo')->where('idegresado',$egresados)->get()->pluck('idcurriculo');
         $holas = Arr::first($hola);
@@ -450,7 +455,7 @@ class CurriculoController extends Controller
         
         $hola = Curriculo::find($holas); 
            
-        
+        //dd($hola);
         $pdf = PDF::loadview('curriculo.curriculopdf',compact('holas', 'hola','egresados','image')); 
         
         return $pdf->stream('cv.pdf');

@@ -158,6 +158,7 @@
                       <i class="fa fa-angle-left pull-right"></i>
                     <ul class="treeview-menu">
                       <li><a href="{{route('ajustesemp.show',$id)}}"><i class="fa fa-user"></i>Cambiar Usuario/Contraseña</a></li>                                                    
+                      <li><a href="{{route('ajustesemp.correo',$id)}}"><i class="fa fa-envelope"></i>Cambiar Correo</a></li>                               
                     </ul>              
                   </a>
                   </li>
@@ -197,7 +198,13 @@
                   </div><!-- /.box-tools -->
                 </div><!-- /.box-header -->
                 <div class="box-body">
+                  <?php 
+                    $emp=Auth::user()->id;
+                    $editemp = DB::table('empresas')->select('idempresa')->where('users_id',$emp)->get();  
+                                     
+                  ?>
                   No olvides completar tu perfil!
+                  <a href="{{route('empresa.edit',$editemp[0]->idempresa)}}">Click aqui.</a>
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
               </div>

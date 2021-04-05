@@ -12,7 +12,9 @@
 		body {
 			background-color: #FFFFFF;
 			background-image: url("img/logo.png");
-			background-position: left;
+			background-size: 50% 50%;
+			background-position: center;
+			opacity: 0.6;			
 			background-repeat: no-repeat;
 			background-attachment:fixed;
 		}
@@ -33,7 +35,7 @@
 
 	<p class=MsoNormal align=center style='text-align:center;tab-stops:36.65pt'><strong><span
 	style='font-family:"montserratmedium",serif;mso-bidi-font-family:"Arial";
-	mso-bidi-theme-font:minor-bidi;color:#4C4B4A;'>
+	mso-bidi-theme-font:minor-bidi;color:#000000;'>
 	<center>
 		<p>DEPARTAMENTO DE GESTION TECNOLOGICA Y VINCULACION</p>
 		<P>OFICINA DE PRACTICAS Y PROMOCION POFESIONAL</P>
@@ -44,22 +46,22 @@
 
 	<p  align="right" class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:justify;tab-stops:36.65pt'><strong><span style='font-size:10.0pt;line-height:
 	107%;font-family:"montserratmedium",serif;mso-bidi-font-family:"Arial";
-	mso-bidi-theme-font:minor-bidi;color:#4C4B4A;'>Dirigido: {{ $dirigido }} </span></strong></p>
+	mso-bidi-theme-font:minor-bidi;color:#000000;'>Dirigido: {{ $dirigido }} </span></strong></p>
 
 	<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:justify;tab-stops:36.65pt'><strong><span style='font-size:10.0pt;line-height:
 	107%;font-family:"montserratmedium",serif;mso-bidi-font-family:"Arial";
-	mso-bidi-theme-font:minor-bidi;color:#4C4B4A;'>Cargo: {{ $cargo }} </span></strong></p></br>
+	mso-bidi-theme-font:minor-bidi;color:#000000;'>Cargo: {{ $cargo }} </span></strong></p></br>
 
 	<p class=MsoNormal style='text-align:justify;tab-stops:36.65pt'><strong><span
 	style='font-size:10.0pt;line-height:107%;font-family:"montserratmedium",serif;
 	mso-bidi-font-family:"Arial";mso-bidi-theme-font:minor-bidi;
-	color:#4C4B4A;'>Presente</span></strong><span
+	color:#000000;'>Presente</span></strong><span
 	style='font-size:10.0pt;line-height:107%'><o:p></o:p></span></p>
 
 	<span
 	style='font-size:10.0pt;line-height:107%;font-family:"montserratmedium",serif;
 	mso-bidi-font-family:"Arial";mso-bidi-theme-font:minor-bidi;
-	color:#4C4B4A;'>El que suscribe la encargada de la Oficina de
+	color:#000000;'>El que suscribe la encargada de la Oficina de
 	Prácticas y Promoción Profesional, por este medio se permite hace su
 	conocimiento del reporte número {{ $numero }} del periodo {{ $periodo }} hasta {{ $hasta }}, realizando como actividad la representación
 	de datos actuales del Sistema de Bolsa de Trabajo en la siguiente tabla.</span></strong></p>
@@ -107,7 +109,7 @@
 	<span 
 	style='font-size:10.0pt;line-height:107%;font-family:"montserratmedium",serif;
 	mso-bidi-font-family:"Arial";mso-bidi-theme-font:minor-bidi;
-	color:#4C4B4A;'>
+	color:#000000;'>
 	Puestos Ocupados Por Alumnos: {{ $Si }} , Puestos No Ocupados Por Alumnos: {{$No}} .
 
 	</strong> 
@@ -120,7 +122,7 @@
 	<span 
 	style='font-size:10.0pt;line-height:107%;font-family:"montserratmedium",serif;
 	mso-bidi-font-family:"Arial";mso-bidi-theme-font:minor-bidi;
-	color:#4C4B4A;'>
+	color:#000000;'>
 
 	 Se extiende la presente en la ciudad de Tuxtla
 	Gutiérrez, Chiapas,<br>{{ $extiende }}
@@ -137,17 +139,17 @@
 		<p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
 		text-align:center;tab-stops:360.65pt'><strong><span style='font-size:10.0pt;
 		line-height:107%;font-family:"montserratmedium",serif;mso-bidi-font-family:
-		"Arial";mso-bidi-theme-font:minor-bidi;color:#4C4B4A;'>______________________________<o:p></o:p></span></strong></p>
+		"Arial";mso-bidi-theme-font:minor-bidi;color:#000000;'>______________________________<o:p></o:p></span></strong></p>
 
 		<p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
 		text-align:center;tab-stops:360.65pt'><strong><span style='font-size:10.0pt;
 		line-height:107%;font-family:"montserratmedium",serif;mso-bidi-font-family:
-		"Arial";mso-bidi-theme-font:minor-bidi;color:#4C4B4A;'>{{$nombre}}<o:p></o:p></span></strong></p>
+		"Arial";mso-bidi-theme-font:minor-bidi;color:#000000;'>{{$nombre}}<o:p></o:p></span></strong></p>
 
 		<p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
 		text-align:center;tab-stops:360.65pt'><strong><span style='font-size:10.0pt;
 		line-height:107%;font-family:"montserratmedium",serif;mso-bidi-font-family:
-		"Arial";mso-bidi-theme-font:minor-bidi;color:#4C4B4A;'>Oficina
+		"Arial";mso-bidi-theme-font:minor-bidi;color:#000000;'>Oficina
 		de Prácticas y Promoción Profesional<o:p></o:p></span></strong></p>
 
 	</center>

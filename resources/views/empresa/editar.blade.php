@@ -25,80 +25,72 @@
 
 <div class="container">
       <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 toppad" >
+        <div class="col-md-10" >
 
           <div class="panel panel-success"><br>
               <h2 class="panel-title"><center><font size="5"></i>PERFIL</font></center></h2>
 
             <div class="panel-body">
               <div class="row">
-<form action="{{route('empresa.update',$empresa->idempresa)}}" method="POST" enctype="multipart/form-data">
-  @csrf
-  @method('PUT')
+		<form action="{{route('empresa.update',$empresa->idempresa)}}" method="POST" enctype="multipart/form-data">
+		@csrf
+		@method('PUT')
           
-                <div class="col-md-3 col-lg-3 " align="center"> 
-        <div id="load_img">
-          <img class="img-responsive" src="{{asset('Imagenes/empresas/'.$empresa->imagen)}}" height="150px" width="150px">
-		</div>
-		
-		<div class="form-row">
-			<div class="col">
-				<div class="input-group-prepend">
-					<label class="input-group-text">Subir Imagen: </label>
-					<input accept="image/*" type="file" id="file" name="imagen" onchange="Filevalidation();">
-				</div> 
-			</div>                               
-		  </div>
-
-
-        <br>        
-          <div class="row">
-              <div class="col-md-12">
-              
-            </div>
-            
-          </div>
+        <div class="col-md-2 col-lg-4 " align="center"> 
+			<div id="load_img">
+			<img class="img-responsive" src="{{asset('Imagenes/empresas/'.$empresa->imagen)}}" height="150px" width="150px">
+			</div>
+			
+			<div class="form-row">
+				<div class="col">
+					<div class="input-group-prepend">
+						<label class="input-group-text">Subir Imagen: </label>
+						<input accept="image/*" type="file" id="file" name="imagen" onchange="Filevalidation();">
+					</div> 
+				</div>                               
+			</div>
+        <br>                  
         </div>
-                <div class=" col-md-9 col-lg-9 "> 
+                <div class=" col-md-8 "> 
                   <table class="table table-condensed">
                     <tbody>
 						<tr>
 							<td class='col-md-3'>Nombre de la Empresa:</td>
-							<td><input type="text" class="form-control input-sm" name="nombre" value="{{$empresa->nombre}}"></td>
+							<td><input type="text" class="form-control input-sm" name="nombre" value="{{$empresa->nombre}}" required></td>
 						  </tr>
 						  <tr>
 							  <tr>
 							<td class='col-md-3'>RFC:</td>
-							<td><input type="text" class="form-control input-sm" name="rfc" value="{{$empresa->rfc}}"></td>
+							<td><input type="text" class="form-control input-sm" name="rfc" value="{{$empresa->rfc}}" required></td>
 						  </tr>
 						  <tr>
 							  <tr>
 							<td class='col-md-3'>Descripción:</td>
-							<td><input type="text" class="form-control input-sm" name="descripcion" value="{{$empresa->descripcion}}"></td>
+							<td><input type="text" class="form-control input-sm" name="descripcion" value="{{$empresa->descripcion}}" required></td>
 						  </tr>
 						  
 						  <tr>
 							  <tr>
 							<td class='col-md-3'>Dirección</td>
-							<td><input type="text" class="form-control input-sm" name="calle" value="{{$empresa->calle}}"></td>
+							<td><input type="text" class="form-control input-sm" name="calle" value="{{$empresa->calle}}" required></td>
 						  </tr>
 						  
 						  <tr>
 							<td>Colonia:</td>
-							<td><input type="text" class="form-control input-sm" name="colonia" value="{{$empresa->colonia}}"></td>
+							<td><input type="text" class="form-control input-sm" name="colonia" value="{{$empresa->colonia}}" required></td>
 						  </tr>
 						  <tr>
 							<td>Numero Exterior:</td>
-							<td><input type="text" class="form-control input-sm" name="numeroexterior" value="{{$empresa->numeroexterior}}"></td>
+							<td><input type="text" class="form-control input-sm" name="numeroexterior" value="{{$empresa->numeroexterior}}" required></td>
 						  </tr>
 						  <tr>
 							<td>Codigo Postal:</td>
-							<td><input type="" class="form-control input-sm" name="codigo_postal" value="{{$empresa->codigo_postal}}"></td>
+							<td><input type="" class="form-control input-sm" name="codigo_postal" value="{{$empresa->codigo_postal}}" required></td>
 						  </tr>
 	
 						  <tr>
 							<td>Telefono:</td>
-							<td> <input type="" class="form-control input-sm" name="telefono" value="{{$empresa->telefono}}"></td>
+							<td> <input type="" class="form-control input-sm" name="telefono" value="{{$empresa->telefono}}" required></td>
 						  </tr>
 
 						  <tr>
@@ -142,32 +134,32 @@
 	
 						  <tr>
 							<td>Nombre (s):</td>
-							<td><input type="text" class="form-control input-sm" name="names" value="{{$empresa->names}}"></td>
+							<td><input type="text" class="form-control input-sm" name="names" value="{{$empresa->names}}" required></td>
 						  </tr>
 						  
 						  <tr>
 							<td>Apellido Paterno:</td>
-							<td><input type="text" class="form-control input-sm" name="apellido_paterno" value="{{$empresa->apellido_paterno}}"></td>
+							<td><input type="text" class="form-control input-sm" name="apellido_paterno" value="{{$empresa->apellido_paterno}}" required></td>
 						  </tr>
 						  
 						  <tr>
 							<td>Apellido Materno:</td>
-							<td><input type="text" class="form-control input-sm" name="apellido_materno" value="{{$empresa->apellido_materno}}"></td>
+							<td><input type="text" class="form-control input-sm" name="apellido_materno" value="{{$empresa->apellido_materno}}" required></td>
 						  </tr>
 						  
 						  <tr>
 							<td>Cargo:</td>
-							<td><input type="text" class="form-control input-sm" name="cargo" value="{{$empresa->cargo}}"></td>
+							<td><input type="text" class="form-control input-sm" name="cargo" value="{{$empresa->cargo}}" required></td>
 						  </tr>
 						  
 						  <tr>
 							<td>Telefono:</td>
-							<td> <input type="text" class="form-control input-sm" name="numero_cel" value="{{$empresa->numero_cel}}"></td>
+							<td> <input type="text" class="form-control input-sm" name="numero_cel" value="{{$empresa->numero_cel}}" required></td>
 						  </tr>
 						  
 						  <tr>
 							<td>Correo Electronico:</td>
-							<td><input type="text" class="form-control input-sm" name="email" value="{{$empresa->email}}"></td>
+							<td><input type="text" class="form-control input-sm" name="email" value="{{$empresa->email}}" required></td>
 						  </tr>
 						
 						  <td>
@@ -178,5 +170,14 @@
 	
                     </tbody>
                   </table>
+				</div>
+				  
 </form>
+			  </div>
+			</div>
+		  </div>
+		</div>
+	  </div>
+</div>
+
 @endsection

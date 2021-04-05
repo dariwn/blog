@@ -177,7 +177,9 @@
                 </div><!-- /.box-tools -->
               </div><!-- /.box-header -->
               <div class="box-body">
-                <?php echo "Tienes $count registro de egresados sin validar" ?>
+                <?php echo "Tienes $count registro de egresados sin validar."                       
+                ?>
+                <a href={{route('nuevoegresado.index')}}>Click aqui para ver</a>
               </div><!-- /.box-body -->
             </div><!-- /.box -->
             </div>

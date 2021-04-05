@@ -225,7 +225,7 @@ class EgresadoController extends Controller
     public function update(Request $request, $id)
     {
          //dd($request->file('file'));
-         if(Auth::user()->orgien == 'Egresado'){
+         if(Auth::user()->origen == 'Egresado'){
        
         $egresado = Egresado::findOrFail($id);        
 

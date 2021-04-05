@@ -101,6 +101,20 @@ class UserEmpreController extends Controller
 
     }
 
+    public function edit2($id){
+        if (Auth::user()->origen == 'Empresa') {
+            $user = DB::table('users')->where('id',$id)->get();
+            //dd($user);
+            $usuario1 = Auth::user()->id;
+            $empresa = Empresa::select('idempresa')->where('users_id', $usuario1)->get()->pluck('idempresa');
+            $empresas = Arr::flatten($empresa);
+            return view('empresa.editcorreo', compact('user','empresas'));
+        }else{
+            abort(404,'Pagina No Encontrada');
+        }
+        
+
+    }
     /**
      * Update the specified resource in storage.
      *
@@ -172,6 +186,26 @@ class UserEmpreController extends Controller
             abort(404, 'Página No Encontrada');
         }
     }
+
+    public function update2(Request $request,$id){
+        
+        $user = User::findOrFail($id);        
+        //dd($user);
+        $user->email = $request->email;
+        $userid = Auth::user()->id;
+        $Ucorreo1 = Empresa::select('idempresa')->where('users_id', $userid)->first();
+
+        //dd($Ucorreo1);
+        $Ucorreo = Empresa::findOrFail($Ucorreo1->idempresa); 
+        //dd($Ucorreo); 
+        $Ucorreo->email =$request->email;
+        // dd($Ucorreo[0]->email);
+        $Ucorreo->save();
+        $user->save();
+        
+        return redirect()->route('empresa.index');
+    }
+
 
     /**
      * Remove the specified resource from storage.

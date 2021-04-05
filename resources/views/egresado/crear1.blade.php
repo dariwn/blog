@@ -166,7 +166,7 @@
                 
                 <div class="input-group-prepend">
                     <label class="input-group-text">Subir Imagen: </label>
-                    <input accept="image/*" type="file" id="file" name="file" onchange="Filevalidation();">
+                    <input accept="image/*" type="file" id="file" name="file" onchange="Filevalidation();" required>
                 </div> 
                 
             </div>

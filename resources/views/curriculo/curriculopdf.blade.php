@@ -32,13 +32,13 @@
 <body>
 
     <div id="page-wrap">
-    <br>
-        <img src="img/{{$hola->curriculo->imagen}}" id="pic" height="150px" width="150px"/>
+    <br>                     
+        
     
         <div id="contact-info" class="vcard">
         
             <!-- Microformats! -->
-        
+            <img src="img/{{$hola->curriculo->imagen}}" id="pic" height="150px" width="150px"/>
             <h1 class="fn">{{$hola->curriculo->nombres}} {{$hola->curriculo->apellido_paterno}} {{$hola->curriculo->apellido_materno}}</h1>
         
             <p>

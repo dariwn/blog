@@ -113,7 +113,7 @@ class SolicitudperfilController extends Controller
      */
     public function update(Request $request, $id)
     {
-            if(Auth::user()->orgien == 'Empresa'){             
+            if(Auth::user()->origen == 'Empresa'){             
            //dd($request);
             $perfilactual = DB::table('solicitudperfil')->where('idsolicitud','=',$request->idsolicitud)->get();
             //dd($perfilactual);
