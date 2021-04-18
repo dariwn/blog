@@ -10,9 +10,9 @@
 @section('seccion')
 <script type="text/javascript">
     $(document).ready(function () {
-    $('input#telefono_celular')
+    $('input#numerocontrol')
         .keypress(function (event) {
-        if (this.value.length === 10) {
+        if (this.value.length === 8) {
             return false;
         }
         });
@@ -20,70 +20,54 @@
 
 </script>
 <br>
+@include('sesionstatus')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Registro De Usuario Empresa</div>
+                <div class="card-header">Edicion De Usuario Egresado</div>
                 <div class="card-body">
-                    <form  action="{{ Route('RegistroEmpresa.store') }}" method="POST">
-                                         
+                    <form  action="{{ Route('RegistroEgresado.update', $editregistro->id) }}" method="POST">
+                    @method('PUT')                
                     @csrf   
                     <div class="form-group row">
-                        <label class="col-sm-4 col-form-label text-md-right">RFC de la empresa: </label>
+                        <label class="col-sm-4 col-form-label text-md-right">Número de Control: </label>
                         <div class="col-md-6">
-                           <input type="text" name="rfcempresa" required class="form-control" placeholder="RFC"> 
+                           <input type="number" name="numerocontrol" id="numerocontrol" required class="form-control" value="{{ $editregistro->numero_control}}" placeholder="Número de Control"> 
                         </div>                            
                     </div>  
-                  
                     
                     <div class="form-group row">
-                        <label class="col-sm-4 col-form-label text-md-right">Nombre de la empresa: </label>
+                        <label class="col-sm-4 col-form-label text-md-right">Nombre(s): </label>
                         <div class="col-md-6">
-                           <input type="text" name="nombreempresa" required class="form-control" placeholder="Nombre de la empresa"> 
-                        </div>                            
-                    </div> 
-
-                    <label for="">Datos del Contacto:</label>
-
-                    <div class="form-group row">
-                        <label class="col-sm-4 col-form-label text-md-right">Nombre (s): </label>
-                        <div class="col-md-6">
-                           <input type="text" name="nombre" required class="form-control" placeholder="Apellido Paterno"> 
+                           <input type="text" name="nombre" required class="form-control" placeholder="Nombre(s)" value="{{ $editregistro->nombres}}"> 
                         </div>                            
                     </div> 
 
                     <div class="form-group row">
                         <label class="col-sm-4 col-form-label text-md-right">Apellido Paterno: </label>
                         <div class="col-md-6">
-                           <input type="text" name="apellidop" required class="form-control" placeholder="Apellido Paterno"> 
+                           <input type="text" name="apellidop" required class="form-control" placeholder="Apellido Paterno" value="{{ $editregistro->apellido_paterno}}"> 
                         </div>                            
                     </div> 
 
                     <div class="form-group row">
                         <label class="col-sm-4 col-form-label text-md-right">Apellido Materno: </label>
                         <div class="col-md-6">
-                           <input type="text" name="apellidom" required class="form-control" placeholder="Apellido Materno"> 
-                        </div>                            
-                    </div> 
-
-                    <div class="form-group row">
-                        <label class="col-sm-4 col-form-label text-md-right">Número de telefono/celular: </label>
-                        <div class="col-md-6">
-                           <input type="number" name="telefono_celular" id="telefono_celular" placeholder="Numero de Telefono/Celular" required class="form-control"> 
+                           <input type="text" name="apellidom" required class="form-control" placeholder="Apellido Materno" value="{{ $editregistro->apellido_materno}}"> 
                         </div>                            
                     </div> 
 
                     <div class="form-group row">
                         <label class="col-sm-4 col-form-label text-md-right">Correo Electronico: </label>
                         <div class="col-md-6">
-                           <input type="email" name="correo" required class="form-control" placeholder="Correo Electronico"> 
+                           <input type="email" name="correo" required class="form-control" placeholder="Correo Electronico" value="{{ $editregistro->email}}"> 
                         </div>                            
-                    </div>  
+                    </div> 
                            
                     <div class="form-group row mb-0">
                         <div class="col-md-6 offset-md-4">
-                            <button type="submit" class="btn btn-primary">Registrar</button>
+                            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
                         </div>
                     </div>                                                                      
                     

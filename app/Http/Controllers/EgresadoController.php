@@ -302,9 +302,9 @@ class EgresadoController extends Controller
         $correo = Auth::user()->email;
        // dd($correo);
 
-        if (DB::table('registro_egresado_nuevos')->where('correo', $correo)->exists()) {
+        if (DB::table('registro_egresado_nuevos')->where('email', $correo)->exists()) {
             
-            $datos = DB::table('registro_egresado_nuevos')->where('correo', $correo)->first();
+            $datos = DB::table('registro_egresado_nuevos')->where('email', $correo)->first();
             
             //dd($datos);
             $usuario = Auth::user()->id;

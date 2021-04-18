@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Mail;
+use Carbon\Carbon; 
+use DateTime;
 
 class RegistroEController extends Controller
 {
@@ -25,8 +27,9 @@ class RegistroEController extends Controller
         //
         if(Auth::user()->origen == 'Administradora'){
             $nuevoegre = DB::table('registro_egresado_nuevos')->where('Validacion', 'No')->get();
+            $rechazoegre = DB::table('registro_egresado_nuevos')->where('Validacion', 'Rechazado')->get();
             //dd($usuarios);
-            return view('administradora.indexegrenuevo', compact('nuevoegre'));
+            return view('administradora.indexegrenuevo', compact('nuevoegre', 'rechazoegre'));
             }else{
                 abort(404, 'Página No Encontrada');
             }
@@ -52,17 +55,36 @@ class RegistroEController extends Controller
     {
         //
         //dd($request);
+        $existcne = DB::table('registro_egresado_nuevos')->where('email',$request->correo)->exists();        
+        if ($existcne == true) {            
+            return redirect('/RegistroEgresado/create')->with('registro','Este correo ya se encuentra registrado');
+        }else{
+
+        
         $nuevoeg = new RegistroEgresadoNuevo;
         $nuevoeg->numero_control = $request->numerocontrol;
         $nuevoeg->nombres = $request->nombre;
         $nuevoeg->apellido_paterno = $request->apellidop;
         $nuevoeg->apellido_materno = $request->apellidom;
-        $nuevoeg->correo = $request->correo;
+        $nuevoeg->email = $request->correo;
         $nuevoeg->Validacion = 'No';
 
+       
+
+        $nuser = new User;        
+        $nuser->username=$request->nombre;
+        $nuser->email = $request->correo;
+        $nuser->origen = 'Pendiente';
+        $nuser->password = bcrypt('12345678');
+        $nuser->tipo = 1;
+        $nuser->curriculo = 1;
+
         $nuevoeg->save();
+        $nuser->save();
+        event(new Registered($nuser));
 
         return view('layouts.aviso');
+        }
 
     }
 
@@ -97,17 +119,17 @@ class RegistroEController extends Controller
             $usuarioegre = 'EG'.$usuario->numero_control;
             $random_password = Str::random(8);
 
-            $user = new User;
-            $user->origen = 'Egresado';
-            $user->email = $usuario->correo;
-            $user->password = bcrypt($random_password);
+            $edituser = DB::table('users')->where('email',$usuario->email)->first();
+
+            $user = User::findOrFail($edituser->id);
+
+            //dd($user);   
+            $user->origen = 'Egresado';         
             $user->username = $usuarioegre;
-            $user->tipo = 1;
-            $user->curriculo = 1;
+            $user->password = bcrypt($random_password);;            
+              
 
-          
-
-            $correoeg = $usuario->correo;
+            $correoeg = $usuario->email;
 
             $data= array(
                 'mensaje' => 'Ingresa',
@@ -124,16 +146,33 @@ class RegistroEController extends Controller
             //dd($correoem);
 
            $usuario->save(); 
-           $user->save();
-            
-                
-           event(new Registered($user));
+           $user->save();      
 
             return Redirect('/nuevoegresado');
             }else{
                 abort(404, 'Página No Encontrada');
             }
     }
+
+    public function edit2($id){   
+        
+            $editregistro = RegistroEgresadoNuevo::findOrFail($id);
+            
+             
+            //dd($editregistro);
+
+            return view('egresado.editregistro', compact('editregistro'));
+        
+    }
+
+    public function edit3($id){   
+        
+        $editregistro = RegistroEgresadoNuevo::findOrFail($id);
+        //dd($editregistro);
+
+        return view('administradora.editregistrorecha', compact('editregistro'));
+    
+    }   
 
     /**
      * Update the specified resource in storage.
@@ -145,8 +184,77 @@ class RegistroEController extends Controller
     public function update(Request $request, $id)
     {
         //
-        abort(404, 'Página No Encontrada');
+   
+       $editregistro = RegistroEgresadoNuevo::findOrFail($id);
+       //dd($editregistro);
+        $editregistro->numero_control = $request->numerocontrol;
+        $editregistro->nombres = $request->nombre;
+        $editregistro->apellido_paterno = $request->apellidop;
+        $editregistro->apellido_materno = $request->apellidom;
+        $editregistro->email = $request->correo;
+        $editregistro->Validacion = 'No';
+
+        $editregistro->save();
+
+        return redirect('/RegistroEgresado/create')->with('guardado','Los Datos se guardaron correctamente, en breve el administrador del sistema los revisara nuevamente.');
     }
+
+    public function update2(Request $request, $id)
+    {
+        
+        if(Auth::user()->origen == 'Administradora'){
+            $editregistro = RegistroEgresadoNuevo::findOrFail($id);
+       
+            $editregistro->numero_control = $request->numerocontrol;
+            $editregistro->nombres = $request->nombre;
+            $editregistro->apellido_paterno = $request->apellidop;
+            $editregistro->apellido_materno = $request->apellidom;
+            $editregistro->email = $request->correo;
+            $editregistro->save();
+
+            $usuario = RegistroEgresadoNuevo::findOrFail($id);
+            //dd($usuario->numero_control);
+           
+            $usuario->Validacion = 'Si'; 
+            
+            $usuarioegre = 'EG'.$usuario->numero_control;
+            $random_password = Str::random(8);
+
+            $edituser = DB::table('users')->where('email',$usuario->email)->first();
+
+            $user = User::findOrFail($edituser->id);
+
+            //dd($user);   
+            $user->origen = 'Egresado';         
+            $user->username = $usuarioegre;
+            $user->password = bcrypt($random_password);;            
+              
+
+            $correoeg = $usuario->email;
+
+            $data= array(
+                'mensaje' => 'Ingresa',
+                'direccion' => 'http://127.0.0.1:8000/BTEgresado',
+                'usuario' => $usuarioegre,
+                'contraseña' => $random_password,
+            );
+   
+                Mail::send('emails.webregistroemp',$data,function($msg) use ($correoeg){
+                    $msg->from('from@example.com', 'Bolsa de Trabajo ITTG');
+   
+                    $msg->to($correoeg)->subject('Notificacion');
+                });
+            //dd($correoem);
+
+           $usuario->save(); 
+           $user->save();      
+
+            return Redirect('/nuevoegresado');
+            }else{
+                abort(404, 'Página No Encontrada');
+            }
+    }
+
 
     /**
      * Remove the specified resource from storage.
@@ -162,14 +270,25 @@ class RegistroEController extends Controller
             $usuario = RegistroEgresadoNuevo::findOrFail($id);
             //dd($usuario);
 
-            $correoeg = $usuario->correo;
+            $fecharechazo = new \DateTime();
+            $usuario->modificado = $fecharechazo->format('Y-m-d H:i:s');
+            
+            $usuario->validacion = 'Rechazado';
+
+            $correoeg = $usuario->email;
             $correoadmin = Auth::user()->email;
+
+            $buscauser = DB::table('users')->where('email',$usuario->email)->first();
+
+            $eliminaruser = User::findOrFail($buscauser->id);
+
+            //dd($eliminaruser);
 
             //dd($correoadmin);
             $data= array(
                 'mensaje' => 'Rechazado',
                 'mensaje2' => $correoadmin,
-                'direccion' => 'http://127.0.0.1:8000/BTEgresado',                
+                'direccion' => 'http://127.0.0.1:8000/editardatos/'.$id.'/registroegresado',                
             );
    
                 Mail::send('emails.webrechazoegre',$data,function($msg) use ($correoeg){
@@ -179,8 +298,9 @@ class RegistroEController extends Controller
                 });
             //dd($correoem);
 
-            $usuario->delete();
-
+            $usuario->save();
+            // $eliminaruser->delete();
+            
             return Redirect('/nuevoegresado');
             }else{
                 abort(404, 'Página No Encontrada');

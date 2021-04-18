@@ -35,6 +35,6 @@
 		</div>
 
 	</header>
-	@yield('seccion')
+	@yield('seccion')	
 </body>
 </html>

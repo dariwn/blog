@@ -67,7 +67,7 @@
                 <div class="col-lg-6 ">
                 <div class="form-group">
                 <label for="nombre">Correo</label>            
-                <input type="text" name="correo" required value="{{ $datos->correo }}" class="form-control" placeholder="Correo...">
+                <input type="text" name="correo" required value="{{ $datos->email }}" class="form-control" placeholder="Correo...">
                 </div>
                 </div>
                 <div class="col-lg-6 ">

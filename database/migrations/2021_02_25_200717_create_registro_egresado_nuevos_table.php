@@ -19,8 +19,10 @@ class CreateRegistroEgresadoNuevosTable extends Migration
             $table->char('nombres', 100);
 			$table->char('apellido_paterno', 60);
 			$table->char('apellido_materno', 60);
-			$table->char('correo', 40);
+			$table->string('email')->unique();
+			$table->dateTime('email_verified_at')->nullable();
             $table->char('Validacion',10);
+
             $table->timestamps();
         });
     }

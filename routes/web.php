@@ -74,8 +74,9 @@ Route::resource('/nuevoegresado', 'RegistroEController')->middleware('verified')
 
 
 
-
-
+Route::get('editardatos/{id}/registroegresado', 'RegistroEController@edit2');
+Route::put('editardatosrechazo/{id}/actualizado', 'RegistroEController@update2')->name('RegistroEgresado.actualizado');
+Route::get('editardatosrechazo/{id}/registroegresado', 'RegistroEController@edit3');
 Route::resource('/RegistroEgresado', 'RegistroEController');
 
 

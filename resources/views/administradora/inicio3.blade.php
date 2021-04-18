@@ -113,7 +113,7 @@
                 <li><a href="{{url('usuarios-egresados')}}">Administrar Usuarios</a></li>
                 <li><a href="{{route('usuario.create')}}">Crear Usuario</a></li>
                 <li><a href="{{route('usuario.index')}}">Mostrar Datos De Egresados</a></li> 
-                <li><a href="{{route('nuevoegresado.index')}}">Validar Registros</a></li>                
+                <li><a href="{{route('nuevoegresado.index')}}">Validar Registros</a></li>                                
               </ul>              
             </a>
             </li>
