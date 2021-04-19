@@ -80,7 +80,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'es',
 
     /*
     |--------------------------------------------------------------------------
@@ -176,6 +176,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         
         Barryvdh\DomPDF\ServiceProvider::class,
+
+        Laraveles\Spanish\SpanishServiceProvider::class,
     ],
 
     /*

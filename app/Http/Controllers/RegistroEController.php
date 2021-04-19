@@ -156,12 +156,16 @@ class RegistroEController extends Controller
 
     public function edit2($id){   
         
-            $editregistro = RegistroEgresadoNuevo::findOrFail($id);
-            
-             
-            //dd($editregistro);
-
+        //dd($id);
+        $exits = DB::table('registro_egresado_nuevos')->where('id',$id)->exists();
+        //dd($exits); 
+        if($exits == false){
+            return redirect('/RegistroEgresado/create')->with('registro','Lo sentimos, tus datos ya no se encuentran disponibles. Registrate de nuevo.');
+        } else{
+            $editregistro = RegistroEgresadoNuevo::findOrFail($id);         
+            //dd($id);
             return view('egresado.editregistro', compact('editregistro'));
+        }        
         
     }
 

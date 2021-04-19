@@ -11,17 +11,19 @@
         "php": "^7.3",
         "ext-gd": "^7.3",
         "barryvdh/laravel-dompdf": "^0.8.6",
+        "doctrine/dbal": "2.5.1",
         "fideloper/proxy": "^4.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "illuminate/support": "^8.24",
+        "laravel-lang/lang": "~7.0",
         "laravel/framework": "^8.0",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.2",
+        "laraveles/spanish": "^1.5",
         "phpoffice/phpword": "^0.17.0",
         "pusher/pusher-php-server": "^4.1",
         "uxweb/sweet-alert": "^2.0",
-        "wemersonjanuario/wkhtmltopdf-windows": "0.12.2.3",
-        "doctrine/dbal": "2.5.1"
+        "wemersonjanuario/wkhtmltopdf-windows": "0.12.2.3"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
