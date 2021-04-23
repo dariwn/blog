@@ -25,8 +25,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('Verifica:Correo')->everyMinute();
-        $schedule->command('Registro:Editado')->everyMinute();       
+       // $schedule->command('Verifica:Correo')->everyMinute();
+       // $schedule->command('Registro:Editado')->everyMinute();       
     }
 
     /**

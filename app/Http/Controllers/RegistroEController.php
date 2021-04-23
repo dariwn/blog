@@ -14,6 +14,11 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon; 
 use DateTime;
+use App\Jobs\VerificaEmail;
+use App\Jobs\RegistroNoEditado;
+
+use App\Mail\MensajeRechazado;
+use App\Mail\MensajeAceptado;
 
 class RegistroEController extends Controller
 {
@@ -29,6 +34,10 @@ class RegistroEController extends Controller
             $nuevoegre = DB::table('registro_egresado_nuevos')->where('Validacion', 'No')->get();
             $rechazoegre = DB::table('registro_egresado_nuevos')->where('Validacion', 'Rechazado')->get();
             //dd($usuarios);
+
+            VerificaEmail::dispatch();
+            RegistroNoEditado::dispatch();
+
             return view('administradora.indexegrenuevo', compact('nuevoegre', 'rechazoegre'));
             }else{
                 abort(404, 'Página No Encontrada');
@@ -43,6 +52,7 @@ class RegistroEController extends Controller
     public function create()
     {
         return view('egresado.registro');
+        
     }
 
     /**
@@ -53,7 +63,7 @@ class RegistroEController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //        
         //dd($request);
         $existcne = DB::table('registro_egresado_nuevos')->where('email',$request->correo)->exists();        
         if ($existcne == true) {            
@@ -131,19 +141,23 @@ class RegistroEController extends Controller
 
             $correoeg = $usuario->email;
 
-            $data= array(
-                'mensaje' => 'Ingresa',
-                'direccion' => 'http://127.0.0.1:8000/BTEgresado',
-                'usuario' => $usuarioegre,
-                'contraseña' => $random_password,
-            );
+            // $data= array(
+            //     'mensaje' => 'Ingresa',
+            //     'direccion' => 'http://127.0.0.1:8000/BTEgresado',
+            //     'usuario' => $usuarioegre,
+            //     'contraseña' => $random_password,
+            // );
    
-                Mail::send('emails.webregistroemp',$data,function($msg) use ($correoeg){
-                    $msg->from('from@example.com', 'Bolsa de Trabajo ITTG');
+            //     Mail::send('emails.webregistroemp',$data,function($msg) use ($correoeg){
+            //         $msg->from('from@example.com', 'Bolsa de Trabajo ITTG');
    
-                    $msg->to($correoeg)->subject('Notificacion');
-                });
-            //dd($correoem);
+            //         $msg->to($correoeg)->subject('Notificacion');
+            //     });
+            // //dd($correoem);
+            $data1 = $usuarioegre;
+            $data = $random_password;
+
+            Mail::to($correoeg)->send(new MensajeAceptado($data1, $data));
 
            $usuario->save(); 
            $user->save();      
@@ -236,19 +250,23 @@ class RegistroEController extends Controller
 
             $correoeg = $usuario->email;
 
-            $data= array(
-                'mensaje' => 'Ingresa',
-                'direccion' => 'http://127.0.0.1:8000/BTEgresado',
-                'usuario' => $usuarioegre,
-                'contraseña' => $random_password,
-            );
+            // $data= array(
+            //     'mensaje' => 'Ingresa',
+            //     'direccion' => 'http://127.0.0.1:8000/BTEgresado',
+            //     'usuario' => $usuarioegre,
+            //     'contraseña' => $random_password,
+            // );
    
-                Mail::send('emails.webregistroemp',$data,function($msg) use ($correoeg){
-                    $msg->from('from@example.com', 'Bolsa de Trabajo ITTG');
+            //     Mail::send('emails.webregistroemp',$data,function($msg) use ($correoeg){
+            //         $msg->from('from@example.com', 'Bolsa de Trabajo ITTG');
    
-                    $msg->to($correoeg)->subject('Notificacion');
-                });
-            //dd($correoem);
+            //         $msg->to($correoeg)->subject('Notificacion');
+            //     });
+            // //dd($correoem);
+            $data1 = $usuarioegre;
+            $data = $random_password;
+
+            Mail::to($correoeg)->send(new MensajeAceptado($data1, $data));
 
            $usuario->save(); 
            $user->save();      
@@ -289,18 +307,20 @@ class RegistroEController extends Controller
             //dd($eliminaruser);
 
             //dd($correoadmin);
-            $data= array(
-                'mensaje' => 'Rechazado',
-                'mensaje2' => $correoadmin,
-                'direccion' => 'http://127.0.0.1:8000/editardatos/'.$id.'/registroegresado',                
-            );
+              $data1 = $correoadmin;
+              $data ='http://127.0.0.1:8000/editardatos/'.$id.'/registroegresado';
+
+            
    
-                Mail::send('emails.webrechazoegre',$data,function($msg) use ($correoeg){
-                    $msg->from('from@example.com', 'Bolsa de Trabajo ITTG');
+            //     Mail::send('emails.webrechazoegre',$data,function($msg) use ($correoeg){
+            //         $msg->from('from@example.com', 'Bolsa de Trabajo ITTG');
    
-                    $msg->to($correoeg)->subject('Notificacion');
-                });
-            //dd($correoem);
+            //         $msg->to($correoeg)->subject('Notificacion');
+            //     });
+            // //dd($correoem);
+                            
+            Mail::to($correoeg)->send(new MensajeRechazado($data1, $data));
+                
 
             $usuario->save();
             // $eliminaruser->delete();

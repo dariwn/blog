@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 use Illuminate\Database\Seeder;
 use App\Estado;
@@ -38,7 +38,7 @@ class EstadoSeeder extends Seeder
 
         ]);
 
-$estado = Estado::create([
+        $estado = Estado::create([
             'pais_idpais' => '1',
             'nombre_estado' => 'Coahuila de Zaragoza',
             'idestado' => '5',
@@ -105,7 +105,7 @@ $estado = Estado::create([
 
 $estado = Estado::create([
             'pais_idpais' => '1',    
-            'nombre_estado' => 'México',
+            'nombre_estado' => 'Estado de México',
             'idestado' => '15',
 
         ]);

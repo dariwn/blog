@@ -69,7 +69,7 @@
             </tr>
             <tr>
               <td class="bodycopy">
-                El administrador del sistema a {!! $mensaje !!} tu registro. Si deseas saber más contactate con el al siguiente correo: {!! $mensaje2 !!}, o revisa en el siguiente link {!! $direccion !!} , si tus datos son correctos, si alguno de tus datos esta mal corrigelo y en breve el administrador del sistema volvera a verificar tu informacion.             
+                El administrador del sistema a rechazado tu registro. Si deseas saber más contactate con el al siguiente correo: {{ $data1 }}, o revisa en el siguiente link {{ $data }} , si tus datos son correctos, si alguno de tus datos esta mal corrigelo y en breve el administrador del sistema volvera a verificar tu informacion.             
               </td>
             </tr>
           </table>

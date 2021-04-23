@@ -13,6 +13,8 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 
+use App\Mail\MensajeAceptado;
+
 class RegistroEmController extends Controller
 {
     /**
@@ -91,19 +93,22 @@ class RegistroEmController extends Controller
          
          $correoeg = $request->correo;
 
-         $data= array(
-             'mensaje' => 'Ingresa',
-             'direccion' => 'http://127.0.0.1:8000/BTEmpresa',
-             'usuario' => $usuario,
-             'contraseña' => $random_password,
-         );
+        //  $data= array(
+        //      'mensaje' => 'Ingresa',
+        //      'direccion' => 'http://127.0.0.1:8000/BTEmpresa',
+        //      'usuario' => $usuario,
+        //      'contraseña' => $random_password,
+        //  );
 
-             Mail::send('emails.webregistroemp',$data,function($msg) use ($correoeg){
-                 $msg->from('from@example.com', 'Bolsa de Trabajo ITTG');
+        //      Mail::send('emails.webregistroemp',$data,function($msg) use ($correoeg){
+        //          $msg->from('from@example.com', 'Bolsa de Trabajo ITTG');
 
-                 $msg->to($correoeg)->subject('Notificacion');
-             });
-         //dd($correoem);
+        //          $msg->to($correoeg)->subject('Notificacion');
+        //      });
+        //  //dd($correoem);
+        $data1 = $usuario;
+        $data = $random_password;
+        Mail::to($correoeg)->send(new MensajeAceptado($data1, $data));
 
          $empresan->save();
          

@@ -12,6 +12,8 @@ use App\Curriculo;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Mail;
 
+use App\Mail\MensajeCambioUsuario;
+
 
 class UserEgreController extends Controller
 {
@@ -125,19 +127,23 @@ class UserEgreController extends Controller
          
          $correoeg = $usuario->email;
 
-         $data= array(
-             'mensaje' => 'Ingresa',
-             'direccion' => 'http://127.0.0.1:8000/BTEgresado',
-             'usuario' => $request->username,
-             'contraseña' => $contraseña,
-         );
+        //  $data= array(
+        //      'mensaje' => 'Ingresa',
+        //      'direccion' => 'http://127.0.0.1:8000/BTEgresado',
+        //      'usuario' => $request->username,
+        //      'contraseña' => $contraseña,
+        //  )
 
-             Mail::send('emails.webcambioUser',$data,function($msg) use ($correoeg){
-                 $msg->from('from@example.com', 'Bolsa de Trabajo ITTG');
+        //      Mail::send('emails.webcambioUser',$data,function($msg) use ($correoeg){
+        //          $msg->from('from@example.com', 'Bolsa de Trabajo ITTG');
 
-                 $msg->to($correoeg)->subject('Notificacion');
-             });
-        //dd($correoem);
+        //          $msg->to($correoeg)->subject('Notificacion');
+        //      });
+        // //dd($correoem);
+        $data1 = $request->username;
+        $data = $contraseña;
+
+        Mail::to($correoeg)->send(new MensajeCambioUsuario($data1, $data));
 
             $usuario->save();
             return redirect('/egresado');
@@ -153,19 +159,23 @@ class UserEgreController extends Controller
          $usuario->save();
          $correoeg = $usuario->email;
 
-         $data= array(
-             'mensaje' => 'Ingresa',
-             'direccion' => 'http://127.0.0.1:8000/BTEgresado',
-             'usuario' => $request->username,
-             'contraseña' => $contraseña,
-         );
+        //  $data= array(
+        //      'mensaje' => 'Ingresa',
+        //      'direccion' => 'http://127.0.0.1:8000/BTEgresado',
+        //      'usuario' => $request->username,
+        //      'contraseña' => $contraseña,
+        //  );
 
-             Mail::send('emails.webcambioUser',$data,function($msg) use ($correoeg){
-                 $msg->from('from@example.com', 'Bolsa de Trabajo ITTG');
+        //      Mail::send('emails.webcambioUser',$data,function($msg) use ($correoeg){
+        //          $msg->from('from@example.com', 'Bolsa de Trabajo ITTG');
 
-                 $msg->to($correoeg)->subject('Notificacion');
-             });
+        //          $msg->to($correoeg)->subject('Notificacion');
+        //      });
         //dd($correoem);
+        $data1 = $request->username;
+        $data = $contraseña;
+
+        Mail::to($correoeg)->send(new MensajeCambioUsuario($data1, $data));
 
         
         return redirect('/usuarios-egresados');

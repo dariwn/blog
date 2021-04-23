@@ -69,8 +69,8 @@
             </tr>
             <tr>
               <td class="bodycopy">
-                Alguien se ha postulado a tu solicitud, {!! $mensaje !!} a tu sesion para verla.
-              <a href="{{$direccion}}">click aqui</a>
+                Alguien se ha postulado a tu solicitud, ingresa a tu sesion para verla.
+              <a href="{{$data1}}">click aqui</a>
               </td>
             </tr>
           </table>

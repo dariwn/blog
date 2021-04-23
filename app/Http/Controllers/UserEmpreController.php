@@ -11,7 +11,7 @@ use App\Empresa;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Mail;
 
-
+use App\Mail\MensajeCambioUsuario;
 
 class UserEmpreController extends Controller
 {
@@ -136,18 +136,23 @@ class UserEmpreController extends Controller
          
                 $correoeg = $usuario->email;
 
-                $data= array(
-                    'mensaje' => 'Ingresa',
-                    'direccion' => 'http://127.0.0.1:8000/BTEmpresa',
-                    'usuario' => $request->username,
-                    'contraseña' => $contraseña,
-                );
+                // $data= array(
+                //     'mensaje' => 'Ingresa',
+                //     'direccion' => 'http://127.0.0.1:8000/BTEmpresa',
+                //     'usuario' => $request->username,
+                //     'contraseña' => $contraseña,
+                // );
 
-                    Mail::send('emails.webcambioUser',$data,function($msg) use ($correoeg){
-                        $msg->from('from@example.com', 'Bolsa de Trabajo ITTG');
+                //     Mail::send('emails.webcambioUser',$data,function($msg) use ($correoeg){
+                //         $msg->from('from@example.com', 'Bolsa de Trabajo ITTG');
 
-                        $msg->to($correoeg)->subject('Notificacion');
-                    });
+                //         $msg->to($correoeg)->subject('Notificacion');
+                //     });
+
+                $data1 = $request->username;
+                $data = $contraseña;
+        
+                Mail::to($correoeg)->send(new MensajeCambioUsuario($data1, $data));
                 //dd($correoem);
 
             $usuario->save();
@@ -165,19 +170,23 @@ class UserEmpreController extends Controller
          
          $correoeg = $usuario->email;
 
-         $data= array(
-             'mensaje' => 'Ingresa',
-             'direccion' => 'http://127.0.0.1:8000/BTEmpresa',
-             'usuario' => $request->username,
-             'contraseña' => $contraseña,
-         );
+        //  $data= array(
+        //      'mensaje' => 'Ingresa',
+        //      'direccion' => 'http://127.0.0.1:8000/BTEmpresa',
+        //      'usuario' => $request->username,
+        //      'contraseña' => $contraseña,
+        //  );
 
-             Mail::send('emails.webcambioUser',$data,function($msg) use ($correoeg){
-                 $msg->from('from@example.com', 'Bolsa de Trabajo ITTG');
+        //      Mail::send('emails.webcambioUser',$data,function($msg) use ($correoeg){
+        //          $msg->from('from@example.com', 'Bolsa de Trabajo ITTG');
 
-                 $msg->to($correoeg)->subject('Notificacion');
-             });
-        //dd($correoem);
+        //          $msg->to($correoeg)->subject('Notificacion');
+        //      });
+        // //dd($correoem);
+        $data1 = $request->username;
+        $data = $contraseña;
+
+        Mail::to($correoeg)->send(new MensajeCambioUsuario($data1, $data));
 
         $usuario->save();
         return redirect('/usuarios-empresa');

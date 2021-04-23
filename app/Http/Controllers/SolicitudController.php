@@ -18,6 +18,8 @@ use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Arr;
 
+use App\Mail\MensajeSolicitud;
+
 
 class SolicitudController extends Controller
 {
@@ -125,18 +127,20 @@ class SolicitudController extends Controller
                 // dd($correo->correo);
                 $email = $correo->correo;
              //cuerpo y envio del correo
-             $data= array(
-                 'mensaje' => 'Ingresa',
-                 'direccion' => 'http://127.0.0.1:8000/BTEgresado'
+            //  $data= array(
+            //      'mensaje' => 'Ingresa',
+            //      'direccion' => 'http://127.0.0.1:8000/BTEgresado'
                 
-             );
+            //  );
 
-                 Mail::send('emails.web',$data,function($msg) use ($email){
+            //      Mail::send('emails.web',$data,function($msg) use ($email){
 
-                     $msg->from('from@example.com', 'Bolsa de Trabajo ITTG');
+            //          $msg->from('from@example.com', 'Bolsa de Trabajo ITTG');
 
-                     $msg->to($email)->subject('Notificacion');
-                 });
+            //          $msg->to($email)->subject('Notificacion');
+            //      })
+                $data1 = 'https://bolsadetrabajo.tuxtla.tecnm.mx/BTEgresado';
+                Mail::to($email)->send(new MensajeSolicitud($data1));
 
               }
 //             // dd($obcorreo);

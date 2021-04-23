@@ -76,13 +76,13 @@
             <tr>
                 <td class="bodycopy">
 
-                  Usuario: {!! $usuario !!} .                
+                  Usuario: {{ $data1 }} .                
                 </td>
               </tr>
               <tr>
                 <td class="bodycopy">
 
-                  Contraseña: {!! $contraseña !!} .                
+                  Contraseña: {{ $data }} .                
                 </td>
               </tr>                            
           </table>
