@@ -95,6 +95,7 @@
 							  <td>Estado: </td>
 							  <td class="form-control input-sm">
 								<select name="estado_id" id="estado">
+								<option value="#">Selecciona un opcion</option>
 									@foreach($estados as $local)
 								<option value="{{$local->idestado}}">{{$local->nombre_estado}}</option>
 								@endforeach

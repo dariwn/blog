@@ -132,6 +132,7 @@
                 <div class="col-md-6 mb-3">
                 <label>Estado</label>
                 <select name="estado_id" class="form-control" id="estado">
+                    <option value="#">Selecciona una opcion</option>
                 @foreach($estados as $estado)
                               <option value="{{$estado->idestado}}">{{$estado->nombre_estado}}</option>
                               @endforeach

@@ -18,7 +18,10 @@ use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Arr;
 
+use DateTime;
+
 use App\Mail\MensajeSolicitud;
+use App\Jobs\RegistroSolicitud;
 
 
 class SolicitudController extends Controller
@@ -36,6 +39,8 @@ class SolicitudController extends Controller
     public function index(Request $request)
     {
         if(Auth::user()->origen == 'Empresa'){
+             
+
         $usuario = Auth::user()->id;
         $empresa = Empresa::select('idempresa')->where('users_id', $usuario)->get()->pluck('idempresa');
         $empresas = Arr::first($empresa);
@@ -119,13 +124,15 @@ class SolicitudController extends Controller
             $nuevoperfil->save();
         }
         
-
+            //queue para enviar correos con los registros de hoy en los perfiles.
 // //---- envio de correo para egresados con el perfil solicitado
 //             //dd($linea->idperfiles);
-              $obcorreo = Egresado::select('correo')->where('perfiles_id',$linea->idperfiles)->get();
-              foreach($obcorreo as $correo){
-                // dd($correo->correo);
-                $email = $correo->correo;
+
+            //   $obcorreo = Egresado::select('correo')->where('perfiles_id',$linea->idperfiles)->get();
+            //   foreach($obcorreo as $correo){
+            //     // dd($correo->correo);
+            //     $email = $correo->correo;
+
              //cuerpo y envio del correo
             //  $data= array(
             //      'mensaje' => 'Ingresa',
@@ -139,13 +146,29 @@ class SolicitudController extends Controller
 
             //          $msg->to($email)->subject('Notificacion');
             //      })
-                $data1 = 'https://bolsadetrabajo.tuxtla.tecnm.mx/BTEgresado';
-                Mail::to($email)->send(new MensajeSolicitud($data1));
 
-              }
+            //     $data1 = 'https://bolsadetrabajo.tuxtla.tecnm.mx/BTEgresado';
+            //     Mail::to($email)->send(new MensajeSolicitud($data1));
+
+            //   }
 //             // dd($obcorreo);
 
             //$linea->save();
+            $aviso = Solicitudperfil::whereDate('created_at', '=',new \DateTime('today'))->get();
+            foreach($aviso as $perfil){
+                $obtenperfil = $perfil->idperfiles;
+                //echo $obtenperfil;
+                $obtencorreo = DB::table('egresado')->where('perfiles_id', $obtenperfil)->get();
+                //dd($obtencorreo);
+                foreach($obtencorreo as $correo){
+                    $correoobt = $correo->correo;
+                    //echo $correoobt;
+                    //envio correo
+                    $data1 = 'https://bolsadetrabajo.tuxtla.tecnm.mx/BTEgresado';
+                    Mail::to($correoobt)->send(new MensajeSolicitud($data1));
+                    
+                }
+            }
 
         DB::commit();
         return redirect('/solicitud')->with('guardado','Solicitud registrada correctamente!!');

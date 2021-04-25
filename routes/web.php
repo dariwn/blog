@@ -37,7 +37,7 @@ Route::resource('ajustescorreoadmin', 'UserAdminController');
 Route::match(['get','post'], '/BTEmpresa', 'logueoController@login');//Empresa
 Route::get('/exitempresa', 'logueoController@logout');
 Route::resource('/empresa', 'EmpresaController')->middleware('verified');
-Route::get('municipio/{id}','EmpresaController@getMunicipio');
+Route::get('/empresa/{idmp}/municipio/{id}','EmpresaController@getMunicipio');
 Route::get('/hola', 'EmpresaController@nuevo')->name('empresa.nuevo');
 Route::resource('/solicitud', 'SolicitudController')->middleware('verified');
 Route::get('/postulado/{id}', 'SolicitudController@ver')->name('ver');
@@ -57,7 +57,7 @@ Route::get('ajustescorreo/{id}/correo', 'EgresadoController@edit2')->name('ajust
 Route::put('ajustescorreo/{id}/actualizado','EgresadoController@update2')->name('ajustescorreo.update');
 
 Route::resource('/egresado', 'EgresadoController')->middleware('verified');
-Route::get('municipio/{id}','EgresadoController@getMunicipio');
+Route::get('/egresado/{idegre}/municipio/{id}','EgresadoController@getMunicipio');
 Route::get('administrador/{id}', 'EgresadoController@index');
 Route::get('/solicitud-egresado', 'EgresadoController@versolicitud')->name('versolicitud')->middleware('verified');
 Route::get('/postulacion/{id}', 'EgresadoController@postularse')->name('postularse');

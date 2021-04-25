@@ -375,7 +375,7 @@ class EgresadoController extends Controller
         }
     }
 
-    public function getMunicipio(Request $request, $id){
+    public function getMunicipio(Request $request, $idegre, $id){
         if($request->ajax()){
             $municipio = Municipio::municipios($id);
             return response()->json($municipio);

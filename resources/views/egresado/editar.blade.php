@@ -127,7 +127,7 @@
                       </tr>
             <tr>
                         <td>Estado:</td>
-                        <td><select name="estado_id" class="form-control input-sm">
+                        <td><select name="estado_id" id="estado" class="form-control input-sm">
                           @foreach($estados as $estado)
                             @if($estado->idestado==$egresado->estado_id)
                                 <option value="{{$estado->idestado}}" selected>{{$estado->nombre_estado}}</option>
@@ -140,7 +140,7 @@
             </tr>
                       <tr>
                         <td>Municipio</td>
-                        <td><select name="municipio_id" class="form-control input-sm">
+                        <td><select name="municipio_id" id="municipio" class="form-control input-sm">
                           @foreach($localidades as $localidad)
                             @if($localidad->idmunicipio==$egresado->municipio_id)
                                 <option value="{{$localidad->idmunicipio}}" selected>{{$localidad->nombre_localidad}}</option>
