@@ -98,7 +98,7 @@ window.onload = function () {
 <div id="chartContainer2" style="height: 275px; width: 90%;"></div>
 <br>
   <button id="printChart">Imprimir Grafica</button>
-  <a class="btn btn-primary" id="regresar" href="{{ url('/reporte')}}" >Regresar Pagnia Anterior</a>
+  <a class="btn btn-primary" id="regresar" href="{{ url('/reporte')}}" >Regresar Página Anterior</a>
 
 <br><br><br><br><br><br><br><br><br><br><br><br>
 <br><br><br><br><br><br><br><br><br><br><br><br>

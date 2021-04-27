@@ -48,7 +48,7 @@
         <div class="card">
             <div class="card-header">Aviso</div>
             <div class="card-body">
-                Hemos enviado un correo electronico con tu usuario y contraseña, para que puedas acceder.
+                Hemos enviado un correo electrónico con tu usuario y contraseña, para que puedas acceder.
                 <a href="/BTEmpresa">Inciar Sesión</a>
             </div>
         </div>

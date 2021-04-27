@@ -37,8 +37,8 @@
 	style='font-family:"montserratmedium",serif;mso-bidi-font-family:"Arial";
 	mso-bidi-theme-font:minor-bidi;color:#000000;'>
 	<center>
-		<p>DEPARTAMENTO DE GESTION TECNOLOGICA Y VINCULACION</p>
-		<P>OFICINA DE PRACTICAS Y PROMOCION POFESIONAL</P>
+		<p>DEPARTAMENTO DE GESTIÓN TECNOLÓGICA Y VINCULACIÓN</p>
+		<P>OFICINA DE PRÁCTICAS Y PROMOCIÓN POFESIONAL</P>
 		<br>
 		<a>REPORTE DE LA BOLSA DE TRABAJO</a>
 	</center>
@@ -71,7 +71,7 @@
 			<tr>
 				<th>Número de empresas registradas</th>
 				<th>Número de egresados registrados</th>
-				<th>Numero de solicitudes por carrera</th>
+				<th>Número de solicitudes por carrera</th>
 				{{-- <th>Carrera menos solicitada</th> --}}
 			</tr>
 		</thead>
@@ -85,18 +85,18 @@
 				<td>{{ $conteg }}</td>
 				
 			<td>Ing. Sistemas computacionales: {{ $a }},
-				Ing. Gestion Empresarial: {{ $b }},
-				Ing. Electrica: {{ $c }},
-				Ing. Electronica: {{ $d }},
-				Ing. Quimica: {{ $e }},
-				Ing. Bioquimica: {{ $f }},
+				Ing. Gestión Empresarial: {{ $b }},
+				Ing. Eléctrica: {{ $c }},
+				Ing. Electrónica: {{ $d }},
+				Ing. Química: {{ $e }},
+				Ing. Bioquímica: {{ $f }},
 				Ing. Industrial: {{ $g }},
-				Ing. Mecanica: {{ $h }},
-				Ing. Logistica: {{ $i }},
-				Maestria en Ciencias en ing. Mecatronica: {{ $j }},
-				Maestria en Ciencias en Ing. Bioquimica: {{ $k }},
-				Doctorado en Ciencias de los Alimentos y Biotecnologia: {{ $m }},
-				Doctorado en Ciencias de la Ingenieria: {{ $n }},
+				Ing. Mecánica: {{ $h }},
+				Ing. Logística: {{ $i }},
+				Maestría en Ciencias en ing. Mecatrónica: {{ $j }},
+				Maestría en Ciencias en Ing. Bioquímica: {{ $k }},
+				Doctorado en Ciencias de los Alimentos y Biotecnología: {{ $m }},
+				Doctorado en Ciencias de la Ingeniería: {{ $n }},
 
 			</td>
 				{{-- <td>{{ $carrera_mas }}</td>

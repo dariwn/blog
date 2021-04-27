@@ -16,7 +16,7 @@
                                 						                        	
                                 <table class="table">
                                     <thead>
-                                        <th>Numero de Control</th>                                
+                                        <th>Número de Control</th>                                
                                         <th>Nombre</th>
                                         <th>Apellido Paterno</th>
                                         <th>Apellido Materno</th>
@@ -64,7 +64,7 @@
                                                                                 
                             <table class="table">
                                 <thead>
-                                    <th>Numero de Control</th>                                
+                                    <th>Número de Control</th>                                
                                     <th>Nombre</th>
                                     <th>Apellido Paterno</th>
                                     <th>Apellido Materno</th>

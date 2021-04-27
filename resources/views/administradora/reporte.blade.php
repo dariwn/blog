@@ -21,20 +21,20 @@
 									<label>Cargo:</label>
 									<input class="form-control" type="text" name="cargo">
 						
-									<label>Numero de reporte:</label>
+									<label>Número de reporte:</label>
                                     <input class="form-control" type="text" name="numero">	
                                     
                                     <label>Nombre completo de quien extiende:</label>
 									<input class="form-control" type="text" name="nombre_extiende">
 								</div>
 								<div class="col-md-6">
-									<label>Fecha de inicio del periodo:</label>
+									<label>Fecha de inicio del período:</label>
 									<input class="form-control" type="date" name="periodo">
 						
-									<label>Fecha final del periodo:</label>
+									<label>Fecha final del período:</label>
 									<input class="form-control" type="date" name="hasta">
 						
-									<label>Fecha de extension:</label>
+									<label>Fecha de extensión:</label>
                                     <input class="form-control" type="date" name="extiende">
                                     
                                    

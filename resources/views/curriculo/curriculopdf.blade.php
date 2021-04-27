@@ -42,7 +42,7 @@
             <h1 class="fn">{{$hola->curriculo->nombres}} {{$hola->curriculo->apellido_paterno}} {{$hola->curriculo->apellido_materno}}</h1>
         
             <p>
-                Cell: {{$hola->curriculo->numero_cel}}<br>
+                Número de Celular: {{$hola->curriculo->numero_cel}}<br>
                 Email: {{$hola->curriculo->correo}}<br>
                 Estado: {{$hola->estado->nombre_estado}}<br>
                 Municipio: {{$hola->municipio->nombre_localidad}}<br>

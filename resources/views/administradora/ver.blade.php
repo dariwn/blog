@@ -20,7 +20,7 @@
                                     <th>Apellido Paterno</th>
                                     <th>Apellido Materno</th>
                                     <th>Cargo</th>
-                                    <th>Numero de telefono</th>
+                                    <th>Número de teléfono</th>
                                     <th>Correo</th>
                                 </thead>
                                @foreach ($administrador as $perico)

@@ -18,7 +18,7 @@
         
                                 <div class="form-group">                                    
                                     <div class="col-md-6">
-                                        <label>Correo Electronico:</label>
+                                        <label>Correo Electrónico:</label>
                                        <input type="email" name="email" required class="form-control" value="{{ $user[0]->email }}"> 
                                     </div>                            
                                 </div>                               

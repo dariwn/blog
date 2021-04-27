@@ -48,7 +48,7 @@
         <div class="card">
             <div class="card-header">Aviso</div>
             <div class="card-body">
-                Tu registro sera validado por el administrador de la pagina, una vez validado recibiras un correo con tu usuario y contraseña, no olvides confirmar el correo electronico que registraste, hemos enviado un email de verificacion.
+                Tu registro sera validado por el administrador de la página, una vez validado recibiras un correo con tu usuario y contraseña, no olvides confirmar el correo electrónico que registraste, hemos enviado un email de verificación.
             </div>
         </div>
     </div>

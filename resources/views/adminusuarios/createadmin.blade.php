@@ -31,7 +31,7 @@
                                 
                                 <div class="form-group ">                                    
                                     <div class="col-md-6">
-                                        <label>Correo Electronico:</label>
+                                        <label>Correo Electrónico:</label>
                                        <input type="email" name="correo" required class="form-control" placeholder="correo"> 
                                     </div>                            
                                 </div>  

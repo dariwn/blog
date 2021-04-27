@@ -26,6 +26,98 @@
    } 
  } 
 
+ $(document).ready(function () {
+    $('input#nombre')
+        .keypress(function (event) {
+        if (this.value.length === 30) {
+            return false;
+        }
+        });
+    });
+
+	$(document).ready(function () {
+    $('input#rfc')
+        .keypress(function (event) {
+        if (this.value.length === 50) {
+            return false;
+        }
+        });
+    });
+
+	$(document).ready(function () {
+    $('input#descripcion')
+        .keypress(function (event) {
+        if (this.value.length === 60) {
+            return false;
+        }
+        });
+    });
+
+	$(document).ready(function () {
+    $('input#direccion')
+        .keypress(function (event) {
+        if (this.value.length === 40) {
+            return false;
+        }
+        });
+    });
+
+	$(document).ready(function () {
+    $('input#colonia')
+        .keypress(function (event) {
+        if (this.value.length === 50) {
+            return false;
+        }
+        });
+    });
+
+	
+	$(document).ready(function () {
+    $('input#telefono')
+        .keypress(function (event) {
+        if (this.value.length === 10) {
+            return false;
+        }
+        });
+    });
+
+	$(document).ready(function () {
+    $('input#celular')
+        .keypress(function (event) {
+        if (this.value.length === 10) {
+            return false;
+        }
+        });
+    });
+
+	$(document).ready(function () {
+    $('input#cargo')
+        .keypress(function (event) {
+        if (this.value.length === 50) {
+            return false;
+        }
+        });
+    });
+
+	$(document).ready(function () {
+    $('input#names')
+        .keypress(function (event) {
+        if (this.value.length === 20) {
+            return false;
+        }
+        });
+    });
+
+	$(document).ready(function () {
+    $('input#apellido')
+        .keypress(function (event) {
+        if (this.value.length === 40) {
+            return false;
+        }
+        });
+    });
+
+
 </script>
 
 <div class="container">
@@ -45,31 +137,31 @@
                     <tbody>
 						<tr>
 							<td class='col-md-3'>Nombre de la Empresa:</td>
-							<td><input type="text" class="form-control input-sm" name="nombre" required></td>
+							<td><input type="text" id="nombre" class="form-control input-sm" name="nombre" required></td>
 						  </tr>
 						  <tr>
 							  <tr>
 							<td class='col-md-3'>RFC:</td>
-							<td><input type="text" class="form-control input-sm" name="rfc" required></td>
+							<td><input type="text" id="rfc" class="form-control input-sm" name="rfc" required></td>
 						  </tr>
 						  <tr>
 							  <tr>
 							<td class='col-md-3'>Descripción de la Empresa:</td>
-							<td><input type="text" class="form-control input-sm" name="descripcion" required></td>
+							<td><input type="text" class="form-control input-sm" id="descripcion" name="descripcion" required></td>
 						  </tr>
 						  
 						  <tr>
 							  <tr>
 							<td class='col-md-3'>Dirección</td>
-							<td><input type="text" class="form-control input-sm" name="calle" required></td>
+							<td><input type="text" class="form-control input-sm" id="direccion" name="calle" required></td>
 						  </tr>
 						  
 						  <tr>
 							<td>Colonia:</td>
-							<td><input type="text" class="form-control input-sm" name="colonia" required></td>
+							<td><input type="text" id="colonia" class="form-control input-sm" name="colonia" required></td>
 						  </tr>
 						  <tr>
-							<td>Numero Exterior:</td>
+							<td>Número Exterior:</td>
 							<td><input type="number" class="form-control input-sm" name="numeroexterior" required></td>
 						  </tr>
 						  <tr>
@@ -78,12 +170,12 @@
 						  </tr>
 	
 						  <tr>
-							<td>Telefono:</td>
-							<td> <input type="number" class="form-control input-sm" name="telefono" required></td>
+							<td>Teléfono:</td>
+							<td> <input type="number" id="telefono" class="form-control input-sm" name="telefono" required></td>
 						  </tr>
 
 						  <tr>
-							<td >Pais:</td>
+							<td >País:</td>
 							<td class="form-control input-sm"><select name="pais_id">
 								@foreach($paises as $local)
 							<option value="{{$local->idpais}}">{{$local->nombre}}</option>
@@ -122,27 +214,27 @@
 	
 						  <tr>
 							<td>Nombre (s):</td>
-							<td><input type="text" class="form-control input-sm" name="names" required></td>
+							<td><input type="text" id="names" class="form-control input-sm" name="names" required></td>
 						  </tr>
 						  
 						  <tr>
 							<td>Apellido Paterno:</td>
-							<td><input type="text" class="form-control input-sm" name="apellido_paterno" required></td>
+							<td><input type="text" id="apellido" class="form-control input-sm" name="apellido_paterno" required></td>
 						  </tr>
 						  
 						  <tr>
 							<td>Apellido Materno:</td>
-							<td><input type="text" class="form-control input-sm" name="apellido_materno" required></td>
+							<td><input type="text" id="apellido" class="form-control input-sm" name="apellido_materno" required></td>
 						  </tr>
 						  
 						  <tr>
 							<td>Cargo:</td>
-							<td><input type="text" class="form-control input-sm" name="cargo" required></td>
+							<td><input type="text" id="cargo" class="form-control input-sm" name="cargo" required></td>
 						  </tr>
 						  
 						  <tr>
 							<td>Telefono:</td>
-							<td> <input type="number" class="form-control input-sm" name="numero_cel" required></td>
+							<td> <input type="number" id="celular" class="form-control input-sm" name="numero_cel" required></td>
 						  </tr>
 						  
 						  <tr>

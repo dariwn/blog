@@ -51,6 +51,24 @@
         });
     });
 
+    $(document).ready(function () {
+    $('input#nombres')
+        .keypress(function (event) {
+        if (this.value.length === 100) {
+            return false;
+        }
+        });
+    });
+
+    $(document).ready(function () {
+    $('input#apellidos')
+        .keypress(function (event) {
+        if (this.value.length === 60){
+            return false;
+        }
+        });
+    });
+
 </script>
 
 <div class="row">
@@ -73,21 +91,21 @@
                 <div class="col-lg-6 ">
                 <div class="form-group">
                 <label for="codigo">Nombres</label>
-                <input type="text" name="nombres" required value="{{old('nombres')}}" class="form-control" placeholder="Nombres...">
+                <input type="text" name="nombres" id="nombres" required value="{{old('nombres')}}" class="form-control" placeholder="Nombres...">
                 </div>  
                 </div>
 
                 <div class="col-lg-6">
                 <div class="form-group">
                 <label for="codigo">Apellido Paterno</label>
-                <input type="text" name="apellido_paterno" required value="{{old('apellido_paterno')}}" class="form-control" placeholder="Apellido Paterno...">
+                <input type="text" name="apellido_paterno" id="apellidos" required value="{{old('apellido_paterno')}}" class="form-control" placeholder="Apellido Paterno...">
                 </div>  
                 </div>
                 
                 <div class="col-lg-6">
                 <div class="form-group">
                 <label for="codigo">Apellido Materno</label>
-                <input type="text" name="apellido_materno" required value="{{old('apellido_materno')}}" class="form-control" placeholder="Apellido Materno">
+                <input type="text" name="apellido_materno" id="apellidos" required value="{{old('apellido_materno')}}" class="form-control" placeholder="Apellido Materno">
                 </div>  
                 </div>
 

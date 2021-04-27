@@ -243,6 +243,24 @@ var element2 = -1;
 
         eliminar.parentNode.removeChild(eliminar);
     }
+
+    $(document).ready(function () {
+    $('input#habilidades')
+        .keypress(function (event) {
+        if (this.value.length === 100) {
+            return false;
+        }
+        });
+    });
+
+    $(document).ready(function () {
+    $('input#especialidad')
+        .keypress(function (event) {
+        if (this.value.length === 60) {
+            return false;
+        }
+        });
+    });
     
 </script>
 
@@ -271,7 +289,7 @@ var element2 = -1;
                 <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                 <div class="form-group">
                 <label for="codigo">Especialidad</label>
-                <input type="text" name="especialidad" required value="{{old('especialidad')}}" class="form-control" placeholder="Especialidad">
+                <input type="text" name="especialidad" id="especialidad" required value="{{old('especialidad')}}" class="form-control" placeholder="Especialidad">
                 </div>  
                 </div>
                 
@@ -312,7 +330,7 @@ var element2 = -1;
 
                 <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12" id="maestria">
                     <div class="form-group">
-                    <label for="codigo">Maestria/Doctorado:</label> <input type="button" id="btn_agregar_maestria" value="+" onclick="crearMaestria();">
+                    <label for="codigo">Maestría/Doctorado:</label> <input type="button" id="btn_agregar_maestria" value="+" onclick="crearMaestria();">
                     
                     </div>  
                 </div>
@@ -346,7 +364,7 @@ var element2 = -1;
                 <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                 <div class="form-group">
                 <label for="codigo">Habilidades</label>
-                <input type="text" name="habilidades" required value="{{old('habilidades')}}" class="form-control" placeholder="Habilidades">
+                <input type="text" name="habilidades" id="habilidades" required value="{{old('habilidades')}}" class="form-control" placeholder="Habilidades">
                 </div>  
                 </div>
 

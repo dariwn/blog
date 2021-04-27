@@ -48,7 +48,7 @@
                 <table width="130%" border="0" cellspacing="0" cellpadding="0">
                   <tr>
                     <td class="subhead" style="padding: 0 0 0 3px; text-align: center; ">
-                      <h3>Tecnologico Nacional De Mexico</h3>
+                      <h3>Tecnológico Nacional De México</h3>
                       <h4>Instituto Tecnológico De Tuxtla Gutierrez</h4>
                       <h5>Sistema Bolsa De Trabajo</h5>
                     </td>
@@ -69,7 +69,7 @@
             </tr>
             <tr>
               <td class="bodycopy">
-                Has cambiado exitosamente tu usuario/contraseña. A continuacion se muestran los detalles.
+                Has cambiado exitosamente tu usuario/contraseña. A continuación se muestran los detalles.
 
               </td>
             </tr>            

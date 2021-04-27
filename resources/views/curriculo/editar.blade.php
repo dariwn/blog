@@ -245,6 +245,23 @@ var element3 = -1.16;
         eliminar.parentNode.removeChild(eliminar);
     }
      
+    $(document).ready(function () {
+    $('input#habilidades')
+        .keypress(function (event) {
+        if (this.value.length === 100) {
+            return false;
+        }
+        });
+    });
+
+    $(document).ready(function () {
+    $('input#especialidad')
+        .keypress(function (event) {
+        if (this.value.length === 60) {
+            return false;
+        }
+        });
+    });
 
 </script>
 
@@ -274,7 +291,7 @@ var element3 = -1.16;
                 <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                 <div class="form-group">
                 <label for="codigo">Especialidad</label>
-                <input type="text" name="especialidad" required value="{{$hola->especialidad}}" class="form-control" placeholder="Especialidad">
+                <input type="text" name="especialidad" id="especialidad" required value="{{$hola->especialidad}}" class="form-control" placeholder="Especialidad">
                 </div>  
                 </div>
                 
@@ -315,7 +332,7 @@ var element3 = -1.16;
               {{-- maestrias y doctorados --}}
               <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12" id="maestria">
                 <div class="form-group">
-                <label>Maestrias/Doctorados</label> <input type="button" id="btn_agregar_maestria" value="+" onclick="crearMaestria();">
+                <label>Maestrías/Doctorados</label> <input type="button" id="btn_agregar_maestria" value="+" onclick="crearMaestria();">
                 
                 <?php
                   if($hola->maestria_doctorado == " "){
@@ -444,7 +461,7 @@ var element3 = -1.16;
                 <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                 <div class="form-group">
                 <label for="codigo">Habilidades</label>
-                <input type="text" name="habilidades" required value="{{$hola->habilidades}}" class="form-control" placeholder="Habilidades">
+                <input type="text" name="habilidades" id="habilidades" required value="{{$hola->habilidades}}" class="form-control" placeholder="Habilidades">
                 </div>  
                 </div>
 

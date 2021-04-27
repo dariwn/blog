@@ -25,7 +25,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Edicion De Usuario Egresado</div>
+                <div class="card-header">Edición De Usuario Egresado</div>
                 <div class="card-body">
                     <form  action="{{ Route('RegistroEgresado.update', $editregistro->id) }}" method="POST">
                     @method('PUT')                
@@ -59,7 +59,7 @@
                     </div> 
 
                     <div class="form-group row">
-                        <label class="col-sm-4 col-form-label text-md-right">Correo Electronico: </label>
+                        <label class="col-sm-4 col-form-label text-md-right">Correo Electrónico: </label>
                         <div class="col-md-6">
                            <input type="email" name="correo" required class="form-control" placeholder="Correo Electronico" value="{{ $editregistro->email}}"> 
                         </div>                            

@@ -139,7 +139,7 @@
 						  </tr>
 
 						  <tr>
-							<td>Descripcion del Puesto:</td>
+							<td>Descripción del Puesto:</td>
 							<td><input type="text" id="descripcionpuesto" class="form-control"  placeholder="Descripcion del Puesto" name="descripcion_del_puesto"  required/></td>
 						  </tr>
 

@@ -22,9 +22,9 @@
 								<th>Domicilio</th>
 								<th>Colonia</th>
 								<th>Fecha de Nacimiento</th>
-								<th>Numero del Celular</th>
+								<th>Número del Celular</th>
 								<th>Perfil</th>
-								<th>Pais</th>
+								<th>País</th>
 								<th>Estado</th>
 								<th>Municipio</th>
 							</thead>

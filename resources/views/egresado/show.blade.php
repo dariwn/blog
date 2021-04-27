@@ -56,7 +56,7 @@
                         <td><input type="email" class="form-control input-sm" name="correo" value="{{$egresado->correo}}" readonly></td>
                       </tr>
 					  <tr>
-                        <td>Telefono:</td>
+                        <td>Teléfono:</td>
                         <td><input type="text" class="form-control input-sm" required name="telefono" value="{{$egresado->numero_cel}}" readonly></td>
                       </tr>
 
@@ -70,7 +70,7 @@
                         <td><input type="text" class="form-control input-sm" name="carrera" value="{{$egresado->perfiles->carrera}}" required readonly></td>
                       </tr>
 					  <tr>
-                        <td>Pais:</td>
+                        <td>País:</td>
                         <td><input type="text" class="form-control input-sm" name="Pais" value="{{$egresado->pais->nombre}}" required readonly></td>
                       </tr>
 					  <tr>

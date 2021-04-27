@@ -21,9 +21,9 @@
 									<th>Descripcion</th>
 									<th>Colonia</th>
 									<th>Calle</th>
-									<th>Numero Exterior</th>
-									<th>Codigo Postal</th>
-									<th>Telefono</th>
+									<th>Número Exterior</th>
+									<th>Código Postal</th>
+									<th>Teléfono</th>
 									<th>Estado</th>
 									<th>Municipio</th>
 								</thead>
