@@ -21,6 +21,52 @@
 			} 
 		} 
 	} 
+
+  
+  $(document).ready(function () {
+    $('input#numero_cel')
+        .keypress(function (event) {
+        if (event.which < 48 || event.which > 57 || this.value.length === 10) {
+            return false;
+        }
+        });
+    });
+
+    $(document).ready(function () {
+    $('input#domicilio')
+        .keypress(function (event) {
+        if (this.value.length === 50) {
+            return false;
+        }
+        });
+    });
+
+    $(document).ready(function () {
+    $('input#colonia')
+        .keypress(function (event) {
+        if (this.value.length === 40) {
+            return false;
+        }
+        });
+    });
+
+    $(document).ready(function () {
+    $('input#nombres')
+        .keypress(function (event) {
+        if (this.value.length === 100) {
+            return false;
+        }
+        });
+    });
+
+    $(document).ready(function () {
+    $('input#apellidos')
+        .keypress(function (event) {
+        if (this.value.length === 60){
+            return false;
+        }
+        });
+    });
 </script>
 
 <div class="container">
@@ -63,23 +109,23 @@
                     <tbody>
                       <tr>
                         <td class='col-md-3'>Nombre(S):</td>
-                        <td><input type="text" class="form-control input-sm" name="nombres" value="{{$egresado->nombres}}" required></td>
+                        <td><input type="text" class="form-control input-sm" id="nombres" name="nombres" value="{{$egresado->nombres}}" required></td>
                       </tr>
                       <tr>
                         <tr>
                         <td class='col-md-3'>Apellido Paterno</td>
-                        <td><input type="text" class="form-control input-sm" name="apellido_paterno" value="{{$egresado->apellido_paterno}}" required></td>
+                        <td><input type="text" class="form-control input-sm" id="apellidos" name="apellido_paterno" value="{{$egresado->apellido_paterno}}" required></td>
                       </tr>
                       <tr>
                         <tr>
                         <td class='col-md-3'>Apellido Materno:</td>
-                        <td><input type="text" class="form-control input-sm" name="apellido_materno" value="{{$egresado->apellido_materno}}" required></td>
+                        <td><input type="text" class="form-control input-sm" id="apellidos" name="apellido_materno" value="{{$egresado->apellido_materno}}" required></td>
                       </tr>
 
                       <tr>
                         <tr>
                         <td class='col-md-3'>Domicilio</td>
-                        <td><input type="text" class="form-control input-sm" name="domicilio" value="{{$egresado->domicilio}}" required></td>
+                        <td><input type="text" class="form-control input-sm"  id="domicilio" name="domicilio" value="{{$egresado->domicilio}}" required></td>
                       </tr>
                       <tr>
                         <td>Fecha de Nacimiento:</td>
@@ -91,7 +137,7 @@
                       </tr>
             <tr>
                         <td>Telefono:</td>
-                        <td><input type="text" class="form-control input-sm" required name="numero_cel" value="{{$egresado->numero_cel}}"></td>
+                        <td><input type="text" id="numero_cel" class="form-control input-sm" required name="numero_cel" value="{{$egresado->numero_cel}}"></td>
                       </tr>
 
                       <tr>
@@ -155,7 +201,7 @@
                    
                       <tr>
                         <td>Colonia</td>
-                        <td><input type="text" class="form-control input-sm" name="colonia" value="{{$egresado->colonia}}" required></td>
+                        <td><input type="text" class="form-control input-sm" id="colonia" name="colonia" value="{{$egresado->colonia}}" required></td>
                       </tr>
                       
                       <td>

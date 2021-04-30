@@ -18,6 +18,24 @@
         });
     });
 
+    $(document).ready(function () {
+    $('input#nombres')
+        .keypress(function (event) {
+        if (this.value.length === 100) {
+            return false;
+        }
+        });
+    });
+
+    $(document).ready(function () {
+    $('input#apellido')
+        .keypress(function (event) {
+        if (this.value.length === 60){
+            return false;
+        }
+        });
+    });
+
 </script>
 <br>
 @include('sesionstatus')
@@ -40,21 +58,21 @@
                     <div class="form-group row">
                         <label class="col-sm-4 col-form-label text-md-right">Nombre(s): </label>
                         <div class="col-md-6">
-                           <input type="text" name="nombre" required class="form-control" placeholder="Nombre(s)" value="{{ $editregistro->nombres}}"> 
+                           <input type="text" id="nombres" name="nombre" required class="form-control" placeholder="Nombre(s)" value="{{ $editregistro->nombres}}"> 
                         </div>                            
                     </div> 
 
                     <div class="form-group row">
                         <label class="col-sm-4 col-form-label text-md-right">Apellido Paterno: </label>
                         <div class="col-md-6">
-                           <input type="text" name="apellidop" required class="form-control" placeholder="Apellido Paterno" value="{{ $editregistro->apellido_paterno}}"> 
+                           <input type="text" id="apellido" name="apellidop" required class="form-control" placeholder="Apellido Paterno" value="{{ $editregistro->apellido_paterno}}"> 
                         </div>                            
                     </div> 
 
                     <div class="form-group row">
                         <label class="col-sm-4 col-form-label text-md-right">Apellido Materno: </label>
                         <div class="col-md-6">
-                           <input type="text" name="apellidom" required class="form-control" placeholder="Apellido Materno" value="{{ $editregistro->apellido_materno}}"> 
+                           <input type="text" id="apellido" name="apellidom" required class="form-control" placeholder="Apellido Materno" value="{{ $editregistro->apellido_materno}}"> 
                         </div>                            
                     </div> 
 

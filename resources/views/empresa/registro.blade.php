@@ -18,6 +18,52 @@
         });
     });
 
+    
+	$(document).ready(function () {
+    $('input#cargo')
+        .keypress(function (event) {
+        if (this.value.length === 50) {
+            return false;
+        }
+        });
+    });
+
+	$(document).ready(function () {
+    $('input#names')
+        .keypress(function (event) {
+        if (this.value.length === 20) {
+            return false;
+        }
+        });
+    });
+
+	$(document).ready(function () {
+    $('input#apellido')
+        .keypress(function (event) {
+        if (this.value.length === 40) {
+            return false;
+        }
+        });
+    });
+
+    $(document).ready(function () {
+    $('input#nombre')
+        .keypress(function (event) {
+        if (this.value.length === 30) {
+            return false;
+        }
+        });
+    });
+
+	$(document).ready(function () {
+    $('input#rfc')
+        .keypress(function (event) {
+        if (this.value.length === 50) {
+            return false;
+        }
+        });
+    });
+
 </script>
 <br>
 <div class="container">
@@ -32,7 +78,7 @@
                     <div class="form-group row">
                         <label class="col-sm-4 col-form-label text-md-right">RFC de la empresa: </label>
                         <div class="col-md-6">
-                           <input type="text" name="rfcempresa" required class="form-control" placeholder="RFC"> 
+                           <input type="text" id="rfc" name="rfcempresa" required class="form-control" placeholder="RFC"> 
                         </div>                            
                     </div>  
                   
@@ -40,7 +86,7 @@
                     <div class="form-group row">
                         <label class="col-sm-4 col-form-label text-md-right">Nombre de la empresa: </label>
                         <div class="col-md-6">
-                           <input type="text" name="nombreempresa" required class="form-control" placeholder="Nombre de la empresa"> 
+                           <input type="text" id="nombre" name="nombreempresa" required class="form-control" placeholder="Nombre de la empresa"> 
                         </div>                            
                     </div> 
 
@@ -49,21 +95,21 @@
                     <div class="form-group row">
                         <label class="col-sm-4 col-form-label text-md-right">Nombre (s): </label>
                         <div class="col-md-6">
-                           <input type="text" name="nombre" required class="form-control" placeholder="Apellido Paterno"> 
+                           <input type="text" id="names" name="nombre" required class="form-control" placeholder="Apellido Paterno"> 
                         </div>                            
                     </div> 
 
                     <div class="form-group row">
                         <label class="col-sm-4 col-form-label text-md-right">Apellido Paterno: </label>
                         <div class="col-md-6">
-                           <input type="text" name="apellidop" required class="form-control" placeholder="Apellido Paterno"> 
+                           <input type="text" id="apellido" name="apellidop" required class="form-control" placeholder="Apellido Paterno"> 
                         </div>                            
                     </div> 
 
                     <div class="form-group row">
                         <label class="col-sm-4 col-form-label text-md-right">Apellido Materno: </label>
                         <div class="col-md-6">
-                           <input type="text" name="apellidom" required class="form-control" placeholder="Apellido Materno"> 
+                           <input type="text" id="apellido" name="apellidom" required class="form-control" placeholder="Apellido Materno"> 
                         </div>                            
                     </div> 
 
