@@ -31,12 +31,13 @@ class RegistroEController extends Controller
     {
         //
         if(Auth::user()->origen == 'Administradora'){
-            $nuevoegre = DB::table('registro_egresado_nuevos')->where('Validacion', 'No')->get();
-            $rechazoegre = DB::table('registro_egresado_nuevos')->where('Validacion', 'Rechazado')->get();
-            //dd($usuarios);
 
             VerificaEmail::dispatch();
             RegistroNoEditado::dispatch();
+
+            $nuevoegre = DB::table('registro_egresado_nuevos')->where('Validacion', 'No')->get();
+            $rechazoegre = DB::table('registro_egresado_nuevos')->where('Validacion', 'Rechazado')->get();
+            //dd($usuarios);
 
             return view('administradora.indexegrenuevo', compact('nuevoegre', 'rechazoegre'));
             }else{

@@ -32,13 +32,27 @@
                                                 <td>{{ $nuevos->apellido_materno }}</td>
                                                 <td>{{ $nuevos->email }}</td>
                                                 
+                                                <?php 
+                                                 $correonoverify = DB::table('users')->where('email',$nuevos->email)->first();
+                                                 //dd($correonoverify);
+
+                                                    $fechahoy = date('Y-m-d');
+                                                    $fechahoy2 = new DateTime($fechahoy);
+                                                    $fechaactualizado = new DateTime($correonoverify->updated_at);
+
+                                                    $intervalcorreo= $fechaactualizado->diff($fechahoy2);
+                                                                                       
+                                                ?>
+                                                @if ($intervalcorreo->format('%R%a') == 3 )
+                                                <td> Tiempo de verificación de correo expirado</td>
+                                                @else
                                                 <td>
                                                     <a href="{{ url('/nuevoegresado/'.$nuevos->id.'/edit') }}" class="btn btn-primary">Validar</a>
                                                     @include('administradora.deleteegre',['usuario' => $nuevos])
                                                 </td>
-                                                
                                                     
-                                                
+                                                @endif
+
                                             </tr>
                                         @endforeach
                                     </tbody>
