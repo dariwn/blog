@@ -41,9 +41,9 @@
                                                     $fechaactualizado = new DateTime($correonoverify->updated_at);
 
                                                     $intervalcorreo= $fechahoy2->diff($fechaactualizado);
-                                                                                     
+                                                   // echo $intervalcorreo->format('%R%a');                      
                                                 ?>
-                                                @if ($intervalcorreo->format('%R%a') == 30 )
+                                                @if ($intervalcorreo->format('%R%a') >= 30 || $intervalcorreo->format('%R%a') <= -30 )
                                                 <td> Tiempo de verificación de correo expirado</td>
                                                 @else
                                                 <td>

@@ -47,7 +47,7 @@ class VerificaEmail implements ShouldQueue
 
             $intervalcorreo= $fechahoy2->diff($fechaactualizado);
             
-            if($intervalcorreo->format('%R%a días') >= 30){
+            if($intervalcorreo->format('%R%a días') >= 30 || $intervalcorreo->format('%R%a') <= 30){
 
                 $registronuevos = DB::table('registro_egresado_nuevos')->where('email',$datos->email)->first();
                 $eliminarregcorreo = RegistroEgresadoNuevo::findOrFail($registronuevos->id);
