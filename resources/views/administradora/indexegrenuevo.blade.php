@@ -40,10 +40,10 @@
                                                     $fechahoy2 = new DateTime($fechahoy);
                                                     $fechaactualizado = new DateTime($correonoverify->updated_at);
 
-                                                    $intervalcorreo= $fechahoy2->diff($fechaactualizado);
+                                                    $intervalcorreo= $fechaactualizado->diff($fechahoy2);
                                                    // echo $intervalcorreo->format('%R%a');                      
                                                 ?>
-                                                @if ($intervalcorreo->format('%R%a') >= 30 || $intervalcorreo->format('%R%a') <= -30 )
+                                                @if ($intervalcorreo->format('%R%a') >= 30)
                                                 <td> Tiempo de verificación de correo expirado</td>
                                                 @else
                                                 <td>
@@ -86,17 +86,17 @@
                                     <th>Acción</th>
                                 </thead>
                                 <tbody>
-                                    @foreach($rechazoegre as $nuevos)
+                                    @foreach($rechazoegre as $nuevor)
                                         <tr>
-                                            <td>{{ $nuevos->numero_control }}</td>
-                                            <td>{{ $nuevos->nombres }}</td>
-                                            <td>{{ $nuevos->apellido_paterno }}</td>
-                                            <td>{{ $nuevos->apellido_materno }}</td>
-                                            <td>{{ $nuevos->email }}</td>
+                                            <td>{{ $nuevor->numero_control }}</td>
+                                            <td>{{ $nuevor->nombres }}</td>
+                                            <td>{{ $nuevor->apellido_paterno }}</td>
+                                            <td>{{ $nuevor->apellido_materno }}</td>
+                                            <td>{{ $nuevor->email }}</td>
                                             
                                             <td>
-                                                <a href="{{ url('editardatosrechazo/'.$nuevos->id.'/registroegresado') }}" class="btn btn-primary">Editar Y Validar</a>
-                                                @include('administradora.deleteegre',['usuario' => $nuevos])
+                                                <a href="{{ url('editardatosrechazo/'.$nuevor->id.'/registroegresado') }}" class="btn btn-primary">Editar Y Validar</a>
+                                                @include('administradora.deleteegre',['usuario' => $nuevor])
                                             </td>
                                             
                                                 
