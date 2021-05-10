@@ -163,8 +163,19 @@
         <!-- Main content -->
         <section class="content">
           <?php 
-              $count = DB::table('registro_egresado_nuevos')->where('Validacion','No')->count();
+            $nuevoegre = DB::table('registro_egresado_nuevos')->where('Validacion', 'No')->get(); 
+            $count = 0;                         
           ?>
+           @foreach($nuevoegre as $nuevos)
+           <?php 
+               $correoveri = DB::table('users')->where('email',$nuevos->email)->get();
+           ?>
+           @if ($correoveri[0]->email_verified_at != null)
+            <?php $count = $count + 1;    ?>                  
+           @endif
+              
+           @endforeach
+
           @if ($count != 0)
           <div class="row">
             <div class="col-md-8"></div>

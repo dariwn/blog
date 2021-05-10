@@ -25,35 +25,46 @@
                                     </thead>
                                     <tbody>
                                         @foreach($nuevoegre as $nuevos)
-                                            <tr>
-                                                <td>{{ $nuevos->numero_control }}</td>
-                                                <td>{{ $nuevos->nombres }}</td>
-                                                <td>{{ $nuevos->apellido_paterno }}</td>
-                                                <td>{{ $nuevos->apellido_materno }}</td>
-                                                <td>{{ $nuevos->email }}</td>
+
+                                        <?php 
+                                            $correoveri = DB::table('users')->where('email',$nuevos->email)->get();
+
+                                            //if ($correoveri->email_verified_at != null) {
+                                                                                            
+                                            //echo $correoveri;
+                                        ?>
+                                        @if ($correoveri[0]->email_verified_at != null)
+                                        <tr>
+                                            <td>{{ $nuevos->numero_control }}</td>
+                                            <td>{{ $nuevos->nombres }}</td>
+                                            <td>{{ $nuevos->apellido_paterno }}</td>
+                                            <td>{{ $nuevos->apellido_materno }}</td>
+                                            <td>{{ $nuevos->email }}</td>
+                                            
+                                            {{-- <?php 
+                                             $correonoverify = DB::table('users')->where('email',$nuevos->email)->first();
+                                             //dd($correonoverify);
+
+                                                $fechahoy = date('Y-m-d');
+                                                $fechahoy2 = new DateTime($fechahoy);
+                                                $fechaactualizado = new DateTime($correonoverify->updated_at);
+
+                                                $intervalcorreo= $fechaactualizado->diff($fechahoy2);
+                                               // echo $intervalcorreo->format('%R%a');                      
+                                            ?>
+                                            @if ($intervalcorreo->format('%R%a') >= 30)
+                                            <td> Tiempo de verificación de correo expirado</td>
+                                            @else --}}
+                                            <td>
+                                                <a href="{{ url('/nuevoegresado/'.$nuevos->id.'/edit') }}" class="btn btn-primary">Validar</a>
+                                                @include('administradora.deleteegre',['usuario' => $nuevos])
+                                            </td>
                                                 
-                                                <?php 
-                                                 $correonoverify = DB::table('users')->where('email',$nuevos->email)->first();
-                                                 //dd($correonoverify);
+                                            {{-- @endif --}}
 
-                                                    $fechahoy = date('Y-m-d');
-                                                    $fechahoy2 = new DateTime($fechahoy);
-                                                    $fechaactualizado = new DateTime($correonoverify->updated_at);
-
-                                                    $intervalcorreo= $fechaactualizado->diff($fechahoy2);
-                                                   // echo $intervalcorreo->format('%R%a');                      
-                                                ?>
-                                                @if ($intervalcorreo->format('%R%a') >= 30)
-                                                <td> Tiempo de verificación de correo expirado</td>
-                                                @else
-                                                <td>
-                                                    <a href="{{ url('/nuevoegresado/'.$nuevos->id.'/edit') }}" class="btn btn-primary">Validar</a>
-                                                    @include('administradora.deleteegre',['usuario' => $nuevos])
-                                                </td>
-                                                    
-                                                @endif
-
-                                            </tr>
+                                        </tr>
+                                        @endif
+                                           
                                         @endforeach
                                     </tbody>
                                 </table>
