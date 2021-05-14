@@ -22,5 +22,10 @@ class SexoSeeder extends Seeder
             'idgenero'=> '2',
             'sexo' => 'Mujer',
         ]);
+
+        DB::table('sexo')->insert([
+            'idgenero'=> '3',
+            'sexo' => 'Ambos Sexo',
+        ]);
     }
 }

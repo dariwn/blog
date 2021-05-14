@@ -130,7 +130,7 @@
           
         <div class="col-md-2 col-lg-4 " align="center"> 
 			<div id="load_img">
-			<img class="img-responsive" src="{{asset('Imagenes/empresas/'.$empresa->imagen)}}" height="150px" width="150px">
+			<img class="img-responsive" src="{{asset('imagenes/'.$empresa->imagen)}}" height="150px" width="150px">
 			</div>
 			
 			<div class="form-row">

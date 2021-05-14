@@ -93,7 +93,7 @@ class EmpresaController extends Controller
 
         if($request->hasFile('imagen')){
             $file=$request->file('imagen');
-            $file->move(public_path().'/imagenes/empresas/',$file->getClientOriginalName());
+            $file->move(public_path().'/imagenes',$file->getClientOriginalName());
             $empresa->imagen=$file->getClientOriginalName();
         }
         
@@ -193,12 +193,12 @@ class EmpresaController extends Controller
 
         if($request->hasFile('imagen')){
 
-            $path = public_path().'/imagenes/empresas/'.$empresa->imagen;
+            $path = public_path().'/imagenes'.$empresa->imagen;
             //dd($path);
             File::delete($path);
 
             $file=$request->file('imagen');
-            $file->move(public_path().'/imagenes/empresas/',$file->getClientOriginalName());
+            $file->move(public_path().'/imagenes',$file->getClientOriginalName());
             $empresa->imagen=$file->getClientOriginalName();
         }
 

@@ -29,7 +29,7 @@
 			  
                 <div class="col-md-3 col-lg-3 " align="center"> 
 				<div id="load_img">
-					<img src="{{asset('imagenes/empresas/'.$empresa->imagen)}}" height="180px" width="180px" class="img-thumbnail"/>
+					<img src="{{asset('imagenes/'.$empresa->imagen)}}" height="180px" width="180px" class="img-thumbnail"/>
 				</div>
 				<br>				
 					

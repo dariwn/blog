@@ -413,8 +413,15 @@ class EgresadoController extends Controller
 
         $p = Perfil::select('carrera')->where('idperfiles',$w)->get()->pluck('carrera');
         $perfil = Arr::first($p);
+        
+        $fotoempr = Empresa::select('imagen')->whereIn('idempresa',$b)->get();
+        $emprefoto = Arr::first($fotoempr);
+        //dd($emprefoto);
 
-        return view('egresado.postularse',compact('egresados','solicitudes','empresa','b','perfil','hola'));
+        $pefilpos= Solicitudperfil::select('idperfiles')->whereIn('idsolicitud',$b)->get();
+        //dd($pefilpos);
+
+        return view('egresado.postularse',compact('egresados','solicitudes','empresa','b','perfil','hola', 'emprefoto', 'pefilpos'));
     }
 
     public function guardar_postulados(Request $request){
