@@ -12,7 +12,7 @@
                     <div class="card">
                                 
                         <div class="card-body">
-                            <form action="{{ route('ajustesemp.update', $usuario->id) }}" method="post">
+                            <form action="{{ route('usuarios-empresa.update', $usuario->id) }}" method="post">
                                 @csrf
                                 @method('PUT')
         
