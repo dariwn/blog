@@ -6,7 +6,7 @@
 <head>
      <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-     <title>One Page Resume</title>
+     <title>Curriculum</title>
 
      <style type="text/css">
         * { margin: 0; padding: 0; }
@@ -28,13 +28,12 @@
         dd.clear { float: none; margin: 0; height: 15px; }
      </style>
 </head>
+<br>
 
 <body>
 
     <div id="page-wrap">
-    <br>                     
-        
-    
+    <br>                                 
         <div id="contact-info" class="vcard">
         
             <!-- Microformats! -->
@@ -44,6 +43,7 @@
             <p>
                 Número de Celular: {{$hola->curriculo->numero_cel}}<br>
                 Email: {{$hola->curriculo->correo}}<br>
+                País: México<br>
                 Estado: {{$hola->estado->nombre_estado}}<br>
                 Municipio: {{$hola->municipio->nombre_localidad}}<br>
                 Domicilio: {{$hola->curriculo->domicilio}}. Colonia: {{$hola->curriculo->colonia}}
@@ -62,8 +62,10 @@
         <div class="clear"></div>
         
         <dl>
+            <br>
             <dd class="clear"></dd>
-            
+            <br>
+                        
             <dt>Educación</dt>
             <dd>                
                 <p><strong>Universidad: </strong> {{$hola->escuela}} <br>
@@ -88,9 +90,14 @@
                      ?>                                   
                  </p>
             </dd>
-            
+        </dl>
+        
+        <dl>
+            <br>
             <dd class="clear"></dd>
-
+            <br>
+            <br>
+            
             <dt>Experiencia</dt>
             <dd>                
                 <?php
@@ -114,8 +121,12 @@
                     
                 ?>
             </dd>
-
+        </dl>
+        <dl>
+            <br>
             <dd class="clear"></dd>
+            <br>
+            <br>
             
             <dt>Cursos / <br>Certificaciones</dt>
             <dd>
@@ -138,16 +149,25 @@
                 
             ?>
             </dd>
-
+        </dl>
+        <dl>
+            <br>
             <dd class="clear"></dd>
-
+            <br>
+            <br>
+            
             <dt>Habilidad</dt>
             <dd>                    
                 <p>{{$hola->habilidades}}</p>
             </dd>
 
+        </dl>
+        <dl>
+            <br>
             <dd class="clear"></dd>
-
+            <br>
+            <br>
+            
             <dt>Objetivo Profesional:</dt>
             <dd>                    
                 <?php 
@@ -158,18 +178,20 @@
                     echo 'Objetivo Profesional: '.($res[2]).'</p>'; 
                 ?>
             </dd>
-            
-            
+
+        </dl>
+        <dl>  
+            <br>        
             <dd class="clear"></dd>
+            <br>
+            <br>
             
             <dt>Idioma</dt>
             <dd>
                <h2>{{$hola->idioma->idioma}}</h2>
                <p><strong>Nivel:</strong> {{$hola->nivel->nivel}}</p>
             </dd>
-            
-           
-                        
+                                               
         </dl>
                
     </div>

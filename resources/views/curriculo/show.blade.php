@@ -49,7 +49,8 @@
         
             <p>
                 Número de Celular: <span class="tel">{{$hola->curriculo->numero_cel}}</span><br />
-                Email: <span class="email" href="#">{{$hola->curriculo->correo}}</a><br />
+                Email: <span class="email" href="#">{{$hola->curriculo->correo}}</span><br />
+                País: <span class="email" href="#">México</span> <br>
                 Estado: <span class="estado">{{$hola->estado->nombre_estado}}</span><br />
                 Municipio: <span class="municipio">{{$hola->municipio->nombre_localidad}}</span><br />
                 Domicilio: <span> {{$hola->curriculo->domicilio}}</span>. Colonia: <span>{{$hola->curriculo->colonia}}</span>
