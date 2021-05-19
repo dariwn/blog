@@ -23,7 +23,7 @@ class CreateEgresadoTable extends Migration {
 			$table->char('colonia', 40);
 			$table->date('fecha_de_nac')->nullable();
 			$table->decimal('numero_cel', 20, 0)->nullable();
-			$table->string('imagen', 50)->nullable();
+			$table->longText('imagen')->nullable();
 			$table->integer('pais_id')->index('fk_egresado_pais1_idx');
 			$table->integer('estado_id')->index('fk_egresado_estado1_idx');
 			$table->integer('municipio_id')->index('fk_egresado_municipio1_idx');

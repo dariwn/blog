@@ -32,7 +32,7 @@
                                      foreach ($idsoli as $key => $value) {
                                         $perfilactual= DB::table('perfiles')->where('idperfiles','=',$value->idperfiles)->get();
                                         //dd($perfilactual);
-                                        echo $perfilactual[0]->carrera."<br>";
+                                        echo "<span style="."font-size:13.0pt".">".$perfilactual[0]->carrera."</span>"."<br>";
                                      }                                                                                                      
                                     ?>   
                               </td>
@@ -46,7 +46,7 @@
                     <label class="radio inline"> 
                         @foreach($perfiles as $perfil)
                         <input type="checkbox" name="perfil[]" value="{{$perfil->idperfiles}}">
-                        <span> {{$perfil->carrera}} </span> <br>
+                        <span style="font-size:13.0pt"> {{$perfil->carrera}} </span> <br>
                         @endforeach
                     </label>  
 

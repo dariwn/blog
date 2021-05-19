@@ -18,6 +18,7 @@ class Solicitud extends Model
         'horario',
         'edades',
         'descripcion_del_puesto',
+        'experiencia',
         'tiempo_de_contratacion',
         'cambio_de_residencia',
         'sexo',

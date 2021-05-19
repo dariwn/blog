@@ -10,6 +10,7 @@
 			<strong>Nombre del Puesto: </strong> {{ $solicitudes->nombredelpuesto }} <br>
 			<strong>Descripción del Puesto: </strong> {{ $solicitudes->descripcion_del_puesto }} <br>
 			<strong>Requisitos: </strong> {{ $solicitudes->requisito }} <br>
+			<strong>Experiencia: </strong> {{ $solicitudes->experiencia }} <br>
 			<strong>Sexo: </strong> {{ $solicitudes->genero->sexo }} <br>
 			<strong>Perfil: </strong>
 			@foreach ($pefilpos as $item)
@@ -19,7 +20,7 @@
 			<br>
 			<strong>Salario: </strong> ${{ $solicitudes->salario }} <br>
 			<strong>Horario: </strong> {{ $solicitudes->horario }} <br>
-			<strong>Edades: </strong> {{ $solicitudes->edades }} años <br>
+			<strong>Edades: </strong> {{ $solicitudes->edades }} <br>
 			<strong>Tiempo de Contratación: </strong> {{ $solicitudes->tiempo_de_contratacion }} <br>
 			<strong>Cambio de Residencia: </strong> {{ $solicitudes->cambio_de_residencia }} <br>
 			</div>

@@ -16,14 +16,15 @@ class CreateSolicitudTable extends Migration {
 		{
 			$table->integer('idsolicitud', true);
 			$table->integer('id_empresa')->index('fk_solicitud_empresa1_idx');
-			$table->char('nombredelpuesto', 45);
+			$table->longText('nombredelpuesto', 45);
 			$table->decimal('salario', 40, 0)->nullable();
-			$table->char('horario', 50)->nullable();
+			$table->longText('horario')->nullable();
 			$table->char('edades', 50)->nullable();
-			$table->char('descripcion_del_puesto', 50);
+			$table->longText('descripcion_del_puesto');
+			$table->longText('experiencia');
 			$table->char('tiempo_de_contratacion', 50);
 			$table->char('cambio_de_residencia', 60)->nullable();
-			$table->char('requisito', 45);
+			$table->longText('requisito');
 			$table->char('estado_civil', 30)->nullable();
 			$table->char('estatus', 25);
 			$table->string('respuesta', 5);

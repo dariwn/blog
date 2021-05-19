@@ -108,7 +108,7 @@
 						  <tr>
 							  <tr>
 							<td class='col-md-3'>Salario:</td>
-							<td><input type="number" class="form-control" placeholder="Salario" name="salario" value="{{ $solicitudes->salario }}" /></td>
+							<td><input type="number" class="form-control" placeholder="Salario" name="salario" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==7) return false;" value="{{ $solicitudes->salario }}" /></td>
 						  </tr>
 						  
 						  <tr>
@@ -148,6 +148,11 @@
 							<td>Descripción del Puesto:</td>
 							<td><input type="text" id="descripcionpuesto" class="form-control"  placeholder="Descripcion del Puesto" name="descripcion_del_puesto" value="{{ $solicitudes->descripcion_del_puesto }}" /></td>
 						  </tr>
+
+              <tr>
+              <td>Experiencia:</td>
+              <td><input type="text" id="experiencia" class="form-control"  placeholder="Experiencia para el Puesto" name="experiencia" value="{{ $solicitudes->experiencia }}"/></td>
+              </tr>
 
 						  
 						  <tr>

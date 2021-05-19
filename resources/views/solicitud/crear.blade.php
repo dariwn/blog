@@ -106,7 +106,7 @@
 						  <tr>
 							  <tr>
 							<td class='col-md-3'>Salario:</td>
-							<td><input type="number" class="form-control" placeholder="Salario" name="salario" required/></td>
+							<td><input type="number" class="form-control" placeholder="Salario" name="salario" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==7) return false;" required/></td>
 						  </tr>
 						  
 						  <tr>
@@ -117,7 +117,7 @@
 						  
 						  <tr>
 							<td>Horario:</td>
-							<td><input type="text" id="horario" class="form-control" placeholder="Horario" name="horario" required/></td>
+							<td><input type="text"  class="form-control" placeholder="Horario" name="horario" required/></td>
 						  </tr>
 						  <tr>
 							<td>Estado Civil:</td>
@@ -135,13 +135,18 @@
 	
 						  <tr>
 							<td>Requisitos:</td>
-							<td><input type="text" id="requisitos" class="form-control" placeholder="Requisitos" name="requisito" required/></td>
+							<td><input type="text"  class="form-control" placeholder="Requisitos" name="requisito" required/></td>
 						  </tr>
 
 						  <tr>
 							<td>Descripción del Puesto:</td>
-							<td><input type="text" id="descripcionpuesto" class="form-control"  placeholder="Descripcion del Puesto" name="descripcion_del_puesto"  required/></td>
+							<td><input type="text"  class="form-control"  placeholder="Descripcion del Puesto" name="descripcion_del_puesto"  required/></td>
 						  </tr>
+
+              <tr>
+              <td>Experiencia:</td>
+              <td><input type="text" id="experiencia" class="form-control"  placeholder="Experiencia para el Puesto" name="experiencia"  required/></td>
+              </tr>
 
 						  
 						  <tr>
@@ -156,11 +161,11 @@
                     </tbody>
                   </table>
 
-                  <label> Perfiles Requeridos: </label>
+                  <label style="font-size:14.0pt"> Perfiles Requeridos: </label>
                   <div>
                     @foreach($perfiles as $perfil)
                     <input type="checkbox" name="perfil[]" value="{{$perfil->idperfiles}}">
-                    <span> {{$perfil->carrera}} </span> <br>
+                    <span style="font-size:13.0pt"> {{$perfil->carrera}} </span> <br>
                     @endforeach
                   </div>
 

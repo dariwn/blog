@@ -31,7 +31,7 @@ class CreateEmpresasTable extends Migration {
 			$table->decimal('numero_cel', 20, 0);
 			$table->integer('estado_id')->index('fk_empresa_estado1_idx');
 			$table->integer('pais_id')->index('fk_empresa_pais1_idx');
-			$table->string('imagen', 50)->nullable()->default('default jpg,png,gif');
+			$table->longText('imagen')->nullable();
 			$table->bigInteger('users_id')->unsigned()->index('fk_empresas_users1_idx');
 			$table->integer('municipio_id')->index('fk_empresas_municipio1_idx');
 		});

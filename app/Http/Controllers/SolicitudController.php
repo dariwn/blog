@@ -106,6 +106,7 @@ class SolicitudController extends Controller
         $nuevo->tiempo_de_contratacion = $request->tiempo_de_contratacion;
         $nuevo->edades = $request->edades;
         $nuevo->requisito = $request->requisito;
+        $nuevo->experiencia = $request->experiencia;
         $nuevo->estado_civil = $request->estado_civil;
         $nuevo->cambio_de_residencia = $request->cambio_de_residencia;
         $nuevo->id_empresa = $empresas[0]->idempresa;
@@ -236,6 +237,7 @@ class SolicitudController extends Controller
         $solicitudes->tiempo_de_contratacion = $request->tiempo_de_contratacion;
         $solicitudes->edades = $request->edades;
         $solicitudes->requisito = $request->requisito;
+        $solicitudes->experiencia = $request->experiencia;
         $solicitudes->estado_civil = $request->estado_civil;
         $solicitudes->cambio_de_residencia = $request->cambio_de_residencia;
         $solicitudes->id_empresa = $request->id_empresa;
