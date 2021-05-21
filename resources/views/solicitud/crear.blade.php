@@ -75,18 +75,33 @@
         });
     });
 
+    function verificar_uno(){
+        var suma = 0;
+        var checks = document.getElementsByName('perfil[]');
+        for (var i = 0, j = checks.length; i < j; i++) {
+            if(checks[i].checked == true){
+            suma++;
+            }
+      }
+      
+      if(suma == 0){
+          alert('Debes seleccionar minimo un perfil requerido');
+          return false;
+      }
+    
+    }
 </script>
 
 <div class="container">
       <div class="row">
-        <div class=" col-sm-10" >
+        <div class=" col-sm-9" >
 
           <div class="panel panel-success"><br>
               <h2 class="panel-title"><center><font size="5">Datos De La Vacante</font></center></h2>
 
             <div class="panel-body">
               <div class="row">
-<form action="{{ route('solicitud.store') }}" method="POST">
+<form action="{{ route('solicitud.store') }}" method="POST" onsubmit="return verificar_uno()">
   @csrf 
    
          
@@ -96,7 +111,7 @@
                     <tbody>
 						  <tr>
 							<td class='col-md-3'>Nombre del Puesto:</td>
-							<td><input type="text" id="puesto" class="form-control" placeholder="Nombre del Puesto" name="nombredelpuesto" required/></td>
+							<td><input type="text" class="form-control" placeholder="Nombre del Puesto" name="nombredelpuesto" required/></td>
                           </tr>
                           
 						  <tr>							

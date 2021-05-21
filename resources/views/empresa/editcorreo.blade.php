@@ -2,7 +2,7 @@
 @section('contenido')
 
 <div class="container">      
-        <div class="col-sm-10" >
+        <div class="col-sm-9" >
 
           <div class="panel panel-success"><br>
               <h2 class="panel-title"><center><font size="5"></i>Edición Correo Empresa</font></center></h2>

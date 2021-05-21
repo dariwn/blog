@@ -117,7 +117,7 @@
 
 <div class="container">
       <div class="row">
-        <div class="col-md-10" >
+        <div class="col-md-9" >
 
           <div class="panel panel-success"><br>
               <h2 class="panel-title"><center><font size="5"></i>PERFIL</font></center></h2>
