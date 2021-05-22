@@ -13,8 +13,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.0.1/js/bootstrap.min.js"></script>
 
     <link rel="stylesheet" href="{{asset('css/font-awesome.css')}}">
     <!-- Theme style 2.4.18 -->
@@ -141,7 +141,7 @@
             <li class="treeview">
               <a href="{{route('versolicitud')}}">
                 <i class="fa fa-th"></i>
-                <span>Solicitudes</span>
+                <span>Vacantes</span>
                  <i class="fa fa-angle-left pull-right"></i>
               </a>
               

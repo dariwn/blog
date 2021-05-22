@@ -181,7 +181,7 @@ class CurriculoController extends Controller
         }
         $hola->objetivo = $jsonob;
         $hola->duracion = $request->duracion;
-        $hola->idjerarquia = $request->idjerarquia;
+        // $hola->idjerarquia = $request->idjerarquia;
         $hola->idestado = $request->idestado;
         $hola->idmunicipio = $request->idmunicipio;
         $perfil = DB::table('perfiles')->where('carrera', $request->area)->first();
@@ -393,7 +393,7 @@ class CurriculoController extends Controller
         }
         $hola->objetivo = $jsonob;
         $hola->duracion = $request->duracion;
-        $hola->idjerarquia = $request->idjerarquia;
+        // $hola->idjerarquia = $request->idjerarquia;
         $hola->idestado = $request->idestado;
         $hola->idmunicipio = $request->idmunicipio;
         $hola->idperfiles = $request->idperfiles;

@@ -1,8 +1,10 @@
 @extends('egresado.inicio')
 @section('contenido')
+<div class="row">
+	
 @foreach($solicitudes as $solicitud)
-
-	<div class="col-md-6 card" style="word-wrap: break-word">
+<div class="col-sm-6">
+	<div class="card" style="width: 20rem; word-wrap: break-word">
 	  <div class="card-body">
 		 
 		 <?php
@@ -35,6 +37,9 @@
 		@endif
 	  </div>
 	</div>
+</div>
 
 @endforeach
+</div>
+
 @endsection
