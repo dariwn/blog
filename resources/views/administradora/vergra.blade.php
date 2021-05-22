@@ -101,7 +101,7 @@ window.onload = function () {
   <a class="btn btn-primary" id="regresar" href="{{ url('/reporte')}}" >Regresar Página Anterior</a>
 
 <br><br><br><br><br><br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br>
 
   <footer class="footer">
 	<hr>
