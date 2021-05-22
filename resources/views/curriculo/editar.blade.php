@@ -3,6 +3,17 @@
 
 
 <script type="text/javascript">
+
+$(document).ready(function(){
+            $('.mul-select').select2({
+                    placeholder: "selecciona idioma", //placeholder
+                    tags: true,
+                    tokenSeparators: [','] 
+                });
+            });
+
+
+
 var element2 = 5.11;
 var element = 1.13;
 var element3 = -1.16;
@@ -265,6 +276,13 @@ var element3 = -1.16;
 
 </script>
 
+<style>
+  .mul-select{
+      width: 100%;
+  }
+</style>
+
+
 <div class="row">
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <h2>Curriculum</h2>
@@ -468,17 +486,26 @@ var element3 = -1.16;
                 <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                 <div class="form-group">
                 <label>Idioma</label>
-                <select name="ididioma" class="form-control">
-                @foreach($idiomas as $idioma)
-                  @if($idioma->ididioma==$hola->ididioma)
+
+                    <div class="form-group">
+                      <select name="ididioma[]" class="mul-select" multiple="true">  
+                                    
+                          @foreach($idiomas as $idioma)
+                              <?php
+                               $search= $co;                                                    
+                              ?>
+                              @if(in_array($idioma->ididioma, $search))
                               <option value="{{$idioma->ididioma}}" selected>{{$idioma->idioma}}</option>
                               @else
                               <option value="{{$idioma->ididioma}}">{{$idioma->idioma}}</option>
-                              @endif
-                @endforeach
-                       </select>
-                       </div>
-              </div>
+                              @endif                                                                                       
+                           @endforeach
+                       
+                      </select>
+                    </div>     
+              
+                </div>
+                </div>
 
               <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                 <div class="form-group">

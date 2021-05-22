@@ -188,8 +188,17 @@
             
             <dt>Idioma</dt>
             <dd>
-               <h2>{{$hola->idioma->idioma}}</h2>
-               <p><strong>Nivel:</strong> {{$hola->nivel->nivel}}</p>
+                <?php 
+                $co = explode(",",$hola->ididioma);
+                $co2= count($co);   
+                
+                                  
+                for ($i=0; $i < $co2; $i++) {
+                   $idioma = DB::table('idioma')->where('ididioma',$co[$i])->first();  
+                   //dd($idioma);
+                   echo '<p>'.$idioma->idioma.'</p>';
+                }                 
+                ?>
             </dd>
                                                
         </dl>

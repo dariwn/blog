@@ -16,7 +16,7 @@ class CreateCurriculoTable extends Migration {
 		{
 			$table->integer('idcurriculo', true);
 			$table->integer('idegresado')->index('fk_curriculo_egresado1_idx');
-			$table->integer('ididioma')->index('fk_curriculo_Ingles1_idx');
+			$table->longText('ididioma');
 			$table->char('habilidades', 100);
 			$table->char('especialidad', 60);
 			$table->char('escuela', 70);

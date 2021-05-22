@@ -3,6 +3,18 @@
 
 
 <script type="text/javascript">
+
+$(document).ready(function(){
+            $('.mul-select').select2({
+                    placeholder: "selecciona idioma", //placeholder
+                    tags: true,
+                    tokenSeparators: [','] 
+                });
+            });
+
+
+
+
 var element = 1;
 var element1 = 1.11;
 var element2 = -1;
@@ -261,8 +273,14 @@ var element2 = -1;
         }
         });
     });
-    
+     
 </script>
+
+<style>
+    .mul-select{
+        width: 100%;
+    }
+</style>
 
 <div class="row">
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -371,13 +389,16 @@ var element2 = -1;
                 <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                 <div class="form-group">
                 <label>Idioma</label>
-                <select name="ididioma" class="form-control">
-                @foreach($idiomas as $idioma)
-                              <option value="{{$idioma->ididioma}}">{{$idioma->idioma}}</option>
-                              @endforeach
-                       </select>
-                       </div>
-              </div>
+
+                    <div class="form-group">
+                        <select name="ididioma[]" class="mul-select" multiple="true">
+                            @foreach($idiomas as $idioma)
+                                <option value="{{$idioma->ididioma}}">{{$idioma->idioma}}</option>
+                                @endforeach
+                        </select>
+                    </div>            
+                </div>
+                </div>
 
               <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                 <div class="form-group">

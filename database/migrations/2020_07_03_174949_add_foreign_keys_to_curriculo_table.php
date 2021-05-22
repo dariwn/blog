@@ -14,7 +14,7 @@ class AddForeignKeysToCurriculoTable extends Migration {
 	{
 		Schema::table('curriculo', function(Blueprint $table)
 		{
-			$table->foreign('ididioma', 'fk_curriculo_Ingles1')->references('ididioma')->on('idioma')->onUpdate('NO ACTION')->onDelete('NO ACTION');
+			
 			$table->foreign('idegresado', 'fk_curriculo_egresado1')->references('idegresado')->on('egresado')->onUpdate('NO ACTION')->onDelete('NO ACTION');
 			$table->foreign('idestado', 'fk_curriculo_estado1')->references('idestado')->on('estado')->onUpdate('NO ACTION')->onDelete('NO ACTION');
 			$table->foreign('idjerarquia', 'fk_curriculo_jerarquia1')->references('idjerarquia')->on('jerarquia')->onUpdate('NO ACTION')->onDelete('NO ACTION');

@@ -50,7 +50,7 @@ class CurriculoController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request);
+               
         //expericencias
         $puestos = $request->puesto;
         //dd($puestos);
@@ -147,11 +147,13 @@ class CurriculoController extends Controller
         //dd($request);
 
         $usuario = Auth::user()->id;
+        $idi = implode(",",$request->ididioma); 
+
         $admin = DB::table('users')->where('id', $usuario)->update(['curriculo' => 0]);
         $hola = new Curriculo;
 
         $hola->idegresado = $request->idegresado;
-        $hola->ididioma = $request->ididioma;
+        $hola->ididioma = $idi;
         $hola->habilidades = $request->habilidades;
         $hola->especialidad = $request->especialidad;
         $hola->escuela = $request->escuela;
@@ -240,7 +242,11 @@ class CurriculoController extends Controller
         $estados = Estado::all();
         $municipios = Municipio::all();
 
-        return view("curriculo.editar",compact('egresados','hola','idiomas','jerarquias','perfiles','estados','municipios','hola'));
+        //dd($hola->ididioma);
+        $co = explode(",",$hola->ididioma);
+        //dd($co);
+        $co2= count($co);  
+        return view("curriculo.editar",compact('co','co2','egresados','hola','idiomas','jerarquias','perfiles','estados','municipios','hola'));
         }else{
             abort(404, 'Pagina No Encontrada');
         }
@@ -255,7 +261,7 @@ class CurriculoController extends Controller
      */
     public function update(Request $request, $id)
     {
-
+        
         
         if(Auth::user()->origen == 'Egresado'){
         //dd($request);
@@ -355,8 +361,11 @@ class CurriculoController extends Controller
         //dd($request);
 
         $hola = Curriculo::findOrFail($id);
+
+        $idi = implode(",",$request->ididioma); 
+
         $hola->idegresado = $request->idegresado;
-        $hola->ididioma = $request->ididioma;
+        $hola->ididioma = $idi;
         $hola->habilidades = $request->habilidades;
         $hola->especialidad = $request->especialidad;
         $hola->escuela = $request->escuela;
