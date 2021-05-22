@@ -15,14 +15,14 @@ class CreateEmpresasTable extends Migration {
 		Schema::create('empresas', function(Blueprint $table)
 		{
 			$table->integer('idempresa', true);
-			$table->char('nombre', 30);
+			$table->longText('nombre');
 			$table->char('names', 20);
 			$table->char('apellido_paterno', 40);
 			$table->char('apellido_materno', 40);
 			$table->char('cargo', 50);
 			$table->char('email', 40)->nullable();
 			$table->char('rfc', 50);
-			$table->char('descripcion', 60)->nullable();
+			$table->longText('descripcion');
 			$table->char('colonia', 50);
 			$table->char('calle', 40);
 			$table->decimal('numeroexterior', 20, 0);
