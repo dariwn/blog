@@ -58,7 +58,7 @@
 	$(document).ready(function () {
     $('input#rfc')
         .keypress(function (event) {
-        if (this.value.length === 50) {
+        if (this.value.length === 13) {
             return false;
         }
         });
@@ -86,7 +86,7 @@
                     <div class="form-group row">
                         <label class="col-sm-4 col-form-label text-md-right">Nombre de la empresa: </label>
                         <div class="col-md-6">
-                           <input type="text" id="nombre" name="nombreempresa" required class="form-control" placeholder="Nombre de la empresa"> 
+                           <input type="text"  name="nombreempresa" required class="form-control" placeholder="Nombre de la empresa"> 
                         </div>                            
                     </div> 
 
