@@ -66,7 +66,7 @@
                     
                     <div class="pull-right">
                       <a href="#" class="btn btn-default btn-flat">Cerrar</a>
-                      <a href="{{url('/BTEgresado')}}" class="btn btn-default btn-flat">Salir</a>
+                      <a href="{{url('/exit')}}" class="btn btn-default btn-flat">Salir</a>
                     </div>
                   </li>
                 </ul>
