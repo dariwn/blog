@@ -1,7 +1,8 @@
 @extends('egresado.inicio')
 @section('contenido')
 @foreach($solicitudes as $solicitud)
-	<div class="col-md-6 mb-3 card" style="width: 25rem;">
+
+	<div class="col-md-6 card" style="word-wrap: break-word">
 	  <div class="card-body">
 		 
 		 <?php
@@ -16,7 +17,7 @@
 			
 		@elseif($solicitud1[0]->estatus == 'Vigente')
 		{{-- @elseif($solicitud1[0]->estatus == 'Vigente                  ') --}}
-	    <h4 class="card-title">Puesto: {{ $solicitud1[0]->nombredelpuesto }}</h4>
+	    <h4 class="card-title">Puesto: {{ $solicitud1[0]->nombredelpuesto }}</p>
 	    <h6 class="card-subtitle mb-2 text-muted">Estado de la Vacante: {{ $solicitud1[0]->estatus }}</h6>
 	    {{-- <p class="card-text">Descripci&oacute;n: {{ $solicitud1[0]->descripcion_del_puesto }}.</p> --}}
 	    <h6 class="card-subtitle mb-2 text-muted">Horario: {{ $solicitud1[0]->horario }}</h6>
@@ -24,15 +25,16 @@
 	    <!--<h6 class="card-subtitle mb-2 text-muted">Sexo: {{ $solicitud1[0]->idsexo }}</h6>-->
 	    {{-- <h6 class="card-subtitle mb-2 text-muted">Edades: {{ $solicitud1[0]->edades }}</h6> --}}
 	    <h6 class="card-subtitle mb-2 text-muted">Tiempo de Contrataci&oacute;n: {{ $solicitud1[0]->tiempo_de_contratacion }}</h6>
+		@if ($soli == false)
 		<a class="btn-wide btn btn-primary" href="{{ url('postulacion',$solicitud1[0]->idsolicitud) }}" class="card-link">Detalles</a>
-		@if ($soli == true)
-			<span>Postulado</span>
-		@else
-			
+		@elseif ($soli == true)
+		
+			<span style="font-size:13.0pt; background-color: rgb(83, 255, 83)">Postulado</span>
 		@endif
 		<span></span>
 		@endif
 	  </div>
 	</div>
+
 @endforeach
 @endsection

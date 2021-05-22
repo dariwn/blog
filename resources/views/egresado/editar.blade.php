@@ -71,7 +71,7 @@
 
 <div class="container">
       <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 toppad" >
+        <div class="col-md-9" >
 
           <div class="panel panel-success"><br>
               <h2 class="panel-title"><center><font size="5"></i>PERFIL</font></center></h2>
