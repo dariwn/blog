@@ -38,7 +38,7 @@
 	$(document).ready(function () {
     $('input#rfc')
         .keypress(function (event) {
-        if (this.value.length === 50) {
+        if (this.value.length === 13) {
             return false;
         }
         });
@@ -171,7 +171,7 @@
 	
 						  <tr>
 							<td>Teléfono:</td>
-							<td> <input type="number" id="telefono" class="form-control input-sm" name="telefono" required></td>
+							<td> <input type="number" id="telefono" class="form-control input-sm" name="telefono" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;" required></td>
 						  </tr>
 
 						  <tr>
@@ -234,7 +234,7 @@
 						  
 						  <tr>
 							<td>Telefono:</td>
-							<td> <input type="number" id="celular" class="form-control input-sm" name="numero_cel" required></td>
+							<td> <input type="number" id="celular" class="form-control input-sm" name="numero_cel" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;" required></td>
 						  </tr>
 						  
 						  <tr>

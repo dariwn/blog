@@ -165,6 +165,7 @@ class UserEmpreController extends Controller
 
         $usuario->username = $request->username;
         $usuario->password =  bcrypt($request->contraseña);
+        $usuario->email = $request->email;
 
          //correo de aviso cambio de usuario
          
