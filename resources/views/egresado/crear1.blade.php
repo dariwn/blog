@@ -113,7 +113,7 @@
                 <div class="col-lg-6">
                 <div class="form-group">
                 <label for="codigo">Número de celular</label>
-                <input type="number" name="numero_cel" id="numero_cel" min="1" max="999999999999" required value="{{old('numero_cel')}}" class="form-control" placeholder="Numero de cel...">
+                <input type="number" name="numero_cel" id="numero_cel" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;" required value="{{old('numero_cel')}}" class="form-control" placeholder="Numero de cel...">
                 </div>  
                 </div>
 

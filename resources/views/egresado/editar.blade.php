@@ -137,7 +137,7 @@
                       </tr>
             <tr>
                         <td>Telefono:</td>
-                        <td><input type="text" id="numero_cel" class="form-control input-sm" required name="numero_cel" value="{{$egresado->numero_cel}}"></td>
+                        <td><input type="number" id="numero_cel" class="form-control input-sm" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;" required name="numero_cel" value="{{$egresado->numero_cel}}"></td>
                       </tr>
 
                       <tr>

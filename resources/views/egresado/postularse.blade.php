@@ -51,7 +51,7 @@
 			<textarea class="form-control" name="comentario" id="" cols="30" rows="3"></textarea>
 		  </label>
 	
-			<div class="form-group btns col-md-12" style="margin: 0 40%">
+			<div class="form-group btns col-md-12">
 			  {{-- <label for="file">
 				<span class="btn btn-warning">Adjuntar Archivo</span>
 				<input type="file" id="file" class="" name="curriculum" />
