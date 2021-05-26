@@ -4,7 +4,7 @@
 
 <div class="container">
       <div class="row">
-        <div class=" col-sm-10" >
+        <div class=" col-sm-9" >
 
           <div class="panel panel-success"><br>
               <h2 class="panel-title"><center><font size="5">Listado de Postulados</font></center></h2>
