@@ -11,6 +11,9 @@ use App\Estado;
 use App\Municipio;
 use App\Pais;
 use App\User;
+use App\Solicitud;
+use App\Solicitudperfil;
+use App\Encuesta;
 use DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Arr;
@@ -224,8 +227,61 @@ class EmpresaController extends Controller
      */
     public function destroy($id)
     {
-        //
-        abort(404, 'Página No Encontrada');
+        //        
+        $usuario = User::findOrFail($id);
+        
+        $obtempresaid = Empresa::select('idempresa')->where('users_id', $id)->exists();
+        //dd($obtempresaid);
+        if($obtempresaid == true){
+            $obtempresaid = Empresa::select('idempresa')->where('users_id', $id)->first();
+            $empresa = Empresa::findOrFail($obtempresaid->idempresa);
+
+            $obtesolicitudid = Solicitud::select('idsolicitud')->where('id_empresa', $obtempresaid->idempresa )->exists();
+            if($obtesolicitudid == true){
+
+                $obtesolicitudid = Solicitud::select('idsolicitud')->where('id_empresa', $obtempresaid->idempresa )->get(); 
+                //dd($numerosolici);
+                //dd($obtesolicitudid);
+                
+                foreach ($obtesolicitudid as $soli) {
+                    $solicitud = Solicitud::findOrFail($soli->idsolicitud);
+                    //echo $solicitud->idsolicitud;
+                    
+                    //echo $solicitud;
+                    $obteperfilid = Solicitudperfil::select('id')->where('idsolicitud',$solicitud->idsolicitud)->get();
+                    //dd($obteperfilid);
+                    foreach ($obteperfilid as $perfil) {
+                        $perfil = Solicitudperfil::findOrFail($perfil->id);
+                        
+                        //echo $perfil->id;                                                
+                        
+                        DB::table('solicitudperfil')->where('id', '=', $perfil->id)->delete();
+
+                        //return redirect('/usuarios-empresa');
+                        
+                    }
+                    //elimina la solicitued de egresados
+                    DB::table('egresadosolicitud')->where('idsolicitud', '=', $solicitud->idsolicitud)->delete();
+                    DB::table('solicitud')->where('idsolicitud', '=', $solicitud->idsolicitud)->delete();
+
+                }
+            } else{
+                //elimina registro de empresa
+                //echo $obtempresaid;
+                DB::table('empresas')->where('idempresa', '=', $obtempresaid->idempresa)->delete();
+            }
+            //registro empresa se elimina
+            DB::table('empresas')->where('idempresa', '=', $obtempresaid->idempresa)->delete();
+        }else{
+            //elimina usuario si no tiene registro en empresa
+            //echo $usuario;
+            DB::table('users')->where('id', '=', $id)->delete();
+        }
+
+        DB::table('users')->where('id', '=', $id)->delete();
+      
+        return redirect('/usuarios-empresa');
+
     }
 
     public function nuevo(){

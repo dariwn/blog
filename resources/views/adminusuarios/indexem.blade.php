@@ -32,6 +32,7 @@
     
                                             <td>
                                                 <a href="{{ url('/usuarios-empresa/'.$user->id.'/edit') }}" class="btn btn-primary">Editar</a>
+                                                @include('adminusuarios.deleteem',['usuario' => $user])
                                             </td>
                                         </tr>
                                     @endforeach
