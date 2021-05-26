@@ -28,8 +28,7 @@ class CreateCurriculoTable extends Migration {
 			$table->text('experiencia', 65535);
 			$table->text('curso', 65535);
 			$table->text('objetivo', 65535);			
-			$table->char('duracion', 100);
-			$table->integer('idjerarquia')->index('fk_curriculo_jerarquia1_idx');
+			$table->char('duracion', 100);			
 			$table->integer('idmunicipio')->index('fk_curriculo_municipio1_idx');
 			$table->integer('idestado')->index('fk_curriculo_estado1_idx');
 			$table->integer('idperfiles')->index('fk_curriculo_perfiles1_idx');
