@@ -202,6 +202,7 @@ class UserEmpreController extends Controller
         $user = User::findOrFail($id);        
         //dd($user);
         $user->email = $request->email;
+        $user->email_verified_at = null;
         $userid = Auth::user()->id;
         $Ucorreo1 = Empresa::select('idempresa')->where('users_id', $userid)->first();
 
@@ -209,6 +210,7 @@ class UserEmpreController extends Controller
         $Ucorreo = Empresa::findOrFail($Ucorreo1->idempresa); 
         //dd($Ucorreo); 
         $Ucorreo->email =$request->email;
+        
         // dd($Ucorreo[0]->email);
         $Ucorreo->save();
         $user->save();

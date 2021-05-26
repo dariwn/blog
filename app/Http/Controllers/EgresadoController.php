@@ -280,6 +280,7 @@ class EgresadoController extends Controller
         $Ucorreo = User::findOrFail($Ucorreo1->users_id); 
         //dd($Ucorreo); 
         $Ucorreo->email =$request->email;
+        $Ucorreo->email_verified_at = null;
         // dd($Ucorreo[0]->email);
         $Ucorreo->save();
         $egresado->save();
