@@ -167,6 +167,7 @@ class SolicitudController extends Controller
                     //envio correo
                     $data1 = 'https://bolsadetrabajo.tuxtla.tecnm.mx/BTEgresado';
                     Mail::to($correoobt)->send(new MensajeSolicitud($data1));
+                    sleep(5); //para servidor de mailtrap.io de ahi no debe ir
                     
                 }
             }

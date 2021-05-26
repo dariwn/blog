@@ -10,6 +10,8 @@ use App\Solicitud;
 use App\Perfil;
 use DB;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\MensajeSolicitud;
 
 class SolicitudperfilController extends Controller
 {
@@ -132,6 +134,25 @@ class SolicitudperfilController extends Controller
                     $nuevoperfil->idperfiles = $selected;
                     $nuevoperfil->save();
                 }
+
+                $aviso = Solicitudperfil::whereDate('created_at', '=',new \DateTime('today'))->get();
+                foreach($aviso as $perfil){
+                $obtenperfil = $perfil->idperfiles;
+                //echo $obtenperfil;
+                $obtencorreo = DB::table('egresado')->where('perfiles_id', $obtenperfil)->get();
+                //dd($obtencorreo);
+                    foreach($obtencorreo as $correo){
+                        $correoobt = $correo->correo;
+                        //echo $correoobt;
+                        //envio correo
+                        $data1 = 'https://bolsadetrabajo.tuxtla.tecnm.mx/BTEgresado';
+                        Mail::to($correoobt)->send(new MensajeSolicitud($data1));
+                        sleep(5); //para servidor de mailtrap.io de ahi no debe ir
+                        
+                    }
+                }
+
+
             //dd($selected1);
            /* $hola = Solicitudperfil::find($id);
 

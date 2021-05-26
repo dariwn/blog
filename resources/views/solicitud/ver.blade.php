@@ -16,6 +16,7 @@
                   <table class="table table-condensed">
                     <thead>
 						<th>Fecha y Hora</th>
+						<th>Puesto</th>
 						<th>Descripci&oacute;n</th>
 						<th>Cambiar Estatus</th>
 						<th>Numero de Postulados</th>
@@ -38,6 +39,7 @@
 						@endforeach
 					<tr>
 						<td>{{ $solicitud->created_at }}</td>
+						<td>{{ $solicitud->nombredelpuesto}}</td>
 						<td>{{ $solicitud->descripcion_del_puesto }}</td>
 						<td>
 							<form action="{{ url('cambio-estatus',$solicitud) }}" method="POST">
