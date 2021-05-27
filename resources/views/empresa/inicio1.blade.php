@@ -152,6 +152,7 @@
                   <?php
                     $id = Auth::user()->id;
                     $p = Auth::user()->curriculo;
+                   $avisoreg = DB::table('empresas')->where('users_id',$id)->exists();
                   ?>
                   <li class="treeview">
                     <a href="#"><i class="fa fa-cog"></i><span>Ajustes de la cuenta</span>
@@ -186,7 +187,7 @@
         
         <!-- Main content -->        
         <section class="content">
-          @if ($p == 2)
+          @if ($p == 2 )
             <div class="row">
               <div class="col-md-8"></div>
               <div class="col-md-4">
@@ -209,6 +210,24 @@
               </div><!-- /.box -->
               </div>
           @endif
+          @if ($avisoreg == false )
+          <div class="row">
+            <div class="col-md-8"></div>
+            <div class="col-md-4">
+            <div class="box box-default">
+              <div class="box-header with-border">
+                <h3 class="box-title">Aviso</h3>
+                <div class="box-tools pull-right">
+                  <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                </div><!-- /.box-tools -->
+              </div><!-- /.box-header -->
+              <div class="box-body">               
+                No olvides registrar tu datos!
+                <a href="{{route('empresa.nuevo')}}">Click aqui.</a>
+              </div><!-- /.box-body -->
+            </div><!-- /.box -->
+            </div>
+        @endif
           
 
             <div class="col-md-12">

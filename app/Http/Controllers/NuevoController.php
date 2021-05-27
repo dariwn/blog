@@ -444,7 +444,7 @@ class NuevoController extends Controller
             
         }
        
-        if($request->enviar == "Imprimir"){
+        if($request->enviar == "Descargar"){
             $nombre = $request->nombre_extiende;
             $a = 0;
             $b = 0;

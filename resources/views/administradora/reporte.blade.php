@@ -46,7 +46,7 @@
                             <center>
                             <div class="col-md-12">	
                                 <br>	
-                                <input type="submit" name="enviar" value="Imprimir" class="btn-primary btn-lg">
+                                <input type="submit" name="enviar" value="Descargar" class="btn-primary btn-lg">
 								<input type="submit" name="enviar" value="Ver Grafica" class="btn-primary btn-lg">
                             </div>	
                             </center>

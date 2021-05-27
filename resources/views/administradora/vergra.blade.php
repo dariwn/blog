@@ -67,14 +67,18 @@ window.onload = function () {
     chart.render();
     chart1.render();
 
-    regresar.style.display = "none";
+     regresar.style.display = "none";
+	 //document.getElementById("regresar").display='none';
 
-    document.getElementById("printChart").addEventListener("click",function(){
-        printChart.style.display = 'none';
-        window.print(); 
-        regresar.style.display = "inline";
+     document.getElementById('printChart').addEventListener("click",function(){
+         printChart.style.display = "none";
+         window.print(); 
+         regresar.style.display = "inline";
 
-    });  
+     });  
+
+	
+	
    
 }
 
@@ -95,7 +99,7 @@ window.onload = function () {
 	</div>
 </head>
 <body>
-<br><br><br>
+<br><br>
 <center>
 <div id="chartContainer1" style="height: 275px; width: 40%;"></div>
 <div class="col-sm-12" style="content: center;">
@@ -104,9 +108,9 @@ window.onload = function () {
 </div>
 </center>
 
-<br><br><br><br>
-<div id="chartContainer2" style="height: 275px; width: 90%;"></div>
 <br><br>
+<div id="chartContainer2" style="height: 275px; width: 90%;"></div>
+<br>
 <div class="container">
 	<div class="row">
 		<div class="col-sm-6">
@@ -130,10 +134,10 @@ window.onload = function () {
 </div>
 
 <br>
-  <button onclick="window.print();">Imprimir Grafica</button>
+  <button id="printChart">Imprimir Grafica</button>
   {{-- <a class="btn btn-primary" id="regresar" href="{{ url('/reporte')}}" >Regresar Página Anterior</a> --}}
-  <button onclick="window.history.back();">Regresar Pagina Anterior</button>
-<br><br><br><br><br><br>
+  <button id="regresar" onclick="window.history.back();" >Regresar Pagina Anterior</button>
+<br><br><br>
 
   
 </body>

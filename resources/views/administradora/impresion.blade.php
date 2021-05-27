@@ -11,10 +11,10 @@
 	
 		body {
 			background-color: #FFFFFF;
-			background-image: url("img/logo.png");
+			background-image: url("img/logo1.png");
 			background-size: 50% 50%;
 			background-position: center;
-			opacity: 0.6;			
+			opacity: 1.0;			
 			background-repeat: no-repeat;
 			background-attachment:fixed;
 		}
@@ -66,7 +66,7 @@
 	conocimiento del reporte número {{ $numero }} del periodo {{ $periodo }} hasta {{ $hasta }}, realizando como actividad la representación
 	de datos actuales del Sistema de Bolsa de Trabajo en la siguiente tabla.</span></strong></p>
 	<br><br>
-	<table align="center" border="1">
+	<table align="center" border="1" style="background-color: #FFFFFF;">
 		<thead align="center">
 			<tr>
 				<th>Número de empresas registradas</th>
