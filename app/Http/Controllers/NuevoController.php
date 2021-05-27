@@ -192,49 +192,71 @@ class NuevoController extends Controller
             $periodoinicio = $request->periodo;
             $periodofin = $request->hasta;
             //dd($periodofin); SELECT `idperfiles` FROM `solicitudperfil` WHERE `created_at` BETWEEN '2020-09-01' AND '2020-09-20'
-            $solicitudper = Solicitudperfil::select('idperfiles')->whereBetween('created_at',array($periodoinicio,$periodofin))->get();
-            //dd($solicitudper);
-            foreach($solicitudper as $perfil){
-                if($perfil->idperfiles == 1){
-                    $a = $a+1;
+            $solicitud = Solicitud::select('idsolicitud')->whereBetween('created_at',array($periodoinicio,$periodofin ))->get();
+            foreach($solicitud as $perfil){
+                $mi = $perfil->idsolicitud;
+                //dd($mi);
+                $saberp = Solicitudperfil::select('idperfiles')->where('idsolicitud',$mi)->get();
+                //dd($saberp);
+                foreach($saberp as $sp){
+                    $mi2 = $sp->idperfiles;
+
+                    //dd($mi2);
+                    //dd($mi2);
+                    if($mi2 == 1){
+                        //sistemas
+                        $a = $a + 1;
+                    }else
+                    if($mi2 == 4){
+                        //gestion
+                        $b = $b + 1;
+                    }else
+                    if($mi2 == 2){
+                        //electrica
+                        $c = $c + 1;
+                    }else
+                    if($mi2 == 3){
+                        //electroncia
+                        $d = $d + 1;
+                    }else
+                    if($mi2 == 9){
+                        //quimica
+                        $e = $e + 1;
+                    }else
+                    if($mi2 == 5){
+                        //bioquimica
+                        $f = $f + 1;
+                    }else
+                    if($mi2 == 6){
+                        //industrial
+                        $g = $g + 1;
+                    }else
+                    if($mi2 == 8){
+                        //mecanica
+                        $h = $h + 1;
+                    }else
+                    if($mi2 == 7){
+                        //logistica
+                        $i = $i + 1;
+                    }else
+                    if($mi2 == 71){
+                        //maestria mecatronica
+                        $j = $j + 1;
+                    }else
+                    if($mi2 == 72){
+                        //maestria bioquimica
+                        $k = $k + 1;
+                    }else
+                    if($mi2 == 91){
+                        //doctorado alimentos y biotecno
+                        $m = $m + 1;
+                    }else
+                    if($mi2 == 92){
+                        //doctorado en ciencias 
+                        $n = $n + 1;
+                    }
                 }
-                if($perfil->idperfiles == 2){
-                    $b = $b+1;
-                }
-                if($perfil->idperfiles == 3){
-                    $c = $c+1;
-                }
-                if($perfil->idperfiles == 4){
-                    $d = $d+1;
-                }
-                if($perfil->idperfiles == 5){
-                    $e = $e+1;
-                }
-                if($perfil->idperfiles == 6){
-                    $f = $f+1;
-                }
-                if($perfil->idperfiles == 7){
-                    $g = $g+1;
-                }
-                if($perfil->idperfiles == 8){
-                    $h = $h+1;
-                }
-                if($perfil->idperfiles == 9){
-                    $i = $i+1;
-                }
-                if($perfil->idperfiles == 71){
-                    $j = $j+1;
-                }
-                if($perfil->idperfiles == 72){
-                    $k = $k+1;
-                }
-                if($perfil->idperfiles == 91){
-                    $m = $m+1;
-                }
-                if($perfil->idperfiles == 92){
-                    $n = $n+1;
-                }
-            }                                    
+            }                   
             return view('administradora.barra', compact('a','b','c','d','e','f','g','h','i','j','k','m','n','periodoinicio','periodofin'));
         }        
         if($request->tipo == 2){
