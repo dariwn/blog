@@ -128,10 +128,12 @@ class SolicitudperfilController extends Controller
             //dd($perfilactual);
             
             // Ciclo para mostrar las casillas checked checkbox.
-                foreach($request->perfil as $selected){
+                foreach($request->perfil as $selected){                   
                     $nuevoperfil = new Solicitudperfil;
                     $nuevoperfil->idsolicitud = $request->idsolicitud;
                     $nuevoperfil->idperfiles = $selected;
+                    $nuevoperfil->created_at = date('Y-m-d H:m:s');
+                    $nuevoperfil->updated_at = date('Y-m-d H:m:s');
                     $nuevoperfil->save();
                 }
 
