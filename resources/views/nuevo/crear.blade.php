@@ -15,7 +15,7 @@
                             <form action="{{route('nuevo.store')}}" method="post">
                                 @csrf
         
-                                <div class="form-group">                                    
+                                {{-- <div class="form-group">                                    
                                     <div class="col-md-6">
                                         <label>User Name:</label>
                                        <input type="text" name="username" required class="form-control" placeholder="User Name"> 
@@ -27,7 +27,7 @@
                                         <label>Contraseña:</label>
                                        <input type="password" name="password" required class="form-control" placeholder="Password"> 
                                     </div>                            
-                                </div> 
+                                </div>  --}}
                                 
                                 <div class="form-group ">                                    
                                     <div class="col-md-6">

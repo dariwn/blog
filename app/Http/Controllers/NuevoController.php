@@ -12,6 +12,9 @@ use App\Egresado;
 use DB;
 use App\Solicitud;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Str;
+use App\Mail\MensajeAceptado;
+use Illuminate\Support\Facades\Mail;
 
 class NuevoController extends Controller
 {
@@ -59,13 +62,22 @@ class NuevoController extends Controller
     {
         if(Auth::user()->origen == 'Administradora'){
         $nuevo = new User;
-        $nuevo->password = bcrypt($request->password);
-        $nuevo->username = $request->get('username');
+        $random_user = Str::random(8);
+        $random_pass = Str::random(9);
+        $correoem = $request->email;
+
+        $nuevo->password = bcrypt($random_pass);
+        $nuevo->username = 'EM'.$random_user;
         $nuevo->email =$request->email;
         $nuevo->tipo = "1";
         $nuevo->curriculo = "0";
         $nuevo->origen = "Empresa";
         $nuevo->save();
+
+        $data1 = 'EM'.$random_user;
+        $data = $random_pass;
+
+        Mail::to($correoem)->send(new MensajeAceptado($data1, $data));
         event(new Registered($nuevo));
         return back();
         }else{

@@ -239,7 +239,7 @@
 						  
 						  <tr>
 							<td>Correo Electronico:</td>
-							<td><input type="text" class="form-control input-sm" name="email" value="{{ $usuario1 }}"></td>
+							<td><input type="text" class="form-control input-sm" name="email" value="{{ $usuario1 }}" readonly></td>
 						  </tr>
 						
 						  <td>

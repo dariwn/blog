@@ -251,7 +251,7 @@
 						  
 						  <tr>
 							<td>Correo Electronico:</td>
-							<td><input type="text" class="form-control input-sm" name="email" value="{{$empresa->email}}" required></td>
+							<td><input type="text" class="form-control input-sm" name="email" value="{{$empresa->email}}" required readonly></td>
 						  </tr>
 						
 						  <td>

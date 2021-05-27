@@ -9,6 +9,9 @@ use App\User;
 use App\Egresado;
 use DB;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Str;
+use App\Mail\MensajeAceptado;
+use Illuminate\Support\Facades\Mail;
 
 class UsuarioController extends Controller
 {
@@ -56,14 +59,24 @@ class UsuarioController extends Controller
     {
         if(Auth::user()->origen == 'Administradora'){
         $comando = new User;
-        $comando->password = bcrypt($request->password);
-        $comando->username = $request->get('username');
+
+        $random_user = Str::random(8);
+        $random_pass = Str::random(9);
+        $correoeg = $request->email;
+        $comando->password = bcrypt($random_pass);
+        $comando->username = 'EG'.$random_user;
         $comando->email =$request->email;
         $comando->tipo = "1";
         $comando->curriculo = "1";
         $comando->origen = "Egresado";
         $comando->save();
+
+        $data1 = 'EG'.$random_user;
+        $data = $random_pass;
+
+        Mail::to($correoeg)->send(new MensajeAceptado($data1, $data));
         event(new Registered($comando));
+
         return back();
         }else{
             abort(404, 'Página No Encontrada');
