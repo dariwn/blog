@@ -1,9 +1,9 @@
 @extends('layouts.admin')
 @section('colores')
-    <link rel="stylesheet" type="text/css" href="{{URL::asset('css/hola.css')}}">
+    {{-- <link rel="stylesheet" type="text/css" href="{{URL::asset('css/hola.css')}}"> --}}
     <link rel="stylesheet" type="text/css" href="{{URL::asset('css/login.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{URL::asset('css/hola2.css')}}"> 
-    <link rel="stylesheet" type="text/css" href="{{URL::asset('icoon/style.css')}}">
+    {{-- <link rel="stylesheet" type="text/css" href="{{URL::asset('css/hola2.css')}}">  --}}
+    {{-- <link rel="stylesheet" type="text/css" href="{{URL::asset('icoon/style.css')}}"> --}}
     <link rel="stylesheet" type="text/css" href="https://www.jquery-az.com/javascript/alert/dist/sweetalert.css">
 	<script src="https://www.jquery-az.com/javascript/alert/dist/sweetalert-dev.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
