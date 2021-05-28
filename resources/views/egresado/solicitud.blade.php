@@ -15,13 +15,17 @@
 			if($soli == true){
 			$soli1 = DB::table('egresadosolicitud')->select('idsolicitud')->where('idegresado',$egresados->idegresado)->get();
 			
+				
 				foreach ($soli1 as $solici1) {
 					//echo $solici1->idsolicitud;
 					$array [] = $solici1->idsolicitud;
 				}
 			
 			
+			}else {
+				$array = [];
 			}
+
 			//dd($array);			
 			//$unir = implode(",", $array);
 			// if (in_array($solicitud->idsolicitud, $array)) {
