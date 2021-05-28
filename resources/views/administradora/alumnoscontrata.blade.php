@@ -40,15 +40,15 @@
             <tbody>
                 @foreach ($empresa as $item)
                 @if (in_array($item->idempresa, $array))
+                <?php 
+                       $nombrea = DB::table('empresas')->where('idempresa', $item->idempresa)->first();                    
+                ?>
                 <tr>
-                    <th>{{$item->nombre}}</th>
-                    <th>{{$item->numero_cel}}</th>
-                    <th>{{$item->email}}</th>
-                    <th>{{$item->names}} {{$item->apellido_paterno}} {{$item->apellido_materno}}</th> 
-                    <?php 
-                       $nombrea = DB::table('encuesta')->select('respuesta')->where('idempresa', $item->idempresa)->get();                    
-                    ?>                                               
-                    <th>{{$nombrea[0]->respuesta}}</th>
+                    <th>{{$nombrea->nombre}}</th>
+                    <th>{{$nombrea->numero_cel}}</th>
+                    <th>{{$nombrea->email}}</th>
+                    <th>{{$nombrea->names}} {{$item->apellido_paterno}} {{$item->apellido_materno}}</th>                                                                    
+                    <th>{{$item->respuesta}}</th>
                 </tr>
                 @else
                     

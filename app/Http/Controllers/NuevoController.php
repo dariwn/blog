@@ -295,13 +295,13 @@ class NuevoController extends Controller
         }
     }
     public function AlumnosContratados(){
-        $alumcon = Encuesta::all();
+        $alumcon = Empresa::all();
         //dd($alumcon);
         foreach ($alumcon as $empre) {
             
             $array [] = $empre->idempresa;                      
         }
-        $empresa = Empresa::all();
+        $empresa = Encuesta::all();
        // dd($array);
         return view('administradora.alumnoscontrata', compact('array', 'empresa','alumcon'));
         //dd($empresa);
