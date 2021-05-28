@@ -319,6 +319,7 @@ class SolicitudController extends Controller
             
             //dd($solicitudes);
             $solicitudes->respuesta= "SI";
+            // $solicitudes->idsolicitud=$ids;
             $solicitudes->save();
 
             $usuario = Auth::user()->id;
@@ -335,6 +336,7 @@ class SolicitudController extends Controller
             //$solicitudes = Solicitud::find($ids);
             //dd($solicitudes);
             $solicitudes->respuesta= "NO";
+            // $solicitudes->idsolicitud=$ids;
             $solicitudes->save();
 
             $usuario = Auth::user()->id;

@@ -123,7 +123,8 @@
                 <i class="fa fa-angle-left pull-right"></i>
               <ul class="treeview-menu">
                 <li><a href="{{route('graficabarra')}}">Grafica de Barra</a></li>
-                <li><a href="{{route('ver_reporte') }}">Reporte</a></li>                               
+                <li><a href="{{route('ver_reporte') }}">Reporte</a></li>   
+                <li><a href="{{url('ver_contratados')}}">Empresas Que Contrataron</a></li>                            
               </ul>              
             </a>
             </li>

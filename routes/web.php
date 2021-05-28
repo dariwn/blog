@@ -31,6 +31,7 @@ Route::resource('usuarios-egresados','UserEgreController')->middleware('verified
 Route::resource('usuarios-sistema', 'UserAdminController')->middleware('verified');
 Route::get('/ver-grafica', 'NuevoController@ver_grafica');
 Route::post('/grafica', 'NuevoController@grafica');
+Route::get('/ver_contratados', 'NuevoController@Contratados');
 Route::put('ajustescorreoadmin/{id}/actualizado','UserAdminController@update2')->name('ajustescorreoadministrador.update');
 Route::resource('ajustescorreoadmin', 'UserAdminController');
 

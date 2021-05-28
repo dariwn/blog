@@ -294,6 +294,20 @@ class NuevoController extends Controller
         }
     }
 
+    public function Contratados(){
+        $ressi = DB::table('solicitud')->where('respuesta',"SI")->get();
+        
+        foreach ($ressi as $empre) {
+            
+            $array [] = $empre->id_empresa;                      
+        }
+        $empresa = Empresa::all();
+
+        return view('administradora.contratados', compact('array', 'empresa'));
+        //dd($empresa);
+        //dd($array);
+    }
+
     public function graficaAlumnosp(){
         $a = Solicitud::where('respuesta', 'SI')->count();
         $b = Solicitud::where('respuesta', 'NO')->count();
