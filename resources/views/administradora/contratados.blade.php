@@ -68,7 +68,7 @@
     </div>
     
 <br><br>
-<button onclick=" style.display='none'; imprimir();">Imprimir Grafica</button>
+<button onclick=" style.display='none'; imprimir();">Imprimir Tabla</button>
   {{-- <a class="btn btn-primary" id="regresar" href="{{ url('/reporte')}}" >Regresar Página Anterior</a> --}}
   <button id="regresar" onclick="window.history.back();" >Regresar Pagina Anterior</button>
 </body>
