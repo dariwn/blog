@@ -14,7 +14,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.0.1/js/bootstrap.min.js"></script>
+    {{-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.0.1/js/bootstrap.min.js"></script> --}}
 
     <link rel="stylesheet" href="{{asset('css/font-awesome.css')}}">
     <!-- Theme style 2.4.18 -->
@@ -52,8 +52,8 @@
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  
-                  <span class="hidden-xs"><i class="fa fa-users"></i></span>
+                  <i class="fa fa-users"></i>
+                  {{-- <span class="hidden-xs"><i class="fa fa-users"></i></span> --}}
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
