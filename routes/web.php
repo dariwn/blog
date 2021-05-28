@@ -32,6 +32,7 @@ Route::resource('usuarios-sistema', 'UserAdminController')->middleware('verified
 Route::get('/ver-grafica', 'NuevoController@ver_grafica');
 Route::post('/grafica', 'NuevoController@grafica');
 Route::get('/ver_contratados', 'NuevoController@Contratados');
+Route::get('/ver_alumnos_contratados', 'NuevoController@AlumnosContratados');
 Route::put('ajustescorreoadmin/{id}/actualizado','UserAdminController@update2')->name('ajustescorreoadministrador.update');
 Route::resource('ajustescorreoadmin', 'UserAdminController');
 
@@ -46,6 +47,7 @@ Route::post('/cambio-estatus/{id}', 'SolicitudController@boton')->name('boton');
 Route::resource('/bienvenido', 'SolicitudperfilController');
 Route::get('/curriculopdf/{id}', 'SolicitudController@curriculopdfver');
 Route::get('/encuesta/{id}', 'SolicitudController@encuesta');
+Route::post('/encuestacontra/{id}', 'SolicitudController@encuestacontra');
 Route::resource('/RegistroEmpresa', 'RegistroEmController');
 Route::resource('ajustesemp', 'UserEmpreController');
 Route::get('ajustesempcorreo/{id}/correo', 'UserEmpreController@edit2')->name('ajustesemp.correo');

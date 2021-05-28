@@ -15,7 +15,8 @@ class CreateEncuestaTable extends Migration {
 		Schema::create('encuesta', function(Blueprint $table)
 		{
 			$table->integer('id', true);
-			$table->string('respuesta', 10);
+			$table->longText('respuesta');
+			$table->string('idempresa',20);
 			$table->timestamps();
 		});
 	}

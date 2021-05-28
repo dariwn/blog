@@ -9,6 +9,7 @@ use Auth;
 use App\Solicitudperfil;
 use App\Empresa;
 use App\Egresado;
+use App\Encuesta;
 use DB;
 use App\Solicitud;
 use Illuminate\Auth\Events\Registered;
@@ -292,6 +293,19 @@ class NuevoController extends Controller
         }else{
             abort(404, 'Página No Encontrada');
         }
+    }
+    public function AlumnosContratados(){
+        $alumcon = Encuesta::all();
+        //dd($alumcon);
+        foreach ($alumcon as $empre) {
+            
+            $array [] = $empre->idempresa;                      
+        }
+        $empresa = Empresa::all();
+       // dd($array);
+        return view('administradora.alumnoscontrata', compact('array', 'empresa','alumcon'));
+        //dd($empresa);
+        //dd($array);
     }
 
     public function Contratados(){

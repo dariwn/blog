@@ -309,6 +309,27 @@ class SolicitudController extends Controller
         return $pdf->stream('cv-'.$nombre[0]->nombres.'_'.$apellidop[0]->apellido_paterno.'_'.$apellidom[0]->apellido_materno.'pdf');
      }
 
+    public function encuestacontra(Request $request, $id){
+        //dd($request);
+        $nuevo = new Encuesta;
+        $nuevo->respuesta = $request->nombre;
+        $nuevo->idempresa = $id;
+
+        $nuevo->save();
+
+        $usuario = Auth::user()->id;
+            $empresa = Empresa::select('idempresa')->where('users_id', $usuario)->get()->pluck('idempresa');
+            $empresas = Arr::first($empresa);
+            $solicitudes = Solicitud::where('id_empresa', $empresa)->paginate(20);
+            $egresolicitados = Egresadosolicitud::all();
+            $egresolicitados->each(function($egresolicitados){
+                $egresolicitados->egresado;
+            });
+            //dd($empresas);
+            return view('solicitud.ver', compact('solicitudes','empresas','egresolicitados'));
+
+    }
+
     public function encuesta($id){
         $dato = $_GET['resp'];
         $ids = $id;
@@ -330,7 +351,8 @@ class SolicitudController extends Controller
             $egresolicitados->each(function($egresolicitados){
                 $egresolicitados->egresado;
             });
-            return view('solicitud.ver', compact('solicitudes','empresas','egresolicitados'));
+            //dd($empresas);
+            return view('solicitud.egresadocontra', compact('solicitudes','empresas','egresolicitados'));
 
         }else{
             //$solicitudes = Solicitud::find($ids);
