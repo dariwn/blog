@@ -75,51 +75,51 @@ class IdiomaSeeder extends Seeder
         //lenguas indigenas de chiapas
         $idioma = Idioma::create([
             'ididioma'=> '13',
-            'idioma' => 'Mam - Lengua Indigena',
+            'idioma' => 'Mam - Lengua Materna',
         ]);
         $idioma = Idioma::create([
             'ididioma'=> '14',
-            'idioma' => 'Jakalteco - Lengua Indigena',
+            'idioma' => 'Jakalteco - Lengua Materna',
         ]);
         $idioma = Idioma::create([
             'ididioma'=> '15',
-            'idioma' => 'Tsotsil - Lengua Indigena',
+            'idioma' => 'Tsotsil - Lengua Materna',
         ]);
         $idioma = Idioma::create([
             'ididioma'=> '16',
-            'idioma' => 'Tojolabal - Lengua Indigena',
+            'idioma' => 'Tojolabal - Lengua Materna',
         ]);
         $idioma = Idioma::create([
             'ididioma'=> '17',
-            'idioma' => 'Teko - Lengua Indigena',
+            'idioma' => 'Teko - Lengua Materna',
         ]);
         $idioma = Idioma::create([
             'ididioma'=> '18',
-            'idioma' => 'Qato´k - Lengua Indigena',
+            'idioma' => 'Qato´k - Lengua Materna',
         ]);
         $idioma = Idioma::create([
             'ididioma'=> '19',
-            'idioma' => 'Tseltal - Lengua Indigena',
+            'idioma' => 'Tseltal - Lengua Materna',
         ]);
         $idioma = Idioma::create([
             'ididioma'=> '20',
-            'idioma' => 'Lacandón - Lengua Indigena',
+            'idioma' => 'Lacandón - Lengua Materna',
         ]);
         $idioma = Idioma::create([
             'ididioma'=> '21',
-            'idioma' => 'Zoque - Lengua Indigena',
+            'idioma' => 'Zoque - Lengua Materna',
         ]);
         $idioma = Idioma::create([
             'ididioma'=> '22',
-            'idioma' => 'Ch´ol - Lengua Indigena',
+            'idioma' => 'Ch´ol - Lengua Materna',
         ]);
         $idioma = Idioma::create([
             'ididioma'=> '23',
-            'idioma' => 'Chuj - Lengua Indigena',
+            'idioma' => 'Chuj - Lengua Materna',
         ]);
         $idioma = Idioma::create([
             'ididioma'=> '24',
-            'idioma' => 'Q´anjob´al - Lengua Indigena',
+            'idioma' => 'Q´anjob´al - Lengua Materna',
         ]);
          //fin
         
