@@ -48,6 +48,11 @@ class RegistroEmController extends Controller
     public function store(Request $request)
     {
         //
+        $emailexist = DB::table('users')->where('email',$request->correo)->exists(); 
+        if($emailexist == true){
+            return redirect('/RegistroEmpresa/create')->with('registro','Este correo ya se encuentra registrado');
+        }else{       
+
         $usuario = 'EM'.$request->rfcempresa;
         $random_password = Str::random(8);
 
@@ -116,6 +121,7 @@ class RegistroEmController extends Controller
         event(new Registered($user));
 
         return view('empresa.aviso');//Redirect::to('/BTEmpresa')->with('registro','Hemos enviado un correo electronico con tu usuario y contraseña, para que puedas acceder');
+        }
         
     }
 
