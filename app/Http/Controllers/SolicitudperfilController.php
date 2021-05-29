@@ -135,14 +135,9 @@ class SolicitudperfilController extends Controller
                     $nuevoperfil->created_at = date('Y-m-d H:m:s');
                     $nuevoperfil->updated_at = date('Y-m-d H:m:s');
                     $nuevoperfil->save();
-                }
 
-                $aviso = Solicitudperfil::whereDate('created_at', '=',new \DateTime('today'))->get();
-                foreach($aviso as $perfil){
-                $obtenperfil = $perfil->idperfiles;
-                //echo $obtenperfil;
-                $obtencorreo = DB::table('egresado')->where('perfiles_id', $obtenperfil)->get();
-                //dd($obtencorreo);
+                    $obtencorreo = DB::table('egresado')->where('perfiles_id', $selected)->get();
+                    //dd($obtencorreo);
                     foreach($obtencorreo as $correo){
                         $correoobt = $correo->correo;
                         //echo $correoobt;
@@ -153,6 +148,23 @@ class SolicitudperfilController extends Controller
                         
                     }
                 }
+
+                // $aviso = Solicitudperfil::whereDate('created_at', '=',new \DateTime('today'))->get();
+                // foreach($aviso as $perfil){
+                // $obtenperfil = $perfil->idperfiles;
+                // //echo $obtenperfil;
+                // $obtencorreo = DB::table('egresado')->where('perfiles_id', $obtenperfil)->get();
+                // //dd($obtencorreo);
+                //     foreach($obtencorreo as $correo){
+                //         $correoobt = $correo->correo;
+                //         //echo $correoobt;
+                //         //envio correo
+                //         $data1 = 'https://bolsadetrabajo.tuxtla.tecnm.mx/BTEgresado';
+                //         Mail::to($correoobt)->send(new MensajeSolicitud($data1));
+                //         sleep(5); //para servidor de mailtrap.io de ahi no debe ir
+                        
+                //     }
+                // }
 
 
             //dd($selected1);
