@@ -33,7 +33,8 @@
                 <th scope="col">Telefono del Contacto</th>
                 <th scope="col">Correo del Contacto</th>
                 <th scope="col">Nombre del Contacto</th>
-                <th scope="col">Nombre del Alumno Contratado</th>                
+                <th scope="col">Nombre del Alumno Contratado</th> 
+                <th scope="col">Fecha</th>               
         
               </tr>
             </thead>
@@ -49,6 +50,7 @@
                     <th>{{$nombrea->email}}</th>
                     <th>{{$nombrea->names}} {{$item->apellido_paterno}} {{$item->apellido_materno}}</th>                                                                    
                     <th>{{$item->respuesta}}</th>
+                    <th>{{date_format($item->created_at, 'd-m-Y')}}</th>
                 </tr>
                 @else
                     

@@ -15,7 +15,7 @@
                 <div class=" table-responsive col-md-12 col-lg-12 "> 
                   <table class="table table-condensed">
                     <thead>
-						<th>Fecha y Hora</th>
+						<th>Fecha</th>
 						<th>Puesto</th>
 						<th>Descripci&oacute;n</th>
 						<th>Cambiar Estatus</th>
@@ -38,7 +38,7 @@
 							@endif
 						@endforeach
 					<tr>
-						<td>{{ $solicitud->created_at }}</td>
+						<td>{{date_format($solicitud->created_at, 'd-m-Y')}}</td>				
 						<td>{{ $solicitud->nombredelpuesto}}</td>
 						<td>{{ $solicitud->descripcion_del_puesto }}</td>
 						<td>
