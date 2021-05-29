@@ -26,13 +26,15 @@
 <br><br>
 <body>
     <div class="col-md-12">
+      <h4>Lista De Alumnos Contratados</h4>
+      <br>
         <table class="table table-striped">
             <thead>
               <tr>
-                <th scope="col">Nombre De La Empresa</th>
-                <th scope="col">Telefono del Contacto</th>
+                <th scope="col">Nombre De La Empresa</th>                
                 <th scope="col">Correo del Contacto</th>
                 <th scope="col">Nombre del Contacto</th>
+                <th scope="col">Puesto Ocupado</th>
                 <th scope="col">Nombre del Alumno Contratado</th> 
                 <th scope="col">Fecha</th>               
         
@@ -42,13 +44,14 @@
                 @foreach ($empresa as $item)
                 @if (in_array($item->idempresa, $array))
                 <?php 
-                       $nombrea = DB::table('empresas')->where('idempresa', $item->idempresa)->first();                    
+                       $nombrea = DB::table('empresas')->where('idempresa', $item->idempresa)->first();  
+                       $soli = DB::table('solicitud')->where('idsolicitud', $item->idsolicitud)->first();                  
                 ?>
                 <tr>
-                    <th>{{$nombrea->nombre}}</th>
-                    <th>{{$nombrea->numero_cel}}</th>
+                    <th>{{$nombrea->nombre}}</th>                    
                     <th>{{$nombrea->email}}</th>
-                    <th>{{$nombrea->names}} {{$item->apellido_paterno}} {{$item->apellido_materno}}</th>                                                                    
+                    <th>{{$nombrea->names}} {{$nombrea->apellido_paterno}} {{$nombrea->apellido_materno}}</th>                                                                    
+                    <th>{{$soli->nombredelpuesto}}</th>
                     <th>{{$item->respuesta}}</th>
                     <th>{{date_format($item->created_at, 'd-m-Y')}}</th>
                 </tr>

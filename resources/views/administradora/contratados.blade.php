@@ -26,6 +26,7 @@
 <br><br>
 <body>
     <div class="col-md-12">
+      <h4>Lista De Empresas Que Contrataron</h4>
         <table class="table table-striped">
             <thead>
               <tr>

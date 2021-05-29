@@ -11,5 +11,6 @@ class Encuesta extends Model
     protected $fillable =[        
         'respuesta',
         'idempresa',
+        'idsolicitud',
     ];
 }

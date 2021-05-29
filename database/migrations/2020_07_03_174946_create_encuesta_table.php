@@ -17,6 +17,7 @@ class CreateEncuestaTable extends Migration {
 			$table->integer('id', true);
 			$table->longText('respuesta');
 			$table->string('idempresa',20);
+			$table->string('idsolicitud',20);
 			$table->timestamps();
 		});
 	}

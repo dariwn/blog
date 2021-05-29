@@ -328,7 +328,7 @@ class SolicitudController extends Controller
         $nuevo = new Encuesta;
         $nuevo->respuesta = $request->nombre;
         $nuevo->idempresa = $id;
-
+        $nuevo->idsolicitud = $request->idsolicitud;
         $nuevo->save();
 
         $usuario = Auth::user()->id;
@@ -340,7 +340,7 @@ class SolicitudController extends Controller
                 $egresolicitados->egresado;
             });
             //dd($empresas);
-            return view('solicitud.ver', compact('solicitudes','empresas','egresolicitados'));
+            return redirect('/solicitud')->with(compact('solicitudes','empresas','egresolicitados'));
 
     }
 
@@ -366,7 +366,7 @@ class SolicitudController extends Controller
                 $egresolicitados->egresado;
             });
             //dd($empresas);
-            return view('solicitud.egresadocontra', compact('solicitudes','empresas','egresolicitados'));
+            return view('solicitud.egresadocontra', compact('solicitudes','empresas','egresolicitados','ids'));
 
         }else{
             //$solicitudes = Solicitud::find($ids);
@@ -387,10 +387,13 @@ class SolicitudController extends Controller
         }
     } 
 
-    public function boton($id){        
+    public function boton($id){
+        //dd($id);
+        
         $solicitudes = Solicitud::findOrFail($id);
         
         $dato = $solicitudes->idsolicitud;
+        
         //dd($dato);
         //dd($solicitudes->estatus);
         //  if($solicitudes->estatus == 'Vigente                  '){
@@ -401,8 +404,22 @@ class SolicitudController extends Controller
         }
         //  elseif($solicitudes->estatus == 'No Vigente               '){
          elseif($solicitudes->estatus == 'No Vigente'){
+            $editares = Solicitud::find($id);
+            // dd($editares);
+            $editares->respuesta = " ";
+            $editares->save();
+
+            $contra = DB::table('encuesta')->where('idsolicitud',$id)->first();
+
+            $elimina = Encuesta::findOrFail($contra->id);
+            //dd($elimina);
+            $elimina->delete();
+            
+
             $solicitudes->update(['estatus'=>'Vigente',]);
-            return back();
+                     
+            
+            return redirect('/solicitud');
         }
     }
 }

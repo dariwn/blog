@@ -39,7 +39,7 @@
             <p>Por favor podria compartir con nosotros el nombre completo del egresado contratado.</p>
             <input class="form-control" type="text" id="name" name="nombre" placeholder="Nombre Completo del Egresado" required>
             <br>            
-            {{-- <input type="hidden" name="idempresa" value="{{$empresas}}"> --}}
+            <input type="hidden" name="idsolicitud" value="{{$ids}}">
             <div>
                     @csrf
                     <button class="btn-success btn-block" type="submit">Enviar Respuesta</button>                    
