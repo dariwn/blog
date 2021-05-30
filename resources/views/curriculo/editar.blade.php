@@ -488,7 +488,7 @@ var element3 = -1.16;
                 <label>Idioma</label>
 
                     <div class="form-group">
-                      <select name="ididioma[]" class="mul-select" multiple="true">  
+                      <select name="ididioma[]" class="mul-select" multiple="true" required>  
                                     
                           @foreach($idiomas as $idioma)
                               <?php
@@ -526,7 +526,7 @@ var element3 = -1.16;
               <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                 <div class="form-group">
                 <label>Estado</label>
-                <select name="idestado" class="form-control" id="estado">
+                <select name="idestado" class="form-control" id="estado" required>
                 @foreach($estados as $estado)
                     @if($estado->idestado==$hola->idestado)
                               <option value="{{$estado->idestado}}" selected>{{$estado->nombre_estado}}</option>
@@ -542,7 +542,7 @@ var element3 = -1.16;
               <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                 <div class="form-group">
                 <label>Municipio</label>
-                <select name="idmunicipio" class="form-control" id="municipio">
+                <select name="idmunicipio" class="form-control" id="municipio" required>
                  @foreach($municipios as $municipio)
                   @if($municipio->idmunicipio==$hola->idmunicipio)
                  <option value="{{$municipio->idmunicipio}}" selected>{{$municipio->nombre_localidad}}</option>
@@ -558,7 +558,7 @@ var element3 = -1.16;
               <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                 <div class="form-group">
                 <label>Perfil</label>
-                <select name="idperfiles" class="form-control">
+                <select name="idperfiles" class="form-control" required>
                 @foreach($perfiles as $perfil)
                  @if($perfil->idperfiles==$hola->idperfiles)
                               <option value="{{$perfil->idperfiles}}" selected>{{$perfil->carrera}}</option>

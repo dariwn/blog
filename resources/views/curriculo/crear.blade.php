@@ -391,7 +391,7 @@ var element2 = -1;
                 <label>Idioma</label>
 
                     <div class="form-group">
-                        <select name="ididioma[]" class="mul-select" multiple="true">
+                        <select name="ididioma[]" class="mul-select" multiple="true" required>
                             @foreach($idiomas as $idioma)
                                 <option value="{{$idioma->ididioma}}">{{$idioma->idioma}}</option>
                                 @endforeach
@@ -415,7 +415,7 @@ var element2 = -1;
               <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                 <div class="form-group">
                 <label>Estado</label>
-                <select name="idestado" class="form-control" id="estado">
+                <select name="idestado" class="form-control" id="estado" required>
                 @foreach($estados as $estado)
                               <option value="{{$estado->idestado}}">{{$estado->nombre_estado}}</option>
                               @endforeach
@@ -427,7 +427,7 @@ var element2 = -1;
               <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                 <div class="form-group">
                 <label>Municipio</label>
-                <select name="idmunicipio" class="form-control" id="municipio">
+                <select name="idmunicipio" class="form-control" id="municipio" required>
                        </select>
                        </div>
               </div>
