@@ -10,16 +10,16 @@
                 <html>
                 <head>
                   <script type="text/javascript">
+              
                   var sistemas = {{ $a }}
-                  var electrica = {{ $b }}
-                  var electronica = {{ $c }}
-                  var gestion = {{ $d }}
-                  var bioquimica = {{ $e }}
-                  var industrial = {{ $f }}  
-                  var logistica = {{ $g }}
+                  var gestion = {{ $b }}
+                  var electrica = {{ $c }}
+                  var electronica = {{ $d }}
+                  var quimica = {{ $e }}
+                  var bioquimica = {{ $f }}
+                  var industrial = {{ $g }}
                   var mecanica = {{ $h }}
-                  var quimica = {{ $i }}
-                    
+                  var logistica = {{ $i }}
                   var maestriameca = {{ $j }}
                   var maestriabioq = {{ $k }}
                   var doctoradoalime = {{ $m }}
