@@ -32,6 +32,9 @@
                     title:{
                       text: "Carrera Mas Solicitada"         
                     },
+                    axisX:{
+                      interval: 1
+                    },
                     data: [              
                     {
                       type: "column",
