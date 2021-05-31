@@ -36,19 +36,19 @@
                     {
                       type: "column",
                       dataPoints: [
-                                { label: "Ing. Sistemas computacionales",  y: sistemas },
-                                { label: "Ing. Gestión Empresarial", y: gestion  },	
-                                { label: "Ing. Eléctrica", y: electrica  },	
-                                { label: "Ing. Electrónica", y: electronica },	
-                                { label: "Ing. Química", y: quimica  },	
-                                { label: "Ing. Bioquímica", y: bioquimica  },	
-                                { label: "Ing. Industrial", y: industrial  },	
-                                { label: "Ing. Mecánica", y: mecanica  },	
-                                { label: "Ing. Logística", y: logistica  },	
-                                { label: "Maestría en Ciencias en ing. Mecatrónica", y: maestriameca  },	
-                                { label: "Maestría en Ciencias en Ing. Bioquímica", y: maestriabioq  },	
-                                { label: "Doctorado en Ciencias de los Alimentos y Biotecnología", y: doctoradoalime  },	
-                                { label: "Doctorado en Ciencias de la Ingeniería", y: doctoradociencias  },			
+                                { label: "ISC",  y: sistemas },
+                                { label: "IGEM", y: gestion  },	
+                                { label: "IELE", y: electrica  },	
+                                { label: "IELC", y: electronica },	
+                                { label: "IQUI", y: quimica  },	
+                                { label: "IBQA", y: bioquimica  },	
+                                { label: "IIND", y: industrial  },	
+                                { label: "IMEC", y: mecanica  },	
+                                { label: "ILOG", y: logistica  },	
+                                { label: "MCIMCT", y: maestriameca  },	
+                                { label: "MCIBQ", y: maestriabioq  },	
+                                { label: "DCAB", y: doctoradoalime  },	
+                                { label: "DCI", y: doctoradociencias  },			
                                   ]
                     }
                       ]

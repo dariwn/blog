@@ -11,6 +11,7 @@ use App\Egresado;
 use App\Curriculo;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Mail;
+use App\Egresadosolicitud;
 
 use App\Mail\MensajeCambioUsuario;
 
@@ -193,7 +194,69 @@ class UserEgreController extends Controller
      */
     public function destroy($id)
     {
-        //
-        abort(404, 'Página No Encontrada');
+        //eliminacion de usuario egresado y todo sus datos
+        if(Auth::user()->origen == 'Administradora'){
+            //dd($id);
+            $usuario = User::findOrFail($id);
+            //dd($usuario);
+            $obtregi = DB::table('egresado')->where('users_id', $usuario->id)->exists();
+            if($obtregi == true){ //obtiene el registro
+                
+                $obtregi = DB::table('egresado')->where('users_id', $usuario->id)->first();
+                //dd($obtregi);
+                $obtcurri = DB::table('curriculo')->where('idegresado', $obtregi->idegresado)->exists();
+                if($obtcurri == true){ //obtiene curriculum
+                    $obtcurri = DB::table('curriculo')->where('idegresado', $obtregi->idegresado)->first();
+                    //dd($obtcurri);
+                    $obtsoli = DB::table('egresadosolicitud')->where('idegresado',$obtregi->idegresado)->exists();
+                    if($obtsoli == true){ //obtiene solicitud
+                        $obtsoli = DB::table('egresadosolicitud')->where('idegresado',$obtregi->idegresado)->first();
+                        //dd($obtsoli);
+                        
+                        DB::table('egresadosolicitud')->where('idegresado', '=', $obtsoli->idegresado)->delete();
+                        // $eliminasoli = Egresadosolicitud::findOrFail($obtsoli->idegresado);
+                        // dd($eliminasoli);
+                        //$eliminasoli->delete();
+                        $eliminacu = Curriculo::findOrFail($obtcurri->idegresado);
+                        $eliminacu->delete();
+                        $eliminare = Egresado::findOrFail($obtregi->idegresado);
+                        $eliminare->delete();
+                        $usuario->delete();
+                        
+                    }else{
+                        //sino elimina el curriculum
+                        $eliminacu = Curriculo::findOrFail($obtcurri->idegresado);
+                        $eliminacu->delete();
+                        $eliminare = Egresado::findOrFail($obtregi->idegresado);
+                        $eliminare->delete();
+                        $usuario->delete();
+                    }
+                }else{
+                    //sino se elimina el registro
+                    $eliminare = Egresado::findOrFail($obtregi->idegresado);
+                    $eliminare->delete();
+                    $usuario->delete();
+                }
+
+
+            }else{ //sino hay registro elimina el user
+                $usuario->delete();
+            }
+
+           
+           // dd($obtregi);
+
+           
+            //dd($obtcurri);
+
+            
+            //dd($obtsoli);
+
+            // $eliminasoli = Egresadosolicitud::findOrFail($obtsoli->idegresado);
+            return back();
+            
+        }
+        
+
     }
 }

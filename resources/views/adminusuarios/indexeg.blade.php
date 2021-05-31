@@ -33,6 +33,7 @@
         
                                                 <td>
                                                     <a href="{{ url('/usuarios-egresados/'.$user->id.'/edit') }}" class="btn btn-primary">Editar</a>
+                                                    @include('administradora.deleteuseregre',['usuario' => $user])
                                                 </td>
                                             </tr>
                                         @endforeach
