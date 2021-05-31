@@ -205,13 +205,15 @@ class UserEgreController extends Controller
                 $obtregi = DB::table('egresado')->where('users_id', $usuario->id)->first();
                 //dd($obtregi);
                 $obtcurri = DB::table('curriculo')->where('idegresado', $obtregi->idegresado)->exists();
+                //dd($obtcurri);
                 if($obtcurri == true){ //obtiene curriculum
                     $obtcurri = DB::table('curriculo')->where('idegresado', $obtregi->idegresado)->first();
                     //dd($obtcurri);
                     $obtsoli = DB::table('egresadosolicitud')->where('idegresado',$obtregi->idegresado)->exists();
+                    //dd($obtsoli);
                     if($obtsoli == true){ //obtiene solicitud
                         $obtsoli = DB::table('egresadosolicitud')->where('idegresado',$obtregi->idegresado)->first();
-                        //dd($obtsoli);
+                        //dd($obtsoli->idegresado);
                         
                         DB::table('egresadosolicitud')->where('idegresado', '=', $obtsoli->idegresado)->delete();
                         // $eliminasoli = Egresadosolicitud::findOrFail($obtsoli->idegresado);
@@ -225,10 +227,19 @@ class UserEgreController extends Controller
                         
                     }else{
                         //sino elimina el curriculum
-                        $eliminacu = Curriculo::findOrFail($obtcurri->idegresado);
+                        $usuario = User::findOrFail($id);
+                        //dd($usuario);
+                        $obtregi = DB::table('egresado')->where('users_id', $usuario->id)->first();
+                        //dd($obtregi);
+                        $obtcurri = DB::table('curriculo')->where('idegresado', $obtregi->idegresado)->first();
+                        //dd($obtcurri);
+                        $eliminacu = Curriculo::findOrFail($obtcurri->idcurriculo);
+                        //dd($eliminacu);
                         $eliminacu->delete();
                         $eliminare = Egresado::findOrFail($obtregi->idegresado);
+                        //dd($eliminare);
                         $eliminare->delete();
+                        //dd($usuario);
                         $usuario->delete();
                     }
                 }else{
@@ -244,16 +255,8 @@ class UserEgreController extends Controller
             }
 
            
-           // dd($obtregi);
-
            
-            //dd($obtcurri);
-
-            
-            //dd($obtsoli);
-
-            // $eliminasoli = Egresadosolicitud::findOrFail($obtsoli->idegresado);
-            return back();
+            return redirect('/usuarios-egresados');
             
         }
         
