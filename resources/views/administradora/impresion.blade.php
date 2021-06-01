@@ -61,10 +61,10 @@
 	<span
 	style='font-size:10.0pt;line-height:107%;font-family:"montserratmedium",serif;
 	mso-bidi-font-family:"Arial";mso-bidi-theme-font:minor-bidi;
-	color:#000000;'>El que suscribe la encargada de la Oficina de
-	Prácticas y Promoción Profesional, por este medio se permite hace su
-	conocimiento del reporte número {{ $numero }} del periodo {{ $periodo }} hasta {{ $hasta }}, realizando como actividad la representación
-	de datos actuales del Sistema de Bolsa de Trabajo en la siguiente tabla.</span></strong></p>
+	color:#000000;'>La que suscribe, encargada de la Oficina de
+	Prácticas y Promoción Profesional, tiene a bien hacer de su conocimiento, a través
+	del reporte {{ $numero }}, correspondiente al periodo del {{ $periodo }} al {{ $hasta }}, los datos
+	del Sistema de Bolsa de Trabajo, como se muestra en la siguiente tabla: </span></strong></p>
 	<br><br>
 	<table align="center" border="1" style="background-color: #FFFFFF;">
 		<thead align="center">

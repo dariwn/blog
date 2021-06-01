@@ -19,7 +19,7 @@
 						<th>Puesto</th>
 						<th>Descripci&oacute;n</th>
 						<th>Cambiar Estatus</th>
-						<th>Numero de Postulados</th>
+						<th>Número de Postulados</th>
 						<th>Ver Postulados</th>
 						<th>Modificar Solicitud</th>
 						<th>Perfil Seleccionado</th>

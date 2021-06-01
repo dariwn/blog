@@ -176,7 +176,7 @@
 
 						  <tr>
 							<td >País:</td>
-							<td class="form-control input-sm"><select name="pais_id">
+							<td class="form-control input-sm"><select name="pais_id" required>
 								@foreach($paises as $local)
 							<option value="{{$local->idpais}}">{{$local->nombre}}</option>
 							@endforeach
@@ -186,7 +186,7 @@
 						  <tr>
 							  <td>Estado: </td>
 							  <td class="form-control input-sm">
-								<select name="estado_id" id="estado">
+								<select name="estado_id" id="estado" required>
 								<option value="#">Selecciona un opcion</option>
 									@foreach($estados as $local)
 								<option value="{{$local->idestado}}">{{$local->nombre_estado}}</option>
@@ -198,7 +198,7 @@
 						  <tr>
 							  <td>Municipio</td>
 							  <td class="form-control input-sm">
-                  <select name="municipio_id" id="municipio" placeholder="Seleccionar">       
+                  <select name="municipio_id" id="municipio" placeholder="Seleccionar" required>       
                   </select>
 							  </td>
               </tr>

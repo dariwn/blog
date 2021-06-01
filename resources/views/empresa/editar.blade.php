@@ -193,7 +193,7 @@
 						  <tr>
 							  <td>Estado: </td>
 							  <td>
-								<select type="text" id="estado" name="estado_id" class="form-control input-sm">
+								<select type="text" id="estado" name="estado_id" class="form-control input-sm" required>
 									@foreach($estados as $local)
 									@if($local->idestado==$empresa->estado_id)
 									<option value="{{$local->idestado}}" selected>{{$local->nombre_estado}}</option>
@@ -208,7 +208,7 @@
 						  <tr>
 							  <td>Municipio</td>
 							  <td>
-								<select type="text" name="municipio_id" id="municipio" class="form-control input-sm">
+								<select type="text" name="municipio_id" id="municipio" class="form-control input-sm" required>
 									@foreach($localidades as $local)
 									@if($local->idmunicipio==$empresa->municipio_id)
 									<option value="{{$local->idmunicipio}}" selected>{{$local->nombre_localidad}}</option>

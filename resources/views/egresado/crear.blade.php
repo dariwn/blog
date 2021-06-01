@@ -140,7 +140,7 @@
 
                 <div class="col-md-6 mb-3">
                 <label>País</label>
-                <select name="pais_id" class="form-control">
+                <select name="pais_id" class="form-control" required>
                 @foreach($paises as $pais)
                               <option value="{{$pais->idpais}}">{{$pais->nombre}}</option>
                               @endforeach
@@ -149,7 +149,7 @@
 
                 <div class="col-md-6 mb-3">
                 <label>Estado</label>
-                <select name="estado_id" class="form-control" id="estado">
+                <select name="estado_id" class="form-control" id="estado" required>
                     <option value="#">Selecciona una opcion</option>
                 @foreach($estados as $estado)
                               <option value="{{$estado->idestado}}">{{$estado->nombre_estado}}</option>
@@ -159,13 +159,13 @@
 
               <div class="col-md-6 mb-3">
                 <label>Municipio</label>
-                <select name="municipio_id" class="form-control" id="municipio">
+                <select name="municipio_id" class="form-control" id="municipio" required>
                        </select>
               </div>
 
               <div class="col-md-6 mb-3">
                 <label>Carrera</label>
-                <select name="perfiles_id" class="form-control">
+                <select name="perfiles_id" class="form-control" required>
                 @foreach($perfiles as $perfil)
                               <option value="{{$perfil->idperfiles}}">{{$perfil->carrera}}</option>
                               @endforeach
@@ -174,7 +174,7 @@
 
               <div class="col-md-6 mb-3">
                 <label>Sexo</label>
-                <select name="genero_id" class="form-control">
+                <select name="genero_id" class="form-control" required>
                 @foreach($generos as $genero)
                               <option value="{{$genero->idgenero}}">{{$genero->sexo}}</option>
                               @endforeach
