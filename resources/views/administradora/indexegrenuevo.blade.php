@@ -107,7 +107,7 @@
                                             
                                             <td>
                                                 <a href="{{ url('editardatosrechazo/'.$nuevor->id.'/registroegresado') }}" class="btn btn-primary">Editar Y Validar</a>
-                                                @include('administradora.deleteegre',['usuario' => $nuevor])
+                                                {{-- @include('administradora.deleteegre',['usuario' => $nuevor]) --}}
                                             </td>
                                             
                                                 
