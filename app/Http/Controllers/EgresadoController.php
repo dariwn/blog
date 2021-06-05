@@ -129,8 +129,21 @@ class EgresadoController extends Controller
         }else{
             
         }
+
+       
+ 
+         
+
                
         $egresado->save();
+
+        $correo = Auth::user()->email;
+        // dd($correo);
+        if (DB::table('registro_egresado_nuevos')->where('email', $correo)->exists()) {                         
+            //dd($datos);
+            DB::table('registro_egresado_nuevos')->where('email', '=', $correo)->delete();            
+        }
+
         $Ucorreo->save();
         event(new Registered($Ucorreo));
         return Redirect::to('onda');

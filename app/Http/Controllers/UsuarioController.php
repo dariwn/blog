@@ -43,7 +43,8 @@ class UsuarioController extends Controller
     public function create()
     {
         if(Auth::user()->origen == 'Administradora'){
-        return view('usuario.crear');
+            $existe = 'No';
+        return view('usuario.crear', compact('existe'));
         }else{
             abort(404, 'Página No Encontrada');
         }
@@ -58,26 +59,36 @@ class UsuarioController extends Controller
     public function store(Request $request)
     {
         if(Auth::user()->origen == 'Administradora'){
-        $comando = new User;
 
-        $random_user = Str::random(8);
-        $random_pass = Str::random(9);
-        $correoeg = $request->email;
-        $comando->password = bcrypt($random_pass);
-        $comando->username = 'EG'.$random_user;
-        $comando->email =$request->email;
-        $comando->tipo = "1";
-        $comando->curriculo = "1";
-        $comando->origen = "Egresado";
-        $comando->save();
+        $correo = DB::table('users')->where('email',$request->email)->exists();
+        //dd($correo);
+        if($correo == true){
+            $existe = 'Si';
+            return view('usuario.crear', compact('existe'));
+        }else{
+            $comando = new User;
 
-        $data1 = 'EG'.$random_user;
-        $data = $random_pass;
+            $random_user = Str::random(8);
+            $random_pass = Str::random(9);
+            $correoeg = $request->email;
+            $comando->password = bcrypt($random_pass);
+            $comando->username = 'EG'.$random_user;
+            $comando->email =$request->email;
+            $comando->tipo = "1";
+            $comando->curriculo = "1";
+            $comando->origen = "Egresado";
+            $comando->save();
 
-        Mail::to($correoeg)->send(new MensajeAceptado($data1, $data));
-        event(new Registered($comando));
+            $data1 = 'EG'.$random_user;
+            $data = $random_pass;
 
-        return back();
+            Mail::to($correoeg)->send(new MensajeAceptado($data1, $data));
+            event(new Registered($comando));
+
+            $existe = 'No';
+            return view('usuario.crear', compact('existe'));
+            
+        }
         }else{
             abort(404, 'Página No Encontrada');
         }

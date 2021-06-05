@@ -47,7 +47,8 @@ class NuevoController extends Controller
     public function create()
     {
         if(Auth::user()->origen == 'Administradora'){
-        return view('nuevo.crear');
+            $existe = 'No';
+        return view('nuevo.crear', compact('existe'));
         }else{
             abort(404, 'Página No Encontrada');
         }
@@ -62,25 +63,34 @@ class NuevoController extends Controller
     public function store(Request $request)
     {
         if(Auth::user()->origen == 'Administradora'){
-        $nuevo = new User;
-        $random_user = Str::random(8);
-        $random_pass = Str::random(9);
-        $correoem = $request->email;
+             $correo = DB::table('users')->where('email',$request->email)->exists();
+            //dd($correo);
+            if($correo == true){
+                $existe = 'Si';
+                return view('nuevo.crear', compact('existe'));
+            }else{
+                $nuevo = new User;
+                $random_user = Str::random(8);
+                $random_pass = Str::random(9);
+                $correoem = $request->email;
 
-        $nuevo->password = bcrypt($random_pass);
-        $nuevo->username = 'EM'.$random_user;
-        $nuevo->email =$request->email;
-        $nuevo->tipo = "1";
-        $nuevo->curriculo = "0";
-        $nuevo->origen = "Empresa";
-        $nuevo->save();
+                $nuevo->password = bcrypt($random_pass);
+                $nuevo->username = 'EM'.$random_user;
+                $nuevo->email =$request->email;
+                $nuevo->tipo = "1";
+                $nuevo->curriculo = "0";
+                $nuevo->origen = "Empresa";
+                $nuevo->save();
 
-        $data1 = 'EM'.$random_user;
-        $data = $random_pass;
+                $data1 = 'EM'.$random_user;
+                $data = $random_pass;
 
-        Mail::to($correoem)->send(new MensajeAceptado($data1, $data));
-        event(new Registered($nuevo));
-        return back();
+                Mail::to($correoem)->send(new MensajeAceptado($data1, $data));
+                event(new Registered($nuevo));
+
+                $existe= 'No';
+                return view('nuevo.crear', compact('existe'));
+        }
         }else{
             abort(404, 'Página No Encontrada');
         }
