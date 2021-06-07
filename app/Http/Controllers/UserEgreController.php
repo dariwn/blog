@@ -252,6 +252,14 @@ class UserEgreController extends Controller
 
             }else{ //sino hay registro elimina el user
                 $usuario->delete();
+                $obtregiusernew = DB::table('registro_egresado_nuevos')->where('email', $usuario->email)->exists();
+                $obtregiusernew1 = DB::table('registro_egresado_nuevos')->where('email', $usuario->email)->first();
+                if($obtregiusernew == true){
+                    DB::table('registro_egresado_nuevos')->where('email', '=', $obtregiusernew1->email)->delete();
+                }else{
+
+                }
+                
             }
 
            
