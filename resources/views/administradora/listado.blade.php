@@ -15,6 +15,7 @@
 						   
 							<table class="table table-striped table-bordered table-condensed table-hover">
 								<thead>
+									<th>Número de Solicitudes</th>
 									<th>Nombre</th>
 									<th>Usuario</th>
 									<th>RFC</th>
@@ -28,8 +29,12 @@
 									<th>Municipio</th>
 								</thead>
 							   @foreach ($empresa as $bienvenido)
-							 
+								<?php 
+									$solici = DB::table('solicitud')->where('id_empresa', $bienvenido->idempresa)->count();
+
+								?>
 								<tr>
+									<td>{{ $solici }}</td>
 									<td>{{ $bienvenido->nombre}}</td>
 									<td>{{$bienvenido->user->username}}</td>
 									<td>{{ $bienvenido->rfc}}</td>
