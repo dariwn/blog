@@ -99,7 +99,8 @@ class UserEgreController extends Controller
         if(Auth::user()->origen == 'Administradora'){
         $usuario = User::findOrFail($id);
         //dd($usuario);
-        return view('adminusuarios.editeg', compact('usuario'));
+        $existe = 'No';
+        return view('adminusuarios.editeg', compact('existe','usuario'));
         }else{
             abort(404, 'Página No Encontrada');
         }
@@ -171,35 +172,49 @@ class UserEgreController extends Controller
         if(Auth::user()->origen == 'Administradora'){
         $usuario = User::findOrFail($id);
 
-        $contraseña = $request->contraseña;
-        $usuario->username = $request->username;
-        $usuario->password =  bcrypt($request->contraseña);
-        //$usuario->email = $request->email;
-         //correo de aviso cambio de usuario
-         $usuario->save();
-         $correoeg = $usuario->email;
+        $nameexist = DB::table('users')->where('username', $request->username)->exists();
+            //dd($nameexist);
+            if($nameexist == true){
+                $existe = 'Si';
+                $usuario = User::findOrFail($id);
+                //dd($usuario);
+                
+                return view('adminusuarios.editeg', compact('existe','usuario'));
+                
+            }else{
+                $contraseña = $request->contraseña;
+                $usuario->username = $request->username;
+                $usuario->password =  bcrypt($request->contraseña);
+                //$usuario->email = $request->email;
+                //correo de aviso cambio de usuario
+                $usuario->save();
+                $correoeg = $usuario->email;
 
-        //  $data= array(
-        //      'mensaje' => 'Ingresa',
-        //      'direccion' => 'http://127.0.0.1:8000/BTEgresado',
-        //      'usuario' => $request->username,
-        //      'contraseña' => $contraseña,
-        //  );
+                //  $data= array(
+                //      'mensaje' => 'Ingresa',
+                //      'direccion' => 'http://127.0.0.1:8000/BTEgresado',
+                //      'usuario' => $request->username,
+                //      'contraseña' => $contraseña,
+                //  );
 
-        //      Mail::send('emails.webcambioUser',$data,function($msg) use ($correoeg){
-        //          $msg->from('from@example.com', 'Bolsa de Trabajo ITTG');
+                //      Mail::send('emails.webcambioUser',$data,function($msg) use ($correoeg){
+                //          $msg->from('from@example.com', 'Bolsa de Trabajo ITTG');
 
-        //          $msg->to($correoeg)->subject('Notificacion');
-        //      });
-        //dd($correoem);
-        $data1 = $request->username;
-        $data = $contraseña;
+                //          $msg->to($correoeg)->subject('Notificacion');
+                //      });
+                //dd($correoem);
+                $data1 = $request->username;
+                $data = $contraseña;
 
-        Mail::to($correoeg)->send(new MensajeCambioUsuario($data1, $data));
+                Mail::to($correoeg)->send(new MensajeCambioUsuario($data1, $data));
+
+                
+                return redirect('/usuarios-egresados');
+                //dd($usuario);
+            }
+        
 
         
-        return redirect('/usuarios-egresados');
-        //dd($usuario);
         }else{
             abort(404, 'Página No Encontrada');
         }

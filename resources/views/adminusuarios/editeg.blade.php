@@ -1,6 +1,24 @@
 @extends('administradora.inicio3')
 @section('contenido')
+@if ($existe == 'Si')
 
+<div class="row">
+    <div class="col-md-8"></div>
+    <div class="col-md-4">
+    <div class="box box-default">
+      <div class="box-header with-border">
+        <h5 class="box-title">Aviso:</h5>
+      </div><!-- /.box-header -->
+      <div class="box-body">
+    
+       Este username ya se encuentra en uso!!
+       <br>
+       <span style="font-size: 11.5px">*Nota: Si deseas cambiar tu contraseña, deberás cambiar tu username.</span>
+      </div><!-- /.box-body -->
+    </div><!-- /.box -->
+    </div>
+    
+@endif
 <div class="container">      
         <div class="col-sm-10" >
 

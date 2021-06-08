@@ -95,7 +95,8 @@ class UserEmpreController extends Controller
         if(Auth::user()->origen == 'Administradora'){
         $usuario = User::findOrFail($id);
         //dd($usuario);
-        return view('adminusuarios.editem', compact('usuario'));
+        $existe = 'No';
+        return view('adminusuarios.editem', compact('existe','usuario'));
         }else{
             abort(404, 'Página No Encontrada');
         }
@@ -176,37 +177,50 @@ class UserEmpreController extends Controller
         if(Auth::user()->origen == 'Administradora'){
         $usuario = User::findOrFail($id);
 
-        $contraseña = $request->contraseña;
+        $usuario = User::findOrFail($id);
+            $existeuser = DB::table('users')->where('username',$request->username)->exists();
+            if($existeuser == true){
+                $existe = 'Si';
+                $usuario = User::findOrFail($id);
+                //dd($usuario);
+               
+                return view('adminusuarios.editem', compact('existe','usuario'));
 
-        $usuario->username = $request->username;
-        $usuario->password =  bcrypt($request->contraseña);
-        //$usuario->email = $request->email;
+                
+            }else{
+                $contraseña = $request->contraseña;
 
-         //correo de aviso cambio de usuario
-         
-         $correoeg = $usuario->email;
-
-        //  $data= array(
-        //      'mensaje' => 'Ingresa',
-        //      'direccion' => 'http://127.0.0.1:8000/BTEmpresa',
-        //      'usuario' => $request->username,
-        //      'contraseña' => $contraseña,
-        //  );
-
-        //      Mail::send('emails.webcambioUser',$data,function($msg) use ($correoeg){
-        //          $msg->from('from@example.com', 'Bolsa de Trabajo ITTG');
-
-        //          $msg->to($correoeg)->subject('Notificacion');
-        //      });
-        // //dd($correoem);
-        $data1 = $request->username;
-        $data = $contraseña;
-
-        Mail::to($correoeg)->send(new MensajeCambioUsuario($data1, $data));
-
-        $usuario->save();
-        return redirect('/usuarios-empresa');
-        //dd($usuario);
+                $usuario->username = $request->username;
+                $usuario->password =  bcrypt($request->contraseña);
+                //$usuario->email = $request->email;
+        
+                 //correo de aviso cambio de usuario
+                 
+                 $correoeg = $usuario->email;
+        
+                //  $data= array(
+                //      'mensaje' => 'Ingresa',
+                //      'direccion' => 'http://127.0.0.1:8000/BTEmpresa',
+                //      'usuario' => $request->username,
+                //      'contraseña' => $contraseña,
+                //  );
+        
+                //      Mail::send('emails.webcambioUser',$data,function($msg) use ($correoeg){
+                //          $msg->from('from@example.com', 'Bolsa de Trabajo ITTG');
+        
+                //          $msg->to($correoeg)->subject('Notificacion');
+                //      });
+                // //dd($correoem);
+                $data1 = $request->username;
+                $data = $contraseña;
+        
+                Mail::to($correoeg)->send(new MensajeCambioUsuario($data1, $data));
+        
+                $usuario->save();
+                return redirect('/usuarios-empresa');
+                //dd($usuario);
+            }
+       
         }else{
             abort(404, 'Página No Encontrada');
         }
