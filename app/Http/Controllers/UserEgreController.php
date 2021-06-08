@@ -80,8 +80,9 @@ class UserEgreController extends Controller
 
         $hola = Curriculo::select('idcurriculo')->where('idegresado',$egresados)->get()->pluck('idcurriculo');
         $holas = Arr::first($hola);
+        $existe = 'No';
 
-        return view('egresado.editusuario', compact('usuario', 'egresados', 'hola'));
+        return view('egresado.editusuario', compact('existe','usuario', 'egresados', 'hola'));
         
     }
 
@@ -119,35 +120,53 @@ class UserEgreController extends Controller
         if(Auth::user()->origen == 'Egresado'){
             $usuario = User::findOrFail($id);
             //dd($usuario);
-            $contraseña = $request->contraseña;
-            //dd($contraseña);
-            $usuario->username = $request->username;
-            $usuario->password =  bcrypt($request->contraseña);
+            $nameexist = DB::table('users')->where('username', $request->username)->exists();
+            //dd($nameexist);
+            if($nameexist == true){
+                $existe = 'Si';
+                $usuario = User::findOrFail($id);
 
-            //correo de aviso cambio de usuario
-         
-         $correoeg = $usuario->email;
-
-        //  $data= array(
-        //      'mensaje' => 'Ingresa',
-        //      'direccion' => 'http://127.0.0.1:8000/BTEgresado',
-        //      'usuario' => $request->username,
-        //      'contraseña' => $contraseña,
-        //  )
-
-        //      Mail::send('emails.webcambioUser',$data,function($msg) use ($correoeg){
-        //          $msg->from('from@example.com', 'Bolsa de Trabajo ITTG');
-
-        //          $msg->to($correoeg)->subject('Notificacion');
-        //      });
-        // //dd($correoem);
-        $data1 = $request->username;
-        $data = $contraseña;
-
-        Mail::to($correoeg)->send(new MensajeCambioUsuario($data1, $data));
-
-            $usuario->save();
-            return redirect('/egresado');
+                $egresado = Egresado::select('idegresado')->where('users_id', $usuario->id)->first();
+               //dd($egresado);
+                $egresados = Arr::flatten($egresado);
+        
+                $hola = Curriculo::select('idcurriculo')->where('idegresado',$egresados)->get()->pluck('idcurriculo');
+                $holas = Arr::first($hola);
+        
+                return view('egresado.editusuario', compact('existe','usuario', 'egresados', 'hola'));
+                
+            }else{
+                $contraseña = $request->contraseña;
+                //dd($contraseña);
+                $usuario->username = $request->username;
+                $usuario->password =  bcrypt($request->contraseña);
+    
+                //correo de aviso cambio de usuario
+             
+                $correoeg = $usuario->email;
+        
+                //  $data= array(
+                //      'mensaje' => 'Ingresa',
+                //      'direccion' => 'http://127.0.0.1:8000/BTEgresado',
+                //      'usuario' => $request->username,
+                //      'contraseña' => $contraseña,
+                //  )
+        
+                //      Mail::send('emails.webcambioUser',$data,function($msg) use ($correoeg){
+                //          $msg->from('from@example.com', 'Bolsa de Trabajo ITTG');
+        
+                //          $msg->to($correoeg)->subject('Notificacion');
+                //      });
+                // //dd($correoem);
+                $data1 = $request->username;
+                $data = $contraseña;
+        
+                Mail::to($correoeg)->send(new MensajeCambioUsuario($data1, $data));
+        
+                    $usuario->save();
+                    return redirect('/egresado');
+            }
+            
         }
         if(Auth::user()->origen == 'Administradora'){
         $usuario = User::findOrFail($id);
@@ -155,7 +174,7 @@ class UserEgreController extends Controller
         $contraseña = $request->contraseña;
         $usuario->username = $request->username;
         $usuario->password =  bcrypt($request->contraseña);
-        $usuario->email = $request->email;
+        //$usuario->email = $request->email;
          //correo de aviso cambio de usuario
          $usuario->save();
          $correoeg = $usuario->email;

@@ -30,12 +30,12 @@
                                     </div>                            
                                 </div>
 
-                                <div class="form-group">                                    
+                                {{-- <div class="form-group">                                    
                                     <div class="col-md-6">
                                         <label>Correo:</label>
                                        <input type="email" name="email" required class="form-control" placeholder="email" value="{{ $usuario->email }}"> 
                                     </div>                            
-                                </div>
+                                </div> --}}
                         
                                 <div class="form-group">
                                     <div class="col-md-6">

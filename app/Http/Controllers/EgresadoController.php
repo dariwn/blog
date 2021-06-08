@@ -215,7 +215,7 @@ class EgresadoController extends Controller
 
         $egresados = Arr::flatten($egresado);
         $datos = Egresado::where('idegresado',$egresado->idegresado)->first();
-
+        $existe = 'No';
         //dd($datos);
         
         // $hola1 = DB::table('curriculo')->whereIn('idcurriculo', $egresado)->get();
@@ -227,7 +227,7 @@ class EgresadoController extends Controller
         $localidades = Municipio::all();
         $egresado = Egresado::find($id);
         $perfiles = Perfil::all();
-        return view('egresado.editcorreo', compact('datos','estados','localidades','egresado','egresados','perfiles','generos','hola'));
+        return view('egresado.editcorreo', compact('existe','datos','estados','localidades','egresado','egresados','perfiles','generos','hola'));
     }
 
     /**
@@ -285,20 +285,46 @@ class EgresadoController extends Controller
     public function update2(Request $request,$id){
         //dd($request);
         $egresado = Egresado::findOrFail($id);        
+        $existcorreo = DB::table('users')->where('email', $request->email)->exists();
+        //dd($existcorreo);
+        if($existcorreo == true){
+            $existe = 'Si';
+
+            $usuario = Auth::user()->id;
         
-        $egresado->correo = $request->email;
+            $egresado = Egresado::select('idegresado')->where('users_id', $usuario)->first();
+
+            $egresados = Arr::flatten($egresado);
+            $datos = Egresado::where('idegresado',$egresado->idegresado)->first();
+            
+            //dd($datos);
+            
+            // $hola1 = DB::table('curriculo')->whereIn('idcurriculo', $egresado)->get();
+            // $hola = $hola1[0]->idcurriculo;
+            $hola = $egresado->idegresado;
+
+            $estados = Estado::all();
+            $generos = Genero::all();
+            $localidades = Municipio::all();
+            $egresado = Egresado::find($id);
+            $perfiles = Perfil::all();
+            return view('egresado.editcorreo', compact('existe','datos','estados','localidades','egresado','egresados','perfiles','generos','hola'));
+        }else{
+            $egresado->correo = $request->email;
         
-        $Ucorreo1 = Egresado::select('users_id')->where('idegresado', $egresado->idegresado)->first();
-        //dd($Ucorreo1);
-        $Ucorreo = User::findOrFail($Ucorreo1->users_id); 
-        //dd($Ucorreo); 
-        $Ucorreo->email =$request->email;
-        $Ucorreo->email_verified_at = null;
-        // dd($Ucorreo[0]->email);
-        $Ucorreo->save();
-        $egresado->save();
+            $Ucorreo1 = Egresado::select('users_id')->where('idegresado', $egresado->idegresado)->first();
+            //dd($Ucorreo1);
+            $Ucorreo = User::findOrFail($Ucorreo1->users_id); 
+            //dd($Ucorreo); 
+            $Ucorreo->email =$request->email;
+            $Ucorreo->email_verified_at = null;
+            // dd($Ucorreo[0]->email);
+            $Ucorreo->save();
+            $egresado->save();
+            
+            return redirect()->route('egresado.index');
+        }
         
-        return redirect()->route('egresado.index');
     }
 
     /**
