@@ -342,6 +342,14 @@ class NuevoController extends Controller
         
     }
 
+    public function ListaSolicitudes($id){
+        //dd($id);
+        $solicitudeslist = DB::table('solicitud')->where('id_empresa', $id)->get();
+        //dd($solicitudeslist);
+
+        return view('administradora.listasoliempre', compact('solicitudeslist'));
+    }
+
     public function graficaAlumnosp(){
         $a = Solicitud::where('respuesta', 'SI')->count();
         $b = Solicitud::where('respuesta', 'NO')->count();

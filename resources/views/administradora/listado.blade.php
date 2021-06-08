@@ -34,7 +34,8 @@
 
 								?>
 								<tr>
-									<td>{{ $solici }}</td>
+									<td><span style="font-size: 16px">{{ $solici }}  </span><a href="{{ url('verlistasolicitudes/'.$bienvenido->idempresa) }}" class="btn btn-primary">Ver</a>
+									</td>
 									<td>{{ $bienvenido->nombre}}</td>
 									<td>{{$bienvenido->user->username}}</td>
 									<td>{{ $bienvenido->rfc}}</td>

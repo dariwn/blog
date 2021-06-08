@@ -35,6 +35,7 @@ Route::get('/ver_contratados', 'NuevoController@Contratados');
 Route::get('/ver_alumnos_contratados', 'NuevoController@AlumnosContratados');
 Route::put('ajustescorreoadmin/{id}/actualizado','UserAdminController@update2')->name('ajustescorreoadministrador.update');
 Route::resource('ajustescorreoadmin', 'UserAdminController');
+Route::get('/verlistasolicitudes/{id}','NuevoController@ListaSolicitudes' );
 
 Route::match(['get','post'], '/BTEmpresa', 'logueoController@login');//Empresa
 Route::get('/exitempresa', 'logueoController@logout');
