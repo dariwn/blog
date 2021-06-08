@@ -42,7 +42,9 @@ class UserAdminController extends Controller
     {
         //
         if(Auth::user()->origen == 'Administradora'){
-        return view('adminusuarios.createadmin');
+        $existeu = 'No';
+        $existec = 'No';
+        return view('adminusuarios.createadmin', compact('existeu', 'existec'));
         }else{
             abort(404, 'Página No Encontrada');
         }
@@ -58,19 +60,34 @@ class UserAdminController extends Controller
     {
         //
         if(Auth::user()->origen == 'Administradora'){
-        $usuario = new User;
 
-        $usuario->origen = "Administradora";
-        $usuario->username = $request->username;
-        $usuario->password =  bcrypt($request->contraseña);
-        $usuario->tipo= "0";
-        $usuario->curriculo = "0";
-        $usuario->email = $request->correo;
+        $existecorre = DB::table('users')->where('email', $request->correo)->exists();
+        $existeuser = DB::table('users')->where('username', $request->username)->exists();
+        if($existecorre == true){            
+            $existec = 'Si';
+            $existeu = 'No';
+            return view('adminusuarios.createadmin', compact('existeu', 'existec'));
+        }else
+        if($existeuser == true){
+            $existeu = 'Si';
+            $existec = 'No';
+            return view('adminusuarios.createadmin', compact('existeu', 'existec'));
+        }else{
+            $usuario = new User;
 
-        $usuario->save();
-        event(new Registered($usuario));
+            $usuario->origen = "Administradora";
+            $usuario->username = $request->username;
+            $usuario->password =  bcrypt($request->contraseña);
+            $usuario->tipo= "0";
+            $usuario->curriculo = "0";
+            $usuario->email = $request->correo;
 
-        return redirect('/usuarios-sistema');
+            $usuario->save();
+            event(new Registered($usuario));
+
+            return redirect('/usuarios-sistema');
+        }
+        
         }else{
             abort(404, 'Página No Encontrada');
         }
@@ -88,7 +105,8 @@ class UserAdminController extends Controller
         if(Auth::user()->origen == 'Administradora'){
             //dd($id);
             $usuario = User::findOrFail($id);
-            return view('administradora.editcorreo', compact('usuario'));
+            $existe = 'No';
+            return view('administradora.editcorreo', compact('existe','usuario'));
         }else{
             abort(404, 'Pagina No Encontrada');
         }
@@ -107,7 +125,8 @@ class UserAdminController extends Controller
         if(Auth::user()->origen == 'Administradora'){
         $usuario = User::findOrFail($id);
         //dd($usuario);
-        return view('adminusuarios.editadmin', compact('usuario'));
+        $existe = 'No';
+        return view('adminusuarios.editadmin', compact('existe','usuario'));
         }else{
             abort(404, 'Página No Encontrada');
         }
@@ -125,12 +144,20 @@ class UserAdminController extends Controller
         //
         if(Auth::user()->origen == 'Administradora'){
         $usuario = User::findOrFail($id);
-
-        $usuario->username = $request->username;        
-        $usuario->password =  bcrypt($request->contraseña);
-
-        $usuario->save();
-        return redirect('/usuarios-sistema');
+            $existu = DB::table('users')->where('username', $request->username)->exists();
+            if($existu == true){
+                $usuario = User::findOrFail($id);
+                //dd($usuario);
+                $existe = 'Si';
+                return view('adminusuarios.editadmin', compact('existe','usuario'));
+            }else{
+                $usuario->username = $request->username;        
+                $usuario->password =  bcrypt($request->contraseña);
+        
+                $usuario->save();
+                return redirect('/usuarios-sistema');
+            }
+       
         }else{
             abort(404, 'Página No Encontrada');
         }
@@ -143,10 +170,19 @@ class UserAdminController extends Controller
             $usuario = User::findOrFail($id);
             //dd($usuario);
 
-            $usuario->email = $request->email;
+            $existec = DB::table('users')->where('email',$request->email)->exists();
+            if($existec == true){
+                $usuario = User::findOrFail($id);
+                $existe = 'Si';
+                return view('administradora.editcorreo', compact('existe','usuario'));
+            }else{
+                $usuario->email = $request->email;
 
-            $usuario->save();
-            return redirect('home');
+                $usuario->save();
+                return redirect('home');
+            }
+
+            
         }else{
             abort(404, 'Pagina No Encontrada');
         }

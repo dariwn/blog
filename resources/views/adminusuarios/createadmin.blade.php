@@ -1,6 +1,40 @@
 @extends('administradora.inicio3')
 @section('contenido')
+@if ($existeu == 'Si')
 
+<div class="row">
+    <div class="col-md-8"></div>
+    <div class="col-md-4">
+    <div class="box box-default">
+      <div class="box-header with-border">
+        <h5 class="box-title">Aviso:</h5>
+      </div><!-- /.box-header -->
+      <div class="box-body">
+    
+       El username ya se encuentra en uso!!
+       
+      </div><!-- /.box-body -->
+    </div><!-- /.box -->
+    </div>
+    
+@endif
+@if ($existec == 'Si')
+<div class="row">
+    <div class="col-md-8"></div>
+    <div class="col-md-4">
+    <div class="box box-default">
+      <div class="box-header with-border">
+        <h5 class="box-title">Aviso:</h5>
+      </div><!-- /.box-header -->
+      <div class="box-body">
+    
+       El correo ya se encuentra en uso!!
+       
+      </div><!-- /.box-body -->
+    </div><!-- /.box -->
+    </div>
+    
+@endif
 <div class="container">      
         <div class="col-sm-10" >
 
