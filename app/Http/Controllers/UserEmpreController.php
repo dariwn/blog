@@ -71,12 +71,13 @@ class UserEmpreController extends Controller
         //   
         if(Auth::user()->origen == 'Empresa'){ 
         $usuario = User::findOrFail($id);
+        $existe = 'No';
         //dd($usuario);
         $usuario1 = Auth::user()->id;
         $empresa = Empresa::select('idempresa')->where('users_id', $usuario1)->get()->pluck('idempresa');
         $empresas = Arr::flatten($empresa);
 
-        return view('empresa.editusuario', compact('usuario','empresas'));
+        return view('empresa.editusuario', compact('existe','usuario','empresas'));
         }else{
             abort(404, 'Pagina No Encontrada');
         }
@@ -105,10 +106,11 @@ class UserEmpreController extends Controller
         if (Auth::user()->origen == 'Empresa') {
             $user = DB::table('users')->where('id',$id)->get();
             //dd($user);
+            $existe = 'No';
             $usuario1 = Auth::user()->id;
             $empresa = Empresa::select('idempresa')->where('users_id', $usuario1)->get()->pluck('idempresa');
             $empresas = Arr::flatten($empresa);
-            return view('empresa.editcorreo', compact('user','empresas'));
+            return view('empresa.editcorreo', compact('existe','user','empresas'));
         }else{
             abort(404,'Pagina No Encontrada');
         }
@@ -127,36 +129,49 @@ class UserEmpreController extends Controller
         //
         if(Auth::user()->origen == 'Empresa'){
             $usuario = User::findOrFail($id);
+            $existeuser = DB::table('users')->where('username',$request->username)->exists();
+            if($existeuser == true){
+                $existe = 'Si';
+                $usuario = User::findOrFail($id);
+                //dd($usuario);
+                $usuario1 = Auth::user()->id;
+                $empresa = Empresa::select('idempresa')->where('users_id', $usuario1)->get()->pluck('idempresa');
+                $empresas = Arr::flatten($empresa);
 
-            $contraseña = $request->contraseña;
-            $usuario->username = $request->username;
-            $usuario->password =  bcrypt($request->contraseña);
+                return view('empresa.editusuario', compact('existe','usuario','empresas'));
+            }else{
+                    //dd($existeuser);
+                $contraseña = $request->contraseña;
+                $usuario->username = $request->username;
+                $usuario->password =  bcrypt($request->contraseña);
 
-             //correo de aviso cambio de usuario
-         
-                $correoeg = $usuario->email;
+                //correo de aviso cambio de usuario
+            
+                    $correoeg = $usuario->email;
 
-                // $data= array(
-                //     'mensaje' => 'Ingresa',
-                //     'direccion' => 'http://127.0.0.1:8000/BTEmpresa',
-                //     'usuario' => $request->username,
-                //     'contraseña' => $contraseña,
-                // );
+                    // $data= array(
+                    //     'mensaje' => 'Ingresa',
+                    //     'direccion' => 'http://127.0.0.1:8000/BTEmpresa',
+                    //     'usuario' => $request->username,
+                    //     'contraseña' => $contraseña,
+                    // );
 
-                //     Mail::send('emails.webcambioUser',$data,function($msg) use ($correoeg){
-                //         $msg->from('from@example.com', 'Bolsa de Trabajo ITTG');
+                    //     Mail::send('emails.webcambioUser',$data,function($msg) use ($correoeg){
+                    //         $msg->from('from@example.com', 'Bolsa de Trabajo ITTG');
 
-                //         $msg->to($correoeg)->subject('Notificacion');
-                //     });
+                    //         $msg->to($correoeg)->subject('Notificacion');
+                    //     });
 
-                $data1 = $request->username;
-                $data = $contraseña;
-        
-                Mail::to($correoeg)->send(new MensajeCambioUsuario($data1, $data));
-                //dd($correoem);
+                    $data1 = $request->username;
+                    $data = $contraseña;
+            
+                    Mail::to($correoeg)->send(new MensajeCambioUsuario($data1, $data));
+                    //dd($correoem);
 
-            $usuario->save();
-            return redirect('/empresa');
+                $usuario->save();
+                return redirect('/empresa');
+            }
+            
         }
         if(Auth::user()->origen == 'Administradora'){
         $usuario = User::findOrFail($id);
@@ -165,7 +180,7 @@ class UserEmpreController extends Controller
 
         $usuario->username = $request->username;
         $usuario->password =  bcrypt($request->contraseña);
-        $usuario->email = $request->email;
+        //$usuario->email = $request->email;
 
          //correo de aviso cambio de usuario
          
@@ -199,23 +214,36 @@ class UserEmpreController extends Controller
 
     public function update2(Request $request,$id){
         
-        $user = User::findOrFail($id);        
-        //dd($user);
-        $user->email = $request->email;
-        $user->email_verified_at = null;
-        $userid = Auth::user()->id;
-        $Ucorreo1 = Empresa::select('idempresa')->where('users_id', $userid)->first();
+        $user = User::findOrFail($id);
+        $existecorre = DB::table('users')->where('email', $request->email)->exists();
+        if($existecorre == true){
+            $user = DB::table('users')->where('id',$id)->get();
+            //dd($user);
+            $existe = 'Si';
+            $usuario1 = Auth::user()->id;
+            $empresa = Empresa::select('idempresa')->where('users_id', $usuario1)->get()->pluck('idempresa');
+            $empresas = Arr::flatten($empresa);
+            return view('empresa.editcorreo', compact('existe','user','empresas'));
+        }else{
+            //dd($user);
+            $user = User::findOrFail($id);
+            $user->email = $request->email;
+            $user->email_verified_at = null;
+            $userid = Auth::user()->id;
+            $Ucorreo1 = Empresa::select('idempresa')->where('users_id', $userid)->first();
 
-        //dd($Ucorreo1);
-        $Ucorreo = Empresa::findOrFail($Ucorreo1->idempresa); 
-        //dd($Ucorreo); 
-        $Ucorreo->email =$request->email;
+            //dd($Ucorreo1);
+            $Ucorreo = Empresa::findOrFail($Ucorreo1->idempresa); 
+            //dd($Ucorreo); 
+            $Ucorreo->email =$request->email;
+            
+            // dd($Ucorreo[0]->email);
+            $Ucorreo->save();
+            $user->save();
+            
+            return redirect()->route('empresa.index');
+        }      
         
-        // dd($Ucorreo[0]->email);
-        $Ucorreo->save();
-        $user->save();
-        
-        return redirect()->route('empresa.index');
     }
 
 

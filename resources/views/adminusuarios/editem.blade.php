@@ -30,13 +30,13 @@
                                        <input type="password" name="contraseña" required class="form-control" placeholder="password"> 
                                     </div>                            
                                 </div>
-
+{{-- 
                                 <div class="form-group">                                    
                                     <div class="col-md-6">
                                         <label>Correo Electronico:</label>
                                        <input type="text" name="email" required class="form-control" value="{{ $usuario->email }}"> 
                                     </div>                            
-                                </div>
+                                </div> --}}
                         
                                 <div class="form-group">
                                     <div class="col-md-6">
