@@ -18,6 +18,7 @@ use App\Egresadosolicitud;
 use App\Empresa;
 use App\Curriculo;
 use DB;
+use DateTime;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\File;
@@ -96,7 +97,18 @@ class EgresadoController extends Controller
      */
     public function store(Request $request)
     {               
-        //dd($request->file('file'));
+        $rules= [
+            'numero_cel' => 'min: 10', 
+            'fecha_de_nac' => 'date'|'date_format:Y-m-d', 
+                      
+        ];
+        $messages = [
+            'fecha_de_nac.date' => 'El campo fecha de nacimiento no corresponde al formato dd-mm-yyyy.',            
+            'numero_cel.max' => 'El campo numero de celular debe tener 10 digitos.',
+            'fecha_de_nac.date_format' => 'El campo fecha de nacimiento no corresponde al formato dd-mm-yyyy'
+        ];
+        
+        $this->validate($request, $rules, $messages);
 
         $usuario = Auth::user()->id;
         $admin = DB::table('users')->where('id', $usuario)->update(['tipo' => 0]);

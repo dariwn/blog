@@ -48,6 +48,19 @@ class RegistroEmController extends Controller
     public function store(Request $request)
     {
         //
+        $rules= [
+            //'rfcempresa' => 'min: 13', 
+            'telefono_celular' => 'min: 10', 
+                      
+        ];
+        $messages = [
+            
+            //'rfcempresa.min' => 'El campo RFC debe tener 13 digitos.',
+            'telefono_celular.min' => 'El campo numero de telefono/celular debe tener 10 digitos.'
+        ];
+        
+        $this->validate($request, $rules, $messages);
+
         $emailexist = DB::table('users')->where('email',$request->correo)->exists(); 
         if($emailexist == true){
             return redirect('/RegistroEmpresa/create')->with('registro','Este correo ya se encuentra registrado');

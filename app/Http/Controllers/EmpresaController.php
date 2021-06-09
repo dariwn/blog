@@ -71,6 +71,21 @@ class EmpresaController extends Controller
      */
     public function store(Request $request)
     {
+        $rules= [
+            //'rfcempresa' => 'min: 13', 
+            'telefono' => 'min: 10', 
+            'numero_cel' => 'min: 10',
+                      
+        ];
+        $messages = [
+            
+            //'rfcempresa.min' => 'El campo RFC debe tener 13 digitos.',
+            'telefono.min' => 'El campo numero de telefono debe tener 10 digitos.',
+            'numero_cel.min' => 'El campo numero de celular debe tener 10 digitos.',
+        ];
+
+        $this->validate($request, $rules, $messages);
+
         if(Auth::user()->origen == 'Empresa'){
         $usuario = Auth::user()->id;
         $admin = DB::table('users')->where('id', $usuario)->update(['tipo' => 0]);

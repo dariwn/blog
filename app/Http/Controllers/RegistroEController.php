@@ -66,6 +66,16 @@ class RegistroEController extends Controller
     {
         //        
         //dd($request);
+        $rules= [
+            'numerocontrol' => 'min: 8',            
+        ];
+        $messages = [
+            'numerocontrol.max' => 'El campo número de control debe tener 8 digitos.',            
+        ];
+        
+
+        $this->validate($request, $rules, $messages);
+
         $existcne = DB::table('registro_egresado_nuevos')->where('email',$request->correo)->exists();        
         $existcne2 = DB::table('users')->where('email',$request->correo)->exists();        
         if ($existcne == true || $existcne2 == true) {            
