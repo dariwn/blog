@@ -310,7 +310,7 @@ class RegistroEController extends Controller
 
             //dd($correoadmin);
               $data1 = $correoadmin;
-              $data ='http://127.0.0.1:8000/editardatos/'.$id.'/registroegresado';
+              $data ='https://bolsadetrabajo.tuxtla.tecnm.mx/editardatos/'.$id.'/registroegresado';
 
             
    
