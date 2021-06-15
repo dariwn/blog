@@ -173,7 +173,7 @@
 						  </tr>
 						  <tr>
 							<td>Numero Exterior:</td>
-							<td><input type="text" class="form-control input-sm" name="numeroexterior" value="{{$empresa->numeroexterior}}" required></td>
+							<td><input type="number" class="form-control input-sm" name="numeroexterior" value="{{$empresa->numeroexterior}}" required></td>
 						  </tr>
 						  <tr>
 							<td>Codigo Postal:</td>
