@@ -111,7 +111,7 @@ class EgresadoController extends Controller
         $this->validate($request, $rules, $messages);
 
         $usuario = Auth::user()->id;
-        $admin = DB::table('users')->where('id', $usuario)->update(['tipo' => 0]);
+        
         $egresado = new Egresado;
         $egresado->correo=$request->get('correo');
         $egresado->nombres=$request->get('nombres');
@@ -148,7 +148,7 @@ class EgresadoController extends Controller
 
                
         $egresado->save();
-
+        $admin = DB::table('users')->where('id', $usuario)->update(['tipo' => 0]);
         $correo = Auth::user()->email;
         // dd($correo);
         if (DB::table('registro_egresado_nuevos')->where('email', $correo)->exists()) {                         

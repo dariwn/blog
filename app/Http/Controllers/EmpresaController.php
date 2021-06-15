@@ -88,7 +88,7 @@ class EmpresaController extends Controller
 
         if(Auth::user()->origen == 'Empresa'){
         $usuario = Auth::user()->id;
-        $admin = DB::table('users')->where('id', $usuario)->update(['tipo' => 0]);
+        
         $empresa = new Empresa;
         $empresa->users_id = $usuario;
         $empresa->municipio_id=$request->get('municipio_id');
@@ -120,7 +120,7 @@ class EmpresaController extends Controller
 
         $Ucorreo->save();
         $empresa->save();
-
+        $admin = DB::table('users')->where('id', $usuario)->update(['tipo' => 0]);
         event(new Registered($Ucorreo));
         return redirect()->route('empresa.index');
         }else{
