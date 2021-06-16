@@ -439,8 +439,12 @@ class EgresadoController extends Controller
         $usuario = Auth::user()->id;
         $egresado = Egresado::select('idegresado')->where('users_id', $usuario)->get();
         $egresados = Arr::first($egresado);
-        //dd($egresado);
-
+        //dd($egresados);
+        $curriexis = DB::table('curriculo')->where('idegresado',$egresados->idegresado)->exists();
+        //dd($curriexis);
+        if($curriexis == false){
+            return redirect('/onda');
+        }
         $egresado1 = Egresado::select('idegresado')->where('users_id', $usuario)->get();
         //dd($egresado);
          $egresados1 = Arr::flatten($egresado1);
