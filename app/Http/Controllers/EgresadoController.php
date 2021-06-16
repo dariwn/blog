@@ -470,7 +470,11 @@ class EgresadoController extends Controller
         $emprefoto = Arr::first($fotoempr);
         //dd($emprefoto);
 
-        $pefilpos= Solicitudperfil::select('idperfiles')->whereIn('idsolicitud',$b)->get();
+        $as = Solicitud::select('idsolicitud')->where('idsolicitud',$id)->get();
+        $bs = Arr::first($as);
+        //dd($bs);
+        //$pefilpos= Solicitudperfil::select('idperfiles')->whereIn('idsolicitud',$b)->get();
+        $pefilpos = DB::table('solicitudperfil')->where('idsolicitud', $bs->idsolicitud)->get();
         //dd($pefilpos);
 
         return view('egresado.postularse',compact('egresados','solicitudes','empresa','b','perfil','hola', 'emprefoto', 'pefilpos'));
