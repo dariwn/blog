@@ -75,7 +75,10 @@ class RegistroEController extends Controller
         
 
         $this->validate($request, $rules, $messages);
-
+        $existecontrol = DB::table('registro_egresado_nuevos')->where('numero_control', $request->numerocontrol)->exists();
+        if($existecontrol == true){
+            return redirect('/RegistroEgresado/create')->with('registro','Este numero de control ya se encuentra registrado'); 
+        }
         $existcne = DB::table('registro_egresado_nuevos')->where('email',$request->correo)->exists();        
         $existcne2 = DB::table('users')->where('email',$request->correo)->exists();        
         if ($existcne == true || $existcne2 == true) {            
