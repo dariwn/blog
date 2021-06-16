@@ -48,8 +48,7 @@
 									<td>{{ $bienvenido->estado->nombre_estado}}</td>
 									<td>{{ $bienvenido->municipio->nombre_localidad}}</td>
 								</tr>
-								@endforeach
-								{{$empresa->render()}}
+								@endforeach								
 							</table>
 						</div>
 					</div>
@@ -59,6 +58,10 @@
             </div>
           </div>
         </div>
+		<br>
+		<div class="row justify-content-center">
+			{!! $empresa->render() !!}
+		</div>  
 </div>
 
                       

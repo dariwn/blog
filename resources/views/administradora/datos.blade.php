@@ -55,9 +55,13 @@
             </div>
           </div>
         </div>
+		<br>
+		<div class="row justify-content-center">
+			{!! $egresado->render() !!}
+		</div>  
 </div>
 
                       
-                     
+              
                   
 @endsection

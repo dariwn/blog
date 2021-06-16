@@ -73,5 +73,17 @@
 					</tr>
 				@endforeach
                   </table>
+				</div>
+			</div>
+		  </div>
+		</div>
+		
+	  </div>
+
+	  <br>
+		<div class="row justify-content-center">
+			{!! $solicitudes->render() !!}
+		</div>
+</div>
 
 @endsection

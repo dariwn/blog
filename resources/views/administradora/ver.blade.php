@@ -35,8 +35,7 @@
                                     <td>{{ $perico->numero_cel}}</td>
                                     <td>{{ $perico->email}}</td>
                                 </tr>
-                                @endforeach
-                                {{$administrador->render()}}
+                                @endforeach                        
                             </table>
                         </div>
                     </div>
@@ -46,6 +45,10 @@
                 </div>
             </div>
           </div>
+          <br>
+		<div class="row justify-content-center">
+			{!! $administrador->render() !!}
+		</div>
         </div>
 </div>
 
