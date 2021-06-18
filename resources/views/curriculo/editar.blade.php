@@ -309,7 +309,7 @@ var element3 = -1.16;
                 <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                 <div class="form-group">
                 <label for="codigo">Especialidad</label>
-                <input type="text" name="especialidad" id="especialidad" required value="{{$hola->especialidad}}" class="form-control" placeholder="Especialidad">
+                <input type="text" name="especialidad" maxlength="59" required value="{{$hola->especialidad}}" class="form-control" placeholder="Especialidad">
                 </div>  
                 </div>
                 
@@ -479,7 +479,7 @@ var element3 = -1.16;
                 <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                 <div class="form-group">
                 <label for="codigo">Habilidades</label>
-                <input type="text" name="habilidades" id="habilidades" required value="{{$hola->habilidades}}" class="form-control" placeholder="Habilidades">
+                <input type="text" name="habilidades" maxlength="99" required value="{{$hola->habilidades}}" class="form-control" placeholder="Habilidades">
                 </div>  
                 </div>
 

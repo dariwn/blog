@@ -1,5 +1,15 @@
 @extends('egresado.inicio')
 <link rel="stylesheet" href="{{asset('css/pos.css')}}">
+<script>
+	 $(document).ready(function () {
+    $('input#comentario')
+        .keypress(function (event) {
+        if (this.value.length === 250) {
+            return false;
+        }
+        });
+    });
+</script>
 @section('contenido')
 	<div class="container">
 		<div class="card" style="width: 30rem; margin: 0 auto">
@@ -48,7 +58,7 @@
 		  </div>
 		  
 		  <label for="" class="form-group col-md-12 col-sm-12 col-xs-12"> Comentario
-			<textarea class="form-control" name="comentario" id="" cols="30" rows="3"></textarea>
+			<textarea class="form-control" name="comentario" maxlength="200" cols="30" rows="3"></textarea>
 		  </label>
 	
 			<div class="form-group btns col-md-12">

@@ -125,7 +125,7 @@
                       <tr>
                         <tr>
                         <td class='col-md-3'>Domicilio</td>
-                        <td><input type="text" class="form-control input-sm"  id="domicilio" name="domicilio" value="{{$egresado->domicilio}}" required></td>
+                        <td><input type="text" class="form-control input-sm"  maxlength="49" name="domicilio" value="{{$egresado->domicilio}}" required></td>
                       </tr>
                       <tr>
                         <td>Fecha de Nacimiento:</td>
@@ -201,7 +201,7 @@
                    
                       <tr>
                         <td>Colonia</td>
-                        <td><input type="text" class="form-control input-sm" id="colonia" name="colonia" value="{{$egresado->colonia}}" required></td>
+                        <td><input type="text" class="form-control input-sm" maxlength="39" name="colonia" value="{{$egresado->colonia}}" required></td>
                       </tr>
                       
                       <td>

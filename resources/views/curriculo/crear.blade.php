@@ -307,7 +307,7 @@ var element2 = -1;
                 <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                 <div class="form-group">
                 <label for="codigo">Especialidad</label>
-                <input type="text" name="especialidad" id="especialidad" required value="{{old('especialidad')}}" class="form-control" placeholder="Especialidad">
+                <input type="text" name="especialidad" maxlength="59" required value="{{old('especialidad')}}" class="form-control" placeholder="Especialidad">
                 </div>  
                 </div>
                 
@@ -382,7 +382,7 @@ var element2 = -1;
                 <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                 <div class="form-group">
                 <label for="codigo">Habilidades</label>
-                <input type="text" name="habilidades" id="habilidades" required value="{{old('habilidades')}}" class="form-control" placeholder="Habilidades">
+                <input type="text" name="habilidades" maxlength="99" required value="{{old('habilidades')}}" class="form-control" placeholder="Habilidades">
                 </div>  
                 </div>
 

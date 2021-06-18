@@ -127,14 +127,14 @@
                 <div class="col-lg-6">
                 <div class="form-group">
                 <label for="codigo">Domicilio</label>
-                <input type="text" name="domicilio" id="domicilio" required value="{{old('domicilio')}}" class="form-control" placeholder="Domilicio...">
+                <input type="text" name="domicilio" maxlength="49" required value="{{old('domicilio')}}" class="form-control" placeholder="Domilicio...">
                 </div>
                 </div>                  
 
                 <div class="col-lg-6">
                 <div class="form-group">
                 <label for="codigo">Colonia</label>
-                <input type="text" name="colonia" id="colonia" required value="{{old('colonia')}}" class="form-control" placeholder="Colonia...">
+                <input type="text" name="colonia" maxlength="39" required value="{{old('colonia')}}" class="form-control" placeholder="Colonia...">
                 </div>  
                 </div>
 
