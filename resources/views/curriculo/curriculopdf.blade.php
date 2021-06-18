@@ -80,6 +80,7 @@
                              
                          }else{
                              $maes = json_decode($hola->maestria_doctorado, true);
+                             
                              foreach ($maes as $value) {
                                  $cadena = $value['Maestria']; 
                                  echo '<strong>Maestria/Doctorado: </strong>'.($cadena).'<br>';
@@ -93,6 +94,9 @@
                  <br>
             </dd>
         </dl>
+        @if ($hola->maestria_doctorado == " ")
+            
+        @elseif($hola->maestria_doctorado != " ")
         <dl>
             <br>
             <dd class="clear"></dd>
@@ -101,6 +105,8 @@
             <dt></dt>
             <dd></dd>
         </dl>
+        @endif
+        
         <dl>            
             <br>
             <dd class="clear"></dd>
