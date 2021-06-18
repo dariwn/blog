@@ -9,6 +9,7 @@
      <title>Curriculum</title>
 
      <style type="text/css">
+
         * { margin: 0; padding: 0; }
         body { font: 14px Helvetica, Sans-Serif; line-height: 24px; background: url(images/noise.jpg); }
         .clear { clear: both; }
@@ -23,9 +24,9 @@
         ul { margin: 0 0 32px 17px; }
         #objective { width: 500px; float: left; }
         #objective p { font-family: Georgia, Serif; font-style: italic; color: #666; }
-        dt { font-style: italic; font-weight: bold; font-size: 18px; text-align: right; padding: 0 26px 0 0; width: 150px; float: left; height: 100px; border-right: 1px solid #999;  }
-        dd { width: 600px; float: right; }
-        dd.clear { float: none; margin: 0; height: 15px; }
+        dt { font-style: italic; font-weight: bold; font-size: 18px; margin-left: 1%;  margin-top: 1%  }
+        dd { margin-bottom: 1em; margin-left: 5% ; margin-bottom: 1% ; border-left: 1px solid #999;}
+        /* dd.clear { float: none; margin: 0; height: 15px; } */
      </style>
 </head>
 <br>
@@ -62,12 +63,9 @@
         <div class="clear"></div>
         
         <dl>
-            <br>
-            <dd class="clear"></dd>
-            <br>
-            
-                        
+            <br>                        
             <dt>Educación</dt>
+            <br>
             <dd>                
                 <p><strong>Universidad: </strong> {{$hola->escuela}} <br>
                     <strong>Carrera: </strong> {{$hola->perfil->carrera}}<br />
@@ -90,35 +88,24 @@
                          }
                          
                      ?>                                   
-                 </p>
-                 <br>
+                 </p>                 
             </dd>
         </dl>
-        @if ($hola->maestria_doctorado == " ")
-            
-        @elseif($hola->maestria_doctorado != " ")
-        <dl>
-            <br>
-            <dd class="clear"></dd>
-            <br>
-            <br>
-            <dt></dt>
-            <dd></dd>
-        </dl>
-        @endif
         
+        @if ($hola->experiencia == " ")
+            
+        @else
         <dl>            
-            <br>
+            {{-- <br>
             <dd class="clear"></dd>
             <br>
-            <br>
+            <br> --}}
             
             <dt>Experiencia</dt>
+            <br>
             <dd>                
                 <?php
-                    if ($hola->experiencia == " ") {
-                        echo '<p>Sin experiencia</p>';
-                    }else {
+                    
                         $res = json_decode($hola->experiencia,true);
                         foreach ($res as $value) {
                         $cadena = $value['Puesto'];
@@ -130,26 +117,31 @@
                         $cadena = $value['Fecha_e'];
                         echo 'Fecha de entrada: '.($cadena).'<br>';
                         $cadena = $value['Fecha_s'];
-                        echo 'Fecha de salida: '.($cadena).'</p>';                     
+                        echo 'Fecha de salida: '.($cadena).'</p>'; 
+                        echo '<br>';                    
                         }
-                    }
+                    
                     
                 ?>
             </dd>
         </dl>
+        @endif      
+       
+        @if ($hola->curso == " ")
+            
+        @else
         <dl>
-            <br>
+            {{-- <br>
             <dd class="clear"></dd>
             <br>
-            <br>
+            <br> --}}
             
-            <dt>Cursos / <br>Certificaciones</dt>
+            <dt>Cursos/Certificaciones</dt>
+            <br>
             <dd>
                 <?php
-                if ($hola->curso == " ") {
+                
                     
-                    echo '<p>Sin cursos</p>';
-                }else {
                     $res = json_decode($hola->curso,true);
                     foreach ($res as $value) {
                     $cadena = $value['Curso'];
@@ -158,32 +150,39 @@
                     echo 'Enlace: '.($cadena).'<br>';
                     $cadena = $value['Descripcion'];
                     echo 'Descripcion: '.($cadena).'<br>';
-                                       
+                    echo '<br>';                 
                     }
-                }
+                
                 
             ?>
             </dd>
         </dl>
+        @endif
+        
+        
+        {{-- <br> --}}
         <dl>
-            <br>
+            {{-- <br>
             <dd class="clear"></dd>
             <br>
-            <br>
+            <br> --}}
             
             <dt>Habilidad</dt>
+            <br>
             <dd>                    
                 <p>{{$hola->habilidades}}</p>
             </dd>
 
         </dl>
+        
         <dl>
-            <br>
+            {{-- <br>
             <dd class="clear"></dd>
             <br>
-            <br>
+            <br> --}}
             
             <dt>Objetivo Profesional:</dt>
+            <br>
             <dd>                    
                 <?php 
                     $res = json_decode($hola->objetivo,true);
@@ -195,13 +194,15 @@
             </dd>
 
         </dl>
+        
         <dl>  
-            <br>        
+            {{-- <br>        
             <dd class="clear"></dd>
             <br>
-            <br>
+            <br> --}}
             
             <dt>Idioma</dt>
+            <br>
             <dd>
                 <?php 
                 $co = explode(",",$hola->ididioma);
