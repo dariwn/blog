@@ -65,6 +65,7 @@
             <br>
             <dd class="clear"></dd>
             <br>
+            
                         
             <dt>Educación</dt>
             <dd>                
@@ -89,10 +90,18 @@
                          
                      ?>                                   
                  </p>
+                 <br>
             </dd>
         </dl>
-        
         <dl>
+            <br>
+            <dd class="clear"></dd>
+            <br>
+            <br>
+            <dt></dt>
+            <dd></dd>
+        </dl>
+        <dl>            
             <br>
             <dd class="clear"></dd>
             <br>
