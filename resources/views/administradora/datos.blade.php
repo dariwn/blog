@@ -9,11 +9,20 @@
 
             <div class="panel-body">              
                 <div class=" col-md-12"> 
+					<center>
+						<form class="form-inline my-2" method="get" action="{{ route ('usuario.index') }}">	
+							<input class="form-control mr-sm-2" type="search" name="email" placeholder="Nombre(s)" aria-label="Search" >
+							
+							<button class="btn btn-success my-2 my-sm-0" type="submit">Buscar</button>
+						  </form>
+					</center> 
+					<br>
 					<div class="table-responsive">
 						<div class="table-responsive">
 
 						   <table class="table table-striped table-bordered table-condensed table-hover">
 							<thead>
+								<th>Curriculum</th>
 								<th>Correo</th>
 								<th>Usuario</th>
 								<th>Nombres</th>
@@ -29,8 +38,19 @@
 								<th>Colonia</th>
 							</thead>
 						   @foreach ($egresado as $hola)
-						 
+						 @php
+							 $curri = DB::table('curriculo')->where('idegresado', $hola->idegresado)->exists();							 
+						 @endphp
 							<tr>
+								@if ($curri == true)
+								<td><a href="{{url('/curriculopdf/'.$hola->idegresado) }}" class="btn-descargar" target="_blank">
+									Ver Curriculum
+								  </a>
+								</td>
+								@else
+								<td>Curriculum aún no registrado</td>
+								@endif
+								
 								<td>{{ $hola->correo}}</td>
 								<td>{{ $hola->user->username}}</td>
 								<td>{{ $hola->nombres}}</td>

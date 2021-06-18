@@ -25,10 +25,10 @@ class UsuarioController extends Controller
         $this->middleware('auth');
     }
     
-    public function index()
+    public function index(Request $request)
     {
         if(Auth::user()->origen == 'Administradora'){
-        $egresado = Egresado::paginate(7);
+        $egresado = Egresado::name($request->get('email'))->paginate(7);
         return view('administradora.datos', compact('egresado')); 
         }else{
             abort(404, 'Página No Encontrada');

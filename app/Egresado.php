@@ -56,5 +56,15 @@ class Egresado extends Model
     public function user(){
         return $this->belongsTo("App\User","users_id","id");
     }
+
+    public function scopeName($query, $email){
+		//dd("scope: " . $titulo);
+ 		if(trim($email) != ""){
+			$query->where('nombres', 'LIKE', '%'.$email.'%' );
+
+ 		}
+ 		
+
+ 	}
 }
 
