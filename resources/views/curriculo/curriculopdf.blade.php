@@ -10,6 +10,47 @@
 
      <style type="text/css">
 
+@page {
+                margin: 0cm 0cm;
+            }
+
+            /** Defina ahora los márgenes reales de cada página en el PDF **/
+            body {
+                margin-top: 1.5cm;
+                margin-left: .5cm;
+                margin-right: .5cm;
+                margin-bottom: 2cm;
+            }
+
+            header {
+                position: fixed;
+                top: 0cm;
+                left: 0cm;
+                right: 0cm;
+                height: .4cm;
+
+                /** Estilos extra personales **/
+                background-color: white;
+                color: white;
+                text-align: center;
+                line-height: 1.5cm;
+            }
+
+            /** Definir las reglas del pie de página **/
+            footer {
+                position: fixed; 
+                bottom: 0cm; 
+                left: 0cm; 
+                right: 0cm;
+                height: .4cm;
+
+                /** Estilos extra personales **/
+                background-color: white;                
+                text-align: center;
+                line-height: 1.5cm;
+            }
+
+
         * { margin: 0; padding: 0; }
         body { font: 14px Helvetica, Sans-Serif; line-height: 24px; background: url(images/noise.jpg); }
         .clear { clear: both; }
@@ -32,9 +73,14 @@
 <br>
 
 <body>
+    <header>
+       
+    </header>
 
-    <div id="page-wrap">
-    <br>                                 
+    <footer>
+        <span> Bolsa de Trabajo TECNM Campus Tuxtla Gutiérrez. Copyright &copy; <?php echo date("Y");?> </span>
+    </footer>
+    <div id="page-wrap">                               
         <div id="contact-info" class="vcard">
         
             <!-- Microformats! -->
