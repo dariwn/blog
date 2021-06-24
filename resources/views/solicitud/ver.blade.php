@@ -61,14 +61,14 @@
 						</td>
 						@elseif($var >=1)
 						<td>
-						<a class="btn-wide btn btn-primary" href="{{url('postulado',$solicitud)}}">Ver</a>
+						<a class="btn-wide btn btn-primary" href="{{url('postulado',Crypt::encrypt($solicitud->idsolicitud))}}">Ver</a>
 						</td>
 						@endif
 						<td>
-							<a class="btn-wide btn btn-success" href="{{ route('solicitud.edit',$solicitud) }}">Editar</a>
+							<a class="btn-wide btn btn-success" href="{{ route('solicitud.edit',Crypt::encryptString($solicitud->idsolicitud)) }}">Editar</a>
 						</td>
 						<td>
-							<a class="btn-wide btn btn-success" href="{{ route('bienvenido.edit',$solicitud) }}">Editar</a>
+							<a class="btn-wide btn btn-success" href="{{ route('bienvenido.edit',Crypt::encryptString($solicitud->idsolicitud)) }}">Editar</a>
 						</td>
 					</tr>
 				@endforeach

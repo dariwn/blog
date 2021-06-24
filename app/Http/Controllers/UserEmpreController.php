@@ -10,7 +10,8 @@ use DB;
 use App\Empresa;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Mail;
-
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Contracts\Encryption\DecryptException;
 use App\Mail\MensajeCambioUsuario;
 
 class UserEmpreController extends Controller
@@ -68,15 +69,33 @@ class UserEmpreController extends Controller
      */
     public function show($id)
     {
-        //   
+        //  
+        try {
+            $decode = Crypt::decrypt($id);
+
+            $versiarray = is_array($decode);
+    
+            if($versiarray == true){
+                if($decode[0] == false){
+                    $id = $decode[1];
+                }else{
+                    $id = $decode[0];
+                }                   
+            }else{
+                $id = $decode;
+            } 
+        } catch (DecryptException $e) {
+            abort(404, 'Pagina No Encontrada');
+        }
+
         if(Auth::user()->origen == 'Empresa'){ 
         $usuario = User::findOrFail($id);
         $existe = 'No';
         //dd($usuario);
         $usuario1 = Auth::user()->id;
-        $empresa = Empresa::select('idempresa')->where('users_id', $usuario1)->get()->pluck('idempresa');
+        $empresa = Empresa::select('idempresa')->where('users_id', $usuario1)->first();
         $empresas = Arr::flatten($empresa);
-
+        $empresas = Empresa::where('idempresa',$empresa->idempresa)->first();
         return view('empresa.editusuario', compact('existe','usuario','empresas'));
         }else{
             abort(404, 'Pagina No Encontrada');
@@ -105,12 +124,30 @@ class UserEmpreController extends Controller
 
     public function edit2($id){
         if (Auth::user()->origen == 'Empresa') {
+            try {
+                $decode = Crypt::decrypt($id);
+
+                $versiarray = is_array($decode);
+        
+                if($versiarray == true){
+                    if($decode[0] == false){
+                        $id = $decode[1];
+                    }else{
+                        $id = $decode[0];
+                    }                   
+                }else{
+                    $id = $decode;
+                } 
+            } catch (DecryptException $e) {
+                abort(404, 'Pagina No Encontrada');
+            }
             $user = DB::table('users')->where('id',$id)->get();
             //dd($user);
             $existe = 'No';
             $usuario1 = Auth::user()->id;
-            $empresa = Empresa::select('idempresa')->where('users_id', $usuario1)->get()->pluck('idempresa');
+            $empresa = Empresa::select('idempresa')->where('users_id', $usuario1)->first();
             $empresas = Arr::flatten($empresa);
+            $empresas = Empresa::where('idempresa',$empresa->idempresa)->first();
             return view('empresa.editcorreo', compact('existe','user','empresas'));
         }else{
             abort(404,'Pagina No Encontrada');

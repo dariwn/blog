@@ -123,7 +123,7 @@
             		
             
             <li class="treeview">
-              <a href="{{route('empresa.show', $empresas)}}">
+              <a href="{{route('empresa.show',Crypt::encrypt($empresas->idempresa))}}">
                 <i class="fa fa-th"></i>
                 <span>Perfil</span>
                  <i class="fa fa-angle-left pull-right"></i>
@@ -158,8 +158,8 @@
                     <a href="#"><i class="fa fa-cog"></i><span>Ajustes de la cuenta</span>
                       <i class="fa fa-angle-left pull-right"></i>
                     <ul class="treeview-menu">
-                      <li><a href="{{route('ajustesemp.show',$id)}}"><i class="fa fa-user"></i>Cambiar Usuario/Contraseña</a></li>                                                    
-                      <li><a href="{{route('ajustesemp.correo',$id)}}"><i class="fa fa-envelope"></i>Cambiar Correo</a></li>                               
+                      <li><a href="{{route('ajustesemp.show',Crypt::encrypt($id))}}"><i class="fa fa-user"></i>Cambiar Usuario/Contraseña</a></li>                                                    
+                      <li><a href="{{route('ajustesemp.correo',Crypt::encrypt($id))}}"><i class="fa fa-envelope"></i>Cambiar Correo</a></li>                               
                     </ul>              
                   </a>
                   </li>

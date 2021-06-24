@@ -41,7 +41,7 @@
 						<td>
 							@if($postulado->estatus == 'Postulado')
 							{{-- @if($postulado->estatus == 'Postulado                     ') --}}
-								<a href="{{url('/curriculopdf/'.$postulado->egresado->idegresado) }}" class="btn-descargar" target="_blank">
+								<a href="{{url('/curriculopdf/'.Crypt::encrypt($postulado->egresado->idegresado)) }}" class="btn-descargar" target="_blank">
 									ver
 								  </a>
 							

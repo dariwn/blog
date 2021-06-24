@@ -17,7 +17,8 @@ use App\Encuesta;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Arr;
-
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Contracts\Encryption\DecryptException;
 use DateTime;
 
 use App\Mail\MensajeSolicitud;
@@ -42,10 +43,12 @@ class SolicitudController extends Controller
              
 
         $usuario = Auth::user()->id;
-        $empresa = Empresa::select('idempresa')->where('users_id', $usuario)->get()->pluck('idempresa');
+        $empresa = Empresa::select('idempresa')->where('users_id', $usuario)->first();
+        //dd($empresa);
         $empresas = Arr::first($empresa);
+        $empresas = Empresa::where('idempresa',$empresa->idempresa)->first();
 
-        $solicitudes = Solicitud::where('id_empresa', $empresa)->paginate(20);
+        $solicitudes = Solicitud::where('id_empresa', $empresa->idempresa)->paginate(20);
 
         //dd($solicitudes);
         $egresolicitados = Egresadosolicitud::where('estatus','Postulado')->get();
@@ -219,12 +222,35 @@ class SolicitudController extends Controller
      */
     public function edit($id)
     {
-        if(Auth::user()->origen == 'Empresa'){
-        $usuario = Auth::user()->id;
-        $empresa = Empresa::select('idempresa')->where('users_id', $usuario)->get()->pluck('idempresa');
-        $empresas = Arr::first($empresa);
 
-        $solicitudes = Solicitud::find($id);
+        if(Auth::user()->origen == 'Empresa'){
+            try {
+                $decode = Crypt::decryptString($id);
+    
+                $versiarray = is_array($decode);
+        
+                if($versiarray == true){
+                    if($decode[0] == false){
+                        $id = $decode[1];
+                    }else{
+                        $id = $decode[0];
+                    }                   
+                }else{
+                    $id = $decode;
+                } 
+            } catch (DecryptException $e) {
+                abort(404, 'Pagina No Encontrada');
+            }
+            $tipo = $id;
+            //dd($tipo);
+        $usuario = Auth::user()->id;
+        $empresa = Empresa::select('idempresa')->where('users_id', $usuario)->first();
+        $empresas = Arr::first($empresa);
+        $empresas = Empresa::where('idempresa',$empresa->idempresa)->first();
+        $solicitudes = Solicitud::find($tipo);
+
+        //$solicitudes = Solicitud::where('idsolicitud',$id)->first();
+        //dd($solicitudes);
         $perfiles = Perfil::all();
         $generos = Genero::all();
         return view('solicitud.editar', compact('empresas', 'solicitudes', 'perfiles','generos'));
@@ -255,7 +281,7 @@ class SolicitudController extends Controller
         $solicitudes->experiencia = $request->experiencia;
         $solicitudes->estado_civil = $request->estado_civil;
         $solicitudes->cambio_de_residencia = $request->cambio_de_residencia;
-        $solicitudes->id_empresa = $request->id_empresa;
+        // $solicitudes->id_empresa = $request->id_empresa;
         $solicitudes->estatus = $request->estatus;
         $solicitudes->created_at = date('Y-m-d H:m:s');
         $solicitudes->updated_at = date('Y-m-d H:m:s');
@@ -280,10 +306,29 @@ class SolicitudController extends Controller
 
     public function ver($id){
         if(Auth::user()->origen == 'Empresa'){
+            try {
+                $decode = Crypt::decrypt($id);
+    
+                $versiarray = is_array($decode);
+        
+                if($versiarray == true){
+                    if($decode[0] == false){
+                        $id = $decode[1];
+                    }else{
+                        $id = $decode[0];
+                    }                   
+                }else{
+                    $id = $decode;
+                } 
+            } catch (DecryptException $e) {
+                abort(404, 'Pagina No Encontrada');
+            }
+            $tipo = $id;
+            //dd($tipo);
         $usuario = Auth::user()->id;
-        $empresa = Empresa::select('idempresa')->where('users_id', $usuario)->get()->pluck('idempresa');
+        $empresa = Empresa::select('idempresa')->where('users_id', $usuario)->first();
         $empresas = Arr::flatten($empresa);
-
+        $empresas = Empresa::where('idempresa',$empresa->idempresa)->first();
         $egresolicitados = Egresadosolicitud::select('idegresado')->where('idsolicitud', $id)->get();
         //dd($egresolicitados);
 
@@ -297,9 +342,27 @@ class SolicitudController extends Controller
     }
 
     public function curriculopdfver($id){
-        //creacion del pdf y guardado        
+        //creacion del pdf y guardado  
+        try {
+            $decode = Crypt::decrypt($id);
+
+            $versiarray = is_array($decode);
+    
+            if($versiarray == true){
+                if($decode[0] == false){
+                    $id = $decode[1];
+                }else{
+                    $id = $decode[0];
+                }                   
+            }else{
+                $id = $decode;
+            } 
+        } catch (DecryptException $e) {
+            abort(404, 'Pagina No Encontrada');
+        }
+
         $usuario = $id;
-        
+        //dd($usuario);
         $egresado = Egresado::select('idegresado')->where('idegresado', $usuario)->get()->pluck('idegresado');
         $egresados = Arr::flatten($egresado);
         //dd($egresados);
@@ -324,7 +387,7 @@ class SolicitudController extends Controller
      }
 
     public function encuestacontra(Request $request, $id){
-        //dd($request);
+        //dd($id->idempresa);
         $nuevo = new Encuesta;
         $nuevo->respuesta = $request->nombre;
         $nuevo->idempresa = $id;
@@ -332,9 +395,10 @@ class SolicitudController extends Controller
         $nuevo->save();
 
         $usuario = Auth::user()->id;
-            $empresa = Empresa::select('idempresa')->where('users_id', $usuario)->get()->pluck('idempresa');
+            $empresa = Empresa::select('idempresa')->where('users_id', $usuario)->first();
             $empresas = Arr::first($empresa);
-            $solicitudes = Solicitud::where('id_empresa', $empresa)->paginate(20);
+            $empresas = Empresa::where('idempresa',$empresa->idempresa)->first();
+            $solicitudes = Solicitud::where('id_empresa', $empresa->idempresa)->paginate(20);
             $egresolicitados = Egresadosolicitud::all();
             $egresolicitados->each(function($egresolicitados){
                 $egresolicitados->egresado;
@@ -358,9 +422,10 @@ class SolicitudController extends Controller
             $solicitudes->save();
 
             $usuario = Auth::user()->id;
-            $empresa = Empresa::select('idempresa')->where('users_id', $usuario)->get()->pluck('idempresa');
+            $empresa = Empresa::select('idempresa')->where('users_id', $usuario)->first();
             $empresas = Arr::first($empresa);
-            $solicitudes = Solicitud::where('id_empresa', $empresa)->paginate(20);
+            $empresas = Empresa::where('idempresa',$empresa->idempresa)->first();
+            $solicitudes = Solicitud::where('id_empresa', $empresa->idempresa)->paginate(20);
             $egresolicitados = Egresadosolicitud::all();
             $egresolicitados->each(function($egresolicitados){
                 $egresolicitados->egresado;
@@ -376,9 +441,10 @@ class SolicitudController extends Controller
             $solicitudes->save();
 
             $usuario = Auth::user()->id;
-            $empresa = Empresa::select('idempresa')->where('users_id', $usuario)->get()->pluck('idempresa');
+            $empresa = Empresa::select('idempresa')->where('users_id', $usuario)->first();
             $empresas = Arr::first($empresa);
-            $solicitudes = Solicitud::where('id_empresa', $empresa)->paginate(20);
+            $empresas = Empresa::where('idempresa',$empresa->idempresa)->first();
+            $solicitudes = Solicitud::where('id_empresa', $empresa->idempresa)->paginate(20);
             $egresolicitados = Egresadosolicitud::all();
             $egresolicitados->each(function($egresolicitados){
                 $egresolicitados->egresado;

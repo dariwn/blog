@@ -12,6 +12,8 @@ use DB;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\MensajeSolicitud;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Contracts\Encryption\DecryptException;
 
 class SolicitudperfilController extends Controller
 {
@@ -75,12 +77,31 @@ class SolicitudperfilController extends Controller
     public function edit(Request $request, $id)
     {
         if(Auth::user()->origen == 'Empresa'){
-        $hola = Solicitudperfil::all()->where('idsolicitud',$id)->first();
+            try {
+                $decode = Crypt::decryptString($id);
+    
+                $versiarray = is_array($decode);
+        
+                if($versiarray == true){
+                    if($decode[0] == false){
+                        $id = $decode[1];
+                    }else{
+                        $id = $decode[0];
+                    }                   
+                }else{
+                    $id = $decode;
+                } 
+            } catch (DecryptException $e) {
+                abort(404, 'Pagina No Encontrada');
+            }
+            $tipo = $id;
+
+        $hola = Solicitudperfil::all()->where('idsolicitud',$tipo)->first();
 
         $usuario = Auth::user()->id;
-        $empresa = Empresa::select('idempresa')->where('users_id', $usuario)->get()->pluck('idempresa');
+        $empresa = Empresa::select('idempresa')->where('users_id', $usuario)->first();
         $empresas = Arr::first($empresa);
-
+        $empresas = Empresa::where('idempresa',$empresa->idempresa)->first();
         $bienvenido = Solicitud::where('idsolicitud',$id)->first();
 
         $solici = Solicitud::select('idsolicitud')->where('idsolicitud',$id)->get()->pluck('idsolicitud');

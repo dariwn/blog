@@ -18,7 +18,8 @@ use DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Arr;
 use Illuminate\Auth\Events\Registered;
-
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Contracts\Encryption\DecryptException;
 
 class EmpresaController extends Controller
 {
@@ -43,8 +44,10 @@ class EmpresaController extends Controller
             else{
             $usuario = Auth::user()->id;
             //dd($usuario);
-            $empresa = Empresa::select('idempresa')->where('users_id', $usuario)->get()->pluck('idempresa');
+            $empresa = Empresa::select('idempresa')->where('users_id', $usuario)->first();
+            //dd($empresa);
             $empresas = Arr::flatten($empresa);
+            $empresas = Empresa::where('idempresa',$empresa->idempresa)->first();
             return view('empresa.inicio1', compact('empresas'));
             }
         }else{
@@ -137,7 +140,27 @@ class EmpresaController extends Controller
     public function show($id)
     {
         if(Auth::user()->origen == 'Empresa'){
-        $tipo = $id;
+            // $decode = Crypt::decrypt($id);
+
+            // dd($decode);
+            try {
+                $decode = Crypt::decrypt($id);
+
+                $versiarray = is_array($decode);
+        
+                if($versiarray == true){
+                    if($decode[0] == false){
+                        $id = $decode[1];
+                    }else{
+                        $id = $decode[0];
+                    }                   
+                }else{
+                    $id = $decode;
+                } 
+            } catch (DecryptException $e) {
+                abort(404, 'Pagina No Encontrada');
+            }
+        $tipo = $decode;
         //dd($tipo);
         $usuario = Auth::user()->id;
        // dd($usuario);
@@ -145,8 +168,9 @@ class EmpresaController extends Controller
        // dd($empresa);
         $empresas = Arr::flatten($empresa);
         //-------------------------------
-        $empresa = Empresa::find($tipo);
-        //dd($empresa);
+        $empresas = Empresa::where('idempresa',$tipo)->first();
+        $empresa = Empresa::where('idempresa',$tipo)->first();
+        //dd($empresas);
         return view('empresa.show', compact('empresa','empresas'));
         }else{
             abort(404, 'Página No Encontrada');
@@ -162,13 +186,32 @@ class EmpresaController extends Controller
     public function edit($id)
     {
         if(Auth::user()->origen == 'Empresa'){
-        $usuario = Auth::user()->id;
-        $empresa = Empresa::select('idempresa')->where('users_id', $usuario)->get()->pluck('idempresa');
-        $empresas = Arr::flatten($empresa);
+            try {
+                $decode = Crypt::decryptString($id);
 
+                $versiarray = is_array($decode);
+        
+                if($versiarray == true){
+                    if($decode[0] == false){
+                        $id = $decode[1];
+                    }else{
+                        $id = $decode[0];
+                    }                   
+                }else{
+                    $id = $decode;
+                } 
+            } catch (DecryptException $e) {
+                abort(404, 'Pagina No Encontrada');
+            }
+
+        $usuario = Auth::user()->id;
+        $empresa = Empresa::select('idempresa')->where('users_id', $usuario)->first();
+        $empresas = Arr::flatten($empresa);
+           // dd($empresa);
         $estados = Estado::all();
         $localidades = Municipio::all();
         $empresa = Empresa::find($id);
+        $empresas = Empresa::where('idempresa',$empresa->idempresa)->first();
         return view('empresa.editar', compact('empresa', 'estados','localidades','empresas'));
         }else{
             abort(404, 'Página No Encontrada');

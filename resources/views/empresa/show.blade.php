@@ -153,7 +153,7 @@
                       </tr>
                       
                       <td>
-						<a href="{{route('empresa.edit',$empresa)}}"><button class="btn btn-primary">Editar</button></a>
+						<a href="{{route('empresa.edit',Crypt::encryptString($empresa->idempresa))}}"><button class="btn btn-primary">Editar</button></a>
                      </td>
                      
                     </tbody>

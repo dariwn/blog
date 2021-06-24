@@ -43,7 +43,7 @@
 						 @endphp
 							<tr>
 								@if ($curri == true)
-								<td><a href="{{url('/curriculopdf/'.$hola->idegresado) }}" class="btn-descargar" target="_blank">
+								<td><a href="{{url('/curriculopdf/'.Crypt::encrypt($hola->idegresado)) }}" class="btn-descargar" target="_blank">
 									Ver Curriculum
 								  </a>
 								</td>

@@ -35,7 +35,7 @@
     
     <div class="container col-md-6">
         <div class="card card-container">
-            <form action="{{ url('/encuestacontra/'.$empresas)}}" method="post">
+            <form action="{{ url('/encuestacontra/'.$empresas->idempresa)}}" method="post">
             <p>Por favor podria compartir con nosotros el nombre completo del egresado contratado.</p>
             <input class="form-control" type="text" id="name" name="nombre" placeholder="Nombre Completo del Egresado" required>
             <br>            
