@@ -14,6 +14,8 @@ use App\Perfil;
 use App\Municipio;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Contracts\Encryption\DecryptException;
 
 class CurriculoController extends Controller
 {
@@ -149,7 +151,7 @@ class CurriculoController extends Controller
         $usuario = Auth::user()->id;
         $idi = implode(",",$request->ididioma); 
 
-        $admin = DB::table('users')->where('id', $usuario)->update(['curriculo' => 0]);
+        
         $hola = new Curriculo;
 
         $hola->idegresado = $request->idegresado;
@@ -188,6 +190,7 @@ class CurriculoController extends Controller
         //dd($perfil->idperfiles);
         $hola->idperfiles = $perfil->idperfiles;
         $hola->save();
+        $admin = DB::table('users')->where('id', $usuario)->update(['curriculo' => 0]);
         return redirect()->route('egresado.index');   
     }
 
@@ -211,7 +214,7 @@ class CurriculoController extends Controller
         $holas = Arr::first($hola);
         
         $hola = Curriculo::find($holas);
-        
+        $egresados = Egresado::select('idegresado')->where('users_id', $usuario)->first();
         return view('curriculo.show',compact('holas', 'hola','egresados'));
         }else{
             abort(404, 'Pagina No Encontrada');
@@ -227,14 +230,31 @@ class CurriculoController extends Controller
     public function edit($id)
     {
         if(Auth::user()->origen == 'Egresado'){
+            //$decode = Crypt::decryptString($id); 
+            //dd($decode);  
+             try {
+                 $decode = Crypt::decryptString($id); 
+                 //dd($decode);       
+                 $versiarray = is_array($decode);
+        
+                 if($versiarray == true){
+                     $id = $decode[0];
+                 }else{
+                     $id = $decode;
+                 } 
+               }catch (DecryptException $e) {
+                 abort(404, 'Pagina No Encontrada');
+              }
+         //dd($id);    
         $usuario = Auth::user()->id;
-        $egresado = Egresado::select('idegresado')->where('users_id', $usuario)->get()->pluck('idegresado');
-        $egresados = Arr::first($egresado);
+        $egresados = Egresado::select('idegresado')->where('users_id', $usuario)->first();
+        //$egresados = Arr::first($egresado);
+        //dd($egresados);
 /*
         $hola = Curriculo::select('idcurriculo')->where('idcurriculo',$egresados)->get()->pluck('idcurriculo');
         $holas = array_flatten($hola);*/
-        $hola = Curriculo::findOrFail($id);
-       // dd($hola);
+        $hola = DB::table('curriculo')->where('idegresado',$egresados->idegresado)->first();
+        //dd($hola);
         
         $idiomas = Idioma::all();
         $jerarquias = Jerarquia::all();
@@ -361,10 +381,10 @@ class CurriculoController extends Controller
         //dd($request);
 
         $hola = Curriculo::findOrFail($id);
-
+        //dd($request->fecha_inicio);
         $idi = implode(",",$request->ididioma); 
 
-        $hola->idegresado = $request->idegresado;
+        // $hola->idegresado = $request->idegresado;
         $hola->ididioma = $idi;
         $hola->habilidades = $request->habilidades;
         $hola->especialidad = $request->especialidad;

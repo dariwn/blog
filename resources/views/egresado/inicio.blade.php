@@ -131,7 +131,7 @@
                  @else
                     @if(Auth::user()->tipo == 0 )
                     <li class="treeview">
-              <a href="{{ route('egresado.show',$egresados)}}">
+              <a href="{{ route('egresado.show',Crypt::encrypt($egresados->idegresado))}}">
                 <i class="fa fa-user"></i>
                 <span>Perfil</span>
                 <i class="fa fa-angle-left pull-right"></i>
@@ -163,7 +163,7 @@
             </li>
             @elseif(Auth::user()->curriculo == 0)
             <li class="treeview">
-              <a href="{{route('curriculo.show',$hola)}}">
+              <a href="{{route('curriculo.show',Crypt::encrypt($hola))}}">
                 <i class="fa fa-file"></i>
                 <span>Mostrar el curriculum</span>
                  <i class="fa fa-angle-left pull-right"></i>
@@ -177,8 +177,8 @@
               <a href="#"><i class="fa fa-cog"></i><span>Ajustes de la cuenta</span>
                 <i class="fa fa-angle-left pull-right"></i>
               <ul class="treeview-menu">
-                <li><a href="{{route('ajustes.show',$id)}}"><i class="fa fa-user"></i>Cambiar Usuario/Contraseña</a></li>
-                <li><a href="{{route('ajustescorreo.correo',$id)}}"><i class="fa fa-envelope"></i>Cambiar Correo</a></li>                               
+                <li><a href="{{route('ajustes.show',Crypt::encrypt($id))}}"><i class="fa fa-user"></i>Cambiar Usuario/Contraseña</a></li>
+                <li><a href="{{route('ajustescorreo.correo',Crypt::encrypt($id))}}"><i class="fa fa-envelope"></i>Cambiar Correo</a></li>                               
               </ul>              
             </a>
             </li>

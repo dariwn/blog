@@ -186,7 +186,7 @@
     </div>
 
     <td>
-                    <a href="{{route('curriculo.edit',$hola)}}"><button class="btn btn-primary">Editar</button></a>
+                    <a href="{{route('curriculo.edit',Crypt::encryptString($hola->idegresado))}}"><button class="btn btn-primary">Editar</button></a>
                      </td>
                      <a href="{{url('curriculopdf')}}"><button class="btn btn-success">Descargar</button></a>
                     </td>

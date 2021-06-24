@@ -28,6 +28,8 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Collection;
 
 use App\Mail\MensajePostulado;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Contracts\Encryption\DecryptException;
 
 
 class EgresadoController extends Controller
@@ -53,15 +55,15 @@ class EgresadoController extends Controller
         else{
         $usuario = Auth::user()->id;
         //dd($usuario);
-        $egresado = Egresado::select('idegresado')->where('users_id', $usuario)->first();
+        $egresados = Egresado::select('idegresado')->where('users_id', $usuario)->first();
        //dd($egresado->idegresado);
-       $dato = $egresado->idegresado;
-        $egresados = Arr::flatten($egresado);
+        $dato = $egresados->idegresado;
+        //$egresados = Arr::flatten($egresado);
         
         if($usuario = Auth::user()->curriculo == 1){
             $hola = 0;
         }else{
-            $hola = $egresado->idegresado;
+            $hola = $egresados->idegresado;
             //$hola1 = DB::table('curriculo')->whereIn('idcurriculo', $egresado)->get();
             //$hola = $hola1[0]->idcurriculo;
         }
@@ -72,7 +74,8 @@ class EgresadoController extends Controller
         
        // $holas = array_flatten($hola);
         //dd($holas);
-        $egresados = $egresado->idegresado;
+        //$egresados = $egresado->idegresado;
+        //$egresados = $egresados;
         //dd($egresados);
         return view('egresado.inicio', compact('egresados','hola'));
        }
@@ -169,16 +172,37 @@ class EgresadoController extends Controller
      */
     public function show($id)
     {
+        //$decode = Crypt::decrypt($id); 
+        //dd($decode); 
         if(Auth::user()->origen == 'Egresado'){
+            try {
+                $decode = Crypt::decrypt($id); 
+                //dd($decode);       
+                $versiarray = is_array($decode);
+        
+                if($versiarray == true){
+                    if($decode[0] == false){
+                        $id = $decode[1];
+                    }else{
+                        $id = $decode[0];
+                    }                   
+                }else{
+                    $id = $decode;
+                } 
+               }catch (DecryptException $e) {
+                 abort(404, 'Pagina No Encontrada');
+              }
+
+
         $usuario = Auth::user()->id;
         //dd($usuario);
-        $egresado = Egresado::select('idegresado')->where('users_id', $usuario)->first();
+        $egresado1 = Egresado::select('idegresado')->where('users_id', $usuario)->first();
        //dd($egresado);
-        $egresados = Arr::flatten($egresado);
+        $egresados = Arr::flatten($egresado1);
         
         //$hola1 = DB::table('curriculo')->whereIn('idcurriculo', $egresado)->get();
         //$hola = $hola1[0]->idcurriculo;
-        $hola = $egresado->idegresado;
+        $hola = $egresado1->idegresado;
         //dd($hola);
         $egresado = Egresado::find($id);
         $egresados = Egresado::select('idegresado')->where('users_id', $usuario)->first();
@@ -198,10 +222,29 @@ class EgresadoController extends Controller
     public function edit($id)
     {
         if(Auth::user()->origen == 'Egresado'){
+
+            try {
+                $decode = Crypt::decryptString($id); 
+                //dd($decode);       
+                $versiarray = is_array($decode);
+        
+                if($versiarray == true){
+                    if($decode[0] == false){
+                        $id = $decode[1];
+                    }else{
+                        $id = $decode[0];
+                    }                   
+                }else{
+                    $id = $decode;
+                } 
+               }catch (DecryptException $e) {
+                 abort(404, 'Pagina No Encontrada');
+              }
+              
         $usuario = Auth::user()->id;
         $egresado = Egresado::select('idegresado')->where('users_id', $usuario)->first();
         $egresados = Arr::flatten($egresado);
-        //dd($egresado);
+        
         
         // $hola1 = DB::table('curriculo')->whereIn('idcurriculo', $egresado)->get();
         // $hola = $hola1[0]->idcurriculo;
@@ -210,8 +253,9 @@ class EgresadoController extends Controller
         $estados = Estado::all();
         $generos = Genero::all();
         $localidades = Municipio::all();
-        $egresado = Egresado::find($id);
+        $egresado = Egresado::find($egresado->idegresado);
         $perfiles = Perfil::all();
+        $egresados = $egresado;
         return view('egresado.editar', compact('estados','localidades','egresado','egresados','perfiles','generos','hola'));
         }else{
             abort(404, 'Pagina No Encontrada');
@@ -220,7 +264,19 @@ class EgresadoController extends Controller
 
     public function edit2($id){
 
-        
+        try {
+            $decode = Crypt::decrypt($id);        
+            $versiarray = is_array($decode);
+    
+            if($versiarray == true){
+                $id = $decode[0];
+            }else{
+                $id = $decode;
+            } 
+          }catch (DecryptException $e) {
+            abort(404, 'Pagina No Encontrada');
+         }
+
         $usuario = Auth::user()->id;
         
         $egresado = Egresado::select('idegresado')->where('users_id', $usuario)->first();
@@ -233,6 +289,7 @@ class EgresadoController extends Controller
         // $hola1 = DB::table('curriculo')->whereIn('idcurriculo', $egresado)->get();
         // $hola = $hola1[0]->idcurriculo;
         $hola = $egresado->idegresado;
+        $egresados = Egresado::select('idegresado')->where('users_id', $usuario)->first();
 
         $estados = Estado::all();
         $generos = Genero::all();
@@ -304,9 +361,9 @@ class EgresadoController extends Controller
 
             $usuario = Auth::user()->id;
         
-            $egresado = Egresado::select('idegresado')->where('users_id', $usuario)->first();
+            $egresados = Egresado::select('idegresado')->where('users_id', $usuario)->first();
 
-            $egresados = Arr::flatten($egresado);
+            //$egresados = Arr::flatten($egresado);
             $datos = Egresado::where('idegresado',$egresado->idegresado)->first();
             
             //dd($datos);

@@ -88,7 +88,7 @@
                       </tr>
                       
                       <td>
-                    <a href="{{route('egresado.edit',$egresado)}}"><button class="btn btn-primary">Editar</button></a>
+                    <a href="{{route('egresado.edit',Crypt::encryptString($egresado))}}"><button class="btn btn-primary">Editar</button></a>
                      </td>
                      
                     </tbody>

@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\Mail;
 use App\Egresadosolicitud;
 
 use App\Mail\MensajeCambioUsuario;
-
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Contracts\Encryption\DecryptException;
 
 class UserEgreController extends Controller
 {
@@ -72,16 +73,29 @@ class UserEgreController extends Controller
     public function show($id)
     {
         //
+        try {
+            $decode = Crypt::decrypt($id);        
+            $versiarray = is_array($decode);
+    
+            if($versiarray == true){
+                $id = $decode[0];
+            }else{
+                $id = $decode;
+            } 
+          }catch (DecryptException $e) {
+            abort(404, 'Pagina No Encontrada');
+         }
+
         $usuario = User::findOrFail($id);
 
         $egresado = Egresado::select('idegresado')->where('users_id', $usuario->id)->first();
        //dd($egresado);
         $egresados = Arr::flatten($egresado);
-
+         
         $hola = Curriculo::select('idcurriculo')->where('idegresado',$egresados)->get()->pluck('idcurriculo');
         $holas = Arr::first($hola);
         $existe = 'No';
-
+        $egresados = Egresado::select('idegresado')->where('users_id', $usuario->id)->first();
         return view('egresado.editusuario', compact('existe','usuario', 'egresados', 'hola'));
         
     }
@@ -127,9 +141,9 @@ class UserEgreController extends Controller
                 $existe = 'Si';
                 $usuario = User::findOrFail($id);
 
-                $egresado = Egresado::select('idegresado')->where('users_id', $usuario->id)->first();
+                $egresados = Egresado::select('idegresado')->where('users_id', $usuario->id)->first();
                //dd($egresado);
-                $egresados = Arr::flatten($egresado);
+                //$egresados = Arr::flatten($egresado);
         
                 $hola = Curriculo::select('idcurriculo')->where('idegresado',$egresados)->get()->pluck('idcurriculo');
                 $holas = Arr::first($hola);
