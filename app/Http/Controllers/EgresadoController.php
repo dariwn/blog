@@ -492,7 +492,20 @@ class EgresadoController extends Controller
     }
 
     public function postularse($id){
-
+        try {
+            $decode = Crypt::decrypt($id);        
+            $versiarray = is_array($decode);
+    
+            if($versiarray == true){
+                $id = $decode[0];
+            }else{
+                $id = $decode;
+            } 
+          }catch (DecryptException $e) {
+            abort(404, 'Pagina No Encontrada');
+         }
+        $tipo = $id;
+        //dd($tipo);
         $usuario = Auth::user()->id;
         $egresado = Egresado::select('idegresado')->where('users_id', $usuario)->get();
         $egresados = Arr::first($egresado);

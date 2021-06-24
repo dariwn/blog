@@ -51,7 +51,7 @@
 		@if (in_array($solicitud->idsolicitud, $array))
 			<span style="font-size:13.0pt; background-color: rgb(83, 255, 83)">Postulado</span>
 		@else
-			<a class="btn-wide btn btn-primary" href="{{ url('postulacion',$solicitud1[0]->idsolicitud) }}" class="card-link">Detalles</a>			
+			<a class="btn-wide btn btn-primary" href="{{ url('postulacion',Crypt::encrypt($solicitud1[0]->idsolicitud)) }}" class="card-link">Detalles</a>			
 		@endif
 		<span></span>
 		@endif
