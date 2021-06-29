@@ -87,3 +87,9 @@ Route::resource('/RegistroEgresado', 'RegistroEController');
 Auth::routes(['verify' => true ]);
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/egrerep', function(){
+    $consulta = DB::table('egresado')->get();
+    foreach ($consulta as $item){
+        echo $consulta;
+    }
+});
