@@ -439,10 +439,10 @@ class CurriculoController extends Controller
     public function curriculo(){
         if(Auth::user()->origen == 'Egresado'){
         $usuario = Auth::user()->id;
-        $egresado = Egresado::select('idegresado')->where('users_id', $usuario)->get()->pluck('idegresado');
-        $egresados = Arr::first($egresado);
-        
-        $obtperfil=Egresado::select('perfiles_id')->where('idegresado', $egresado)->get();
+        $egresados = Egresado::select('idegresado')->where('users_id', $usuario)->first();
+        //$egresados = Arr::first($egresado);
+        //dd($egresados);
+        $obtperfil=Egresado::select('perfiles_id')->where('idegresado', $egresados->idegresado)->get();
         
 
         $nomperfil=Perfil::select('carrera')->where('idperfiles',$obtperfil[0]->perfiles_id)->get();
