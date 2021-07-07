@@ -1,4 +1,6 @@
 <?php
+//use App\Curriculo;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -87,9 +89,23 @@ Route::resource('/RegistroEgresado', 'RegistroEController');
 Auth::routes(['verify' => true ]);
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/egrerep', function(){
-    $consulta = DB::table('egresado')->get();
-    foreach ($consulta as $item){
-        echo $consulta;
-    }
-});
+// Route::get('/egrerep', function(){
+//     $consulta = DB::table('egresado')->where('nombres','egresado jjjjjjjjjjjjjjjj')->get();
+    
+//         echo $consulta;
+        
+//     $consulta1 = DB::table('curriculo')->where('idegresado',$consulta[0]->idegresado)->get();
+
+//     echo $consulta1;
+
+//     $flight = Curriculo::find($consulta1[0]->idcurriculo);
+
+//     $flight->ididioma = '2';
+
+//     $flight->save();
+
+//     $consulta1 = DB::table('curriculo')->where('idegresado',$consulta[0]->idegresado)->get();
+
+//     echo $consulta1;
+
+// });
