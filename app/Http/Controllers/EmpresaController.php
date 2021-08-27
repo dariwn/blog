@@ -207,7 +207,7 @@ class EmpresaController extends Controller
         $usuario = Auth::user()->id;
         $empresa = Empresa::select('idempresa')->where('users_id', $usuario)->first();
         $empresas = Arr::flatten($empresa);
-           // dd($empresa);
+           //dd($empresa);
         $estados = Estado::all();
         $localidades = Municipio::all();
         $empresa = Empresa::find($id);

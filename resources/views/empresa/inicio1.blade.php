@@ -205,7 +205,7 @@
                                      
                   ?>
                   No olvides completar tu perfil!
-                  <a href="{{route('empresa.edit',$editemp[0]->idempresa)}}">Click aqui.</a>
+                  <a href="{{route('empresa.edit',Crypt::encryptString($editemp[0]->idempresa))}}">Click aqui.</a>
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
               </div>
