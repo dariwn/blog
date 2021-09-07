@@ -629,5 +629,17 @@ class NuevoController extends Controller
         }
         
     }
+
+    public function TVacantes(){
+        $todasVacantes = Solicitud::paginate(10);
+
+        return view('administradora.todasvacantes', compact('todasVacantes'));
+    }
+
+    public function TPostulados($id){
+        $todosPostulados = DB::table('egresadosolicitud')->where('idsolicitud',$id)->paginate(10);
+        
+        return view('administradora.todospostulados', compact('todosPostulados'));
+    }
     
 }

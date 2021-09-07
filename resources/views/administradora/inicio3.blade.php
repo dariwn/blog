@@ -125,7 +125,8 @@
                 <li><a href="{{route('graficabarra')}}">Grafica de Barra</a></li>
                 <li><a href="{{route('ver_reporte') }}">Reporte</a></li>   
                 <li><a href="{{url('ver_contratados')}}">Empresas Que Contrataron</a></li> 
-                <li><a href="{{url('ver_alumnos_contratados')}}">Alumnos Contratados</a></li>                            
+                <li><a href="{{url('ver_alumnos_contratados')}}">Alumnos Contratados</a></li>  
+                <li><a href="{{ url('ver_todas_vacantes')}}">Ver Todas Las Vacantes</a></li>                          
               </ul>              
             </a>
             </li>

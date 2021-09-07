@@ -38,6 +38,8 @@ Route::get('/ver_alumnos_contratados', 'NuevoController@AlumnosContratados');
 Route::put('ajustescorreoadmin/{id}/actualizado','UserAdminController@update2')->name('ajustescorreoadministrador.update');
 Route::resource('ajustescorreoadmin', 'UserAdminController');
 Route::get('/verlistasolicitudes/{id}','NuevoController@ListaSolicitudes' );
+Route::get('/ver_todas_vacantes', 'NuevoController@TVacantes');
+Route::get('/ver_todos_postulados/{id}', 'NuevoController@TPostulados');
 
 Route::match(['get','post'], '/BTEmpresa', 'logueoController@login');//Empresa
 Route::get('/exitempresa', 'logueoController@logout');
