@@ -39,8 +39,16 @@ class VerificaEmail implements ShouldQueue
     {
         //eliminar users sin verificar email
         $correonoverify = DB::table('users')->where('email_verified_at', null)->get();
-        foreach($correonoverify as $datos){                            
-            
+
+	//dd($correonoverify);
+        foreach($correonoverify as $datos){  
+
+	if($datos->origen == 'Empresa'){
+
+	}else{                          
+		
+	//dd($datos);
+
             $fechahoy = date('Y-m-d');
             $fechahoy2 = new DateTime($fechahoy);
             $fechaactualizado = new DateTime($datos->updated_at);
@@ -49,11 +57,34 @@ class VerificaEmail implements ShouldQueue
             
             if($intervalcorreo->format('%R%a días') >= 30){
 
-                $registronuevos = DB::table('registro_egresado_nuevos')->where('email',$datos->email)->first();
-                $eliminarregcorreo = RegistroEgresadoNuevo::findOrFail($registronuevos->id);
+		
+		$registronuevos = DB::table('users')->where('email',$datos->email)->first();
+		//dd($registronuevos);
+                //$registronuevos = DB::table('registro_egresado_nuevos')->where('email','=' ,$datos->email)->get();
+		//dd($registronuevos);
+
+		if (RegistroEgresadoNuevo::where('email', '=',$registronuevos->email )->exists()) {
+
+		$registronuevos1 = DB::table('registro_egresado_nuevos')->where('email','=' ,$datos->email)->first();
+		//dd($registronuevos1);
+
+		$eliminarregcorreo =  RegistroEgresadoNuevo::find($registronuevos1->id);
+		//dd($eliminarregcorreo);
+		
+		$eliminarregcorreo->delete();
+
+		}else{
+		
+		}
+
+                //$eliminarregcorreo = RegistroEgresadoNuevo::findOrFail($registronuevos->email);
+		//dd($eliminarregcorreo);
+ 
                 $eliminarusercorreo = User::findOrFail($datos->id);
+
+		//dd($eliminarusercorreo);
                 $eliminarusercorreo->delete();
-                $eliminarregcorreo->delete();
+               // $eliminarregcorreo->delete();
 
                 //Log::info("correo sin verificar eliminado");
             }else{
@@ -61,6 +92,7 @@ class VerificaEmail implements ShouldQueue
             }
             
         }
+	}
         //fin de eliminar user sin verificar correo
     }
 }

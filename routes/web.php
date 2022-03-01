@@ -111,3 +111,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 //     echo $consulta1;
 
 // });
+
+Route::get('/empreinfo',function(){
+    $consulta = DB::table('empresas')->get();
+    echo $consulta;   
+    
+});
